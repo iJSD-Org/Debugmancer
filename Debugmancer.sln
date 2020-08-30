@@ -1,0 +1,32 @@
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30320.27
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Debugmancer", "Debugmancer.csproj", "{283D5F07-8292-481C-A662-62444CB6D7CE}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{6D5E26B9-DC45-4A42-8D82-04E8DABBF0A6}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		ExportDebug|Any CPU = ExportDebug|Any CPU
+		ExportRelease|Any CPU = ExportRelease|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{283D5F07-8292-481C-A662-62444CB6D7CE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{283D5F07-8292-481C-A662-62444CB6D7CE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{283D5F07-8292-481C-A662-62444CB6D7CE}.ExportDebug|Any CPU.ActiveCfg = ExportDebug|Any CPU
+		{283D5F07-8292-481C-A662-62444CB6D7CE}.ExportDebug|Any CPU.Build.0 = ExportDebug|Any CPU
+		{283D5F07-8292-481C-A662-62444CB6D7CE}.ExportRelease|Any CPU.ActiveCfg = ExportRelease|Any CPU
+		{283D5F07-8292-481C-A662-62444CB6D7CE}.ExportRelease|Any CPU.Build.0 = ExportRelease|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {C7E03486-2528-4EAC-9315-2B4F69876F5A}
+	EndGlobalSection
+EndGlobal
