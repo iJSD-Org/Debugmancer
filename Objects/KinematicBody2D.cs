@@ -54,11 +54,11 @@ public class KinematicBody2D : Godot.KinematicBody2D
 		SPEED = 300;
 		await ToSignal(GetTree().CreateTimer(0.1f), "timeout");
 		SPEED = 150;
-		canDash = false;
 		DashTimer();
 	}
 	async public void DashTimer()
 	{
+		canDash = false;
 		await ToSignal(GetTree().CreateTimer(3), "timeout");
 		canDash = true;
 	}
