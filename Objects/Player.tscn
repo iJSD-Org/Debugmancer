@@ -6,7 +6,9 @@
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 4.75396, 7.41486 )
 
-[node name="KinematicBody2D" type="KinematicBody2D"]
+[node name="KinematicBody2D" type="KinematicBody2D" groups=[
+"player",
+]]
 script = ExtResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="."]
@@ -18,5 +20,8 @@ frame = 132
 region_rect = Rect2( 0, 0, 16, 16 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( 0.240778, 0.260281 )
+position = Vector2( 0.157916, 0.288688 )
 shape = SubResource( 1 )
+
+[node name="Gun" type="Node2D" parent="."]
+position = Vector2( 5.2, 0 )
