@@ -25,3 +25,13 @@ shape = SubResource( 1 )
 
 [node name="Gun" type="Node2D" parent="."]
 position = Vector2( 5.2, 0 )
+
+[node name="HUD" type="CanvasLayer" parent="."]
+
+[node name="BulletCount" type="Label" parent="HUD"]
+margin_right = 40.0
+margin_bottom = 14.0
+text = "Number of Pewpew Left: 10"
+__meta__ = {
+"_edit_use_anchors_": false
+}

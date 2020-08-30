@@ -12,6 +12,7 @@ public class KinematicBody2D : Godot.KinematicBody2D
 	private float bulletSpeed = 1000f;
 	private bool canShoot = true;
 	private float fireRate = 0.2f;
+	private int bulletCount = 50;
 	private void _process(float delta)
 	{
 		inputVector = GetInput();
@@ -25,13 +26,15 @@ public class KinematicBody2D : Godot.KinematicBody2D
 		velocity.y = Input.GetActionStrength("ui_down") - Input.GetActionStrength("ui_up");
 		if(Input.IsActionJustPressed("ui_select") && canDash) Dash();
 		if (velocity.x != 0 || velocity.y != 0) isWalking = true;
-		if(Input.IsActionPressed("click") && canShoot)
+		if(Input.IsActionPressed("click") && canShoot && bulletCount > 0)
 		{
 			var bulletInstance = bullet.Instance() as RigidBody2D;
 			bulletInstance.Position = GetNode<Node2D>("Gun").GlobalPosition;
 			bulletInstance.RotationDegrees = RotationDegrees;
 			bulletInstance.ApplyImpulse(new Vector2(0,0), new Vector2(bulletSpeed, 0).Rotated(Rotation));
 			GetTree().Root.AddChild(bulletInstance);
+			bulletCount--;
+			UpdateBulletCount(bulletCount);
 			ShootTimer();
 		}
 		return velocity * SPEED;
@@ -64,5 +67,9 @@ public class KinematicBody2D : Godot.KinematicBody2D
 		canShoot = false;
 		await ToSignal(GetTree().CreateTimer(fireRate), "timeout");
 		canShoot = true;
+	}
+	public void UpdateBulletCount(int b)
+	{
+		GetNode<Label>("HUD/BulletCount").Text = "Number of Pewpew Left: " + b.ToString();
 	}
 }
