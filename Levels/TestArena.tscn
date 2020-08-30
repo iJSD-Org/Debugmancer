@@ -7,7 +7,6 @@
 
 [node name="Floor" type="TileMap" parent="."]
 rotation = -4.65661e-10
-scale = Vector2( 1, 1 )
 tile_set = ExtResource( 1 )
 cell_size = Vector2( 16, 16 )
 format = 1
