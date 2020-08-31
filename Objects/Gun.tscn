@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Assets/gun.png" type="Texture" id=1]
+[ext_resource path="res://Objects/Gun.cs" type="Script" id=2]
+
+[node name="Gun" type="Sprite"]
+scale = Vector2( 0.02, 0.02 )
+texture = ExtResource( 1 )
+script = ExtResource( 2 )
+
+[node name="GunPoint" type="Node2D" parent="."]
+position = Vector2( 208.768, -90.3218 )
+
+[node name="HUD" type="CanvasLayer" parent="."]
+
+[node name="BulletCount" type="Label" parent="HUD"]
+margin_right = 40.0
+margin_bottom = 14.0
+text = "Number of Bullets Left: 50"
+__meta__ = {
+"_edit_use_anchors_": false
+}

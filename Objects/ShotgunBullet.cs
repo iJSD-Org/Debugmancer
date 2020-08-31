@@ -3,16 +3,16 @@ using System;
 
 public class ShotgunBullet : Area2D
 {
-    public Vector2 dir { get ; set ; } 
-    public int speed { get ; set ; } 
+	public Vector2 Direction { get; set; }
+	public int Speed { get; set; }
 
-    public override void _Process(float delta)
-    {
-        Position += dir * delta * speed;
-    }
+	public override void _Process(float delta)
+	{
+		Position += Direction * delta * Speed;
+	}
 
-    private void _on_VisibilityNotifier2D_screen_exited()
-    {     
-        this.QueueFree();
-    }
+	private void _on_VisibilityNotifier2D_screen_exited()
+	{
+		QueueFree();
+	}
 }

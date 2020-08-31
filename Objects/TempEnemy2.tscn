@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://Assets/0x72_16x16DungeonTileset.v3.png" type="Texture" id=1]
-[ext_resource path="res://Objects/Pattern2.cs" type="Script" id=2]
+[ext_resource path="res://Objects/TempEnemy2.cs" type="Script" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 5.52771, 7.531 )
