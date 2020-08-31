@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/tempBullet.png-7fa2e66702525f3be2eb72244ca58d32.stex"
+path="res://.import/gun.png-08d9aab1f1022a3af6f0ab285f7006df.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/tempBullet.png"
-dest_files=[ "res://.import/tempBullet.png-7fa2e66702525f3be2eb72244ca58d32.stex" ]
+source_file="res://Assets/Sprites/gun.png"
+dest_files=[ "res://.import/gun.png-08d9aab1f1022a3af6f0ab285f7006df.stex" ]
 
 [params]
 

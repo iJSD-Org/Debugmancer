@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/0x72_16x16DungeonTileset_walls.v1.png-5dc137e3b42b3206beaaede72d71ccff.stex"
+path="res://.import/CRTFrame.png-4f05f3cd7ae590ed6729130a4b90f89b.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/0x72_16x16DungeonTileset_walls.v1.png"
-dest_files=[ "res://.import/0x72_16x16DungeonTileset_walls.v1.png-5dc137e3b42b3206beaaede72d71ccff.stex" ]
+source_file="res://Assets/Sprites/CRTFrame.png"
+dest_files=[ "res://.import/CRTFrame.png-4f05f3cd7ae590ed6729130a4b90f89b.stex" ]
 
 [params]
 
@@ -20,7 +20,7 @@ compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=false
+flags/filter=true
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2
