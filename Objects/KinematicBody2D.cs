@@ -7,7 +7,7 @@ public class KinematicBody2D : Godot.KinematicBody2D
     private const int SPEED = 250;
     private bool isWalking = false;
 
-    private void _process(float delta)
+    public override void _Process(float delta)
     {
         inputVector = GetInput();
         Move();
@@ -30,10 +30,4 @@ public class KinematicBody2D : Godot.KinematicBody2D
         inputVector = MoveAndSlide(inputVector);
         isWalking = false;
     }
-
-    //  // Called every frame. 'delta' is the elapsed time since the previous frame.
-    //  public override void _Process(float delta)
-    //  {
-    //      
-    //  }
 }
