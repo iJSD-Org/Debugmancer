@@ -4,7 +4,7 @@ using System;
 public class KinematicBody2D : Godot.KinematicBody2D
 {
     private Vector2 inputVector = Vector2.Zero;
-    private const int SPEED = 250;
+    private const int SPEED = 100;
     private bool isWalking = false;
 
     private void _process(float delta)

@@ -1,0 +1,106 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Assets/0x72_16x16DungeonTileset.v3.png" type="Texture" id=1]
+[ext_resource path="res://Objects/Pattern3.cs" type="Script" id=2]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 4.22134, 7.99921 )
+
+[node name="TempEnemy3" type="KinematicBody2D"]
+position = Vector2( 52.4442, 33.3879 )
+script = ExtResource( 2 )
+
+[node name="Sprite" type="Sprite" parent="."]
+texture = ExtResource( 1 )
+vframes = 16
+hframes = 16
+frame = 147
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )
+
+[node name="BulletSpawns" type="Node2D" parent="."]
+
+[node name="Up1" type="Node2D" parent="BulletSpawns"]
+position = Vector2( 0.313911, -9.84717 )
+rotation = 3.14159
+
+[node name="Position2D" type="Position2D" parent="BulletSpawns/Up1"]
+position = Vector2( 0.157463, 0.314983 )
+
+[node name="Up2" type="Node2D" parent="BulletSpawns"]
+position = Vector2( -4.3633, -8.62219 )
+rotation = 2.72271
+
+[node name="Position2D" type="Position2D" parent="BulletSpawns/Up2"]
+position = Vector2( -0.098671, -0.334053 )
+
+[node name="Up3" type="Node2D" parent="BulletSpawns"]
+position = Vector2( 4.7684, -8.73355 )
+rotation = -2.72271
+
+[node name="Position2D" type="Position2D" parent="BulletSpawns/Up3"]
+position = Vector2( -0.098671, -0.334053 )
+
+[node name="Left1" type="Node2D" parent="BulletSpawns"]
+position = Vector2( -11.5638, 0.0333633 )
+rotation = 1.5708
+
+[node name="Position2D" type="Position2D" parent="BulletSpawns/Left1"]
+position = Vector2( 0.157463, 0.314983 )
+
+[node name="Left2" type="Node2D" parent="BulletSpawns"]
+position = Vector2( -9.30358, 4.4117 )
+rotation = 3.73326
+
+[node name="Position2D" type="Position2D" parent="BulletSpawns/Left2"]
+position = Vector2( -0.098671, -0.334053 )
+rotation = 3.73326
+
+[node name="Left3" type="Node2D" parent="BulletSpawns"]
+position = Vector2( -9.31662, -3.89839 )
+rotation = -4.24115
+
+[node name="Position2D" type="Position2D" parent="BulletSpawns/Left3"]
+position = Vector2( -0.098671, -0.334053 )
+
+[node name="Right1" type="Node2D" parent="BulletSpawns"]
+position = Vector2( 11.2456, 1.2947 )
+rotation = -1.5708
+
+[node name="Position2D" type="Position2D" parent="BulletSpawns/Right1"]
+position = Vector2( 0.157463, 0.314983 )
+
+[node name="Right2" type="Node2D" parent="BulletSpawns"]
+position = Vector2( 9.61659, 5.35771 )
+rotation = -1.11177
+
+[node name="Position2D" type="Position2D" parent="BulletSpawns/Right2"]
+position = Vector2( -0.098671, -0.334053 )
+
+[node name="Right3" type="Node2D" parent="BulletSpawns"]
+position = Vector2( 10.1291, -3.05749 )
+rotation = -1.95651
+
+[node name="Position2D" type="Position2D" parent="BulletSpawns/Right3"]
+position = Vector2( -0.253902, -0.510536 )
+
+[node name="Down1" type="Node2D" parent="BulletSpawns"]
+position = Vector2( 0.3694, 8.99535 )
+
+[node name="Position2D" type="Position2D" parent="BulletSpawns/Down1"]
+position = Vector2( 0.157463, 0.314983 )
+
+[node name="Down2" type="Node2D" parent="BulletSpawns"]
+position = Vector2( -4.30782, 10.2203 )
+rotation = 0.450295
+
+[node name="Position2D" type="Position2D" parent="BulletSpawns/Down2"]
+position = Vector2( -0.098671, -0.334053 )
+
+[node name="Down3" type="Node2D" parent="BulletSpawns"]
+position = Vector2( 4.82389, 10.109 )
+rotation = -0.450295
+
+[node name="Position2D" type="Position2D" parent="BulletSpawns/Down3"]
+position = Vector2( -0.098671, -0.334053 )

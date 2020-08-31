@@ -1,0 +1,46 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Assets/0x72_16x16DungeonTileset.v3.png" type="Texture" id=1]
+[ext_resource path="res://Objects/ShotgunBullet.cs" type="Script" id=2]
+
+[node name="ShotgunBullet" type="Area2D"]
+script = ExtResource( 2 )
+
+[node name="Sprite" type="Sprite" parent="."]
+texture = ExtResource( 1 )
+vframes = 48
+hframes = 48
+frame = 1168
+
+[node name="Sprite2" type="Sprite" parent="."]
+position = Vector2( -4.7447, -4.35901 )
+texture = ExtResource( 1 )
+vframes = 48
+hframes = 48
+frame = 1168
+
+[node name="Sprite3" type="Sprite" parent="."]
+position = Vector2( -9.96747, 10.3515 )
+texture = ExtResource( 1 )
+vframes = 48
+hframes = 48
+frame = 1168
+
+[node name="Sprite4" type="Sprite" parent="."]
+position = Vector2( -4.72276, 4.94574 )
+texture = ExtResource( 1 )
+vframes = 48
+hframes = 48
+frame = 1168
+
+[node name="Sprite5" type="Sprite" parent="."]
+position = Vector2( -9.8352, -8.94504 )
+texture = ExtResource( 1 )
+vframes = 48
+hframes = 48
+frame = 1168
+
+[node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]
+position = Vector2( -5.1308, 1.20905 )
+scale = Vector2( 0.709791, 1.20049 )
+[connection signal="screen_exited" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_exited"]
