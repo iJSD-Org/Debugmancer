@@ -10,7 +10,9 @@ public class KinematicBody2D : Godot.KinematicBody2D
 
 	public override void _Process(float delta)
 	{
-		// TODO: Future stuff here
+		Sprite weapon = GetNode<Sprite>("Gun");
+		if (Math.Abs(weapon.Rotation) < 90 * (Math.PI / 180)) TurnRight();
+		else if (Math.Abs(weapon.Rotation) >= 90 * (Math.PI / 180)) TurnLeft();
 	}
 
 	public override void _PhysicsProcess(float delta)
@@ -19,12 +21,6 @@ public class KinematicBody2D : Godot.KinematicBody2D
 			MoveAndSlide(_inputVector.Normalized() * new Vector2(1000, 1000));
 		else
 			_inputVector = MoveAndSlide(GetInput());
-		Sprite weapon = GetNode<Sprite>("Gun");
-		if (Math.Abs(weapon.Rotation) < 90 * (Math.PI / 180)) TurnRight();
-		else if (Math.Abs(weapon.Rotation) >= 90 * (Math.PI / 180)) TurnLeft();
-		if (weapon.Rotation > 4 || weapon.Rotation < 4) weapon.Rotation = 0;
-		if (Input.IsActionPressed("click")) GD.Print(weapon.Rotation);
-
 	}
 	private Vector2 GetInput()
 	{
