@@ -1,8 +1,10 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Assets/map_tileset.tres" type="TileSet" id=1]
 [ext_resource path="res://Objects/Player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Objects/TempEnemy4.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Objects/TempEnemy3.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Objects/TempEnemy2.tscn" type="PackedScene" id=5]
 
 [node name="TestArena" type="Node2D"]
 
@@ -25,3 +27,12 @@ position = Vector2( 51.3913, 59.4004 )
 
 [node name="TempEnemy4" parent="." instance=ExtResource( 3 )]
 position = Vector2( 137.179, 96.8736 )
+
+[node name="TempEnemy3" parent="." instance=ExtResource( 4 )]
+position = Vector2( 112.195, 149.707 )
+
+[node name="TempEnemy2" parent="." instance=ExtResource( 5 )]
+position = Vector2( 59.7505, 116.319 )
+
+[node name="TempEnemy5" parent="." instance=ExtResource( 3 )]
+position = Vector2( 186.322, 73.539 )

@@ -56,7 +56,7 @@ public class TempEnemy : KinematicBody2D
     {
         _canShoot = true;
         var bullet = (EnemyBullet)_bullet_scene.Instance();    
-        bullet.speed = 200;
+        bullet.speed = 135;
         bullet.Position = Position;
         bullet.dir = new Vector2(_player.Position.x - Position.x, _player.Position.y - Position.y).Normalized();
         GetParent().AddChild(bullet);
