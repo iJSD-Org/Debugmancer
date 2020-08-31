@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Objects/KinematicBody2D.cs" type="Script" id=1]
 [ext_resource path="res://Assets/0x72_16x16DungeonTileset.v3.png" type="Texture" id=2]
+[ext_resource path="res://Objects/Gun.tscn" type="PackedScene" id=3]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 4.75396, 7.41486 )
@@ -23,15 +24,5 @@ region_rect = Rect2( 0, 0, 16, 16 )
 position = Vector2( 0.157916, 0.288688 )
 shape = SubResource( 1 )
 
-[node name="Gun" type="Node2D" parent="."]
-position = Vector2( 5.2, 0 )
-
-[node name="HUD" type="CanvasLayer" parent="."]
-
-[node name="BulletCount" type="Label" parent="HUD"]
-margin_right = 40.0
-margin_bottom = 14.0
-text = "Number of Pewpew Left: 10"
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="Gun" parent="." instance=ExtResource( 3 )]
+position = Vector2( 9.88201, 0 )

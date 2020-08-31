@@ -4,15 +4,10 @@ using System;
 public class KinematicBody2D : Godot.KinematicBody2D
 {
 	[Export] public int Speed = 150;
-	[Export] public float FireRate = 0.2f;
-	[Export] public int BulletCount = 50;
-	[Export] public float BulletSpeed = 1000f;
-	[Export] public PackedScene Bullet = ResourceLoader.Load("res://Objects/Bullet.tscn") as PackedScene;
 	private Vector2 _inputVector = Vector2.Zero;
 	private bool _isDashing;
 	private bool _canDash = true;
-	private bool _canShoot = true;
-
+	
 	public override void _Process(float delta)
 	{
 		// TODO: Future stuff here
@@ -28,29 +23,44 @@ public class KinematicBody2D : Godot.KinematicBody2D
 		{
 			_inputVector = MoveAndSlide(GetInput());
 		}
+		Sprite weapon = GetNode<Sprite>("Gun");
+		if (weapon.Rotation >= -1.4 && weapon.Rotation <= 1.4) TurnRight();
+		if (weapon.Rotation < -1.4 || weapon.Rotation > 1.4) TurnLeft();
+		if (weapon.Rotation > 4 || weapon.Rotation < 4) weapon.Rotation = 0;
+		if (Input.IsActionPressed("click")) GD.Print(weapon.Rotation);
+
 	}
 	private Vector2 GetInput()
 	{
 		Vector2 velocity = new Vector2();
-		LookAt(GetGlobalMousePosition());
 		velocity.x = Input.GetActionStrength("ui_right") - Input.GetActionStrength("ui_left");
 		velocity.y = Input.GetActionStrength("ui_down") - Input.GetActionStrength("ui_up");
 		if (Input.IsActionJustPressed("dash") && _canDash) Dash();
-
-		if (Input.IsActionPressed("click") && _canShoot && BulletCount > 0)
-		{
-			RigidBody2D bulletInstance = (RigidBody2D)Bullet.Instance();
-			bulletInstance.Position = GetNode<Node2D>("Gun").GlobalPosition;
-			bulletInstance.RotationDegrees = RotationDegrees;
-			bulletInstance.ApplyImpulse(new Vector2(0, 0), new Vector2(BulletSpeed, 0).Rotated(Rotation));
-			GetTree().Root.AddChild(bulletInstance);
-			BulletCount--;
-			GetNode<Label>("HUD/BulletCount").Text = $"Number of Bullets Left: {BulletCount}";
-			ShootTimer();
-		}
+		
 		return velocity * Speed;
 	}
-
+	private void TurnLeft()
+	{
+		Sprite weapon = GetNode<Sprite>("Gun");
+		weapon.Position = new Vector2(
+			x: -Mathf.Abs(weapon.Position.x),
+			y: weapon.Position.y
+		);
+		weapon.FlipV = true;
+		Sprite player = GetNode<Sprite>("Sprite");
+		player.FlipH = true;
+	}
+	private void TurnRight()
+	{
+		Sprite weapon = GetNode<Sprite>("Gun");
+		weapon.Position = new Vector2(
+			x: Mathf.Abs(weapon.Position.x),
+			y: weapon.Position.y
+		);
+		weapon.FlipV = false;
+		Sprite player = GetNode<Sprite>("Sprite");
+		player.FlipH = false;
+	}
 	public async void Dash()
 	{
 		_isDashing = true;
@@ -68,10 +78,5 @@ public class KinematicBody2D : Godot.KinematicBody2D
 		await ToSignal(GetTree().CreateTimer(3), "timeout");
 		_canDash = true;
 	}
-	public async void ShootTimer()
-	{
-		_canShoot = false;
-		await ToSignal(GetTree().CreateTimer(FireRate), "timeout");
-		_canShoot = true;
-	}
+	
 }
