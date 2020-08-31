@@ -13,11 +13,12 @@ public class KinematicBody2D : Godot.KinematicBody2D
 	private bool canShoot = true;
 	private float fireRate = 0.2f;
 	private int bulletCount = 50;
-	private void _process(float delta)
-	{
-		inputVector = GetInput();
-		Move();
-	}
+
+    public override void _Process(float delta)
+    {
+        inputVector = GetInput();
+        Move();
+    }
 	private Vector2 GetInput()
 	{
 		Vector2 velocity = new Vector2();
@@ -44,11 +45,7 @@ public class KinematicBody2D : Godot.KinematicBody2D
 		inputVector = MoveAndSlide(inputVector);
 		isWalking = false;
 	}
-	//  // Called every frame. 'delta' is the elapsed time since the previous frame.
-	//  public override void _Process(float delta)
-	//  {
-	//      
-	//  }
+    
 	async public void Dash()
 	{
 		SPEED = 300;
