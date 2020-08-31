@@ -1,4 +1,5 @@
 using Godot;
+using System;
 
 public class KinematicBody2D : Godot.KinematicBody2D
 {
@@ -6,9 +7,10 @@ public class KinematicBody2D : Godot.KinematicBody2D
     [Export] public float FireRate = 0.2f;
     [Export] public int BulletCount = 50;
     [Export] public float BulletSpeed = 1000f;
-	[Export] public PackedScene Bullet = ResourceLoader.Load("res://Objects/Bullet.tscn") as PackedScene;
-	private Vector2 _inputVector = Vector2.Zero;
+    [Export] public PackedScene Bullet = ResourceLoader.Load("res://Objects/Bullet.tscn") as PackedScene;
+    private Vector2 _inputVector = Vector2.Zero;
     private bool _isWalking;
+    private bool _isDashing = false;
     private bool _canDash = true;
     private bool _canShoot = true;
 
@@ -19,8 +21,14 @@ public class KinematicBody2D : Godot.KinematicBody2D
 
     public override void _PhysicsProcess(float delta)
     {
-        _inputVector = GetInput();
-        _inputVector = MoveAndSlide(_inputVector);
+        if (_isDashing)
+        {
+            MoveAndSlide(_inputVector.Normalized() * new Vector2(1000, 1000));
+        }
+        else
+        {
+            _inputVector = MoveAndSlide(GetInput());
+        }
     }
     private Vector2 GetInput()
     {
@@ -48,11 +56,18 @@ public class KinematicBody2D : Godot.KinematicBody2D
 
     public async void Dash()
     {
-        Speed = 300;
-        await ToSignal(GetTree().CreateTimer(0.1f), "timeout");
-        Speed = 150;
+        _isDashing = true;
+        // Visual feedback that its dashing
+        Modulate = Color.Color8(100, 100, 100);
+        await ToSignal(GetTree().CreateTimer(.07f), "timeout");
+        Modulate = new Color(1, 1, 1);
+        _isDashing = false;
         DashTimer();
+        RandomNumberGenerator gen = new RandomNumberGenerator();
+        float waitTime = gen.RandfRange(.15f, 2.0f);
+
     }
+
     public async void DashTimer()
     {
         _canDash = false;
