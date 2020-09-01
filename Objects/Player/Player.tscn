@@ -55,7 +55,7 @@ margin_left = 244.382
 margin_top = 0.297295
 margin_right = 318.382
 margin_bottom = 14.2973
-text = "Health: 100"
+text = "Health:"
 __meta__ = {
 "_edit_use_anchors_": false
 }

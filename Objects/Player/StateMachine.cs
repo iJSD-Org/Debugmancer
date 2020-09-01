@@ -14,7 +14,7 @@ namespace Debugmancer.Objects.Player
 		public Stack<State> StateStack = new Stack<State>();
 		private readonly Timer _dashCooldownTimer = new Timer();
 		public readonly Dictionary<string, Node> StatesMap = new Dictionary<string, Node>();
-		private int life = 100;
+		public Health PlayerHealth;
 
 		public override void _Ready()
 		{
@@ -26,12 +26,15 @@ namespace Debugmancer.Objects.Player
 
 			foreach (Node state in StatesMap.Values)
 			{
-				state.Connect("Finished", this, nameof(ChangeState));
+				state.Connect(nameof(State.Finished), this, nameof(ChangeState));
 			}
 
 			_dashCooldownTimer.AutoReset = false;
 			_dashCooldownTimer.Enabled = false;
 			_dashCooldownTimer.Interval = 3000;
+
+			PlayerHealth = (Health)GetNode("Health");
+			PlayerHealth.Connect(nameof(Health.HealthChanged), this, nameof(OnHealthChanged));
 
 			StateStack.Push((State)StatesMap["Idle"]);
 			ChangeState("Idle");
@@ -113,19 +116,22 @@ namespace Debugmancer.Objects.Player
 			Sprite player = GetNode<Sprite>("Sprite");
 			player.FlipH = false;
 		}
+
+		public void OnHealthChanged()
+		{
+			if (PlayerHealth.CurrentHealth == 0)
+				ChangeState("Dead");
+		}
+
 		public void _on_Hitbox_body_entered(Area2D body)
 		{
 			if (body.IsInGroup("enemyBullet"))
-				life--;
-			if(life < 1) QueueFree();
-			GetNode<Label>("HUD/Health").Text = $"Health: {life}";
+				((Health)GetNode("Health")).Damage(1);
 		}
 		public void _on_Hitbox_area_entered(Area2D area)
 		{
-			if (area.IsInGroup("shotgunBullet")) life -= 5;
-			if (area.IsInGroup("enemyBullet")) life--;
-			if(life < 1) QueueFree();
-			GetNode<Label>("HUD/Health").Text = $"Health: {life}";
+			if (area.IsInGroup("shotgunBullet")) PlayerHealth.Damage(5);
+			if (area.IsInGroup("enemyBullet")) PlayerHealth.Damage(1);
 		}
 	}
 }
