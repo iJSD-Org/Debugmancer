@@ -15,6 +15,7 @@ namespace Debugmancer.Objects
 		public Stack<State> StateStack = new Stack<State>();
 		private readonly Timer _dashCooldownTimer = new Timer();
 		public readonly Dictionary<string, Node> StatesMap = new Dictionary<string, Node>();
+		private int life = 100;
 
 		public override void _Ready()
 		{
@@ -112,6 +113,20 @@ namespace Debugmancer.Objects
 			weapon.FlipV = false;
 			Sprite player = GetNode<Sprite>("Sprite");
 			player.FlipH = false;
+		}
+		public void _on_Hitbox_body_entered(Area2D body)
+		{
+			if (body.IsInGroup("enemyBullet"))
+				life--;
+			if(life < 1) QueueFree();
+			GetNode<Label>("HUD/Health").Text = $"Health: {life}";
+		}
+		public void _on_Hitbox_area_entered(Area2D area)
+		{
+			if (area.IsInGroup("shotgunBullet")) life -= 5;
+			if (area.IsInGroup("enemyBullet")) life--;
+			if(life < 1) QueueFree();
+			GetNode<Label>("HUD/Health").Text = $"Health: {life}";
 		}
 	}
 }

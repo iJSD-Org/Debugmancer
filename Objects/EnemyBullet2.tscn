@@ -3,11 +3,12 @@
 [ext_resource path="res://Assets/Sprites/0x72_16x16DungeonTileset.v3.png" type="Texture" id=1]
 [ext_resource path="res://Objects/EnemyBullet2.cs" type="Script" id=2]
 
-
 [sub_resource type="CircleShape2D" id=1]
 radius = 1.99826
 
-[node name="EnemyBullet" type="Area2D"]
+[node name="EnemyBullet" type="Area2D" groups=[
+"enemyBullet",
+]]
 script = ExtResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="."]
@@ -23,4 +24,5 @@ shape = SubResource( 1 )
 [node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]
 position = Vector2( 0.0208569, -0.0417135 )
 scale = Vector2( 0.201182, 0.207439 )
+[connection signal="body_entered" from="." to="." method="_on_EnemyBullet_body_entered"]
 [connection signal="screen_exited" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_exited"]

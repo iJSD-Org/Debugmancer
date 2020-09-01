@@ -10,6 +10,8 @@ public class Patttern5 : KinematicBody2D
 	private readonly Timer _burstCoolDown = new Timer();
 	private readonly Timer _shotCoolDown = new Timer();
 	private KinematicBody2D _player;
+	private int life = 5;
+	private int playerDamage = 1;
 
 	public override void _Ready()
 	{
@@ -89,4 +91,10 @@ public class Patttern5 : KinematicBody2D
 		_shots += 1;
 		SpawnBullet();
 	}
+	public void _on_Hitbox_body_entered(Area2D body)
+	{
+		if (body.IsInGroup("playerBullet")) life -= playerDamage;
+		if (body.IsInGroup("playerCritBullet")) life -= playerDamage * 2;
+		if(life < 1) QueueFree();
+	}	
 }

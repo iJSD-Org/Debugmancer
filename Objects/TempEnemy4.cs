@@ -8,6 +8,8 @@ namespace Debugmancer.Objects
 		private KinematicBody2D _player;
 		private bool _canShoot = true;
 		private readonly Timer _shootTimer = new Timer();
+		private int life = 5;
+		private int playerDamage = 1;
 
 		public override void _Ready()
 		{
@@ -41,5 +43,11 @@ namespace Debugmancer.Objects
             _shootTimer.Start();
             _canShoot = false;
         }
+		public void _on_Hitbox_body_entered(Area2D body)
+		{
+			if (body.IsInGroup("playerBullet")) life -= playerDamage;
+			if (body.IsInGroup("playerCritBullet")) life -= playerDamage * 2;
+			if(life < 1) QueueFree();
+		}	
 	}
 }

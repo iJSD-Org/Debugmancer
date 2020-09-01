@@ -15,4 +15,9 @@ public class EnemyBullet2 : Area2D
 	{
 		QueueFree();
 	}
+
+	public void _on_EnemyBullet_body_entered(Area2D body)
+	{
+		if (!body.IsInGroup("enemies")) QueueFree();
+	}
 }

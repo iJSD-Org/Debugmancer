@@ -4,7 +4,7 @@
 [ext_resource path="res://Objects/Bullet.cs" type="Script" id=2]
 
 [node name="Bullet" type="RigidBody2D" groups=[
-"playerBullet",
+"critPlayerBullet",
 ]]
 rotation = 3.14159
 contacts_reported = 1

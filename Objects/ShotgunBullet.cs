@@ -16,5 +16,9 @@ namespace Debugmancer.Objects
 		{
 			QueueFree();
 		}
+		public void _on_ShotgunBullet_body_entered(Area2D body)
+		{
+			if (!body.IsInGroup("enemies")) QueueFree();
+		}
 	}
 }
