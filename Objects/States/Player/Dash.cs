@@ -2,22 +2,22 @@ using Godot;
 
 namespace Debugmancer.Objects.States.Player
 {
-	public class Dash : Node
+	public class Dash : State
 	{
-		// Declare member variables here. Examples:
-		// private int a = 2;
-		// private string b = "text";
-
-		// Called when the node enters the scene tree for the first time.
-		public override void _Ready()
+		public override void Enter(KinematicBody2D host)
 		{
-        
 		}
 
-//  // Called every frame. 'delta' is the elapsed time since the previous frame.
-//  public override void _Process(float delta)
-//  {
-//      
-//  }
+		public override void Exit(KinematicBody2D host)
+		{
+		}
+
+		public override void HandleInput(KinematicBody2D host, InputEvent @event)
+		{
+		}
+
+		public override void Update(KinematicBody2D host, float delta)
+		{
+		}
 	}
 }

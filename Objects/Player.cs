@@ -11,7 +11,7 @@ namespace Debugmancer.Objects
 		public delegate void StateChanged();
 
 		public State CurrentState;
-		public Stack<State> StateStack;
+		public Stack<State> StateStack = new Stack<State>();
 		public readonly Dictionary<string, Node> StatesMap = new Dictionary<string, Node>();
 
 		public override void _Ready()
@@ -20,11 +20,11 @@ namespace Debugmancer.Objects
 			StatesMap.Add("Move", GetNode("State/Move"));
 			StatesMap.Add("Dash", GetNode("State/Dash"));
 
-			CurrentState = (State)GetNode("States/Idle");
+			CurrentState = (State)GetNode("State/Idle");
 
 			foreach (Node state in StatesMap.Values)
 			{
-				state.Connect("finished", this, "ChangeState");
+				state.Connect("Finished", this, nameof(ChangeState));
 			}
 
 			StateStack.Push((State)StatesMap["Idle"]);
@@ -66,6 +66,11 @@ namespace Debugmancer.Objects
 			{
 				QueueFree();
 				return;
+			}
+			else
+			{
+				StateStack.Pop();
+				StateStack.Push((State)StatesMap[stateName]);
 			}
 
 			CurrentState = StateStack.Peek();
