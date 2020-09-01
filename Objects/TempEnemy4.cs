@@ -30,16 +30,16 @@ namespace Debugmancer.Objects
 			_canShoot = true;
 		}
 
-		private void SpawnBullet()
-		{
-			var bullet = (ShotgunBullet)_shotgunScene.Instance();
-			bullet.Speed = 200;
-			bullet.Position = Position;
-			bullet.Rotation = (_player.Position - GlobalPosition).Angle();
-			bullet.Direction = new Vector2(_player.Position.x - Position.x, _player.Position.y - Position.y).Normalized();
-			GetParent().AddChild(bullet);
-			_shootTimer.Start();
-			_canShoot = false;
-		}
+        private void SpawnBullet()
+        {
+            var bullet = (ShotgunBullet)_shotgunScene.Instance();
+            bullet.Speed = 200;
+            bullet.Position = Position;
+            bullet.Rotation = (_player.Position - GlobalPosition).Angle();
+            bullet.Direction = new Vector2(_player.Position.x - Position.x, _player.Position.y - Position.y).Normalized();
+            GetParent().AddChild(bullet);
+            _shootTimer.Start();
+            _canShoot = false;
+        }
 	}
 }
