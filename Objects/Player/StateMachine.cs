@@ -1,12 +1,11 @@
 using System;
 using System.Collections.Generic;
 using Godot;
-using Debugmancer.Objects.States;
 using Timer = System.Timers.Timer;
 
-namespace Debugmancer.Objects
+namespace Debugmancer.Objects.Player
 {
-	public class Player : KinematicBody2D
+	public class StateMachine : KinematicBody2D
 	{
 		[Signal]
 		public delegate void StateChanged();

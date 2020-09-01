@@ -2,7 +2,7 @@ using System;
 using System.Threading.Tasks;
 using Godot;
 
-namespace Debugmancer.Objects.States.Player
+namespace Debugmancer.Objects.Player.States
 {
 	public class Dash : State
 	{
@@ -17,7 +17,7 @@ namespace Debugmancer.Objects.States.Player
 			host.Modulate = Color.Color8(100, 100, 100);
 			await Task.Delay(70);
 			host.Modulate = new Color(1, 1, 1);
-			EmitSignal(nameof(Finished),"Move");
+			EmitSignal(nameof(Finished), "Move");
 		}
 
 		public override void Exit(KinematicBody2D host)
@@ -32,7 +32,7 @@ namespace Debugmancer.Objects.States.Player
 
 		public override void Update(KinematicBody2D host, float delta)
 		{
-			host.MoveAndSlide(_inputDirection.Normalized() * _dashSpeed,Vector2.Zero);
+			host.MoveAndSlide(_inputDirection.Normalized() * _dashSpeed, Vector2.Zero);
 		}
 	}
 }

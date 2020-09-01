@@ -1,7 +1,7 @@
 using System;
 using Godot;
 
-namespace Debugmancer.Objects.States.Player
+namespace Debugmancer.Objects.Player.States
 {
 	public class Idle : State
 	{
