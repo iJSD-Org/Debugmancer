@@ -36,7 +36,6 @@ namespace Debugmancer.Objects
 			bullet.Speed = 200;
 			bullet.Position = Position;
 			bullet.Rotation = (_player.Position - GlobalPosition).Angle();
-			GD.Print(bullet.Rotation);
 			bullet.Direction = new Vector2(_player.Position.x - Position.x, _player.Position.y - Position.y).Normalized();
 			GetParent().AddChild(bullet);
 			_shootTimer.Start();
