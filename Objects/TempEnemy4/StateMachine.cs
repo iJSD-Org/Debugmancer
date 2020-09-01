@@ -1,6 +1,6 @@
 using Godot;
 
-namespace Debugmancer.Objects
+namespace Debugmancer.Objects.TempEnemy4
 {
 	public class TempEnemy4 : KinematicBody2D
 	{

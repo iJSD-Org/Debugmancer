@@ -1,9 +1,9 @@
 using System;
 using Godot;
 
-namespace Debugmancer.Objects
+namespace Debugmancer.Objects.TempEnemy2
 {
-	public class TempEnemy1 : KinematicBody2D
+	public class TempEnemy2 : KinematicBody2D
 	{
 		private readonly PackedScene _bulletScene = (PackedScene)ResourceLoader.Load("res://Objects/EnemyBullet.tscn");
 		private int _shots;
@@ -14,6 +14,7 @@ namespace Debugmancer.Objects
 		private KinematicBody2D _player;
 		private int life = 5;
 		private int playerDamage = 1;
+
 		public override void _Ready()
 		{
 			_player = GetParent().GetNode("Player") as KinematicBody2D;
@@ -25,7 +26,7 @@ namespace Debugmancer.Objects
 
 		public override void _Process(float delta)
 		{
-			if (_shots == 3 && !_burstStarted)
+			if (_shots == 20 && !_burstStarted)
 			{
 				StartBurstTimer();
 				_burstStarted = true;
@@ -41,7 +42,7 @@ namespace Debugmancer.Objects
 		private void StartBurstTimer()
 		{
 			Random waitTime = new Random();
-			_burstCoolDown.WaitTime = (float)(waitTime.NextDouble() * (2.0 - .5) + .5);
+			_burstCoolDown.WaitTime = (float)(waitTime.NextDouble() * (2.5 - .95) + .95);
 			_burstCoolDown.Start();
 		}
 
@@ -49,20 +50,9 @@ namespace Debugmancer.Objects
 		{
 			Random waitTime = new Random();
 			_canShoot = false;
-			_shotCoolDown.WaitTime = (float)(waitTime.NextDouble() * (.7 - .1) + .1);
+			_shotCoolDown.WaitTime = (float)(waitTime.NextDouble() * (.4 - .1) + .1);
 			_shotCoolDown.Start();
 		}
-
-		private void SpawnBullet()
-		{
-			_canShoot = true;
-			var bullet = (EnemyBullet)_bulletScene.Instance();
-			bullet.Speed = 135;
-			bullet.Position = Position;
-			bullet.Direction = new Vector2(_player.Position.x - Position.x, _player.Position.y - Position.y).Normalized();
-			GetParent().AddChild(bullet);
-		}
-
 		private void _on_Burst_timeout()
 		{
 			_burstCoolDown.Stop();
@@ -77,13 +67,21 @@ namespace Debugmancer.Objects
 			_shots += 1;
 			SpawnBullet();
 		}
+
+		private void SpawnBullet()
+		{
+			_canShoot = true;
+			var bullet = (EnemyBullet)_bulletScene.Instance();
+			bullet.Speed = 130;
+			bullet.Position = Position;
+			bullet.Direction = new Vector2(_player.Position.x - Position.x, _player.Position.y - Position.y).Normalized();
+			GetParent().AddChild(bullet);
+		}
 		public void _on_Hitbox_body_entered(Area2D body)
 		{
 			if (body.IsInGroup("playerBullet")) life -= playerDamage;
-			
 			if (body.IsInGroup("playerCritBullet")) life -= playerDamage * 2;
-			
-			if(life < 1) QueueFree();
-		}		
+			if (life < 1) QueueFree();
+		}
 	}
 }

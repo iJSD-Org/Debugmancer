@@ -1,9 +1,9 @@
 using System;
 using Godot;
 
-namespace Debugmancer.Objects
+namespace Debugmancer.Objects.TempEnemy5
 {
-	public class Patttern5 : KinematicBody2D
+	public class TempEnemy5 : KinematicBody2D
 	{
 		private readonly PackedScene _bulletScene = (PackedScene)ResourceLoader.Load("res://Objects/EnemyBullet2.tscn");
 		private int _shots;
