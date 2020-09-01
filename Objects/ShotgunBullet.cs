@@ -1,18 +1,20 @@
 using Godot;
-using System;
 
-public class ShotgunBullet : Area2D
+namespace Debugmancer.Objects
 {
-	public Vector2 Direction { get; set; }
-	public int Speed { get; set; }
-
-	public override void _Process(float delta)
+	public class ShotgunBullet : Area2D
 	{
-		Position += Direction * delta * Speed;
-	}
+		public Vector2 Direction { get; set; }
+		public int Speed { get; set; }
 
-	private void _on_VisibilityNotifier2D_screen_exited()
-	{
-		QueueFree();
+		public override void _Process(float delta)
+		{
+			Position += Direction * delta * Speed;
+		}
+
+		private void _on_VisibilityNotifier2D_screen_exited()
+		{
+			QueueFree();
+		}
 	}
 }

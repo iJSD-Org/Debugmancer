@@ -1,69 +1,117 @@
-using Godot;
 using System;
+using System.Collections.Generic;
+using Godot;
+using Debugmancer.Objects.States;
+using Timer = System.Timers.Timer;
 
-public class Player : KinematicBody2D
+namespace Debugmancer.Objects
 {
-	[Export] public int Speed = 150;
-	private Vector2 _inputVector = Vector2.Zero;
-	private bool _canDash = true;
-	private bool _isDashing;
+	public class Player : KinematicBody2D
+	{
+		[Signal]
+		public delegate void StateChanged();
 
-	public override void _Process(float delta)
-	{
-		Sprite weapon = GetNode<Sprite>("Gun");
-		if (Math.Abs(weapon.Rotation) < 90 * (Math.PI / 180)) TurnRight();
-		else if (Math.Abs(weapon.Rotation) >= 90 * (Math.PI / 180)) TurnLeft();
-	}
+		public State CurrentState;
+		public Stack<State> StateStack = new Stack<State>();
+		private readonly Timer _dashCooldownTimer = new Timer();
+		public readonly Dictionary<string, Node> StatesMap = new Dictionary<string, Node>();
 
-	public override void _PhysicsProcess(float delta)
-	{
-		if (_isDashing)
-			MoveAndSlide(_inputVector.Normalized() * new Vector2(1000, 1000));
-		else
-			_inputVector = MoveAndSlide(GetInput());
-	}
-	private Vector2 GetInput()
-	{
-		Vector2 velocity = new Vector2
+		public override void _Ready()
 		{
-			x = Input.GetActionStrength("ui_right") - Input.GetActionStrength("ui_left"),
-			y = Input.GetActionStrength("ui_down") - Input.GetActionStrength("ui_up")
-		};
-		if (Input.IsActionJustPressed("dash") && _canDash) Dash();
+			StatesMap.Add("Idle", GetNode("State/Idle"));
+			StatesMap.Add("Move", GetNode("State/Move"));
+			StatesMap.Add("Dash", GetNode("State/Dash"));
 
-		return velocity * Speed;
-	}
-	private void TurnLeft()
-	{
-		Sprite weapon = GetNode<Sprite>("Gun");
-		weapon.Position = new Vector2(-Mathf.Abs(weapon.Position.x), weapon.Position.y);
-		weapon.FlipV = true;
-		Sprite player = GetNode<Sprite>("Sprite");
-		player.FlipH = true;
-	}
-	private void TurnRight()
-	{
-		Sprite weapon = GetNode<Sprite>("Gun");
-		weapon.Position = new Vector2(Mathf.Abs(weapon.Position.x), weapon.Position.y);
-		weapon.FlipV = false;
-		Sprite player = GetNode<Sprite>("Sprite");
-		player.FlipH = false;
-	}
-	public async void Dash()
-	{
-		_isDashing = true;
-		// Visual feedback for dashing
-		Modulate = Color.Color8(100, 100, 100);
-		await ToSignal(GetTree().CreateTimer(.07f), "timeout");
-		Modulate = new Color(1, 1, 1);
-		_isDashing = false;
-		DashTimer();
-	}
+			CurrentState = (State)GetNode("State/Idle");
 
-	public async void DashTimer()
-	{
-		_canDash = false;
-		await ToSignal(GetTree().CreateTimer(3), "timeout");
-		_canDash = true;
+			foreach (Node state in StatesMap.Values)
+			{
+				state.Connect("Finished", this, nameof(ChangeState));
+			}
+
+			_dashCooldownTimer.AutoReset = false;
+			_dashCooldownTimer.Enabled = false;
+			_dashCooldownTimer.Interval = 3000;
+
+			StateStack.Push((State)StatesMap["Idle"]);
+			ChangeState("Idle");
+		}
+
+		public override void _Process(float delta)
+		{
+			Sprite weapon = GetNode<Sprite>("Gun");
+			if (Math.Abs(weapon.Rotation) < 90 * (Math.PI / 180)) TurnRight();
+			else if (Math.Abs(weapon.Rotation) >= 90 * (Math.PI / 180)) TurnLeft();
+		}
+
+		public override void _PhysicsProcess(float delta)
+		{
+			CurrentState.Update(this, delta);
+		}
+
+		public override void _Input(InputEvent @event)
+		{
+			// Firing is the weapon"s responsibility so the weapon should handle it
+			if (@event.IsActionPressed("click"))
+			{
+				((Gun)GetNode<Sprite>("Gun")).Fire();
+				return;
+			}
+			CurrentState.HandleInput(this, @event);
+		}
+
+		private void ChangeState(string stateName)
+		{
+			CurrentState.Exit(this);
+			GD.Print(!_dashCooldownTimer.Enabled);
+			if (stateName == "Previous")
+			{
+				StateStack.Pop();
+			}
+			else if (stateName == "Dash")
+			{
+				if (!_dashCooldownTimer.Enabled)
+				{
+					_dashCooldownTimer.Start();
+					StateStack.Push((State)StatesMap[stateName]);
+				}
+			}
+			else if (stateName == "Dead")
+			{
+				QueueFree();
+				return;
+			}
+			else
+			{
+				StateStack.Pop();
+				StateStack.Push((State)StatesMap[stateName]);
+			}
+
+			CurrentState = StateStack.Peek();
+			GD.Print(CurrentState.Name);
+
+			// We don"t want to reinitialize the state if we"re going back to the previous state
+			if (stateName != "Previous")
+				CurrentState.Enter(this);
+
+			EmitSignal(nameof(StateChanged), CurrentState.Name);
+		}
+
+		private void TurnLeft()
+		{
+			Sprite weapon = GetNode<Sprite>("Gun");
+			weapon.Position = new Vector2(-Mathf.Abs(weapon.Position.x), weapon.Position.y);
+			weapon.FlipV = true;
+			Sprite player = GetNode<Sprite>("Sprite");
+			player.FlipH = true;
+		}
+		private void TurnRight()
+		{
+			Sprite weapon = GetNode<Sprite>("Gun");
+			weapon.Position = new Vector2(Mathf.Abs(weapon.Position.x), weapon.Position.y);
+			weapon.FlipV = false;
+			Sprite player = GetNode<Sprite>("Sprite");
+			player.FlipH = false;
+		}
 	}
 }

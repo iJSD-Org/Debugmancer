@@ -1,11 +1,13 @@
 using Godot;
-using System;
 
-public class Bullet : RigidBody2D
+namespace Debugmancer.Objects
 {
-	public void _on_Bullet_body_entered(RigidBody2D body)
+	public class Bullet : RigidBody2D
 	{
-		if (!body.IsInGroup("player")) QueueFree();
+		public void _on_Bullet_body_entered(RigidBody2D body)
+		{
+			if (!body.IsInGroup("player")) QueueFree();
+		}
 	}
 }
 
