@@ -21,7 +21,10 @@ namespace Debugmancer.Objects.States.Player
 
 		public override void HandleInput(KinematicBody2D host, InputEvent @event)
 		{
-			// Nothing to do here
+			if (@event.IsActionPressed("dash"))
+			{
+				EmitSignal(nameof(Finished), "Dash");
+			}
 		}
 
 		public override void Update(KinematicBody2D host, float delta)

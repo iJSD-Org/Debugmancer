@@ -1,7 +1,8 @@
 using System;
-using Godot;
 using System.Collections.Generic;
+using Godot;
 using Debugmancer.Objects.States;
+using Timer = System.Timers.Timer;
 
 namespace Debugmancer.Objects
 {
@@ -12,6 +13,7 @@ namespace Debugmancer.Objects
 
 		public State CurrentState;
 		public Stack<State> StateStack = new Stack<State>();
+		private readonly Timer _dashCooldownTimer = new Timer();
 		public readonly Dictionary<string, Node> StatesMap = new Dictionary<string, Node>();
 
 		public override void _Ready()
@@ -26,6 +28,10 @@ namespace Debugmancer.Objects
 			{
 				state.Connect("Finished", this, nameof(ChangeState));
 			}
+
+			_dashCooldownTimer.AutoReset = false;
+			_dashCooldownTimer.Enabled = false;
+			_dashCooldownTimer.Interval = 3000;
 
 			StateStack.Push((State)StatesMap["Idle"]);
 			ChangeState("Idle");
@@ -57,11 +63,19 @@ namespace Debugmancer.Objects
 		private void ChangeState(string stateName)
 		{
 			CurrentState.Exit(this);
-
+			GD.Print(!_dashCooldownTimer.Enabled);
 			if (stateName == "Previous")
+			{
 				StateStack.Pop();
+			}
 			else if (stateName == "Dash")
-				StateStack.Push((State)StatesMap[stateName]);
+			{
+				if (!_dashCooldownTimer.Enabled)
+				{
+					_dashCooldownTimer.Start();
+					StateStack.Push((State)StatesMap[stateName]);
+				}
+			}
 			else if (stateName == "Dead")
 			{
 				QueueFree();
