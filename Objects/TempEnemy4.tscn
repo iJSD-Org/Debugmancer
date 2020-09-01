@@ -4,10 +4,10 @@
 [ext_resource path="res://Objects/TempEnemy4.cs" type="Script" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 5.53801, 7.63471 )
+extents = Vector2( 6.12746, 7.63471 )
 
 [sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 6.56383, 8.19601 )
+extents = Vector2( 6.89228, 8.24903 )
 
 [node name="TempEnemy4" type="KinematicBody2D" groups=[
 "enemies",
@@ -22,10 +22,15 @@ hframes = 16
 frame = 161
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 0.334091, 0.44545 )
 shape = SubResource( 1 )
 
-[node name="Hitbox" type="Area2D" parent="."]
+[node name="Hitbox" type="Area2D" parent="." groups=[
+"collision",
+]]
+position = Vector2( 0, 0.0441933 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+position = Vector2( 0.278408, 0.44545 )
 shape = SubResource( 2 )
 [connection signal="body_entered" from="Hitbox" to="." method="_on_Hitbox_body_entered"]

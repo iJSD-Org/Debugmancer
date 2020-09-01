@@ -6,7 +6,7 @@ namespace Debugmancer.Objects
 	{
 		public void _on_Bullet_body_entered(RigidBody2D body)
 		{
-			if (!body.IsInGroup("player")) QueueFree();
+			if (!body.IsInGroup("player"))  QueueFree();
 		}
 	}
 }

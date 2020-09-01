@@ -22,7 +22,7 @@ namespace Debugmancer.Objects
 			if (_canShoot && BulletCount > 0)
 			{
 				Random random = new Random();
-				RigidBody2D bulletInstance = random.Next(1, 100) > 10 ? (RigidBody2D)CritBullet.Instance() : (RigidBody2D)Bullet.Instance();
+				RigidBody2D bulletInstance = random.Next(1, 100) > 10 ? (RigidBody2D)Bullet.Instance() : (RigidBody2D)CritBullet.Instance();
 				bulletInstance.Position = GetNode<Node2D>("GunPoint").GlobalPosition;
 				bulletInstance.Rotation = Rotation;
 				bulletInstance.ApplyImpulse(new Vector2(0, 0), new Vector2(BulletSpeed, 0).Rotated(Rotation));

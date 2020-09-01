@@ -46,7 +46,7 @@ namespace Debugmancer.Objects
 		public void _on_Hitbox_body_entered(Area2D body)
 		{
 			if (body.IsInGroup("playerBullet")) life -= playerDamage;
-			if (body.IsInGroup("playerCritBullet")) life -= playerDamage * 2;
+			if (body.IsInGroup("playerCritBullet"))life -= playerDamage;
 			if(life < 1) QueueFree();
 		}	
 	}

@@ -4,7 +4,7 @@
 [ext_resource path="res://Objects/Bullet.cs" type="Script" id=2]
 
 [node name="Bullet" type="RigidBody2D" groups=[
-"critPlayerBullet",
+"playerCritBullet",
 ]]
 rotation = 3.14159
 contacts_reported = 1
@@ -17,5 +17,7 @@ scale = Vector2( 0.0071628, 0.013532 )
 texture = ExtResource( 1 )
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+position = Vector2( -0.333711, 0.667419 )
+scale = Vector2( 1.1, 1.1 )
 polygon = PoolVector2Array( 1.32551, 1.92809, 4.64382, 0.217329, 4.64382, -0.254608, 1.23703, -1.95064, -4.20499, -1.95065, -4.64744, -1.09527, -4.63269, 1.05794, -4.17551, 1.92808 )
 [connection signal="body_entered" from="." to="." method="_on_Bullet_body_entered"]
