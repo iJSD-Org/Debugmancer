@@ -1,6 +1,6 @@
 using Godot;
 
-namespace Debugmancer.Objects.States
+namespace Debugmancer.Objects
 {
 	public abstract class State : Node
 	{
