@@ -74,6 +74,7 @@ namespace Debugmancer.Objects
 			}
 
 			CurrentState = StateStack.Peek();
+			GD.Print(CurrentState.Name);
 
 			// We don"t want to reinitialize the state if we"re going back to the previous state
 			if (stateName != "Previous")
