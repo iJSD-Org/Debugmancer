@@ -36,7 +36,8 @@ namespace Debugmancer.Objects.Roach.States
 			RayCast2D look = host.GetNode<RayCast2D>("RayCast2D");
 			look.CastTo = player.Position - host.Position;
 			look.ForceRaycastUpdate();
-			
+			GD.Print(look.IsColliding());
+			GD.Print (look.GetCollider());
 			// if we can see the target, chase it
 			if (!look.IsColliding())
 			{

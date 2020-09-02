@@ -51,7 +51,6 @@ namespace Debugmancer.Objects.Player
 
 		public override void _PhysicsProcess(float delta)
 		{
-			GD.Print(ScentTrail.Count);
 			CurrentState.Update(this, delta);
 		}
 
@@ -87,7 +86,6 @@ namespace Debugmancer.Objects.Player
 		private void ChangeState(string stateName)
 		{
 			CurrentState.Exit(this);
-			GD.Print(!_dashCooldownTimer.Enabled);
 			if (stateName == "Previous")
 			{
 				StateStack.Pop();
