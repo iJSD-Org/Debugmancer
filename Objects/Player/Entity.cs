@@ -39,8 +39,6 @@ namespace Debugmancer.Objects.Player
 
 			GetNode("Health").Connect(nameof(Health.HealthChanged), this, nameof(OnHealthChanged));
 
-			GetNode("ScentTimer").Connect("timeout", this, nameof(AddScent));
-
 			StateStack.Push((State)StatesMap["Idle"]);
 			ChangeState("Idle");
 		}
@@ -129,7 +127,7 @@ namespace Debugmancer.Objects.Player
 				ChangeState("Dead");
 		}
 
-		public void AddScent(int health)
+		public void AddScent()
 		{
 			Scent scent = (Scent)ScentScene.Instance();
 			scent.Player = this;
