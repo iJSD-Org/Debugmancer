@@ -23,7 +23,10 @@ namespace Debugmancer.Objects
 				CurrentHealth = 0;
 				EmitSignal(nameof(HealthChanged));
 			}
+
 			EmitSignal(nameof(HealthChanged), CurrentHealth);
+			//debug
+			GD.Print($"{GetPath()} took {amount} damage. Health: {CurrentHealth} / {MaxHealth}");
 		}
 
 		public void Recover(int amount)
@@ -34,6 +37,8 @@ namespace Debugmancer.Objects
 				CurrentHealth = 0;
 			}
 			EmitSignal(nameof(HealthChanged), CurrentHealth);
+			//debug
+			GD.Print($"{GetPath()} recovered {amount} health. Health: {CurrentHealth} / {MaxHealth}");
 		}
 	}
 }

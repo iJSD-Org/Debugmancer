@@ -12,8 +12,7 @@ namespace Debugmancer.Objects.TempEnemy1
 		private readonly Timer _burstCoolDown = new Timer();
 		private readonly Timer _shotCoolDown = new Timer();
 		private KinematicBody2D _player;
-		private int life = 5;
-		private int playerDamage = 1;
+
 		public override void _Ready()
 		{
 			_player = GetParent().GetNode("Player") as KinematicBody2D;
@@ -21,6 +20,7 @@ namespace Debugmancer.Objects.TempEnemy1
 			AddChild(_shotCoolDown);
 			_burstCoolDown.Connect("timeout", this, "_on_Burst_timeout");
 			_shotCoolDown.Connect("timeout", this, "_on_Shot_timeout");
+			GetNode("Health").Connect(nameof(Health.HealthChanged), this, nameof(OnHealthChanged));
 		}
 
 		public override void _Process(float delta)
@@ -77,13 +77,19 @@ namespace Debugmancer.Objects.TempEnemy1
 			_shots += 1;
 			SpawnBullet();
 		}
+
+		public void OnHealthChanged(int health)
+		{
+			if (health == 0)
+				QueueFree();
+		}
+
 		public void _on_Hitbox_body_entered(Area2D body)
 		{
-			if (body.IsInGroup("playerBullet")) life -= playerDamage;
+			Health health = (Health)GetNode("Health");
+			if (body.IsInGroup("playerBullet")) health.Damage(1);
 			
-			if (body.IsInGroup("playerCritBullet")) life -= playerDamage * 2;
-			
-			if(life < 1) QueueFree();
+			if (body.IsInGroup("playerCritBullet")) health.Damage(2);
 		}		
 	}
 }

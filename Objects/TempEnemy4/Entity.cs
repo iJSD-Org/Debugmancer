@@ -8,8 +8,6 @@ namespace Debugmancer.Objects.TempEnemy4
 		private KinematicBody2D _player;
 		private bool _canShoot = true;
 		private readonly Timer _shootTimer = new Timer();
-		private int life = 5;
-		private int playerDamage = 1;
 
 		public override void _Ready()
 		{
@@ -17,6 +15,7 @@ namespace Debugmancer.Objects.TempEnemy4
 			_shootTimer.WaitTime = 1.0f;
 			_shootTimer.Connect("timeout", this, "on_timer_timeout");
 			AddChild(_shootTimer);
+			GetNode("Health").Connect(nameof(Health.HealthChanged), this, nameof(OnHealthChanged));
 		}
 
 		public override void _Process(float delta)
@@ -43,11 +42,19 @@ namespace Debugmancer.Objects.TempEnemy4
             _shootTimer.Start();
             _canShoot = false;
         }
+
+        public void OnHealthChanged(int health)
+        {
+	        if (health == 0)
+		        QueueFree();
+        }
+
 		public void _on_Hitbox_body_entered(Area2D body)
-		{
-			if (body.IsInGroup("playerBullet")) life -= playerDamage;
-			if (body.IsInGroup("playerCritBullet"))life -= playerDamage;
-			if(life < 1) QueueFree();
-		}	
+        {
+	        Health health = (Health)GetNode("Health");
+	        if (body.IsInGroup("playerBullet")) health.Damage(1);
+
+	        if (body.IsInGroup("playerCritBullet")) health.Damage(2);
+        }
 	}
 }
