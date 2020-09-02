@@ -50,6 +50,8 @@ script = ExtResource( 4 )
 script = ExtResource( 5 )
 
 [node name="ScentTimer" type="Timer" parent="."]
+wait_time = 0.1
+autostart = true
 
 [node name="HUD" type="CanvasLayer" parent="."]
 
@@ -69,5 +71,6 @@ collision_mask = 2
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
 position = Vector2( 0.176781, 0.309359 )
 shape = SubResource( 2 )
+[connection signal="timeout" from="ScentTimer" to="." method="AddScent"]
 [connection signal="area_entered" from="Hitbox" to="." method="_on_Hitbox_area_entered"]
 [connection signal="body_entered" from="Hitbox" to="." method="_on_Hitbox_body_entered"]
