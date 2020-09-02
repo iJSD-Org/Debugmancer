@@ -8,12 +8,12 @@ namespace Debugmancer.Objects.Player.States
 
 		public override void Enter(KinematicBody2D host)
 		{
-			// TODO: Play/Switch to Idle Animation here
+			GetParent().GetParent().GetNode<AnimationPlayer>("AnimationPlayer").Play("Idle");
 		}
 
 		public override void Exit(KinematicBody2D host)
 		{
-			// Nothing to do here
+		
 		}
 
 		public override void HandleInput(KinematicBody2D host, InputEvent @event)

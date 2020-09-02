@@ -11,7 +11,7 @@ namespace Debugmancer.Objects.Player.States
 		{
 			Speed = 0;
 			Velocity = new Vector2();
-			// TODO: Play/Switch to Move Animation here
+			GetParent().GetParent().GetNode<AnimationPlayer>("AnimationPlayer").Play("Walk");
 		}
 
 		public override void Exit(KinematicBody2D host)
