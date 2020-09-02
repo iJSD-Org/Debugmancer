@@ -1,9 +1,9 @@
 using System;
 using Godot;
 
-namespace Debugmancer.Objects
+namespace Debugmancer.Objects.TempEnemy1
 {
-	public class TempEnemy2 : KinematicBody2D
+	public class TempEnemy1 : KinematicBody2D
 	{
 		private readonly PackedScene _bulletScene = (PackedScene)ResourceLoader.Load("res://Objects/EnemyBullet.tscn");
 		private int _shots;
@@ -20,11 +20,12 @@ namespace Debugmancer.Objects
 			AddChild(_shotCoolDown);
 			_burstCoolDown.Connect("timeout", this, "_on_Burst_timeout");
 			_shotCoolDown.Connect("timeout", this, "_on_Shot_timeout");
+			GetNode("Health").Connect(nameof(Health.HealthChanged), this, nameof(OnHealthChanged));
 		}
 
 		public override void _Process(float delta)
 		{
-			if (_shots == 20 && !_burstStarted)
+			if (_shots == 3 && !_burstStarted)
 			{
 				StartBurstTimer();
 				_burstStarted = true;
@@ -40,7 +41,7 @@ namespace Debugmancer.Objects
 		private void StartBurstTimer()
 		{
 			Random waitTime = new Random();
-			_burstCoolDown.WaitTime = (float)(waitTime.NextDouble() * (2.5 - .95) + .95);
+			_burstCoolDown.WaitTime = (float)(waitTime.NextDouble() * (2.0 - .5) + .5);
 			_burstCoolDown.Start();
 		}
 
@@ -48,9 +49,20 @@ namespace Debugmancer.Objects
 		{
 			Random waitTime = new Random();
 			_canShoot = false;
-			_shotCoolDown.WaitTime = (float)(waitTime.NextDouble() * (.4 - .1) + .1);
+			_shotCoolDown.WaitTime = (float)(waitTime.NextDouble() * (.7 - .1) + .1);
 			_shotCoolDown.Start();
 		}
+
+		private void SpawnBullet()
+		{
+			_canShoot = true;
+			var bullet = (EnemyBullet)_bulletScene.Instance();
+			bullet.Speed = 135;
+			bullet.Position = Position;
+			bullet.Direction = new Vector2(_player.Position.x - Position.x, _player.Position.y - Position.y).Normalized();
+			GetParent().AddChild(bullet);
+		}
+
 		private void _on_Burst_timeout()
 		{
 			_burstCoolDown.Stop();
@@ -66,14 +78,18 @@ namespace Debugmancer.Objects
 			SpawnBullet();
 		}
 
-		private void SpawnBullet()
+		public void OnHealthChanged(int health)
 		{
-			_canShoot = true;
-			var bullet = (EnemyBullet)_bulletScene.Instance();
-			bullet.Speed = 130;
-			bullet.Position = Position;
-			bullet.Direction = new Vector2(_player.Position.x - Position.x, _player.Position.y - Position.y).Normalized();
-			GetParent().AddChild(bullet);
+			if (health == 0)
+				QueueFree();
 		}
+
+		public void _on_Hitbox_body_entered(Area2D body)
+		{
+			Health health = (Health)GetNode("Health");
+			if (body.IsInGroup("playerBullet")) health.Damage(1);
+			
+			if (body.IsInGroup("playerCritBullet")) health.Damage(2);
+		}		
 	}
 }

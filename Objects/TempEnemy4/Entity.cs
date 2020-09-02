@@ -1,6 +1,6 @@
 using Godot;
 
-namespace Debugmancer.Objects
+namespace Debugmancer.Objects.TempEnemy4
 {
 	public class TempEnemy4 : KinematicBody2D
 	{
@@ -15,6 +15,7 @@ namespace Debugmancer.Objects
 			_shootTimer.WaitTime = 1.0f;
 			_shootTimer.Connect("timeout", this, "on_timer_timeout");
 			AddChild(_shootTimer);
+			GetNode("Health").Connect(nameof(Health.HealthChanged), this, nameof(OnHealthChanged));
 		}
 
 		public override void _Process(float delta)
@@ -40,6 +41,20 @@ namespace Debugmancer.Objects
             GetParent().AddChild(bullet);
             _shootTimer.Start();
             _canShoot = false;
+        }
+
+        public void OnHealthChanged(int health)
+        {
+	        if (health == 0)
+		        QueueFree();
+        }
+
+		public void _on_Hitbox_body_entered(Area2D body)
+        {
+	        Health health = (Health)GetNode("Health");
+	        if (body.IsInGroup("playerBullet")) health.Damage(1);
+
+	        if (body.IsInGroup("playerCritBullet")) health.Damage(2);
         }
 	}
 }

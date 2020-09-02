@@ -1,12 +1,11 @@
 using System;
 using System.Collections.Generic;
 using Godot;
-using Debugmancer.Objects.States;
 using Timer = System.Timers.Timer;
 
-namespace Debugmancer.Objects
+namespace Debugmancer.Objects.Player
 {
-	public class Player : KinematicBody2D
+	public class StateMachine : KinematicBody2D
 	{
 		[Signal]
 		public delegate void StateChanged();
@@ -26,12 +25,14 @@ namespace Debugmancer.Objects
 
 			foreach (Node state in StatesMap.Values)
 			{
-				state.Connect("Finished", this, nameof(ChangeState));
+				state.Connect(nameof(State.Finished), this, nameof(ChangeState));
 			}
 
 			_dashCooldownTimer.AutoReset = false;
 			_dashCooldownTimer.Enabled = false;
 			_dashCooldownTimer.Interval = 3000;
+
+			GetNode("Health").Connect(nameof(Health.HealthChanged), this, nameof(OnHealthChanged));
 
 			StateStack.Push((State)StatesMap["Idle"]);
 			ChangeState("Idle");
@@ -112,6 +113,24 @@ namespace Debugmancer.Objects
 			weapon.FlipV = false;
 			Sprite player = GetNode<Sprite>("Sprite");
 			player.FlipH = false;
+		}
+
+		public void OnHealthChanged(int health)
+		{
+			if (health == 0)
+				ChangeState("Dead");
+		}
+
+		public void _on_Hitbox_body_entered(Area2D body)
+		{
+			if (body.IsInGroup("enemyBullet"))
+				((Health)GetNode("Health")).Damage(1);
+		}
+		public void _on_Hitbox_area_entered(Area2D area)
+		{
+			Health playerHealth = (Health) GetNode("Health");
+			if (area.IsInGroup("shotgunBullet")) playerHealth.Damage(5);
+			if (area.IsInGroup("enemyBullet")) playerHealth.Damage(1);
 		}
 	}
 }
