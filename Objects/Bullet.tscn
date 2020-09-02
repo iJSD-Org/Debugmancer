@@ -7,6 +7,7 @@
 "playerBullet",
 ]]
 rotation = 3.14159
+collision_mask = 6
 contacts_reported = 1
 contact_monitor = true
 script = ExtResource( 2 )

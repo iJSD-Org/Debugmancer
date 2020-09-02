@@ -9,11 +9,10 @@
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 5.47522, 7.07442 )
 
-[sub_resource type="RectangleShape2D" id=4]
+[sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 5.77517, 7.44912 )
 
-[sub_resource type="Animation" id=2]
-resource_name = "Idle"
+[sub_resource type="Animation" id=3]
 length = 0.5
 loop = true
 step = 0.05
@@ -30,7 +29,7 @@ tracks/0/keys = {
 "values": [ 0, 1, 2, 3 ]
 }
 
-[sub_resource type="Animation" id=3]
+[sub_resource type="Animation" id=4]
 length = 0.5
 loop = true
 step = 0.05
@@ -48,6 +47,8 @@ tracks/0/keys = {
 }
 
 [node name="Roach" type="KinematicBody2D"]
+collision_layer = 2
+collision_mask = 5
 script = ExtResource( 5 )
 
 [node name="Sprite" type="Sprite" parent="."]
@@ -61,10 +62,11 @@ position = Vector2( -0.668175, -0.222725 )
 shape = SubResource( 1 )
 
 [node name="Hitbox" type="Area2D" parent="."]
+collision_layer = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
 position = Vector2( -0.499435, 0 )
-shape = SubResource( 4 )
+shape = SubResource( 2 )
 
 [node name="Health" type="Node" parent="."]
 script = ExtResource( 6 )
@@ -79,6 +81,6 @@ script = ExtResource( 4 )
 script = ExtResource( 3 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/Idle = SubResource( 2 )
-anims/Walk = SubResource( 3 )
+anims/Idle = SubResource( 3 )
+anims/Walk = SubResource( 4 )
 [connection signal="body_entered" from="Hitbox" to="." method="Hitbox_BodyEntered"]
