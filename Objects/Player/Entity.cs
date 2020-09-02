@@ -1,14 +1,19 @@
 using System;
 using System.Collections.Generic;
+using System.Security.Policy;
 using Godot;
 using Timer = System.Timers.Timer;
 
 namespace Debugmancer.Objects.Player
 {
-	public class StateMachine : KinematicBody2D
+	public class Player : KinematicBody2D
 	{
 		[Signal]
 		public delegate void StateChanged();
+
+		public PackedScene ScentScene = ResourceLoader.Load<PackedScene>("res://Objects/Player/Scent.tscn");
+
+		public List<Scent> ScentTrail = new List<Scent>();
 
 		public State CurrentState;
 		public Stack<State> StateStack = new Stack<State>();
@@ -33,6 +38,8 @@ namespace Debugmancer.Objects.Player
 			_dashCooldownTimer.Interval = 3000;
 
 			GetNode("Health").Connect(nameof(Health.HealthChanged), this, nameof(OnHealthChanged));
+
+			GetNode("ScentTimer").Connect("timeout", this, nameof(AddScent));
 
 			StateStack.Push((State)StatesMap["Idle"]);
 			ChangeState("Idle");
@@ -61,6 +68,24 @@ namespace Debugmancer.Objects.Player
 			CurrentState.HandleInput(this, @event);
 		}
 
+		private void TurnLeft()
+		{
+			Sprite weapon = GetNode<Sprite>("Gun");
+			weapon.Position = new Vector2(-Mathf.Abs(weapon.Position.x), weapon.Position.y);
+			weapon.FlipV = true;
+			Sprite player = GetNode<Sprite>("Sprite");
+			player.FlipH = true;
+		}
+		private void TurnRight()
+		{
+			Sprite weapon = GetNode<Sprite>("Gun");
+			weapon.Position = new Vector2(Mathf.Abs(weapon.Position.x), weapon.Position.y);
+			weapon.FlipV = false;
+			Sprite player = GetNode<Sprite>("Sprite");
+			player.FlipH = false;
+		}
+
+		#region Signal Receivers
 		private void ChangeState(string stateName)
 		{
 			CurrentState.Exit(this);
@@ -98,27 +123,21 @@ namespace Debugmancer.Objects.Player
 			EmitSignal(nameof(StateChanged), CurrentState.Name);
 		}
 
-		private void TurnLeft()
-		{
-			Sprite weapon = GetNode<Sprite>("Gun");
-			weapon.Position = new Vector2(-Mathf.Abs(weapon.Position.x), weapon.Position.y);
-			weapon.FlipV = true;
-			Sprite player = GetNode<Sprite>("Sprite");
-			player.FlipH = true;
-		}
-		private void TurnRight()
-		{
-			Sprite weapon = GetNode<Sprite>("Gun");
-			weapon.Position = new Vector2(Mathf.Abs(weapon.Position.x), weapon.Position.y);
-			weapon.FlipV = false;
-			Sprite player = GetNode<Sprite>("Sprite");
-			player.FlipH = false;
-		}
-
 		public void OnHealthChanged(int health)
 		{
 			if (health == 0)
 				ChangeState("Dead");
+		}
+
+		public void AddScent(int health)
+		{
+			Scent scent = (Scent)ScentScene.Instance();
+			scent.Player = this;
+			scent.Position = Position;
+
+			
+			ScentTrail.Add(scent);
+
 		}
 
 		public void _on_Hitbox_body_entered(Area2D body)
@@ -126,11 +145,13 @@ namespace Debugmancer.Objects.Player
 			if (body.IsInGroup("enemyBullet"))
 				((Health)GetNode("Health")).Damage(1);
 		}
+
 		public void _on_Hitbox_area_entered(Area2D area)
 		{
 			Health playerHealth = (Health) GetNode("Health");
 			if (area.IsInGroup("shotgunBullet")) playerHealth.Damage(5);
 			if (area.IsInGroup("enemyBullet")) playerHealth.Damage(1);
 		}
+		#endregion
 	}
 }

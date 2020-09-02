@@ -1,9 +1,16 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Assets/Entity Sprites/Cockroach SpriteSheet.png" type="Texture" id=1]
+[ext_resource path="res://Objects/Roach/States/Stagger.cs" type="Script" id=3]
+[ext_resource path="res://Objects/Roach/States/Chase.cs" type="Script" id=4]
+[ext_resource path="res://Objects/Roach/Entity.cs" type="Script" id=5]
+[ext_resource path="res://Objects/Health.cs" type="Script" id=6]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 5.47522, 7.07442 )
+
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 5.77517, 7.44912 )
 
 [sub_resource type="Animation" id=2]
 resource_name = "Idle"
@@ -40,10 +47,8 @@ tracks/0/keys = {
 "values": [ 5, 6, 7, 4 ]
 }
 
-[sub_resource type="RectangleShape2D" id=4]
-extents = Vector2( 9.94783, 10 )
-
-[node name="KinematicBody2D" type="KinematicBody2D"]
+[node name="Roach" type="KinematicBody2D"]
+script = ExtResource( 5 )
 
 [node name="Sprite" type="Sprite" parent="."]
 position = Vector2( 0, 0.0936432 )
@@ -55,22 +60,25 @@ hframes = 4
 position = Vector2( -0.668175, -0.222725 )
 shape = SubResource( 1 )
 
+[node name="Hitbox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+position = Vector2( -0.499435, 0 )
+shape = SubResource( 4 )
+
 [node name="Health" type="Node" parent="."]
+script = ExtResource( 6 )
+MaxHealth = 5
 
 [node name="States" type="Node" parent="."]
 
-[node name="Idle" type="Node" parent="States"]
-
 [node name="Chase" type="Node" parent="States"]
+script = ExtResource( 4 )
 
 [node name="Stagger" type="Node" parent="States"]
+script = ExtResource( 3 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/Idle = SubResource( 2 )
 anims/Walk = SubResource( 3 )
-
-[node name="Hitbox" type="Area2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
-shape = SubResource( 4 )
-[connection signal="area_entered" from="Hitbox" to="." method="Hitbox_AreaEntered"]
+[connection signal="body_entered" from="Hitbox" to="." method="Hitbox_BodyEntered"]

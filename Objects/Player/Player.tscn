@@ -48,6 +48,8 @@ script = ExtResource( 4 )
 [node name="Dash" type="Node" parent="States"]
 script = ExtResource( 5 )
 
+[node name="ScentTimer" type="Timer" parent="."]
+
 [node name="HUD" type="CanvasLayer" parent="."]
 
 [node name="Health" type="Label" parent="HUD"]

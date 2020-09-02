@@ -23,7 +23,6 @@ namespace Debugmancer.Objects.Roach.States
 		public override void Update(KinematicBody2D host, float delta)
 		{
 			// TODO: Chase Enemy
-			GD.Print("Chasing");
 		}
 
 	}

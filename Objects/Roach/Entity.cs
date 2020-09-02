@@ -26,8 +26,8 @@ namespace Debugmancer.Objects.Roach
 
 			GetNode("Health").Connect(nameof(Health.HealthChanged), this, nameof(OnHealthChanged));
 
-			StateStack.Push((State)StatesMap["Idle"]);
-			ChangeState("Idle");
+			StateStack.Push((State)StatesMap["Chase"]);
+			ChangeState("Chase");
 		}
 
 		public override void _PhysicsProcess(float delta)
@@ -68,7 +68,7 @@ namespace Debugmancer.Objects.Roach
 				ChangeState("Dead");
 		}
 
-		public void Hitbox_AreaEntered(Area2D body)
+		public void Hitbox_BodyEntered(Node body)
 		{
 			Health health = (Health)GetNode("Health");
 			if (body.IsInGroup("playerBullet")) health.Damage(1);
