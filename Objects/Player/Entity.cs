@@ -17,11 +17,11 @@ namespace Debugmancer.Objects.Player
 
 		public override void _Ready()
 		{
-			StatesMap.Add("Idle", GetNode("State/Idle"));
-			StatesMap.Add("Move", GetNode("State/Move"));
-			StatesMap.Add("Dash", GetNode("State/Dash"));
+			StatesMap.Add("Idle", GetNode("States/Idle"));
+			StatesMap.Add("Move", GetNode("States/Move"));
+			StatesMap.Add("Dash", GetNode("States/Dash"));
 
-			CurrentState = (State)GetNode("State/Idle");
+			CurrentState = (State)GetNode("States/Idle");
 
 			foreach (Node state in StatesMap.Values)
 			{

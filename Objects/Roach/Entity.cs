@@ -14,15 +14,14 @@ namespace Debugmancer.Objects.Roach
 
 		public override void _Ready()
 		{
-			StatesMap.Add("Idle", GetNode("State/Idle"));
-			StatesMap.Add("Chase", GetNode("State/Chase"));
-			StatesMap.Add("Stagger", GetNode("State/Stagger"));
+			StatesMap.Add("Chase", GetNode("States/Chase"));
+			StatesMap.Add("Stagger", GetNode("States/Stagger"));
 
-			CurrentState = (State)GetNode("State/Idle");
+			CurrentState = (State)GetNode("States/Chase");
 
 			foreach (Node state in StatesMap.Values)
 			{
-				//state.Connect(nameof(State.Finished), this, nameof(ChangeState));
+				state.Connect(nameof(State.Finished), this, nameof(ChangeState));
 			}
 
 			GetNode("Health").Connect(nameof(Health.HealthChanged), this, nameof(OnHealthChanged));

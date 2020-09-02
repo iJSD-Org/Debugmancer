@@ -37,15 +37,15 @@ position = Vector2( 9.88201, 0 )
 [node name="Health" type="Node" parent="."]
 script = ExtResource( 3 )
 
-[node name="State" type="Node" parent="."]
+[node name="States" type="Node" parent="."]
 
-[node name="Idle" type="Node" parent="State"]
+[node name="Idle" type="Node" parent="States"]
 script = ExtResource( 2 )
 
-[node name="Move" type="Node" parent="State"]
+[node name="Move" type="Node" parent="States"]
 script = ExtResource( 4 )
 
-[node name="Dash" type="Node" parent="State"]
+[node name="Dash" type="Node" parent="States"]
 script = ExtResource( 5 )
 
 [node name="HUD" type="CanvasLayer" parent="."]
