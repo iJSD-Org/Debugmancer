@@ -1,12 +1,11 @@
 using System;
 using System.Collections.Generic;
-using System.Security.Policy;
 using Godot;
 using Timer = System.Timers.Timer;
 
 namespace Debugmancer.Objects.Player
 {
-	public class Player : KinematicBody2D
+	public class Entity : KinematicBody2D
 	{
 		[Signal]
 		public delegate void StateChanged();
@@ -130,12 +129,11 @@ namespace Debugmancer.Objects.Player
 		public void AddScent()
 		{
 			Scent scent = (Scent)ScentScene.Instance();
-			scent.Player = this;
+			scent.Entity = this;
 			scent.Position = Position;
 
 			
 			ScentTrail.Add(scent);
-
 		}
 
 		public void _on_Hitbox_body_entered(Area2D body)

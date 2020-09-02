@@ -47,8 +47,6 @@ tracks/0/keys = {
 }
 
 [node name="Roach" type="KinematicBody2D"]
-collision_layer = 2
-collision_mask = 5
 script = ExtResource( 5 )
 
 [node name="Sprite" type="Sprite" parent="."]
@@ -62,11 +60,12 @@ position = Vector2( -0.668175, -0.222725 )
 shape = SubResource( 1 )
 
 [node name="Hitbox" type="Area2D" parent="."]
-collision_layer = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
 position = Vector2( -0.499435, 0 )
 shape = SubResource( 2 )
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
 
 [node name="Health" type="Node" parent="."]
 script = ExtResource( 6 )

@@ -4,7 +4,7 @@ using Debugmancer.Objects.Player;
 
 public class Scent : Node2D
 {
-	public Player Player;
+	public Entity Entity;
 
     public override void _Ready()
     {
@@ -13,7 +13,7 @@ public class Scent : Node2D
 
     private void RemoveScent()
     {
-	    Player.ScentTrail.Remove(this);
+	    Entity.ScentTrail.Remove(this);
 		QueueFree();
     }
 }
