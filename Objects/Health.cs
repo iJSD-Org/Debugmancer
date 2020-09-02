@@ -1,7 +1,6 @@
 using Godot;
-using System;
 
-namespace Debugmancer.Objects.TempEnemy5
+namespace Debugmancer.Objects
 {
 	public class Health : Node
 	{
