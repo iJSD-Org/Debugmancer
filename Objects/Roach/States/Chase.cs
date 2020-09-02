@@ -1,16 +1,16 @@
+using Debugmancer.Objects.Player;
 using Godot;
 
 namespace Debugmancer.Objects.Roach.States
 {
 	public class Chase : State
 	{
-		[Export] public int Speed;
+		[Export] public int Speed = 60;
 		private Vector2 _direction;
 
 		public override void Enter(KinematicBody2D host)
 		{
 			// TODO: Switch to Chase Animation
-			ChaseTarget(host);
 		}
 
 		public override void Exit(KinematicBody2D host)
@@ -25,12 +25,13 @@ namespace Debugmancer.Objects.Roach.States
 
 		public override void Update(KinematicBody2D host, float delta)
 		{
+			ChaseTarget(host);
 			host.MoveAndSlide(_direction * Speed);
 		}
 
 		private void ChaseTarget(KinematicBody2D host)
 		{
-			Player.Entity player = (Player.Entity)GetTree().Root.GetNode<KinematicBody2D>("Player");
+			Player.Entity player = (Player.Entity)GetNode<KinematicBody2D>("../../../Player");
 
 			RayCast2D look = host.GetNode<RayCast2D>("RayCast2D");
 			look.CastTo = player.Position - host.Position;

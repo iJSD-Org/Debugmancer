@@ -3,7 +3,7 @@ using Godot;
 
 namespace Debugmancer.Objects.Roach
 {
-	public class Entity : KinematicBody2D
+	public class Roach : KinematicBody2D
 	{
 		[Signal]
 		public delegate void StateChanged();

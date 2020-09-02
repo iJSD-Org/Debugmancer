@@ -51,6 +51,7 @@ namespace Debugmancer.Objects.Player
 
 		public override void _PhysicsProcess(float delta)
 		{
+			GD.Print(ScentTrail.Count);
 			CurrentState.Update(this, delta);
 		}
 
@@ -111,7 +112,6 @@ namespace Debugmancer.Objects.Player
 			}
 
 			CurrentState = StateStack.Peek();
-			GD.Print(CurrentState.Name);
 
 			// We don"t want to reinitialize the state if we"re going back to the previous state
 			if (stateName != "Previous")
@@ -131,8 +131,7 @@ namespace Debugmancer.Objects.Player
 			Scent scent = (Scent)ScentScene.Instance();
 			scent.Entity = this;
 			scent.Position = Position;
-
-			
+			GetTree().Root.AddChild(scent);
 			ScentTrail.Add(scent);
 		}
 
