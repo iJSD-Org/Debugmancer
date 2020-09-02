@@ -17,7 +17,7 @@ length = 0.5
 loop = true
 step = 0.05
 tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite:frame")
+tracks/0/path = NodePath("../Roach/Roach3:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -34,7 +34,7 @@ length = 0.5
 loop = true
 step = 0.05
 tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite:frame")
+tracks/0/path = NodePath("../Roach/Roach3:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -47,8 +47,8 @@ tracks/0/keys = {
 }
 
 [node name="Roach" type="KinematicBody2D"]
-collision_layer = 2
-collision_mask = 9
+collision_layer = 2147483652
+collision_mask = 0
 script = ExtResource( 5 )
 
 [node name="Sprite" type="Sprite" parent="."]

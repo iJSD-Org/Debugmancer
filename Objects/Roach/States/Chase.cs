@@ -31,15 +31,14 @@ namespace Debugmancer.Objects.Roach.States
 
 		private void ChaseTarget(KinematicBody2D host)
 		{
-			Player.Entity player = (Player.Entity)GetNode<KinematicBody2D>("../../../Player");
+			Entity player = (Entity)GetNode<KinematicBody2D>("../../../Player");
 
 			RayCast2D look = host.GetNode<RayCast2D>("RayCast2D");
 			look.CastTo = player.Position - host.Position;
 			look.ForceRaycastUpdate();
-			GD.Print(look.IsColliding());
-			GD.Print (look.GetCollider());
+
 			// if we can see the target, chase it
-			if (!look.IsColliding())
+			if (!look.IsColliding() || ((Node)look.GetCollider()).IsInGroup("player"))
 			{
 				_direction = look.CastTo.Normalized();
 			}
@@ -51,7 +50,7 @@ namespace Debugmancer.Objects.Roach.States
 					look.CastTo = scent.Position - host.Position;
 					look.ForceRaycastUpdate();
 
-					if (!look.IsColliding())
+					if (!look.IsColliding() || ((Node)look.GetCollider()).IsInGroup("player"))
 					{
 						_direction = look.CastTo.Normalized();
 						break;
