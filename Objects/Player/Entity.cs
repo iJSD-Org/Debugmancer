@@ -14,7 +14,6 @@ namespace Debugmancer.Objects.Player
 		public Stack<State> StateStack = new Stack<State>();
 		private readonly Timer _dashCooldownTimer = new Timer();
 		public readonly Dictionary<string, Node> StatesMap = new Dictionary<string, Node>();
-		public Health PlayerHealth;
 
 		public override void _Ready()
 		{
@@ -33,8 +32,7 @@ namespace Debugmancer.Objects.Player
 			_dashCooldownTimer.Enabled = false;
 			_dashCooldownTimer.Interval = 3000;
 
-			PlayerHealth = (Health)GetNode("Health");
-			PlayerHealth.Connect(nameof(Health.HealthChanged), this, nameof(OnHealthChanged));
+			GetNode("Health").Connect(nameof(Health.HealthChanged), this, nameof(OnHealthChanged));
 
 			StateStack.Push((State)StatesMap["Idle"]);
 			ChangeState("Idle");
@@ -117,9 +115,9 @@ namespace Debugmancer.Objects.Player
 			player.FlipH = false;
 		}
 
-		public void OnHealthChanged()
+		public void OnHealthChanged(int health)
 		{
-			if (PlayerHealth.CurrentHealth == 0)
+			if (health == 0)
 				ChangeState("Dead");
 		}
 
@@ -130,8 +128,9 @@ namespace Debugmancer.Objects.Player
 		}
 		public void _on_Hitbox_area_entered(Area2D area)
 		{
-			if (area.IsInGroup("shotgunBullet")) PlayerHealth.Damage(5);
-			if (area.IsInGroup("enemyBullet")) PlayerHealth.Damage(1);
+			Health playerHealth = (Health) GetNode("Health");
+			if (area.IsInGroup("shotgunBullet")) playerHealth.Damage(5);
+			if (area.IsInGroup("enemyBullet")) playerHealth.Damage(1);
 		}
 	}
 }

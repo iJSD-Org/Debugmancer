@@ -5,7 +5,7 @@ namespace Debugmancer.Objects
 	public class Health : Node
 	{
 		[Signal]
-		public delegate void HealthChanged();
+		public delegate void HealthChanged(int health);
 
 		public int CurrentHealth;
 		[Export] public int MaxHealth = 100;
