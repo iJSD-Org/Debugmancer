@@ -26,6 +26,7 @@ namespace Debugmancer.Objects.TempEnemy1
 			_player = GetParent().GetNode<KinematicBody2D>("Player");
 
 			StatesMap.Add("Chase", GetNode("States/Chase"));
+			StatesMap.Add("Stagger", GetNode("States/Stagger"));
 
 			CurrentState = (State)GetNode("States/Chase");
 
