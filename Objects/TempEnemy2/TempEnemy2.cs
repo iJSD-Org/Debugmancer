@@ -127,7 +127,7 @@ namespace Debugmancer.Objects.TempEnemy2
 			if (stateName != "Previous")
 				CurrentState.Enter(this);
 
-			EmitSignal(nameof(TempEnemy2.StateChanged), CurrentState.Name);
+			EmitSignal(nameof(StateChanged), CurrentState.Name);
 		}
 	}
 }
