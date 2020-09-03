@@ -11,7 +11,7 @@ namespace Debugmancer.Objects.Roach.States
 			host.Modulate = Color.Color8(255, 0, 0);
 			await Task.Delay(150);
 			host.Modulate = new Color(1, 1, 1);
-			EmitSignal(nameof(Finished), "Chase");
+			EmitSignal(nameof(Finished), "Previous");
 		}
 
 		public override void Exit(KinematicBody2D host)
