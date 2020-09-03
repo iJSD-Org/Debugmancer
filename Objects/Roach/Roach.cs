@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Debugmancer.Objects.Roach.States;
 using Godot;
 
 namespace Debugmancer.Objects.Roach
@@ -58,6 +59,12 @@ namespace Debugmancer.Objects.Roach
 			}
 
 			CurrentState = StateStack.Peek();
+
+			// Pass target to Chase State
+			if (stateName == "Chase")
+			{
+				((Chase) CurrentState).Init((Player.Player) GetParent().GetNode<KinematicBody2D>("Player"));
+			}
 
 			// We don"t want to reinitialize the state if we"re going back to the previous state
 			if (stateName != "Previous")

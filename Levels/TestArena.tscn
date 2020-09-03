@@ -30,7 +30,7 @@ position = Vector2( 51.3913, 59.4004 )
 collision_layer = 2147483649
 
 [node name="Roach" parent="." instance=ExtResource( 3 )]
-position = Vector2( 178.953, 70.1424 )
+position = Vector2( 190.392, 72.7306 )
 
 [node name="TempEnemy" parent="." instance=ExtResource( 4 )]
-position = Vector2( 73.1494, 154.014 )
+position = Vector2( 55.9188, 152.515 )

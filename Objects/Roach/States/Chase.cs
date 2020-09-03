@@ -7,6 +7,12 @@ namespace Debugmancer.Objects.Roach.States
 	{
 		[Export] public int Speed = 60;
 		private Vector2 _direction;
+		private Player.Player _target;
+
+		public void Init(Player.Player target)
+		{
+			_target = target;
+		}
 
 		public override void Enter(KinematicBody2D host)
 		{
@@ -31,10 +37,9 @@ namespace Debugmancer.Objects.Roach.States
 
 		private void ChaseTarget(KinematicBody2D host)
 		{
-			Player.Player player = (Player.Player)GetNode<KinematicBody2D>("../../../Player");
 
 			RayCast2D look = host.GetNode<RayCast2D>("RayCast2D");
-			look.CastTo = player.Position - host.Position;
+			look.CastTo = _target.Position - host.Position;
 			look.ForceRaycastUpdate();
 
 			// if we can see the target, chase it
@@ -45,7 +50,7 @@ namespace Debugmancer.Objects.Roach.States
 			// or chase the first scent we see
 			else
 			{
-				foreach (Scent scent in player.ScentTrail)
+				foreach (Scent scent in _target.ScentTrail)
 				{
 					look.CastTo = scent.Position - host.Position;
 					look.ForceRaycastUpdate();
