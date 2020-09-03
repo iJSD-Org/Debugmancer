@@ -34,7 +34,7 @@ collision_layer = 2147483649
 position = Vector2( 157.055, 94.0815 )
 
 [node name="TempEnemy2" parent="." instance=ExtResource( 3 )]
-position = Vector2( 46.929, 130.415 )
+position = Vector2( 112.13, 47.8901 )
 
 [node name="TempEnemy3" parent="." instance=ExtResource( 5 )]
 position = Vector2( 109.112, 144.7 )

@@ -8,7 +8,7 @@ namespace Debugmancer.Objects
 		[Export] public PackedScene Bullet = ResourceLoader.Load<PackedScene>("res://Objects/Bullets/Bullet.tscn");
 		[Export] public PackedScene CritBullet = ResourceLoader.Load<PackedScene>("res://Objects/Bullets/CritBullet.tscn");
 
-		[Export] public float BulletSpeed = 1000f;
+		[Export] public float BulletSpeed = 600f;
 		[Export] public int BulletCount = 50;
 		[Export] public float FireRate = 0.2f;
 		private bool _canShoot = true;
