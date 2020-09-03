@@ -12,7 +12,7 @@ extents = Vector2( 4.92801, 7.93158 )
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 5.4723, 8.2843 )
 
-[node name="TempEnemy" type="KinematicBody2D" groups=[
+[node name="TempEnemy1" type="KinematicBody2D" groups=[
 "enemy",
 ]]
 collision_layer = 8
@@ -49,7 +49,7 @@ MaxHealth = 10
 
 [node name="Chase" type="Node" parent="States"]
 script = ExtResource( 4 )
-Speed = 40
+Speed = 50
 
 [node name="Stagger" type="Node" parent="States"]
 script = ExtResource( 5 )
