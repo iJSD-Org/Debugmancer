@@ -5,7 +5,7 @@ using Timer = System.Timers.Timer;
 
 namespace Debugmancer.Objects.Player
 {
-	public class Entity : KinematicBody2D
+	public class Player : KinematicBody2D
 	{
 		[Signal]
 		public delegate void StateChanged();
@@ -127,9 +127,10 @@ namespace Debugmancer.Objects.Player
 		public void AddScent()
 		{
 			Scent scent = (Scent)ScentScene.Instance();
-			scent.Entity = this;
 			scent.Position = Position;
 			GetTree().Root.AddChild(scent);
+
+			scent.Init(this);
 			ScentTrail.Add(scent);
 		}
 

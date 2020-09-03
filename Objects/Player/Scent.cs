@@ -4,11 +4,16 @@ namespace Debugmancer.Objects.Player
 {
 	public class Scent : Node2D
 	{
-		public Entity Entity;
+		private Player _player;
 
-		public void RemoveScent()
+		public void Init(Player host)
 		{
-			Entity.ScentTrail.Remove(this);
+			_player = host;
+		}
+
+		public void ScentExpired()
+		{
+			_player.ScentTrail.Remove(this);
 			QueueFree();
 		}
 	}

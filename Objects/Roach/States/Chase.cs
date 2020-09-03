@@ -31,7 +31,7 @@ namespace Debugmancer.Objects.Roach.States
 
 		private void ChaseTarget(KinematicBody2D host)
 		{
-			Entity player = (Entity)GetNode<KinematicBody2D>("../../../Player");
+			Player.Player player = (Player.Player)GetNode<KinematicBody2D>("../../../Player");
 
 			RayCast2D look = host.GetNode<RayCast2D>("RayCast2D");
 			look.CastTo = player.Position - host.Position;
