@@ -1,12 +1,17 @@
+using System.Threading.Tasks;
 using Godot;
 
 namespace Debugmancer.Objects.Roach.States
 {
 	public class Stagger : State
 	{
-		public override void Enter(KinematicBody2D host)
+		public override async void Enter(KinematicBody2D host)
 		{
 			// TODO: Switch to Stagger Animation
+			host.Modulate = Color.Color8(255, 0, 0);
+			await Task.Delay(150);
+			host.Modulate = new Color(1, 1, 1);
+			EmitSignal(nameof(Finished), "Chase");
 		}
 
 		public override void Exit(KinematicBody2D host)

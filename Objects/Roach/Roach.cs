@@ -47,6 +47,10 @@ namespace Debugmancer.Objects.Roach
 				QueueFree();
 				return;
 			}
+			else if (stateName == "Stagger")
+			{
+				StateStack.Push((State)StatesMap[stateName]);
+			}
 			else
 			{
 				StateStack.Pop();
@@ -73,7 +77,11 @@ namespace Debugmancer.Objects.Roach
 			Health health = (Health)GetNode("Health");
 			if (body.IsInGroup("playerBullet")) health.Damage(1);
 
-			if (body.IsInGroup("playerCritBullet")) health.Damage(2);
+			if (body.IsInGroup("playerCritBullet"))
+			{
+				health.Damage(2);
+				ChangeState("Stagger");
+			}
 		}
 	}
 }
