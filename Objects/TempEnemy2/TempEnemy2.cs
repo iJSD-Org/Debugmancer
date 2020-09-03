@@ -5,7 +5,7 @@ namespace Debugmancer.Objects.TempEnemy2
 {
 	public class TempEnemy2 : KinematicBody2D
 	{
-		private readonly PackedScene _bulletScene = (PackedScene)ResourceLoader.Load("res://Objects/EnemyBullet.tscn");
+		private readonly PackedScene _bulletScene = (PackedScene)ResourceLoader.Load("res://Objects/Bullets/EnemyBullet.tscn");
 		private int _shots;
 		private bool _canShoot = true;
 		private bool _burstStarted;

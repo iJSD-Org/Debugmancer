@@ -4,7 +4,7 @@ namespace Debugmancer.Objects.TempEnemy4
 {
 	public class TempEnemy4 : KinematicBody2D
 	{
-		private readonly PackedScene _shotgunScene = (PackedScene)GD.Load("res://Objects/ShotgunBullet.tscn");
+		private readonly PackedScene _shotgunScene = (PackedScene)GD.Load("res://Objects/Bullets/ShotgunBullet.tscn");
 		private KinematicBody2D _player;
 		private bool _canShoot = true;
 		private readonly Timer _shootTimer = new Timer();

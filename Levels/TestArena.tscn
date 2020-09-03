@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Assets/map_tileset.tres" type="TileSet" id=1]
 [ext_resource path="res://Objects/Player/Player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Objects/Roach/Roach.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Objects/TempEnemy1/TempEnemy1.tscn" type="PackedScene" id=4]
 
 [node name="TestArena" type="Node2D"]
 
@@ -30,3 +31,6 @@ collision_layer = 2147483649
 
 [node name="Roach" parent="." instance=ExtResource( 3 )]
 position = Vector2( 178.953, 70.1424 )
+
+[node name="TempEnemy" parent="." instance=ExtResource( 4 )]
+position = Vector2( 73.1494, 154.014 )
