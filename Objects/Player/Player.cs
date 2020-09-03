@@ -1,5 +1,7 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using Godot;
 using Timer = System.Timers.Timer;
 
@@ -118,8 +120,11 @@ namespace Debugmancer.Objects.Player
 			EmitSignal(nameof(StateChanged), CurrentState.Name);
 		}
 
-		public void OnHealthChanged(int health)
+		public async void OnHealthChanged(int health)
 		{
+			Modulate = Color.ColorN("Red");
+			await Task.Delay(100);
+			Modulate = new Color(1, 1, 1);
 			if (health == 0)
 				ChangeState("Dead");
 		}
@@ -134,17 +139,28 @@ namespace Debugmancer.Objects.Player
 			ScentTrail.Add(scent);
 		}
 
-		public void _on_Hitbox_body_entered(Area2D body)
+		public void Hitbox_BodyEntered(Area2D body)
 		{
 			if (body.IsInGroup("enemyBullet"))
 				((Health)GetNode("Health")).Damage(1);
+			if (body.IsInGroup("enemy"))
+				((Health)GetNode("Health")).Damage(2);
 		}
 
-		public void _on_Hitbox_area_entered(Area2D area)
+		public void BodyTimer_timeout()
 		{
-			Health playerHealth = (Health) GetNode("Health");
-			if (area.IsInGroup("shotgunBullet")) playerHealth.Damage(5);
-			if (area.IsInGroup("enemyBullet")) playerHealth.Damage(1);
+			List<KinematicBody2D> bodies =
+				GetNode<Area2D>("Hitbox").GetOverlappingBodies().OfType<KinematicBody2D>().ToList();
+			if (bodies.Any(b => b.IsInGroup("enemy")))
+			{
+				((Health)GetNode("Health")).Damage(2);
+			}
+		}
+
+		public void Hitbox_AreaEntered(Area2D area)
+		{
+			if (area.IsInGroup("shotgunBullet"))
+				((Health)GetNode("Health")).Damage(5);
 		}
 		#endregion
 	}

@@ -1,3 +1,4 @@
+using System.Threading.Tasks;
 using Godot;
 
 namespace Debugmancer.Objects
@@ -25,6 +26,7 @@ namespace Debugmancer.Objects
 			}
 
 			EmitSignal(nameof(HealthChanged), CurrentHealth);
+
 			//debug
 			GD.Print($"{GetPath()} took {amount} damage. Health: {CurrentHealth} / {MaxHealth}");
 		}

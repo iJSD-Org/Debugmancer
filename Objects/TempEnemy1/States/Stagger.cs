@@ -1,7 +1,7 @@
 using System.Threading.Tasks;
 using Godot;
 
-namespace Debugmancer.Objects.Roach.States
+namespace Debugmancer.Objects.TempEnemy1.States
 {
 	public class Stagger : State
 	{

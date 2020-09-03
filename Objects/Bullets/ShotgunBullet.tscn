@@ -10,6 +10,11 @@ collision_layer = 2
 collision_mask = 5
 script = ExtResource( 2 )
 
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." groups=[
+"shotgunBullet",
+]]
+polygon = PoolVector2Array( -11.8318, -10.5931, -7.85517, -10.603, -7.77601, -6.63612, -2.70337, -6.028, -2.76915, -2.06819, 2.06944, -1.62745, 2.03006, 2.3098, -2.62882, 3.29313, -2.70902, 7.28388, -7.90225, 8.68288, -7.9991, 12.6839, -11.9626, 12.6902, -11.9528, 8.70373, -6.77587, 7.23092, -6.71094, 3.28125, -1.97656, 2.35156, -2.00223, -1.65284, -6.72714, -2.04212, -6.76563, -6.01563, -11.8318, -6.64602 )
+
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 1 )
 vframes = 48
@@ -47,10 +52,5 @@ frame = 1168
 [node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]
 position = Vector2( -5.1308, 1.20905 )
 scale = Vector2( 0.709791, 1.20049 )
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." groups=[
-"shotgunBullet",
-]]
-polygon = PoolVector2Array( -11.8318, -10.5931, -7.85517, -10.603, -7.77601, -6.63612, -2.70337, -6.028, -2.76915, -2.06819, 2.06944, -1.62745, 2.03006, 2.3098, -2.62882, 3.29313, -2.70902, 7.28388, -7.90225, 8.68288, -7.9991, 12.6839, -11.9626, 12.6902, -11.9528, 8.70373, -6.77587, 7.23092, -6.71094, 3.28125, -1.97656, 2.35156, -2.00223, -1.65284, -6.72714, -2.04212, -6.76563, -6.01563, -11.8318, -6.64602 )
 [connection signal="body_entered" from="." to="." method="_on_ShotgunBullet_body_entered"]
 [connection signal="screen_exited" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_exited"]

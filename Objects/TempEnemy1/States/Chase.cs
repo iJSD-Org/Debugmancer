@@ -1,9 +1,9 @@
 using Debugmancer.Objects.Player;
 using Godot;
 
-namespace Debugmancer.Objects.Roach.States
+namespace Debugmancer.Objects.TempEnemy1.States
 {
-	public class Chase : State
+	public class Chase1 : State
 	{
 		[Export] public int Speed = 60;
 		private Vector2 _direction;
@@ -45,11 +45,13 @@ namespace Debugmancer.Objects.Roach.States
 			// if we can see the target, chase it
 			if (!look.IsColliding() || ((Node)look.GetCollider()).IsInGroup("player"))
 			{
+				((TempEnemy1)host).GetNode<Timer>("ShootTimer").Paused = false;
 				_direction = look.CastTo.Normalized();
 			}
 			// or chase the first scent we see
 			else
 			{
+				((TempEnemy1) host).GetNode<Timer>("ShootTimer").Paused = true;
 				foreach (Scent scent in _target.ScentTrail)
 				{
 					look.CastTo = scent.Position - host.Position;

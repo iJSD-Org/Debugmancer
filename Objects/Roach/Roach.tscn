@@ -46,7 +46,9 @@ tracks/0/keys = {
 "values": [ 5, 6, 7, 4 ]
 }
 
-[node name="Roach" type="KinematicBody2D"]
+[node name="Roach" type="KinematicBody2D" groups=[
+"enemy",
+]]
 collision_layer = 2147483652
 collision_mask = 0
 script = ExtResource( 5 )

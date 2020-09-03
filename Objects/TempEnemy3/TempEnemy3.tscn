@@ -11,7 +11,7 @@ extents = Vector2( 4.22134, 7.99921 )
 extents = Vector2( 5.12251, 9.10345 )
 
 [node name="TempEnemy3" type="KinematicBody2D" groups=[
-"enemies",
+"enemy",
 ]]
 position = Vector2( 52.4442, 33.3879 )
 collision_layer = 2

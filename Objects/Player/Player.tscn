@@ -28,12 +28,20 @@ hframes = 16
 frame = 132
 region_rect = Rect2( 0, 0, 16, 16 )
 
+[node name="Gun" parent="." instance=ExtResource( 6 )]
+position = Vector2( 9.88201, 0 )
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 0.157916, 0.288688 )
 shape = SubResource( 1 )
 
-[node name="Gun" parent="." instance=ExtResource( 6 )]
-position = Vector2( 9.88201, 0 )
+[node name="Hitbox" type="Area2D" parent="."]
+collision_layer = 2147483649
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+position = Vector2( 0.176781, 0.309359 )
+shape = SubResource( 2 )
 
 [node name="Health" type="Node" parent="."]
 script = ExtResource( 3 )
@@ -48,6 +56,10 @@ script = ExtResource( 4 )
 
 [node name="Dash" type="Node" parent="States"]
 script = ExtResource( 5 )
+
+[node name="BodyTimer" type="Timer" parent="."]
+wait_time = 0.5
+autostart = true
 
 [node name="ScentTimer" type="Timer" parent="."]
 wait_time = 0.3
@@ -64,14 +76,7 @@ text = "Health:"
 __meta__ = {
 "_edit_use_anchors_": false
 }
-
-[node name="Hitbox" type="Area2D" parent="."]
-collision_layer = 2147483649
-collision_mask = 2
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
-position = Vector2( 0.176781, 0.309359 )
-shape = SubResource( 2 )
+[connection signal="area_entered" from="Hitbox" to="." method="Hitbox_AreaEntered"]
+[connection signal="body_entered" from="Hitbox" to="." method="Hitbox_BodyEntered"]
+[connection signal="timeout" from="BodyTimer" to="." method="BodyTimer_timeout"]
 [connection signal="timeout" from="ScentTimer" to="." method="AddScent"]
-[connection signal="area_entered" from="Hitbox" to="." method="_on_Hitbox_area_entered"]
-[connection signal="body_entered" from="Hitbox" to="." method="_on_Hitbox_body_entered"]

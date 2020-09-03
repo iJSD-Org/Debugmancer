@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using Debugmancer.Objects.Roach.States;
 using Godot;
 
@@ -73,8 +74,11 @@ namespace Debugmancer.Objects.Roach
 			EmitSignal(nameof(StateChanged), CurrentState.Name);
 		}
 
-		public void OnHealthChanged(int health)
+		public async void OnHealthChanged(int health)
 		{
+			Modulate = Color.ColorN("Red");
+			await Task.Delay(100);
+			Modulate = new Color(1, 1, 1);
 			if (health == 0)
 				ChangeState("Dead");
 		}
