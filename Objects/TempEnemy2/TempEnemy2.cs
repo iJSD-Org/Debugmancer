@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using Debugmancer.Objects.TempEnemy1.States;
+using Debugmancer.Objects.Bullets;
 using Debugmancer.Objects.TempEnemy2.States;
 using Godot;
 

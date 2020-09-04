@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Cultist SpriteSheet.png-c214e04f9eff9758ec9bf7beb6f2d84b.stex"
+path="res://.import/Game Changer SpriteSheet.png-c3af4433ac666aba890c9035021b42c1.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Entity Sprites/Cultist SpriteSheet.png"
-dest_files=[ "res://.import/Cultist SpriteSheet.png-c214e04f9eff9758ec9bf7beb6f2d84b.stex" ]
+source_file="res://Assets/Sprites/Entities/Game Changer SpriteSheet.png"
+dest_files=[ "res://.import/Game Changer SpriteSheet.png-c3af4433ac666aba890c9035021b42c1.stex" ]
 
 [params]
 

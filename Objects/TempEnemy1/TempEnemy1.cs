@@ -3,6 +3,7 @@
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Debugmancer.Objects.Bullets;
 using Debugmancer.Objects.TempEnemy1.States;
 using Godot;
 

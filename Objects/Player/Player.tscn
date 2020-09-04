@@ -1,12 +1,13 @@
 [gd_scene load_steps=13 format=2]
 
-[ext_resource path="res://Assets/Entity Sprites/Game Changer SpriteSheet.png" type="Texture" id=1]
+[ext_resource path="res://Assets/Sprites/Entities/Game Changer SpriteSheet.png" type="Texture" id=1]
 [ext_resource path="res://Objects/Player/States/Idle.cs" type="Script" id=2]
 [ext_resource path="res://Objects/Health.cs" type="Script" id=3]
 [ext_resource path="res://Objects/Player/States/Move.cs" type="Script" id=4]
 [ext_resource path="res://Objects/Player/States/Dash.cs" type="Script" id=5]
 [ext_resource path="res://Objects/Gun.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Objects/Player/Player.cs" type="Script" id=7]
+
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 4.75396, 7.41486 )

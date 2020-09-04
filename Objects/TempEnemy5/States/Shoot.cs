@@ -1,5 +1,6 @@
 using System;
 using System.Threading.Tasks;
+using Debugmancer.Objects.Bullets;
 using Godot;
 
 namespace Debugmancer.Objects.TempEnemy5.States

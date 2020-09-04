@@ -1,6 +1,6 @@
 using Godot;
 
-namespace Debugmancer.Objects
+namespace Debugmancer.Objects.Bullets
 {
 	public class EnemyBullet : Area2D
 	{
