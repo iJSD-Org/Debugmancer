@@ -3,7 +3,7 @@ using Godot;
 
 namespace Debugmancer.Objects.TempEnemy1.States
 {
-	public class Stagger : State
+	public class Stagger1 : State
 	{
 		public override async void Enter(KinematicBody2D host)
 		{

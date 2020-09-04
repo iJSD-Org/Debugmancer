@@ -64,7 +64,7 @@ namespace Debugmancer.Objects.Roach
 			// Pass target to Chase State
 			if (stateName == "Chase")
 			{
-				((Chase) CurrentState).Init((Player.Player) GetParent().GetNode<KinematicBody2D>("Player"));
+				((Chase)CurrentState).Init((Player.Player)GetParent().GetNode<KinematicBody2D>("Player"));
 			}
 
 			// We don"t want to reinitialize the state if we"re going back to the previous state
@@ -88,7 +88,7 @@ namespace Debugmancer.Objects.Roach
 			Health health = (Health)GetNode("Health");
 			if (body.IsInGroup("playerBullet")) health.Damage(1);
 
-			if (body.IsInGroup("playerCritBullet"))
+			if (body.IsInGroup("playerCritBullet") && health.CurrentHealth <= 0)
 			{
 				health.Damage(2);
 				ChangeState("Stagger");

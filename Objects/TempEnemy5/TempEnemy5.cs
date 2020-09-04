@@ -1,4 +1,5 @@
 using System;
+using System.Threading.Tasks;
 using Godot;
 
 namespace Debugmancer.Objects.TempEnemy5
@@ -70,7 +71,7 @@ namespace Debugmancer.Objects.TempEnemy5
 			_canShoot = true;
 			var bullet = (EnemyBullet2)_bulletScene.Instance();
 			bullet.Speed = 135;
-			bullet.Rotation =  GetNode<Node2D>("BulletSpawn").Rotation ;
+			bullet.Rotation = GetNode<Node2D>("BulletSpawn").Rotation;
 			bullet.GlobalPosition = Position;
 			bullet.Direction = Vector2.Right.Rotated(GetNode<Position2D>("BulletSpawn/Position2D").RotationDegrees);
 			GetParent().AddChild(bullet);
@@ -93,8 +94,11 @@ namespace Debugmancer.Objects.TempEnemy5
 			SpawnBullet();
 		}
 
-		public void OnHealthChanged(int health)
+		public async void OnHealthChanged(int health)
 		{
+			Modulate = Color.ColorN("Red");
+			await Task.Delay(100);
+			Modulate = new Color(1, 1, 1);
 			if (health == 0)
 				QueueFree();
 		}

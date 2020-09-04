@@ -1,3 +1,4 @@
+using System.Threading.Tasks;
 using Godot;
 
 namespace Debugmancer.Objects.TempEnemy4
@@ -31,30 +32,34 @@ namespace Debugmancer.Objects.TempEnemy4
 			_canShoot = true;
 		}
 
-        private void SpawnBullet()
-        {
-            var bullet = (ShotgunBullet)_shotgunScene.Instance();
-            bullet.Speed = 200;
-            bullet.Position = Position;
-            bullet.Rotation = (_player.Position - GlobalPosition).Angle();
-            bullet.Direction = new Vector2(_player.Position.x - Position.x, _player.Position.y - Position.y).Normalized();
-            GetParent().AddChild(bullet);
-            _shootTimer.Start();
-            _canShoot = false;
-        }
+		private void SpawnBullet()
+		{
+			var bullet = (ShotgunBullet)_shotgunScene.Instance();
+			bullet.Speed = 200;
+			bullet.Position = Position;
+			bullet.Rotation = (_player.Position - GlobalPosition).Angle();
+			bullet.Direction = new Vector2(_player.Position.x - Position.x, _player.Position.y - Position.y).Normalized();
+			GetParent().AddChild(bullet);
+			_shootTimer.Start();
+			_canShoot = false;
+		}
 
-        public void OnHealthChanged(int health)
-        {
-	        if (health == 0)
-		        QueueFree();
-        }
+		public async void OnHealthChanged(int health)
+		{
+
+			Modulate = Color.ColorN("Red");
+			await Task.Delay(100);
+			Modulate = new Color(1, 1, 1);
+			if (health == 0)
+				QueueFree();
+		}
 
 		public void _on_Hitbox_body_entered(Area2D body)
-        {
-	        Health health = (Health)GetNode("Health");
-	        if (body.IsInGroup("playerBullet")) health.Damage(1);
+		{
+			Health health = (Health)GetNode("Health");
+			if (body.IsInGroup("playerBullet")) health.Damage(1);
 
-	        if (body.IsInGroup("playerCritBullet")) health.Damage(2);
-        }
+			if (body.IsInGroup("playerCritBullet")) health.Damage(2);
+		}
 	}
 }

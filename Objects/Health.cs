@@ -18,6 +18,8 @@ namespace Debugmancer.Objects
 
 		public void Damage(int amount)
 		{
+			if(CurrentHealth <= 0) return;
+
 			CurrentHealth -= amount;
 			if (CurrentHealth <= 0)
 			{

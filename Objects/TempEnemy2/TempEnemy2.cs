@@ -75,9 +75,10 @@ namespace Debugmancer.Objects.TempEnemy2
 		public void Hitbox_BodyEntered(Area2D body)
 		{
 			Health health = (Health)GetNode("Health");
+
 			if (body.IsInGroup("playerBullet")) health.Damage(1);
 
-			if (body.IsInGroup("playerCritBullet"))
+			if (body.IsInGroup("playerCritBullet") && health.CurrentHealth <= 0)
 			{
 				health.Damage(2);
 				ChangeState("Stagger");
@@ -90,7 +91,7 @@ namespace Debugmancer.Objects.TempEnemy2
 			await Task.Delay(100);
 			Modulate = new Color(1, 1, 1);
 			if (health == 0)
-				QueueFree();
+				ChangeState("Dead");
 		}
 
 		private void ChangeState(string stateName)

@@ -15,7 +15,7 @@ namespace Debugmancer.Objects.TempEnemy1
 		public Stack<State> StateStack = new Stack<State>();
 		public readonly Dictionary<string, Node> StatesMap = new Dictionary<string, Node>();
 
-		
+
 		private readonly PackedScene _bulletScene = (PackedScene)ResourceLoader.Load("res://Objects/Bullets/EnemyBullet.tscn");
 		private KinematicBody2D _player;
 		private readonly Random _random = new Random();
@@ -74,9 +74,10 @@ namespace Debugmancer.Objects.TempEnemy1
 		public void Hitbox_BodyEntered(Area2D body)
 		{
 			Health health = (Health)GetNode("Health");
+
 			if (body.IsInGroup("playerBullet")) health.Damage(1);
 
-			if (body.IsInGroup("playerCritBullet"))
+			if (body.IsInGroup("playerCritBullet") && health.CurrentHealth <= 0)
 			{
 				health.Damage(2);
 				ChangeState("Stagger");
@@ -89,7 +90,7 @@ namespace Debugmancer.Objects.TempEnemy1
 			await Task.Delay(100);
 			Modulate = new Color(1, 1, 1);
 			if (health == 0)
-				QueueFree();
+				ChangeState("Dead");
 		}
 
 		private void ChangeState(string stateName)
@@ -101,7 +102,7 @@ namespace Debugmancer.Objects.TempEnemy1
 			}
 			else if (stateName == "Dead")
 			{
-				QueueFree();
+				Free();
 				return;
 			}
 			else if (stateName == "Stagger")

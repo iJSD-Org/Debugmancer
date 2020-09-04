@@ -27,6 +27,7 @@ frame = 147
 shape = SubResource( 1 )
 
 [node name="ShootTimer" type="Timer" parent="."]
+autostart = true
 
 [node name="Hitbox" type="Area2D" parent="."]
 collision_layer = 2147483650

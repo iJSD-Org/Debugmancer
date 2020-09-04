@@ -18,7 +18,7 @@ namespace Debugmancer.Objects.TempEnemy3
 		private void ShootTimer_timeout()
 		{
 			GetNode<Timer>("ShootTimer").Stop();
-			
+
 			SpawnBullet();
 
 			if (++_shots == 6)
@@ -37,6 +37,7 @@ namespace Debugmancer.Objects.TempEnemy3
 		public void Hitbox_BodyEntered(Area2D area)
 		{
 			Health health = (Health)GetNode("Health");
+
 			if (area.IsInGroup("playerBullet")) health.Damage(1);
 
 			if (area.IsInGroup("playerCritBullet")) health.Damage(2);
@@ -49,7 +50,7 @@ namespace Debugmancer.Objects.TempEnemy3
 
 			//UP
 			bullet1.Position = Position;
-			bullet1.Rotation = GetNode<Node2D>("BulletSpawns/Up1").Rotation;
+			bullet1.Rotation = (float)(Math.PI / 180) * _random.Next(0, 360);
 			bullet1.Direction = Vector2.Up.Rotated(GetNode<Position2D>("BulletSpawns/Up1/Position2D").RotationDegrees);
 			GetParent().AddChild(bullet1);
 
@@ -57,7 +58,7 @@ namespace Debugmancer.Objects.TempEnemy3
 			bullet2.Speed = 100;
 
 			bullet2.Position = Position;
-			bullet2.Rotation = GetNode<Node2D>("BulletSpawns/Up2").Rotation;
+			bullet2.Rotation = (float)(Math.PI / 180) * _random.Next(0, 360);
 			bullet2.Direction = Vector2.Up.Rotated(GetNode<Position2D>("BulletSpawns/Up2/Position2D").RotationDegrees);
 			GetParent().AddChild(bullet2);
 
@@ -65,7 +66,7 @@ namespace Debugmancer.Objects.TempEnemy3
 			bullet3.Speed = 100;
 
 			bullet3.Position = Position;
-			bullet3.Rotation = GetNode<Node2D>("BulletSpawns/Up3").Rotation;
+			bullet3.Rotation = (float)(Math.PI / 180) * _random.Next(0, 360);
 			bullet3.Direction = Vector2.Up.Rotated(GetNode<Position2D>("BulletSpawns/Up3/Position2D").RotationDegrees);
 			GetParent().AddChild(bullet3);
 
@@ -75,7 +76,7 @@ namespace Debugmancer.Objects.TempEnemy3
 			bullet4.Speed = 100;
 
 			bullet4.GlobalPosition = Position;
-			bullet4.Rotation = GetNode<Node2D>("BulletSpawns/Down1").Rotation;
+			bullet4.Rotation = (float)(Math.PI / 180) * _random.Next(0, 360);
 			bullet4.Direction = Vector2.Down.Rotated(GetNode<Position2D>("BulletSpawns/Down1/Position2D").RotationDegrees);
 			GetParent().AddChild(bullet4);
 
@@ -83,7 +84,7 @@ namespace Debugmancer.Objects.TempEnemy3
 			bullet5.Speed = 100;
 
 			bullet5.GlobalPosition = Position;
-			bullet5.Rotation = GetNode<Node2D>("BulletSpawns/Down2").Rotation;
+			bullet5.Rotation = (float)(Math.PI / 180) * _random.Next(0, 360);
 			bullet5.Direction = Vector2.Down.Rotated(GetNode<Position2D>("BulletSpawns/Down2/Position2D").RotationDegrees);
 			GetParent().AddChild(bullet5);
 
@@ -91,7 +92,7 @@ namespace Debugmancer.Objects.TempEnemy3
 			bullet6.Speed = 100;
 
 			bullet6.GlobalPosition = Position;
-			bullet6.Rotation = GetNode<Node2D>("BulletSpawns/Down3").Rotation;
+			bullet6.Rotation = (float)(Math.PI / 180) * _random.Next(0, 360);
 			bullet6.Direction = Vector2.Down.Rotated(GetNode<Position2D>("BulletSpawns/Down3/Position2D").RotationDegrees);
 			GetParent().AddChild(bullet6);
 
@@ -101,7 +102,7 @@ namespace Debugmancer.Objects.TempEnemy3
 			bullet7.Speed = 100;
 
 			bullet7.GlobalPosition = Position;
-			bullet7.Rotation = GetNode<Node2D>("BulletSpawns/Left1").Rotation;
+			bullet7.Rotation = (float)(Math.PI / 180) * _random.Next(0, 360);
 			bullet7.Direction = Vector2.Down.Rotated(GetNode<Position2D>("BulletSpawns/Left1/Position2D").RotationDegrees);
 			GetParent().AddChild(bullet7);
 
@@ -109,7 +110,7 @@ namespace Debugmancer.Objects.TempEnemy3
 			bullet8.Speed = 100;
 
 			bullet8.GlobalPosition = Position;
-			bullet8.Rotation = GetNode<Node2D>("BulletSpawns/Left2").Rotation;
+			bullet8.Rotation = (float)(Math.PI / 180) * _random.Next(0, 360);
 			bullet8.Direction = Vector2.Down.Rotated(GetNode<Position2D>("BulletSpawns/Left2/Position2D").RotationDegrees);
 			GetParent().AddChild(bullet8);
 
@@ -117,7 +118,7 @@ namespace Debugmancer.Objects.TempEnemy3
 			bullet9.Speed = 100;
 
 			bullet9.GlobalPosition = Position;
-			bullet9.Rotation = GetNode<Node2D>("BulletSpawns/Left3").Rotation;
+			bullet9.Rotation = (float)(Math.PI / 180) * _random.Next(0, 360);
 			bullet9.Direction = Vector2.Down.Rotated(GetNode<Position2D>("BulletSpawns/Left3/Position2D").RotationDegrees);
 			GetParent().AddChild(bullet9);
 
@@ -127,7 +128,7 @@ namespace Debugmancer.Objects.TempEnemy3
 			bullet10.Speed = 100;
 
 			bullet10.GlobalPosition = Position;
-			bullet10.Rotation = GetNode<Node2D>("BulletSpawns/Right1").Rotation;
+			bullet10.Rotation = (float)(Math.PI / 180) * _random.Next(0, 360);
 			bullet10.Direction = Vector2.Down.Rotated(GetNode<Position2D>("BulletSpawns/Right1/Position2D").RotationDegrees);
 			GetParent().AddChild(bullet10);
 
@@ -135,7 +136,7 @@ namespace Debugmancer.Objects.TempEnemy3
 			bullet11.Speed = 100;
 
 			bullet11.GlobalPosition = Position;
-			bullet11.Rotation = GetNode<Node2D>("BulletSpawns/Right2").Rotation;
+			bullet11.Rotation = (float)(Math.PI / 180) * _random.Next(0, 360);
 			bullet11.Direction = Vector2.Down.Rotated(GetNode<Position2D>("BulletSpawns/Right2/Position2D").RotationDegrees);
 			GetParent().AddChild(bullet11);
 
@@ -143,13 +144,14 @@ namespace Debugmancer.Objects.TempEnemy3
 			bullet12.Speed = 100;
 
 			bullet12.GlobalPosition = Position;
-			bullet12.Rotation = GetNode<Node2D>("BulletSpawns/Right3").Rotation;
+			bullet12.Rotation = (float)(Math.PI / 180) * _random.Next(0, 360);
 			bullet12.Direction = Vector2.Down.Rotated(GetNode<Position2D>("BulletSpawns/Right3/Position2D").RotationDegrees);
 			GetParent().AddChild(bullet12);
 		}
 
 		public async void OnHealthChanged(int health)
 		{
+
 			Modulate = Color.ColorN("Red");
 			await Task.Delay(100);
 			Modulate = new Color(1, 1, 1);
