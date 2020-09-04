@@ -85,6 +85,7 @@ tracks/0/keys = {
 "player",
 ]]
 rotation = 0.0349066
+collision_mask = 10
 script = ExtResource( 7 )
 
 [node name="Sprite" type="Sprite" parent="."]
@@ -130,6 +131,7 @@ __meta__ = {
 }
 
 [node name="Hitbox" type="Area2D" parent="."]
+collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
 position = Vector2( 0.176781, 0.309359 )

@@ -10,7 +10,8 @@ namespace Debugmancer.Objects.Player.States
 		private Vector2 _inputDirection;
 		public override async void Enter(KinematicBody2D host)
 		{
-			GetParent().GetParent().GetNode<Timer>("DashTimer").Start();
+			host.GetNode<Timer>("DashTimer").Start();
+			host.GetNode<CollisionShape2D>("Hitbox/CollisionShape2D").Disabled = true;
 			if (!host.GetNode<Sprite>("Sprite").FlipH)
 			{
 			host.GetNode<AnimationPlayer>("AnimationPlayer").Play("Dash");
@@ -30,7 +31,8 @@ namespace Debugmancer.Objects.Player.States
 
 		public override void Exit(KinematicBody2D host)
 		{
-			
+			host.GetNode<CollisionShape2D>("Hitbox/CollisionShape2D").Disabled = false;
+			host.GetNode<Timer>("DashTimer").Stop();
 		}
 
 		public override void HandleInput(KinematicBody2D host, InputEvent @event)
@@ -39,9 +41,7 @@ namespace Debugmancer.Objects.Player.States
 		}
 
 		private void _on_DashTimer_timeout()
-		{
-			GD.Print("Dasheed!");
-			GetParent().GetParent().GetNode<Timer>("DashTimer").Stop();
+		{			
 			EmitSignal(nameof(Finished), "Move");
 		}
 
