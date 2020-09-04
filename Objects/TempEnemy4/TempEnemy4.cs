@@ -1,38 +1,49 @@
+using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
+using Debugmancer.Objects.TempEnemy4.States;
 using Godot;
 
 namespace Debugmancer.Objects.TempEnemy4
 {
 	public class TempEnemy4 : KinematicBody2D
 	{
-		private readonly PackedScene _shotgunScene = (PackedScene)GD.Load("res://Objects/Bullets/ShotgunBullet.tscn");
+		[Signal]
+		public delegate void StateChanged();
+
+		public State CurrentState;
+		public Stack<State> StateStack = new Stack<State>();
+		public readonly Dictionary<string, Node> StatesMap = new Dictionary<string, Node>();
+
+		private readonly PackedScene _shotgunScene = (PackedScene)ResourceLoader.Load("res://Objects/Bullets/ShotgunBullet.tscn");
 		private KinematicBody2D _player;
-		private bool _canShoot = true;
-		private readonly Timer _shootTimer = new Timer();
 
 		public override void _Ready()
 		{
-			_player = GetParent().GetNode("Player") as KinematicBody2D;
-			_shootTimer.WaitTime = 1.0f;
-			_shootTimer.Connect("timeout", this, "on_timer_timeout");
-			AddChild(_shootTimer);
-			GetNode("Health").Connect(nameof(Health.HealthChanged), this, nameof(OnHealthChanged));
-		}
+			_player = GetParent().GetNode<KinematicBody2D>("Player");
 
-		public override void _Process(float delta)
-		{
-			if (_canShoot)
+			StatesMap.Add("Chase", GetNode("States/Chase"));
+			StatesMap.Add("Stagger", GetNode("States/Stagger"));
+
+			CurrentState = (State)GetNode("States/Chase");
+
+			foreach (Node state in StatesMap.Values)
 			{
-				SpawnBullet();
+				state.Connect(nameof(State.Finished), this, nameof(ChangeState));
 			}
-		}
-		private void on_timer_timeout()
-		{
-			_shootTimer.Stop();
-			_canShoot = true;
+
+			GetNode("Health").Connect(nameof(Health.HealthChanged), this, nameof(OnHealthChanged));
+
+			StateStack.Push((State)StatesMap["Chase"]);
+			ChangeState("Chase");
 		}
 
-		private void SpawnBullet()
+		public override void _PhysicsProcess(float delta)
+		{
+			CurrentState.Update(this, delta);
+		}
+
+		private void ShootTimer_timeout()
 		{
 			var bullet = (ShotgunBullet)_shotgunScene.Instance();
 			bullet.Speed = 200;
@@ -40,26 +51,65 @@ namespace Debugmancer.Objects.TempEnemy4
 			bullet.Rotation = (_player.Position - GlobalPosition).Angle();
 			bullet.Direction = new Vector2(_player.Position.x - Position.x, _player.Position.y - Position.y).Normalized();
 			GetParent().AddChild(bullet);
-			_shootTimer.Start();
-			_canShoot = false;
+		}
+
+		public void Hitbox_BodyEntered(Area2D body)
+		{
+			Health health = (Health)GetNode("Health");
+
+			if (body.IsInGroup("playerBullet")) health.Damage(1);
+
+			if (body.IsInGroup("playerCritBullet") && health.CurrentHealth <= 0)
+			{
+				health.Damage(2);
+				ChangeState("Stagger");
+			}
 		}
 
 		public async void OnHealthChanged(int health)
 		{
-
 			Modulate = Color.ColorN("Red");
 			await Task.Delay(100);
 			Modulate = new Color(1, 1, 1);
 			if (health == 0)
-				QueueFree();
+				ChangeState("Dead");
 		}
 
-		public void _on_Hitbox_body_entered(Area2D body)
+		private void ChangeState(string stateName)
 		{
-			Health health = (Health)GetNode("Health");
-			if (body.IsInGroup("playerBullet")) health.Damage(1);
+			CurrentState.Exit(this);
+			if (stateName == "Previous")
+			{
+				StateStack.Pop();
+			}
+			else if (stateName == "Dead")
+			{
+				QueueFree();
+				return;
+			}
+			else if (stateName == "Stagger")
+			{
+				StateStack.Push((State)StatesMap[stateName]);
+			}
+			else
+			{
+				StateStack.Pop();
+				StateStack.Push((State)StatesMap[stateName]);
+			}
 
-			if (body.IsInGroup("playerCritBullet")) health.Damage(2);
+			CurrentState = StateStack.Peek();
+
+			// Pass target to Chase State
+			if (stateName == "Chase")
+			{
+				((Chase4)CurrentState).Init((Player.Player)_player);
+			}
+
+			// We don"t want to reinitialize the state if we"re going back to the previous state
+			if (stateName != "Previous")
+				CurrentState.Enter(this);
+
+			EmitSignal(nameof(StateChanged), CurrentState.Name);
 		}
 	}
 }
