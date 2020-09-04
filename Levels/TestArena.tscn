@@ -1,8 +1,12 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Assets/map_tileset.tres" type="TileSet" id=1]
 [ext_resource path="res://Objects/Player/Player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Objects/TempEnemy4/TempEnemy4.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Objects/TempEnemy1/TempEnemy1.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Objects/TempEnemy3/TempEnemy3.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Objects/TempEnemy5/TempEnemy5.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Objects/TempEnemy2/TempEnemy2.tscn" type="PackedScene" id=7]
 
 [node name="TestArena" type="Node2D"]
 
@@ -30,3 +34,15 @@ collision_layer = 2147483657
 
 [node name="TempEnemy4" parent="." instance=ExtResource( 3 )]
 position = Vector2( 169.416, 92.9578 )
+
+[node name="TempEnemy1" parent="." instance=ExtResource( 4 )]
+position = Vector2( 64.1595, 150.643 )
+
+[node name="TempEnemy2" parent="." instance=ExtResource( 7 )]
+position = Vector2( 128.587, 105.319 )
+
+[node name="TempEnemy3" parent="." instance=ExtResource( 5 )]
+position = Vector2( 192.268, 156.686 )
+
+[node name="TempEnemy5" parent="." instance=ExtResource( 6 )]
+position = Vector2( 106.861, 153.265 )
