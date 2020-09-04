@@ -2,11 +2,16 @@
 
 importer="texture"
 type="StreamTexture"
-valid=false
+path="res://.import/DebugMancer  Menu Title.png-a04b1bfe5aa70027ec9a5459a05033c9.stex"
+metadata={
+"vram_texture": false
+}
 
 [deps]
 
 source_file="res://Assets/DebugMancer  Menu Title.png"
+dest_files=[ "res://.import/DebugMancer  Menu Title.png-a04b1bfe5aa70027ec9a5459a05033c9.stex" ]
+
 [params]
 
 compress/mode=0

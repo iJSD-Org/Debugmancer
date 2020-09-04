@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Environment SpriteSheet.png-944e8a0be55617dda03f3bca020c73ce.stex"
+path="res://.import/Quit Hovered.png-effecdb7312b1d07edf6230a61c83d49.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/Environment SpriteSheet.png"
-dest_files=[ "res://.import/Environment SpriteSheet.png-944e8a0be55617dda03f3bca020c73ce.stex" ]
+source_file="res://Assets/Entity Sprites/Quit Hovered.png"
+dest_files=[ "res://.import/Quit Hovered.png-effecdb7312b1d07edf6230a61c83d49.stex" ]
 
 [params]
 
