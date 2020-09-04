@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Levels/map_tilese.tres" type="TileSet" id=1]
 [ext_resource path="res://Objects/Player/Player.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Objects/TempEnemy5/TempEnemy5.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Objects/TempEnemy3/TempEnemy3.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Objects/TempEnemy1/TempEnemy1.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Objects/TempEnemy4/TempEnemy4.tscn" type="PackedScene" id=6]
@@ -41,3 +42,18 @@ position = Vector2( 1.58994, 529.217 )
 
 [node name="TempEnemy8" parent="." instance=ExtResource( 4 )]
 position = Vector2( 774.998, 465.649 )
+
+[node name="TempEnemy2" parent="." instance=ExtResource( 7 )]
+position = Vector2( 233.597, 383.099 )
+
+[node name="TempEnemy5" parent="." instance=ExtResource( 3 )]
+position = Vector2( 429.585, 228.087 )
+
+[node name="TempEnemy3" parent="." instance=ExtResource( 5 )]
+position = Vector2( 379.288, 540.326 )
+
+[node name="TempEnemy6" parent="." instance=ExtResource( 7 )]
+position = Vector2( 909.019, 576.348 )
+
+[node name="TempEnemy9" parent="." instance=ExtResource( 6 )]
+position = Vector2( -238.936, 576.651 )
