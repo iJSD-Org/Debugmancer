@@ -1,78 +1,56 @@
 using System;
+using System.Threading.Tasks;
 using Godot;
 
 namespace Debugmancer.Objects.TempEnemy3
 {
 	public class TempEnemy3 : KinematicBody2D
 	{
-		private readonly PackedScene _bulletScene = (PackedScene)ResourceLoader.Load("res://Objects/EnemyBullet2.tscn");
+		private readonly PackedScene _bulletScene = (PackedScene)ResourceLoader.Load("res://Objects/Bullets/EnemyBullet2.tscn");
+		private readonly Random _random = new Random();
 		private int _shots;
-		private bool _canShoot = true;
-		private bool _burstStarted;
-		private readonly Timer _burstCoolDown = new Timer();
-		private readonly Timer _shotCoolDown = new Timer();
 
 		public override void _Ready()
 		{
-			AddChild(_burstCoolDown);
-			AddChild(_shotCoolDown);
-			_burstCoolDown.Connect("timeout", this, "_on_Burst_timeout");
-			_shotCoolDown.Connect("timeout", this, "_on_Shot_timeout");
 			GetNode("Health").Connect(nameof(Health.HealthChanged), this, nameof(OnHealthChanged));
 		}
 
-		public override void _Process(float delta)
+		private void ShootTimer_timeout()
 		{
-			if (_shots == 4 && !_burstStarted)
-			{
-				StartBurstTimer();
-				_burstStarted = true;
-				_canShoot = false;
-			}
+			GetNode<Timer>("ShootTimer").Stop();
 
-			if (_canShoot) StartShotTimer();
-		}
-
-		private void StartBurstTimer()
-		{
-			var waitTime = new Random();
-			_burstCoolDown.WaitTime = (float) (waitTime.NextDouble() * (2.5 - .95) + .95);
-			_burstCoolDown.Start();
-		}
-
-		private void StartShotTimer()
-		{
-			var waitTime = new Random();
-			_canShoot = false;
-			_shotCoolDown.WaitTime = (float) (waitTime.NextDouble() * (.4 - .1) + .1);
-			_shotCoolDown.Start();
-		}
-
-		private void _on_Burst_timeout()
-		{
-			_burstCoolDown.Stop();
-			_shots = 0;
-			_canShoot = true;
-			_burstStarted = false;
-		}
-
-		private void _on_Shot_timeout()
-		{
-			_shotCoolDown.Stop();
-			_shots += 1;
 			SpawnBullet();
+
+			if (++_shots == 6)
+			{
+				_shots = 0;
+				GetNode<Timer>("ShootTimer").WaitTime = (float)(_random.NextDouble() * (2.5 - .95) + .95);
+				GetNode<Timer>("ShootTimer").Start();
+			}
+			else
+			{
+				GetNode<Timer>("ShootTimer").WaitTime = (float)(_random.NextDouble() * (.4 - .1) + .1);
+				GetNode<Timer>("ShootTimer").Start();
+			}
 		}
 
+		public void Hitbox_BodyEntered(Area2D area)
+		{
+			Health health = (Health)GetNode("Health");
+
+			if (area.IsInGroup("playerBullet")) health.Damage(1);
+
+			if (area.IsInGroup("playerCritBullet")) health.Damage(2);
+		}
 
 		private void SpawnBullet()
 		{
-			_canShoot = true;
 			var bullet1 = (EnemyBullet2)_bulletScene.Instance();
 			bullet1.Speed = 100;
 
 			//UP
 			bullet1.Position = Position;
-			bullet1.Rotation = GetNode<Node2D>("BulletSpawns/Up1").Rotation;
+			bullet1.Rotation = (float)(Math.PI / 180) * _random.Next(0, 360);
 			bullet1.Direction = Vector2.Up.Rotated(GetNode<Position2D>("BulletSpawns/Up1/Position2D").RotationDegrees);
 			GetParent().AddChild(bullet1);
 
@@ -80,7 +58,7 @@ namespace Debugmancer.Objects.TempEnemy3
 			bullet2.Speed = 100;
 
 			bullet2.Position = Position;
-			bullet2.Rotation = GetNode<Node2D>("BulletSpawns/Up2").Rotation;
+			bullet2.Rotation = (float)(Math.PI / 180) * _random.Next(0, 360);
 			bullet2.Direction = Vector2.Up.Rotated(GetNode<Position2D>("BulletSpawns/Up2/Position2D").RotationDegrees);
 			GetParent().AddChild(bullet2);
 
@@ -88,7 +66,7 @@ namespace Debugmancer.Objects.TempEnemy3
 			bullet3.Speed = 100;
 
 			bullet3.Position = Position;
-			bullet3.Rotation = GetNode<Node2D>("BulletSpawns/Up3").Rotation;
+			bullet3.Rotation = (float)(Math.PI / 180) * _random.Next(0, 360);
 			bullet3.Direction = Vector2.Up.Rotated(GetNode<Position2D>("BulletSpawns/Up3/Position2D").RotationDegrees);
 			GetParent().AddChild(bullet3);
 
@@ -98,7 +76,7 @@ namespace Debugmancer.Objects.TempEnemy3
 			bullet4.Speed = 100;
 
 			bullet4.GlobalPosition = Position;
-			bullet4.Rotation = GetNode<Node2D>("BulletSpawns/Down1").Rotation;
+			bullet4.Rotation = (float)(Math.PI / 180) * _random.Next(0, 360);
 			bullet4.Direction = Vector2.Down.Rotated(GetNode<Position2D>("BulletSpawns/Down1/Position2D").RotationDegrees);
 			GetParent().AddChild(bullet4);
 
@@ -106,7 +84,7 @@ namespace Debugmancer.Objects.TempEnemy3
 			bullet5.Speed = 100;
 
 			bullet5.GlobalPosition = Position;
-			bullet5.Rotation = GetNode<Node2D>("BulletSpawns/Down2").Rotation;
+			bullet5.Rotation = (float)(Math.PI / 180) * _random.Next(0, 360);
 			bullet5.Direction = Vector2.Down.Rotated(GetNode<Position2D>("BulletSpawns/Down2/Position2D").RotationDegrees);
 			GetParent().AddChild(bullet5);
 
@@ -114,7 +92,7 @@ namespace Debugmancer.Objects.TempEnemy3
 			bullet6.Speed = 100;
 
 			bullet6.GlobalPosition = Position;
-			bullet6.Rotation = GetNode<Node2D>("BulletSpawns/Down3").Rotation;
+			bullet6.Rotation = (float)(Math.PI / 180) * _random.Next(0, 360);
 			bullet6.Direction = Vector2.Down.Rotated(GetNode<Position2D>("BulletSpawns/Down3/Position2D").RotationDegrees);
 			GetParent().AddChild(bullet6);
 
@@ -124,7 +102,7 @@ namespace Debugmancer.Objects.TempEnemy3
 			bullet7.Speed = 100;
 
 			bullet7.GlobalPosition = Position;
-			bullet7.Rotation = GetNode<Node2D>("BulletSpawns/Left1").Rotation;
+			bullet7.Rotation = (float)(Math.PI / 180) * _random.Next(0, 360);
 			bullet7.Direction = Vector2.Down.Rotated(GetNode<Position2D>("BulletSpawns/Left1/Position2D").RotationDegrees);
 			GetParent().AddChild(bullet7);
 
@@ -132,7 +110,7 @@ namespace Debugmancer.Objects.TempEnemy3
 			bullet8.Speed = 100;
 
 			bullet8.GlobalPosition = Position;
-			bullet8.Rotation = GetNode<Node2D>("BulletSpawns/Left2").Rotation;
+			bullet8.Rotation = (float)(Math.PI / 180) * _random.Next(0, 360);
 			bullet8.Direction = Vector2.Down.Rotated(GetNode<Position2D>("BulletSpawns/Left2/Position2D").RotationDegrees);
 			GetParent().AddChild(bullet8);
 
@@ -140,17 +118,17 @@ namespace Debugmancer.Objects.TempEnemy3
 			bullet9.Speed = 100;
 
 			bullet9.GlobalPosition = Position;
-			bullet9.Rotation = GetNode<Node2D>("BulletSpawns/Left3").Rotation;
+			bullet9.Rotation = (float)(Math.PI / 180) * _random.Next(0, 360);
 			bullet9.Direction = Vector2.Down.Rotated(GetNode<Position2D>("BulletSpawns/Left3/Position2D").RotationDegrees);
 			GetParent().AddChild(bullet9);
-		
+
 			//RIGHT
 
 			var bullet10 = (EnemyBullet2)_bulletScene.Instance();
 			bullet10.Speed = 100;
 
 			bullet10.GlobalPosition = Position;
-			bullet10.Rotation = GetNode<Node2D>("BulletSpawns/Right1").Rotation;
+			bullet10.Rotation = (float)(Math.PI / 180) * _random.Next(0, 360);
 			bullet10.Direction = Vector2.Down.Rotated(GetNode<Position2D>("BulletSpawns/Right1/Position2D").RotationDegrees);
 			GetParent().AddChild(bullet10);
 
@@ -158,7 +136,7 @@ namespace Debugmancer.Objects.TempEnemy3
 			bullet11.Speed = 100;
 
 			bullet11.GlobalPosition = Position;
-			bullet11.Rotation = GetNode<Node2D>("BulletSpawns/Right2").Rotation;
+			bullet11.Rotation = (float)(Math.PI / 180) * _random.Next(0, 360);
 			bullet11.Direction = Vector2.Down.Rotated(GetNode<Position2D>("BulletSpawns/Right2/Position2D").RotationDegrees);
 			GetParent().AddChild(bullet11);
 
@@ -166,23 +144,19 @@ namespace Debugmancer.Objects.TempEnemy3
 			bullet12.Speed = 100;
 
 			bullet12.GlobalPosition = Position;
-			bullet12.Rotation = GetNode<Node2D>("BulletSpawns/Right3").Rotation;
+			bullet12.Rotation = (float)(Math.PI / 180) * _random.Next(0, 360);
 			bullet12.Direction = Vector2.Down.Rotated(GetNode<Position2D>("BulletSpawns/Right3/Position2D").RotationDegrees);
 			GetParent().AddChild(bullet12);
 		}
 
-		public void OnHealthChanged(int health)
+		public async void OnHealthChanged(int health)
 		{
+
+			Modulate = Color.ColorN("Red");
+			await Task.Delay(100);
+			Modulate = new Color(1, 1, 1);
 			if (health == 0)
 				QueueFree();
-		}
-
-		public void _on_Hitbox_body_entered(Area2D body)
-		{
-			Health health = (Health)GetNode("Health");
-			if (body.IsInGroup("playerBullet")) health.Damage(1);
-
-			if (body.IsInGroup("playerCritBullet")) health.Damage(2);
 		}
 	}
 }

@@ -8,7 +8,7 @@ namespace Debugmancer.Objects.Player.States
 
 		public override void Enter(KinematicBody2D host)
 		{
-			GetParent().GetParent().GetNode<AnimationPlayer>("AnimationPlayer").Play("Idle");
+			// host.GetNode<AnimationPlayer>("AnimationPlayer").Play("Idle");
 		}
 
 		public override void Exit(KinematicBody2D host)

@@ -1,8 +1,10 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Assets/Sprites/0x72_16x16DungeonTileset.v3.png" type="Texture" id=1]
-[ext_resource path="res://Objects/TempEnemy4/Entity.cs" type="Script" id=2]
+[ext_resource path="res://Objects/TempEnemy4/TempEnemy4.cs" type="Script" id=2]
 [ext_resource path="res://Objects/Health.cs" type="Script" id=3]
+[ext_resource path="res://Objects/TempEnemy4/States/Stagger.cs" type="Script" id=4]
+[ext_resource path="res://Objects/TempEnemy4/States/Chase.cs" type="Script" id=5]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 5.53801, 7.63471 )
@@ -11,8 +13,9 @@ extents = Vector2( 5.53801, 7.63471 )
 extents = Vector2( 6.56383, 8.19601 )
 
 [node name="TempEnemy4" type="KinematicBody2D" groups=[
-"enemies",
+"enemy",
 ]]
+collision_layer = 8
 script = ExtResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="."]
@@ -26,16 +29,34 @@ frame = 161
 position = Vector2( 0.334091, 0.44545 )
 shape = SubResource( 1 )
 
-[node name="Health" type="Node" parent="."]
-script = ExtResource( 3 )
-MaxHealth = 10
+[node name="ShootTimer" type="Timer" parent="."]
+wait_time = 0.8
+autostart = true
 
 [node name="Hitbox" type="Area2D" parent="." groups=[
 "collision",
 ]]
 position = Vector2( 0, 0.0441933 )
+collision_layer = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
 position = Vector2( 0.278408, 0.44545 )
 shape = SubResource( 2 )
-[connection signal="body_entered" from="Hitbox" to="." method="_on_Hitbox_body_entered"]
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+enabled = true
+collision_mask = 8
+
+[node name="Health" type="Node" parent="."]
+script = ExtResource( 3 )
+MaxHealth = 10
+
+[node name="States" type="Node" parent="."]
+
+[node name="Chase" type="Node" parent="States"]
+script = ExtResource( 5 )
+
+[node name="Stagger" type="Node" parent="States"]
+script = ExtResource( 4 )
+[connection signal="timeout" from="ShootTimer" to="." method="ShootTimer_timeout"]
+[connection signal="body_entered" from="Hitbox" to="." method="Hitbox_BodyEntered"]

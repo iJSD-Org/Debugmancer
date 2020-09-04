@@ -5,10 +5,10 @@ namespace Debugmancer.Objects
 {
 	public class Gun : Sprite
 	{
-		[Export] public PackedScene Bullet = ResourceLoader.Load("res://Objects/Bullet.tscn") as PackedScene;
-		[Export] public PackedScene CritBullet = ResourceLoader.Load("res://Objects/CritBullet.tscn") as PackedScene;
+		[Export] public PackedScene Bullet = ResourceLoader.Load<PackedScene>("res://Objects/Bullets/Bullet.tscn");
+		[Export] public PackedScene CritBullet = ResourceLoader.Load<PackedScene>("res://Objects/Bullets/CritBullet.tscn");
 
-		[Export] public float BulletSpeed = 1000f;
+		[Export] public float BulletSpeed = 600f;
 		[Export] public int BulletCount = 50;
 		[Export] public float FireRate = 0.2f;
 		private bool _canShoot = true;
@@ -22,7 +22,7 @@ namespace Debugmancer.Objects
 			if (_canShoot && BulletCount > 0)
 			{
 				Random random = new Random();
-				RigidBody2D bulletInstance = random.Next(1, 100) > 10 ? (RigidBody2D)Bullet.Instance() : (RigidBody2D)CritBullet.Instance();
+				RigidBody2D bulletInstance = random.Next(1, 10) > 1 ? (RigidBody2D)Bullet.Instance() : (RigidBody2D)CritBullet.Instance();
 				bulletInstance.Position = GetNode<Node2D>("GunPoint").GlobalPosition;
 				bulletInstance.Rotation = Rotation;
 				bulletInstance.ApplyImpulse(new Vector2(0, 0), new Vector2(BulletSpeed, 0).Rotated(Rotation));
