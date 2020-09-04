@@ -55,7 +55,7 @@ namespace Debugmancer.Objects.TempEnemy2
 			GetNode<Timer>("ShootTimer").Stop();
 			// Shoot
 			EnemyBullet bullet = (EnemyBullet)_bulletScene.Instance();
-			bullet.Speed = 135;
+			bullet.Speed = 75;
 			bullet.Position = Position;
 			bullet.Direction = new Vector2(_player.Position.x - Position.x, _player.Position.y - Position.y).Normalized();
 			GetParent().AddChild(bullet);

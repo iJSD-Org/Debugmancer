@@ -16,8 +16,6 @@ namespace Debugmancer.Objects.TempEnemy1
 		public State CurrentState;
 		public Stack<State> StateStack = new Stack<State>();
 		public readonly Dictionary<string, Node> StatesMap = new Dictionary<string, Node>();
-
-
 		private readonly PackedScene _bulletScene = (PackedScene)ResourceLoader.Load("res://Objects/Bullets/EnemyBullet.tscn");
 		private KinematicBody2D _player;
 		private readonly Random _random = new Random();
@@ -56,7 +54,7 @@ namespace Debugmancer.Objects.TempEnemy1
 			GetNode<Timer>("ShootTimer").Stop();
 			// Shoot
 			EnemyBullet bullet = (EnemyBullet)_bulletScene.Instance();
-			bullet.Speed = 135;
+			bullet.Speed = 85;
 			bullet.Position = Position;
 			bullet.Direction = new Vector2(_player.Position.x - Position.x, _player.Position.y - Position.y).Normalized();
 			GetParent().AddChild(bullet);

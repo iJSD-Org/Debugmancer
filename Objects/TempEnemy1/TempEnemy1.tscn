@@ -56,4 +56,6 @@ collision_layer = 2
 position = Vector2( 0.140467, 0.0468225 )
 shape = SubResource( 2 )
 [connection signal="timeout" from="ShootTimer" to="." method="ShootTimer_timeout"]
+[connection signal="HealthChanged" from="Health" to="." method="OnHealthChanged"]
+[connection signal="body_entered" from="Hitbox" to="." method="Hitbox_BodyEntered"]
 [connection signal="body_entered" from="Hitbox" to="." method="_on_Hitbox_body_entered"]
