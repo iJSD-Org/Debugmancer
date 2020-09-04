@@ -30,7 +30,7 @@ namespace Debugmancer.Objects.Player
 
 			_dashCooldownTimer.AutoReset = false;
 			_dashCooldownTimer.Enabled = false;
-			_dashCooldownTimer.Interval = 3000;
+			_dashCooldownTimer.Interval = 500;
 
 			GetNode("Health").Connect(nameof(Health.HealthChanged), this, nameof(OnHealthChanged));
 

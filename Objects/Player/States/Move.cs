@@ -37,7 +37,7 @@ namespace Debugmancer.Objects.Player.States
 				EmitSignal(nameof(Finished), "Idle");
 			}
 
-			Speed = 100;
+			Speed = 95;
 
 			MoveObject(host, Speed, inputDirection);
 		}
