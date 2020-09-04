@@ -1,97 +1,71 @@
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
+using Debugmancer.Objects.TempEnemy5.States;
 using Godot;
 
 namespace Debugmancer.Objects.TempEnemy5
 {
 	public class TempEnemy5 : KinematicBody2D
 	{
-		private readonly PackedScene _bulletScene = (PackedScene)ResourceLoader.Load("res://Objects/Bullets/EnemyBullet2.tscn");
-		private int _shots;
-		private bool _canShoot = true;
-		private bool _burstStarted;
-		private readonly Timer _burstCoolDown = new Timer();
-		private readonly Timer _shotCoolDown = new Timer();
+		[Signal]
+		public delegate void StateChanged();
+		
+		public State CurrentState;
+		public readonly Dictionary<string, Node> StatesMap = new Dictionary<string, Node>();
+
 		private KinematicBody2D _player;
 
 		public override void _Ready()
 		{
+			StatesMap.Add("Shoot", GetNode("States/Shoot"));
+			StatesMap.Add("Teleport", GetNode("States/Teleport"));
+
+			foreach (Node state in StatesMap.Values)
+			{
+				state.Connect(nameof(State.Finished), this, nameof(ChangeState));
+			}
+
 			_player = GetParent().GetNode("Player") as KinematicBody2D;
 			GetNode<Node2D>("BulletSpawn").Rotation = new Vector2(_player.Position.x - Position.x, _player.Position.y - Position.y).Angle();
-			AddChild(_burstCoolDown);
-			AddChild(_shotCoolDown);
-			_shotCoolDown.WaitTime = 0.07f;
-			_burstCoolDown.Connect("timeout", this, "_on_Burst_timeout");
-			_shotCoolDown.Connect("timeout", this, "_on_Shot_timeout");
+
 			GetNode("Health").Connect(nameof(Health.HealthChanged), this, nameof(OnHealthChanged));
+
+			CurrentState = (State)GetNode("States/Shoot");
+			ChangeState("Shoot");
 		}
 
-		public override void _Process(float delta)
+		public override void _PhysicsProcess(float delta)
 		{
-			if (_shots == 18 && !_burstStarted)
+			CurrentState.Update(this, delta);
+		}
+
+		private void ChangeState(string stateName)
+		{
+			GD.Print(stateName);
+			CurrentState.Exit(this);
+
+			if (stateName == "Dead")
 			{
-				StartBurstTimer();
-				_burstStarted = true;
-				_canShoot = false;
+				QueueFree();
+				return;
+			}
+			
+			CurrentState = (State)StatesMap[stateName];
+
+			if (stateName == "Shoot")
+			{
+				((Shoot)CurrentState).Init(GetParent().GetNode<KinematicBody2D>("Player"), (PackedScene)ResourceLoader.Load("res://Objects/Bullets/EnemyBullet2.tscn"));
 			}
 
-			if (_canShoot)
+			if (stateName == "Teleport")
 			{
-				StartShotTimer();
+				((Teleport)CurrentState).Init(GetParent().GetNode<KinematicBody2D>("Player"));
 			}
-		}
 
-		private void StartBurstTimer()
-		{
-			Random waitTime = new Random();
-			_burstCoolDown.WaitTime = (float)(waitTime.NextDouble() * (2.0 - .5) + .5);
-			_burstCoolDown.Start();
-		}
+			CurrentState.Enter(this);
 
-		private void StartShotTimer()
-		{
-			_canShoot = false;
-			_shotCoolDown.Start();
-		}
-
-		private void RotateSpawner()
-		{
-			if (_shots < 6)
-			{
-				GetNode<Node2D>("BulletSpawn").Rotate(.5f);
-			}
-			else
-			{
-				GetNode<Node2D>("BulletSpawn").Rotate(-.5f);
-			}
-		}
-
-		private void SpawnBullet()
-		{
-			_canShoot = true;
-			var bullet = (EnemyBullet2)_bulletScene.Instance();
-			bullet.Speed = 135;
-			bullet.Rotation = GetNode<Node2D>("BulletSpawn").Rotation;
-			bullet.GlobalPosition = Position;
-			bullet.Direction = Vector2.Right.Rotated(GetNode<Position2D>("BulletSpawn/Position2D").RotationDegrees);
-			GetParent().AddChild(bullet);
-			RotateSpawner();
-		}
-
-		private void _on_Burst_timeout()
-		{
-			GetNode<Node2D>("BulletSpawn").Rotation = new Vector2(_player.Position.x - Position.x, _player.Position.y - Position.y).Angle();
-			_burstCoolDown.Stop();
-			_shots = 0;
-			_canShoot = true;
-			_burstStarted = false;
-		}
-
-		private void _on_Shot_timeout()
-		{
-			_shotCoolDown.Stop();
-			_shots += 1;
-			SpawnBullet();
+			EmitSignal(nameof(StateChanged), CurrentState.Name);
 		}
 
 		public async void OnHealthChanged(int health)

@@ -1,3 +1,5 @@
+
+
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -102,7 +104,7 @@ namespace Debugmancer.Objects.TempEnemy1
 			}
 			else if (stateName == "Dead")
 			{
-				Free();
+				QueueFree();
 				return;
 			}
 			else if (stateName == "Stagger")
