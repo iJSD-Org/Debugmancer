@@ -12,14 +12,15 @@ namespace Debugmancer.Objects
 		[Export] public int BulletCount = 1000;
 		[Export] public float FireRate = 0.2f;
 		private bool _canShoot = true;
-
+		[Export] public int Energy = 100; 
+		[Export] public int MaxEnergy = 100; 
 		public override void _Process(float delta)
 		{
 			Rotation = GetParent<KinematicBody2D>().GetAngleTo(GetGlobalMousePosition());
 		}
 		public void Fire()
 		{
-			if (_canShoot && BulletCount > 0)
+			if (_canShoot && Energy - 8 > 0)
 			{
 				Random random = new Random();
 				RigidBody2D bulletInstance = random.Next(1, 10) > 1 ? (RigidBody2D)Bullet.Instance() : (RigidBody2D)CritBullet.Instance();
@@ -28,11 +29,26 @@ namespace Debugmancer.Objects
 				bulletInstance.ApplyImpulse(new Vector2(0, 0), new Vector2(BulletSpeed, 0).Rotated(Rotation));
 				GetTree().Root.AddChild(bulletInstance);
 				BulletCount--;
+				ReduceEnergy();
 				ShootTimer();
-
-				//debug
-				GetNode<Label>("HUD/BulletCount").Text = $"Number of Bullets Left: {BulletCount}";
 			}
+		}
+		public void _on_RegenTimer_timeout()
+		{
+			if (Energy < MaxEnergy)
+			{
+				if(Energy > (MaxEnergy *.8)) Energy += 8;
+				if(Energy >= (MaxEnergy * .5)) Energy += 5;
+				if(Energy < (MaxEnergy * .5)) Energy += 3;
+				if(Energy > MaxEnergy) Energy = MaxEnergy;
+				GD.Print(Energy);
+			}
+		}
+		public void ReduceEnergy()
+		{
+			if(Energy > (MaxEnergy *.8)) Energy -= 3;
+			if(Energy >= (MaxEnergy * .5)) Energy -= 5;
+			if(Energy < (MaxEnergy * .5)) Energy -= 8;
 		}
 		public async void ShootTimer()
 		{

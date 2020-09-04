@@ -11,12 +11,6 @@ script = ExtResource( 2 )
 [node name="GunPoint" type="Node2D" parent="."]
 position = Vector2( 208.768, -90.3218 )
 
-[node name="HUD" type="CanvasLayer" parent="."]
-
-[node name="BulletCount" type="Label" parent="HUD"]
-margin_right = 40.0
-margin_bottom = 14.0
-text = "Number of Bullets Left: 50"
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="RegenTimer" type="Timer" parent="."]
+autostart = true
+[connection signal="timeout" from="RegenTimer" to="." method="_on_RegenTimer_timeout"]

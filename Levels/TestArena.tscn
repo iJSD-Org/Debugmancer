@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Levels/map_tilese.tres" type="TileSet" id=1]
 [ext_resource path="res://Objects/Player/Player.tscn" type="PackedScene" id=2]
@@ -7,6 +7,8 @@
 [ext_resource path="res://Objects/TempEnemy1/TempEnemy1.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Objects/TempEnemy4/TempEnemy4.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Objects/TempEnemy2/TempEnemy2.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Objects/ModuleDropper.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Objects/ScreenShake.tscn" type="PackedScene" id=9]
 
 [node name="TestArena" type="Node2D"]
 
@@ -63,3 +65,9 @@ position = Vector2( 909.019, 576.348 )
 
 [node name="TempEnemy9" parent="." instance=ExtResource( 6 )]
 position = Vector2( -238.936, 576.651 )
+
+[node name="ModuleDropper" parent="." instance=ExtResource( 8 )]
+
+[node name="ScreenShake" parent="." instance=ExtResource( 9 )]
+position = Vector2( -76.74, 664.764 )
+zoom = Vector2( 1.1, 1.1 )
