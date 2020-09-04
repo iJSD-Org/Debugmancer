@@ -23,6 +23,7 @@ namespace Debugmancer.Objects.TempEnemy5.States
 			_host = host;
 			_host.GetNode<Node2D>("BulletSpawn").Rotation = new Vector2(_target.Position.x - _host.Position.x,
 				_target.Position.y - _host.Position.y).Angle();
+			GetNode<Timer>("ShootTimer").Start();
 		}
 
 		public override void Exit(KinematicBody2D host)
@@ -40,16 +41,21 @@ namespace Debugmancer.Objects.TempEnemy5.States
 			// Nothing to do here
 		}
 
-		public async void ShootTimer_timeout()
+		public void ShootTimer_timeout()
 		{
-
 			if (_shots++ < 20)
 				SpawnBullet();
 			else
 			{
-				await Task.Delay(700);
-				EmitSignal(nameof(State.Finished), "Teleport");
+				GetNode<Timer>("ShootTimer").Stop();
+				GetNode<Timer>("CooldownTimer").Start();
 			}
+		}
+
+		public void CooldownTimer_timeout()
+		{
+			GetNode<Timer>("CooldownTimer").Stop();
+			EmitSignal(nameof(Finished), "Teleport");
 		}
 
 		private void SpawnBullet()

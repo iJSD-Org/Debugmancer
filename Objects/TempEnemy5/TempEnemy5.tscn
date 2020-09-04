@@ -15,6 +15,7 @@ extents = Vector2( 7.07391, 8.69312 )
 [node name="TempEnemy5" type="KinematicBody2D" groups=[
 "enemy",
 ]]
+light_mask = 0
 collision_layer = 2
 collision_mask = 5
 script = ExtResource( 2 )
@@ -45,7 +46,9 @@ script = ExtResource( 4 )
 
 [node name="ShootTimer" type="Timer" parent="States/Shoot"]
 wait_time = 0.05
-autostart = true
+
+[node name="CooldownTimer" type="Timer" parent="States/Shoot"]
+wait_time = 0.3
 
 [node name="Teleport" type="Node" parent="States"]
 script = ExtResource( 5 )
@@ -57,4 +60,5 @@ collision_layer = 2
 position = Vector2( 0.501129, -0.111362 )
 shape = SubResource( 2 )
 [connection signal="timeout" from="States/Shoot/ShootTimer" to="States/Shoot" method="ShootTimer_timeout"]
+[connection signal="timeout" from="States/Shoot/CooldownTimer" to="States/Shoot" method="CooldownTimer_timeout"]
 [connection signal="body_entered" from="Hitbox" to="." method="_on_Hitbox_body_entered"]

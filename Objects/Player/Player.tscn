@@ -45,6 +45,7 @@ shape = SubResource( 2 )
 
 [node name="Health" type="Node" parent="."]
 script = ExtResource( 3 )
+MaxHealth = 25
 
 [node name="States" type="Node" parent="."]
 
