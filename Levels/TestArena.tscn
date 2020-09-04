@@ -32,6 +32,7 @@ collision_layer = 2147483657
 
 [node name="TempEnemy5" parent="." instance=ExtResource( 6 )]
 position = Vector2( 139.449, 107.566 )
+scale = Vector2( 0.997895, 0.977272 )
 collision_layer = 0
 collision_mask = 0
 
