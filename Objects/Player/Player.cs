@@ -141,8 +141,6 @@ namespace Debugmancer.Objects.Player
 
 		public void Hitbox_BodyEntered(Area2D body)
 		{
-			if (body.IsInGroup("enemyBullet"))
-				((Health)GetNode("Health")).Damage(1);
 			if (body.IsInGroup("enemy"))
 				((Health)GetNode("Health")).Damage(2);
 		}
@@ -161,6 +159,8 @@ namespace Debugmancer.Objects.Player
 		{
 			if (area.IsInGroup("shotgunBullet"))
 				((Health)GetNode("Health")).Damage(5);
+			if (area.IsInGroup("enemyBullet"))
+				((Health)GetNode("Health")).Damage(1);
 		}
 		#endregion
 	}
