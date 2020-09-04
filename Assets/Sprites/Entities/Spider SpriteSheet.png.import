@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Game Changer SpriteSheet.png-df6182e773050a2e137c9321dea734c3.stex"
+path="res://.import/Spider SpriteSheet.png-0dec0fabb4efea350163f90d98e43da7.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Entity Sprites/Game Changer SpriteSheet.png"
-dest_files=[ "res://.import/Game Changer SpriteSheet.png-df6182e773050a2e137c9321dea734c3.stex" ]
+source_file="res://Assets/Sprites/Entities/Spider SpriteSheet.png"
+dest_files=[ "res://.import/Spider SpriteSheet.png-0dec0fabb4efea350163f90d98e43da7.stex" ]
 
 [params]
 

@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Virus SPriteSheet.png-27b17f5b058e8fc683963bf93c905564.stex"
+path="res://.import/Virus SPriteSheet.png-3e3b5bd357140144b9f0009633f0f087.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Entity Sprites/Virus SPriteSheet.png"
-dest_files=[ "res://.import/Virus SPriteSheet.png-27b17f5b058e8fc683963bf93c905564.stex" ]
+source_file="res://Assets/Sprites/Entities/Virus SPriteSheet.png"
+dest_files=[ "res://.import/Virus SPriteSheet.png-3e3b5bd357140144b9f0009633f0f087.stex" ]
 
 [params]
 

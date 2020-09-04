@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Spider SpriteSheet.png-0327d6c5769e441ba61090c6e6a9e7f3.stex"
+path="res://.import/Cockroach SpriteSheet.png-d130c7b622e7f7cba132310cc555fce6.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Entity Sprites/Spider SpriteSheet.png"
-dest_files=[ "res://.import/Spider SpriteSheet.png-0327d6c5769e441ba61090c6e6a9e7f3.stex" ]
+source_file="res://Assets/Sprites/Entities/Cockroach SpriteSheet.png"
+dest_files=[ "res://.import/Cockroach SpriteSheet.png-d130c7b622e7f7cba132310cc555fce6.stex" ]
 
 [params]
 

@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Debugmancer.Objects.Bullets;
 using Debugmancer.Objects.TempEnemy4.States;
 using Godot;
 
@@ -46,7 +47,7 @@ namespace Debugmancer.Objects.TempEnemy4
 		private void ShootTimer_timeout()
 		{
 			var bullet = (ShotgunBullet)_shotgunScene.Instance();
-			bullet.Speed = 200;
+			bullet.Speed = 150;
 			bullet.Position = Position;
 			bullet.Rotation = (_player.Position - GlobalPosition).Angle();
 			bullet.Direction = new Vector2(_player.Position.x - Position.x, _player.Position.y - Position.y).Normalized();

@@ -1,5 +1,6 @@
 using System;
 using System.Threading.Tasks;
+using Debugmancer.Objects.Bullets;
 using Godot;
 
 namespace Debugmancer.Objects.TempEnemy3
@@ -46,7 +47,7 @@ namespace Debugmancer.Objects.TempEnemy3
 		private void SpawnBullet()
 		{
 			var bullet1 = (EnemyBullet2)_bulletScene.Instance();
-			bullet1.Speed = 100;
+			bullet1.Speed = 75;
 
 			//UP
 			bullet1.Position = Position;
@@ -55,7 +56,7 @@ namespace Debugmancer.Objects.TempEnemy3
 			GetParent().AddChild(bullet1);
 
 			var bullet2 = (EnemyBullet2)_bulletScene.Instance();
-			bullet2.Speed = 100;
+			bullet2.Speed = 75;
 
 			bullet2.Position = Position;
 			bullet2.Rotation = (float)(Math.PI / 180) * _random.Next(0, 360);
@@ -63,7 +64,7 @@ namespace Debugmancer.Objects.TempEnemy3
 			GetParent().AddChild(bullet2);
 
 			var bullet3 = (EnemyBullet2)_bulletScene.Instance();
-			bullet3.Speed = 100;
+			bullet3.Speed = 75;
 
 			bullet3.Position = Position;
 			bullet3.Rotation = (float)(Math.PI / 180) * _random.Next(0, 360);
@@ -73,7 +74,7 @@ namespace Debugmancer.Objects.TempEnemy3
 			//DOWN
 
 			var bullet4 = (EnemyBullet2)_bulletScene.Instance();
-			bullet4.Speed = 100;
+			bullet4.Speed = 75;
 
 			bullet4.GlobalPosition = Position;
 			bullet4.Rotation = (float)(Math.PI / 180) * _random.Next(0, 360);
@@ -81,7 +82,7 @@ namespace Debugmancer.Objects.TempEnemy3
 			GetParent().AddChild(bullet4);
 
 			var bullet5 = (EnemyBullet2)_bulletScene.Instance();
-			bullet5.Speed = 100;
+			bullet5.Speed = 75;
 
 			bullet5.GlobalPosition = Position;
 			bullet5.Rotation = (float)(Math.PI / 180) * _random.Next(0, 360);
@@ -89,7 +90,7 @@ namespace Debugmancer.Objects.TempEnemy3
 			GetParent().AddChild(bullet5);
 
 			var bullet6 = (EnemyBullet2)_bulletScene.Instance();
-			bullet6.Speed = 100;
+			bullet6.Speed = 75;
 
 			bullet6.GlobalPosition = Position;
 			bullet6.Rotation = (float)(Math.PI / 180) * _random.Next(0, 360);
@@ -99,7 +100,7 @@ namespace Debugmancer.Objects.TempEnemy3
 			//LEFT
 
 			var bullet7 = (EnemyBullet2)_bulletScene.Instance();
-			bullet7.Speed = 100;
+			bullet7.Speed = 75;
 
 			bullet7.GlobalPosition = Position;
 			bullet7.Rotation = (float)(Math.PI / 180) * _random.Next(0, 360);
@@ -107,7 +108,7 @@ namespace Debugmancer.Objects.TempEnemy3
 			GetParent().AddChild(bullet7);
 
 			var bullet8 = (EnemyBullet2)_bulletScene.Instance();
-			bullet8.Speed = 100;
+			bullet8.Speed = 75;
 
 			bullet8.GlobalPosition = Position;
 			bullet8.Rotation = (float)(Math.PI / 180) * _random.Next(0, 360);
@@ -115,7 +116,7 @@ namespace Debugmancer.Objects.TempEnemy3
 			GetParent().AddChild(bullet8);
 
 			var bullet9 = (EnemyBullet2)_bulletScene.Instance();
-			bullet9.Speed = 100;
+			bullet9.Speed = 75;
 
 			bullet9.GlobalPosition = Position;
 			bullet9.Rotation = (float)(Math.PI / 180) * _random.Next(0, 360);
@@ -125,7 +126,7 @@ namespace Debugmancer.Objects.TempEnemy3
 			//RIGHT
 
 			var bullet10 = (EnemyBullet2)_bulletScene.Instance();
-			bullet10.Speed = 100;
+			bullet10.Speed = 75;
 
 			bullet10.GlobalPosition = Position;
 			bullet10.Rotation = (float)(Math.PI / 180) * _random.Next(0, 360);
@@ -133,7 +134,7 @@ namespace Debugmancer.Objects.TempEnemy3
 			GetParent().AddChild(bullet10);
 
 			var bullet11 = (EnemyBullet2)_bulletScene.Instance();
-			bullet11.Speed = 100;
+			bullet11.Speed = 75;
 
 			bullet11.GlobalPosition = Position;
 			bullet11.Rotation = (float)(Math.PI / 180) * _random.Next(0, 360);
@@ -141,7 +142,7 @@ namespace Debugmancer.Objects.TempEnemy3
 			GetParent().AddChild(bullet11);
 
 			var bullet12 = (EnemyBullet2)_bulletScene.Instance();
-			bullet12.Speed = 100;
+			bullet12.Speed = 75;
 
 			bullet12.GlobalPosition = Position;
 			bullet12.Rotation = (float)(Math.PI / 180) * _random.Next(0, 360);

@@ -1,6 +1,6 @@
 using Godot;
 
-namespace Debugmancer.Objects
+namespace Debugmancer.Objects.Bullets
 {
 	public class EnemyBullet : Area2D
 	{
@@ -19,7 +19,7 @@ namespace Debugmancer.Objects
 		
 		public void _on_EnemyBullet_body_entered(Area2D body)
 		{
-			if (!body.IsInGroup("enemies")) QueueFree();
+			if (!body.IsInGroup("enemies") && !body.IsInGroup("playerBullet")) QueueFree();
 		}
 	}
 }

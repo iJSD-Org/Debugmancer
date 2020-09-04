@@ -1,5 +1,6 @@
 using System;
 using System.Threading.Tasks;
+using Debugmancer.Objects.Bullets;
 using Godot;
 
 namespace Debugmancer.Objects.TempEnemy5.States
@@ -61,7 +62,7 @@ namespace Debugmancer.Objects.TempEnemy5.States
 		private void SpawnBullet()
 		{
 			var bullet = (EnemyBullet2)_bulletScene.Instance();
-			bullet.Speed = 135;
+			bullet.Speed = 85;
 			bullet.Rotation = _host.GetNode<Node2D>("BulletSpawn").Rotation;
 			bullet.GlobalPosition = _host.Position;
 			bullet.Direction = Vector2.Right.Rotated(_host.GetNode<Position2D>("BulletSpawn/Position2D").RotationDegrees);
