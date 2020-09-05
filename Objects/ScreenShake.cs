@@ -26,7 +26,9 @@ namespace Debugmancer.Objects
 		}
 		public override void _PhysicsProcess(float delta)
 		{
-			Position = GetParent().GetNode<KinematicBody2D>("Player").Position;
+			Position = new Vector2(
+				(-((GetParent().GetNode<KinematicBody2D>("Player").Position.x - GetGlobalMousePosition().x) / 2 * .6f) + GetParent().GetNode<KinematicBody2D>("Player").Position.x), 
+				(-((GetParent().GetNode<KinematicBody2D>("Player").Position.y - GetGlobalMousePosition().y) / 2 * .6f) + GetParent().GetNode<KinematicBody2D>("Player").Position.y));
 		}
 		
 		public void StartShake()

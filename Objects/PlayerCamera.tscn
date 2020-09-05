@@ -2,7 +2,7 @@
 
 [ext_resource path="res://Objects/ScreenShake.cs" type="Script" id=1]
 
-[node name="ScreenShake" type="Camera2D"]
+[node name="PlayerCamera" type="Camera2D"]
 position = Vector2( 162.196, 88.1131 )
 current = true
 script = ExtResource( 1 )

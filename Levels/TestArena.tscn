@@ -7,7 +7,7 @@
 [ext_resource path="res://Objects/TempEnemy4/TempEnemy4.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Objects/TempEnemy1/TempEnemy1.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Objects/ModuleDropper.tscn" type="PackedScene" id=8]
-[ext_resource path="res://Objects/ScreenShake.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Objects/PlayerCamera.tscn" type="PackedScene" id=9]
 [ext_resource path="res://Objects/TempEnemy2/TempEnemy2.tscn" type="PackedScene" id=10]
 
 [node name="TestArena" type="Node2D"]
@@ -41,10 +41,6 @@ position = Vector2( 50.1051, 145.277 )
 
 [node name="ModuleDropper" parent="." instance=ExtResource( 8 )]
 
-[node name="ScreenShake" parent="." instance=ExtResource( 9 )]
-position = Vector2( 200, 0 )
-zoom = Vector2( 1.1, 1.1 )
-
 [node name="TempEnemy1" parent="." instance=ExtResource( 7 )]
 position = Vector2( 274.584, 229.73 )
 
@@ -59,3 +55,7 @@ position = Vector2( 410.584, 531.73 )
 
 [node name="TempEnemy5" parent="." instance=ExtResource( 3 )]
 position = Vector2( -61.4161, 479.73 )
+
+[node name="PlayerCamera" parent="." instance=ExtResource( 9 )]
+position = Vector2( 0, 0 )
+zoom = Vector2( 1.1, 1.1 )

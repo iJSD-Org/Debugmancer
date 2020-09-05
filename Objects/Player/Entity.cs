@@ -120,7 +120,7 @@ namespace Debugmancer.Objects.Player
 
 		public async void OnHealthChanged(int health)
 		{
-			((ScreenShake)GetParent().GetNode<Camera2D>("ScreenShake")).StartShake();
+			((ScreenShake)GetParent().GetNode<Camera2D>("PlayerCamera")).StartShake();
 			Modulate = Color.ColorN("Red");
 			await Task.Delay(100);
 			Modulate = new Color(1, 1, 1);
