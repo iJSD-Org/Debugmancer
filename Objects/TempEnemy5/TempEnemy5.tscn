@@ -44,7 +44,6 @@ texture = ExtResource( 1 )
 hframes = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
 position = Vector2( 0.500565, 0 )
 shape = SubResource( 1 )
 
@@ -74,7 +73,6 @@ script = ExtResource( 5 )
 collision_layer = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
-visible = false
 position = Vector2( 0.501129, -0.111362 )
 shape = SubResource( 2 )
 

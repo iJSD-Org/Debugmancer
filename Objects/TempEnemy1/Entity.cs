@@ -25,7 +25,7 @@ namespace Debugmancer.Objects.TempEnemy1
 		public override void _Ready()
 		{
 			_player = GetParent().GetNode<KinematicBody2D>("Player");
-
+			GetNode<AnimationPlayer>("AnimationPlayer").Play("Chase");
 			StatesMap.Add("Chase", GetNode("States/Chase"));
 			StatesMap.Add("Stagger", GetNode("States/Stagger"));
 

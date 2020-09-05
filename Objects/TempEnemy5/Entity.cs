@@ -19,6 +19,7 @@ namespace Debugmancer.Objects.TempEnemy5
 		public override void _Ready()
 		{
 			StatesMap.Add("Shoot", GetNode("States/Shoot"));
+			GetNode<AnimationPlayer>("AnimationPlayer").Play("Chase");
 			StatesMap.Add("Teleport", GetNode("States/Teleport"));
 
 			foreach (Node state in StatesMap.Values)
