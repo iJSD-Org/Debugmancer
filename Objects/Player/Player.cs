@@ -38,8 +38,6 @@ namespace Debugmancer.Objects.Player
 			_dashCooldownTimer.Enabled = false;
 			_dashCooldownTimer.Interval = 500;
 
-			GetNode("Health").Connect(nameof(Health.HealthChanged), this, nameof(OnHealthChanged));
-
 			StateStack.Push((State)StatesMap["Idle"]);
 			ChangeState("Idle");
 		}

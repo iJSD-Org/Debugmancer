@@ -24,11 +24,11 @@ namespace Debugmancer.Objects
 			SetProcess(false);
 			StartPosition = GlobalPosition;
 		}
-        public override void _PhysicsProcess(float delta)
-        {
-            Position = GetParent().GetNode<KinematicBody2D>("Player").Position;
-        }
-        
+		public override void _PhysicsProcess(float delta)
+		{
+			Position = GetParent().GetNode<KinematicBody2D>("Player").Position;
+		}
+		
 		public void StartShake()
 		{
 			ChangeState(States.Shaking);

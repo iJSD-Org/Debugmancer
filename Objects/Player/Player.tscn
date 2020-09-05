@@ -156,3 +156,4 @@ anims/Walk = SubResource( 5 )
 [connection signal="timeout" from="BodyTimer" to="." method="BodyTimer_timeout"]
 [connection signal="timeout" from="ScentTimer" to="." method="AddScent"]
 [connection signal="timeout" from="DashTimer" to="States/Dash" method="DashTimer_timeout"]
+[connection signal="HealthChanged" from="Health" to="." method="OnHealthChanged"]

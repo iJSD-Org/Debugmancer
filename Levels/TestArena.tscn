@@ -69,5 +69,5 @@ position = Vector2( -238.936, 576.651 )
 [node name="ModuleDropper" parent="." instance=ExtResource( 8 )]
 
 [node name="ScreenShake" parent="." instance=ExtResource( 9 )]
-position = Vector2( -76.74, 664.764 )
+position = Vector2( 200, 0 )
 zoom = Vector2( 1.1, 1.1 )
