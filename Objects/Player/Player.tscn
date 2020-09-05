@@ -6,11 +6,11 @@
 [ext_resource path="res://Objects/Player/States/Move.cs" type="Script" id=4]
 [ext_resource path="res://Objects/Player/States/Dash.cs" type="Script" id=5]
 [ext_resource path="res://Objects/Gun.tscn" type="PackedScene" id=6]
-[ext_resource path="res://Objects/Player/Player.cs" type="Script" id=7]
+[ext_resource path="res://Objects/Player/Entity.cs" type="Script" id=7]
 
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 4.75396, 7.41486 )
+extents = Vector2( 5.28344, 7.37858 )
 
 [sub_resource type="Animation" id=2]
 resource_name = "Dash"
@@ -153,11 +153,8 @@ anims/Dash = SubResource( 2 )
 anims/Dash_Flipped = SubResource( 3 )
 anims/Idle = SubResource( 4 )
 anims/Walk = SubResource( 5 )
-
-[node name="Camera2D" type="Camera2D" parent="."]
-current = true
-zoom = Vector2( 1.1, 1.1 )
 [connection signal="area_entered" from="Hitbox" to="." method="Hitbox_AreaEntered"]
 [connection signal="timeout" from="BodyTimer" to="." method="BodyTimer_timeout"]
 [connection signal="timeout" from="ScentTimer" to="." method="AddScent"]
 [connection signal="timeout" from="DashTimer" to="States/Dash" method="DashTimer_timeout"]
+[connection signal="HealthChanged" from="Health" to="." method="OnHealthChanged"]

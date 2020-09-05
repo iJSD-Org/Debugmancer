@@ -13,7 +13,7 @@ namespace Debugmancer.Objects.TempEnemy5.States
 
 		public override void Enter(KinematicBody2D host)
 		{
-			host.Position = ((Player.Player)_target).ScentTrail[0].Position;
+			host.Position = ((Player.Entity)_target).ScentTrail[0].Position;
 			EmitSignal(nameof(Finished), "Shoot");
 		}
 

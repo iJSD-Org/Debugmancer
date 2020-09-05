@@ -7,7 +7,7 @@ using Timer = System.Timers.Timer;
 
 namespace Debugmancer.Objects.Player
 {
-	public class Player : KinematicBody2D
+	public class Entity : KinematicBody2D
 	{
 		[Signal]
 		public delegate void StateChanged();
@@ -37,8 +37,6 @@ namespace Debugmancer.Objects.Player
 			_dashCooldownTimer.AutoReset = false;
 			_dashCooldownTimer.Enabled = false;
 			_dashCooldownTimer.Interval = 500;
-
-			GetNode("Health").Connect(nameof(Health.HealthChanged), this, nameof(OnHealthChanged));
 
 			StateStack.Push((State)StatesMap["Idle"]);
 			ChangeState("Idle");
@@ -122,6 +120,7 @@ namespace Debugmancer.Objects.Player
 
 		public async void OnHealthChanged(int health)
 		{
+			((ScreenShake)GetParent().GetNode<Camera2D>("PlayerCamera")).StartShake();
 			Modulate = Color.ColorN("Red");
 			await Task.Delay(100);
 			Modulate = new Color(1, 1, 1);

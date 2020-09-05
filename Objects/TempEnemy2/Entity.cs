@@ -2,12 +2,12 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Debugmancer.Objects.Bullets;
-using Debugmancer.Objects.TempEnemy4.States;
+using Debugmancer.Objects.TempEnemy2.States;
 using Godot;
 
-namespace Debugmancer.Objects.TempEnemy4
+namespace Debugmancer.Objects.TempEnemy2
 {
-	public class TempEnemy4 : KinematicBody2D
+	public class Entity : KinematicBody2D
 	{
 		[Signal]
 		public delegate void StateChanged();
@@ -15,9 +15,10 @@ namespace Debugmancer.Objects.TempEnemy4
 		public State CurrentState;
 		public Stack<State> StateStack = new Stack<State>();
 		public readonly Dictionary<string, Node> StatesMap = new Dictionary<string, Node>();
-
-		private readonly PackedScene _shotgunScene = (PackedScene)ResourceLoader.Load("res://Objects/Bullets/ShotgunBullet.tscn");
+		private readonly PackedScene _bulletScene = (PackedScene)ResourceLoader.Load("res://Objects/Bullets/EnemyBullet.tscn");
 		private KinematicBody2D _player;
+		private readonly Random _random = new Random();
+		private int _shots;
 
 		public override void _Ready()
 		{
@@ -35,6 +36,9 @@ namespace Debugmancer.Objects.TempEnemy4
 
 			GetNode("Health").Connect(nameof(Health.HealthChanged), this, nameof(OnHealthChanged));
 
+			GetNode<Timer>("ShootTimer").WaitTime = (float)(_random.NextDouble() * (.7 - .1) + .1);
+			GetNode<Timer>("ShootTimer").Start();
+
 			StateStack.Push((State)StatesMap["Chase"]);
 			ChangeState("Chase");
 		}
@@ -46,12 +50,24 @@ namespace Debugmancer.Objects.TempEnemy4
 
 		private void ShootTimer_timeout()
 		{
-			var bullet = (ShotgunBullet)_shotgunScene.Instance();
-			bullet.Speed = 150;
+			GetNode<Timer>("ShootTimer").Stop();
+			// Shoot
+			EnemyBullet bullet = (EnemyBullet)_bulletScene.Instance();
+			bullet.Speed = 85;
 			bullet.Position = Position;
-			bullet.Rotation = (_player.Position - GlobalPosition).Angle();
 			bullet.Direction = new Vector2(_player.Position.x - Position.x, _player.Position.y - Position.y).Normalized();
 			GetParent().AddChild(bullet);
+			if (++_shots == 20)
+			{
+				_shots = 0;
+				GetNode<Timer>("ShootTimer").WaitTime = (float)(_random.NextDouble() * (2.5 - .95) + .95);
+				GetNode<Timer>("ShootTimer").Start();
+			}
+			else
+			{
+				GetNode<Timer>("ShootTimer").WaitTime = (float)(_random.NextDouble() * (.4 - .1) + .1);
+				GetNode<Timer>("ShootTimer").Start();
+			}
 		}
 
 		public void Hitbox_BodyEntered(Area2D body)
@@ -103,7 +119,7 @@ namespace Debugmancer.Objects.TempEnemy4
 			// Pass target to Chase State
 			if (stateName == "Chase")
 			{
-				((Chase4)CurrentState).Init((Player.Player)_player);
+				((Chase)CurrentState).Init((Player.Entity)_player);
 			}
 
 			// We don"t want to reinitialize the state if we"re going back to the previous state
