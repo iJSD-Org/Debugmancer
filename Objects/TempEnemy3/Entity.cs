@@ -5,7 +5,7 @@ using Godot;
 
 namespace Debugmancer.Objects.TempEnemy3
 {
-	public class TempEnemy3 : KinematicBody2D
+	public class Entity : KinematicBody2D
 	{
 		private readonly PackedScene _bulletScene = (PackedScene)ResourceLoader.Load("res://Objects/Bullets/EnemyBullet2.tscn");
 		private readonly Random _random = new Random();

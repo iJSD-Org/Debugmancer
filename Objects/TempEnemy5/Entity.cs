@@ -6,7 +6,7 @@ using Godot;
 
 namespace Debugmancer.Objects.TempEnemy5
 {
-	public class TempEnemy5 : KinematicBody2D
+	public class Entity : KinematicBody2D
 	{
 		[Signal]
 		public delegate void StateChanged();

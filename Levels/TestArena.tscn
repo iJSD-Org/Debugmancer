@@ -4,11 +4,11 @@
 [ext_resource path="res://Objects/Player/Player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Objects/TempEnemy5/TempEnemy5.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Objects/TempEnemy3/TempEnemy3.tscn" type="PackedScene" id=4]
-[ext_resource path="res://Objects/TempEnemy1/TempEnemy1.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Objects/TempEnemy4/TempEnemy4.tscn" type="PackedScene" id=6]
-[ext_resource path="res://Objects/TempEnemy2/TempEnemy2.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Objects/TempEnemy1/TempEnemy1.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Objects/ModuleDropper.tscn" type="PackedScene" id=8]
 [ext_resource path="res://Objects/ScreenShake.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Objects/TempEnemy2/TempEnemy2.tscn" type="PackedScene" id=10]
 
 [node name="TestArena" type="Node2D"]
 
@@ -39,35 +39,23 @@ tile_data = PoolIntArray( 7, 1, 0, 8, 1, 0, 9, 1, 0, 10, 1, 0, 11, 1, 0, 12, 1, 
 [node name="Player" parent="." instance=ExtResource( 2 )]
 position = Vector2( 50.1051, 145.277 )
 
-[node name="TempEnemy" parent="." instance=ExtResource( 5 )]
-position = Vector2( 549.882, 474.639 )
-
-[node name="TempEnemy4" parent="." instance=ExtResource( 7 )]
-position = Vector2( 226.196, 683.898 )
-
-[node name="TempEnemy7" parent="." instance=ExtResource( 6 )]
-position = Vector2( 1.58994, 529.217 )
-
-[node name="TempEnemy8" parent="." instance=ExtResource( 4 )]
-position = Vector2( 774.998, 465.649 )
-
-[node name="TempEnemy2" parent="." instance=ExtResource( 7 )]
-position = Vector2( 233.597, 383.099 )
-
-[node name="TempEnemy5" parent="." instance=ExtResource( 3 )]
-position = Vector2( 429.585, 228.087 )
-
-[node name="TempEnemy3" parent="." instance=ExtResource( 5 )]
-position = Vector2( 379.288, 540.326 )
-
-[node name="TempEnemy6" parent="." instance=ExtResource( 7 )]
-position = Vector2( 909.019, 576.348 )
-
-[node name="TempEnemy9" parent="." instance=ExtResource( 6 )]
-position = Vector2( -238.936, 576.651 )
-
 [node name="ModuleDropper" parent="." instance=ExtResource( 8 )]
 
 [node name="ScreenShake" parent="." instance=ExtResource( 9 )]
 position = Vector2( 200, 0 )
 zoom = Vector2( 1.1, 1.1 )
+
+[node name="TempEnemy1" parent="." instance=ExtResource( 7 )]
+position = Vector2( 274.584, 229.73 )
+
+[node name="TempEnemy2" parent="." instance=ExtResource( 10 )]
+position = Vector2( 130.584, 151.73 )
+
+[node name="TempEnemy3" parent="." instance=ExtResource( 4 )]
+position = Vector2( -2.97194, 519.118 )
+
+[node name="TempEnemy4" parent="." instance=ExtResource( 6 )]
+position = Vector2( 410.584, 531.73 )
+
+[node name="TempEnemy5" parent="." instance=ExtResource( 3 )]
+position = Vector2( -61.4161, 479.73 )

@@ -9,7 +9,7 @@ using Godot;
 
 namespace Debugmancer.Objects.TempEnemy1
 {
-	public class TempEnemy1 : KinematicBody2D
+	public class Entity : KinematicBody2D
 	{
 		[Signal]
 		public delegate void StateChanged();
@@ -121,7 +121,7 @@ namespace Debugmancer.Objects.TempEnemy1
 			// Pass target to Chase State
 			if (stateName == "Chase")
 			{
-				((Chase1)CurrentState).Init((Player.Player)_player);
+				((Chase)CurrentState).Init((Player.Entity)_player);
 			}
 
 			// We don"t want to reinitialize the state if we"re going back to the previous state

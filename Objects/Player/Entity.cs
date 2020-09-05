@@ -7,7 +7,7 @@ using Timer = System.Timers.Timer;
 
 namespace Debugmancer.Objects.Player
 {
-	public class Player : KinematicBody2D
+	public class Entity : KinematicBody2D
 	{
 		[Signal]
 		public delegate void StateChanged();

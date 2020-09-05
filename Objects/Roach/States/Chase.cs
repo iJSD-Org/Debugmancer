@@ -7,9 +7,9 @@ namespace Debugmancer.Objects.Roach.States
 	{
 		[Export] public int Speed = 60;
 		private Vector2 _direction;
-		private Player.Player _target;
+		private Player.Entity _target;
 
-		public void Init(Player.Player target)
+		public void Init(Player.Entity target)
 		{
 			_target = target;
 		}

@@ -4,9 +4,9 @@ namespace Debugmancer.Objects.Player
 {
 	public class Scent : Node2D
 	{
-		private Player _player;
+		private Entity _player;
 
-		public void Init(Player host)
+		public void Init(Entity host)
 		{
 			_player = host;
 		}
