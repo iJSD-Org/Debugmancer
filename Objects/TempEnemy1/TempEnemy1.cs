@@ -1,13 +1,15 @@
+
+
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Debugmancer.Objects.Bullets;
-using Debugmancer.Objects.TempEnemy2.States;
+using Debugmancer.Objects.TempEnemy1.States;
 using Godot;
 
-namespace Debugmancer.Objects.TempEnemy2
+namespace Debugmancer.Objects.TempEnemy1
 {
-	public class Entity : KinematicBody2D
+	public class TempEnemy1 : KinematicBody2D
 	{
 		[Signal]
 		public delegate void StateChanged();
@@ -23,7 +25,6 @@ namespace Debugmancer.Objects.TempEnemy2
 		public override void _Ready()
 		{
 			_player = GetParent().GetNode<KinematicBody2D>("Player");
-			GetNode<AnimationPlayer>("AnimationPlayer").Play("Chase");
 			StatesMap.Add("Chase", GetNode("States/Chase"));
 			StatesMap.Add("Stagger", GetNode("States/Stagger"));
 
@@ -57,21 +58,22 @@ namespace Debugmancer.Objects.TempEnemy2
 			bullet.Position = Position;
 			bullet.Direction = new Vector2(_player.Position.x - Position.x, _player.Position.y - Position.y).Normalized();
 			GetParent().AddChild(bullet);
-			if (++_shots == 20)
+			if (++_shots == 3)
 			{
 				_shots = 0;
-				GetNode<Timer>("ShootTimer").WaitTime = (float)(_random.NextDouble() * (2.5 - .95) + .95);
+				GetNode<Timer>("ShootTimer").WaitTime = (float)(_random.NextDouble() * (2.0 - .5) + .5);
 				GetNode<Timer>("ShootTimer").Start();
 			}
 			else
 			{
-				GetNode<Timer>("ShootTimer").WaitTime = (float)(_random.NextDouble() * (.4 - .1) + .1);
+				GetNode<Timer>("ShootTimer").WaitTime = (float)(_random.NextDouble() * (.7 - .1) + .1);
 				GetNode<Timer>("ShootTimer").Start();
 			}
 		}
 
 		public void Hitbox_BodyEntered(Area2D body)
 		{
+			GD.Print("Damaged");
 			Health health = (Health)GetNode("Health");
 
 			if (body.IsInGroup("playerBullet")) health.Damage(1);
@@ -119,7 +121,7 @@ namespace Debugmancer.Objects.TempEnemy2
 			// Pass target to Chase State
 			if (stateName == "Chase")
 			{
-				((Chase)CurrentState).Init((Player.Entity)_player);
+				((Chase)CurrentState).Init((Player.Player)_player);
 			}
 
 			// We don"t want to reinitialize the state if we"re going back to the previous state

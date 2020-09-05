@@ -6,8 +6,6 @@
 [ext_resource path="res://Objects/Roach/Entity.cs" type="Script" id=5]
 [ext_resource path="res://Objects/Health.cs" type="Script" id=6]
 
-
-
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 5.47522, 7.07442 )
 
@@ -32,11 +30,11 @@ tracks/0/keys = {
 }
 
 [sub_resource type="Animation" id=4]
-length = 0.5
+length = 0.65
 loop = true
-step = 0.05
+step = 0.025
 tracks/0/type = "value"
-tracks/0/path = NodePath("../Roach/Roach3:frame")
+tracks/0/path = NodePath("Sprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -45,7 +43,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 0.15, 0.3, 0.45 ),
 "transitions": PoolRealArray( 1, 1, 1, 1 ),
 "update": 1,
-"values": [ 5, 6, 7, 4 ]
+"values": [ 4, 5, 6, 7 ]
 }
 
 [node name="Roach" type="KinematicBody2D" groups=[
@@ -60,6 +58,7 @@ position = Vector2( 0, 0.0936432 )
 texture = ExtResource( 1 )
 vframes = 2
 hframes = 4
+frame = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( -0.668175, -0.222725 )
