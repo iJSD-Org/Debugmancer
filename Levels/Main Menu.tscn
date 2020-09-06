@@ -1,8 +1,7 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Assets/bitmgothic.medium.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://Levels/Cutscene.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Levels/VBoxContainer.cs" type="Script" id=3]
 
 [sub_resource type="DynamicFont" id=1]
 size = 26
@@ -92,7 +91,6 @@ margin_top = 20.0
 margin_right = 299.439
 margin_bottom = 160.0
 custom_constants/separation = 0
-script = ExtResource( 3 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
