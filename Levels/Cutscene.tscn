@@ -149,6 +149,7 @@ wait_time = 3.0
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 6 )
+volume_db = -3.0
 
 [node name="ColorRect" type="ColorRect" parent="."]
 margin_right = 324.0
