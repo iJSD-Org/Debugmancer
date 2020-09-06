@@ -1,8 +1,7 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Levels/map_tilese.tres" type="TileSet" id=1]
 [ext_resource path="res://Objects/Player/Player.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Objects/TempEnemy5/TempEnemy5.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Objects/TempEnemy3/TempEnemy3.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Objects/TempEnemy4/TempEnemy4.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Objects/TempEnemy1/TempEnemy1.tscn" type="PackedScene" id=7]
@@ -38,6 +37,7 @@ tile_data = PoolIntArray( 7, 1, 0, 8, 1, 0, 9, 1, 0, 10, 1, 0, 11, 1, 0, 12, 1, 
 
 [node name="Player" parent="." instance=ExtResource( 2 )]
 position = Vector2( 50.1051, 145.277 )
+scale = Vector2( 0.962824, 1 )
 
 [node name="ModuleDropper" parent="." instance=ExtResource( 8 )]
 
@@ -52,9 +52,6 @@ position = Vector2( -2.97194, 519.118 )
 
 [node name="TempEnemy4" parent="." instance=ExtResource( 6 )]
 position = Vector2( 410.584, 531.73 )
-
-[node name="TempEnemy5" parent="." instance=ExtResource( 3 )]
-position = Vector2( -61.4161, 479.73 )
 
 [node name="PlayerCamera" parent="." instance=ExtResource( 9 )]
 position = Vector2( 0, 0 )

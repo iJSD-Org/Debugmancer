@@ -20,6 +20,7 @@ namespace Debugmancer.Objects
 		}
 		public void Fire()
 		{
+			GetParent().GetNode<TextureProgress>("HUD/VBoxContainer/Energy").Value = Energy;
 			if (_canShoot && Energy - 8 > 0)
 			{
 				Random random = new Random();
@@ -37,18 +38,20 @@ namespace Debugmancer.Objects
 		{
 			if (Energy < MaxEnergy)
 			{
-				if(Energy > (MaxEnergy *.8)) Energy += 8;
-				if(Energy >= (MaxEnergy * .5)) Energy += 5;
-				if(Energy < (MaxEnergy * .5)) Energy += 3;
+				if(Energy > (MaxEnergy *.8)) Energy += 16;
+				if(Energy >= (MaxEnergy * .5)) Energy += 13;
+				if(Energy < (MaxEnergy * .5)) Energy += 8;
 				if(Energy > MaxEnergy) Energy = MaxEnergy;
 				GD.Print(Energy);
 			}
+			GetParent().GetNode<TextureProgress>("HUD/VBoxContainer/Energy").Value = Energy;
 		}
 		public void ReduceEnergy()
 		{
 			if(Energy > (MaxEnergy *.8)) Energy -= 3;
 			if(Energy >= (MaxEnergy * .5)) Energy -= 5;
 			if(Energy < (MaxEnergy * .5)) Energy -= 8;
+			GetParent().GetNode<TextureProgress>("HUD/VBoxContainer/Energy").Value = Energy;
 		}
 		public async void ShootTimer()
 		{

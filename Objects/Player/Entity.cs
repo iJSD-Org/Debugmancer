@@ -23,6 +23,8 @@ namespace Debugmancer.Objects.Player
 
 		public override void _Ready()
 		{
+			GetNode<TextureProgress>("HUD/VBoxContainer/Health").MaxValue = 25;
+			GetNode<TextureProgress>("HUD/VBoxContainer/Health").Value = 25;
 			StatesMap.Add("Idle", GetNode("States/Idle"));
 			StatesMap.Add("Move", GetNode("States/Move"));
 			StatesMap.Add("Dash", GetNode("States/Dash"));
@@ -121,6 +123,8 @@ namespace Debugmancer.Objects.Player
 		public async void OnHealthChanged(int health)
 		{
 			((ScreenShake)GetParent().GetNode<Camera2D>("PlayerCamera")).StartShake();
+			GetNode<TextureProgress>("HUD/VBoxContainer/Health").Value = health;
+			GD.Print(GetNode<TextureProgress>("HUD/VBoxContainer/Health").Value);
 			Modulate = Color.ColorN("Red");
 			await Task.Delay(100);
 			Modulate = new Color(1, 1, 1);
