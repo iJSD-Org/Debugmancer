@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Health_Full.png-537ff411901a93d8325cbffa9e74c27f.stex"
+path="res://.import/DebugMancer  Menu Title.png-ff34bee878104af722d6cdbb271d50fe.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Health_Full.png"
-dest_files=[ "res://.import/Health_Full.png-537ff411901a93d8325cbffa9e74c27f.stex" ]
+source_file="res://Assets/Sprites/DebugMancer  Menu Title.png"
+dest_files=[ "res://.import/DebugMancer  Menu Title.png-ff34bee878104af722d6cdbb271d50fe.stex" ]
 
 [params]
 
@@ -20,7 +20,7 @@ compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=false
+flags/filter=true
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2

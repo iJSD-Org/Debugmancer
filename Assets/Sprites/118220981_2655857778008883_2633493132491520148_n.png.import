@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Scene 2.png-4b0c587551a69cbd2a933eca09de3f61.stex"
+path="res://.import/118220981_2655857778008883_2633493132491520148_n.png-73fa6a127e577bd1c12f3b850fa90ef0.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Scene 2.png"
-dest_files=[ "res://.import/Scene 2.png-4b0c587551a69cbd2a933eca09de3f61.stex" ]
+source_file="res://Assets/Sprites/118220981_2655857778008883_2633493132491520148_n.png"
+dest_files=[ "res://.import/118220981_2655857778008883_2633493132491520148_n.png-73fa6a127e577bd1c12f3b850fa90ef0.stex" ]
 
 [params]
 
@@ -20,7 +20,7 @@ compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=false
+flags/filter=true
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2

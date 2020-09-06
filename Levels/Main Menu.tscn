@@ -3,6 +3,8 @@
 [ext_resource path="res://Assets/bitmgothic.medium.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://Levels/Cutscene.tscn" type="PackedScene" id=2]
 
+
+
 [sub_resource type="DynamicFont" id=1]
 size = 26
 outline_size = 1

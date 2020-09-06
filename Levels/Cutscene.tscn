@@ -1,11 +1,11 @@
 [gd_scene load_steps=12 format=2]
 
-[ext_resource path="res://Assets/Pixelated Font.TTF" type="DynamicFontData" id=1]
-[ext_resource path="res://Assets/Scene 1 .png" type="Texture" id=2]
-[ext_resource path="res://Assets/Scene 2.png" type="Texture" id=3]
-[ext_resource path="res://Assets/Scene 3.png" type="Texture" id=4]
+[ext_resource path="res://Assets/Sprites/Scene 1 .png" type="Texture" id=2]
+[ext_resource path="res://Assets/Sprites/Scene 2.png" type="Texture" id=3]
+[ext_resource path="res://Assets/Sprites/Scene 3.png" type="Texture" id=4]
 [ext_resource path="res://Levels/Cutscene.cs" type="Script" id=5]
-[ext_resource path="res://Assets/Jimmy-Fontanez-Dub-Hub.ogg" type="AudioStream" id=6]
+[ext_resource path="res://Assets/Sounds/Jimmy-Fontanez-Dub-Hub.ogg" type="AudioStream" id=6]
+[ext_resource path="res://Assets/Jeebz-Regular.ttf" type="DynamicFontData" id=7]
 
 [sub_resource type="Animation" id=1]
 resource_name = "FadeIn"
@@ -42,15 +42,15 @@ tracks/0/keys = {
 
 [sub_resource type="DynamicFont" id=3]
 size = 8
-font_data = ExtResource( 1 )
+font_data = ExtResource( 7 )
 
 [sub_resource type="DynamicFont" id=4]
 size = 8
-font_data = ExtResource( 1 )
+font_data = ExtResource( 7 )
 
 [sub_resource type="DynamicFont" id=5]
 size = 8
-font_data = ExtResource( 1 )
+font_data = ExtResource( 7 )
 
 [node name="Cutscene" type="Node2D"]
 script = ExtResource( 5 )
