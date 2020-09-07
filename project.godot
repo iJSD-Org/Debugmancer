@@ -19,6 +19,10 @@ config/name="Debugmancer"
 run/main_scene="res://Levels/TestArena.tscn"
 config/icon="res://icon.png"
 
+[autoload]
+
+RichPresence="*res://RichPresence.cs"
+
 [display]
 
 window/size/width=320

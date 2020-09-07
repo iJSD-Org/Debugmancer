@@ -5,4 +5,7 @@
   <ItemGroup>
     <Folder Include="Levels\" />
   </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="DiscordRichPresence" Version="1.0.150" />
+  </ItemGroup>
 </Project>

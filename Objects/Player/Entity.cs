@@ -23,6 +23,7 @@ namespace Debugmancer.Objects.Player
 
 		public override void _Ready()
 		{
+			
 			StatesMap.Add("Idle", GetNode("States/Idle"));
 			StatesMap.Add("Move", GetNode("States/Move"));
 			StatesMap.Add("Dash", GetNode("States/Dash"));
@@ -48,6 +49,7 @@ namespace Debugmancer.Objects.Player
 			if (Math.Abs(weapon.Rotation) < 90 * (Math.PI / 180)) TurnRight();
 			else if (Math.Abs(weapon.Rotation) >= 90 * (Math.PI / 180)) TurnLeft();
 		}
+
 
 		public override void _PhysicsProcess(float delta)
 		{
