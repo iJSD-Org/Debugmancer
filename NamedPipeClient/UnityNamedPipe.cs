@@ -66,26 +66,30 @@ namespace Debugmancer.NamedPipeClient
 
             try
             {
-                //Prepare the sandbox
-                string sandbox = doSandbox ? GetPipeSandbox() : "";
-                if (doSandbox && sandbox == null)
-                {
-                    Logger.Trace("Skipping sandbox because this platform does not support it.");
-                    return false;
-                }
+	            //Prepare the sandbox
+	            string sandbox = doSandbox ? GetPipeSandbox() : "";
+	            if (doSandbox && sandbox == null)
+	            {
+		            Logger.Trace("Skipping sandbox because this platform does not support it.");
+		            return false;
+	            }
 
-                //Prepare the name
-                string pipeName = GetPipeName(pipe);
+	            //Prepare the name
+	            string pipeName = GetPipeName(pipe);
 
-                //Attempt to connect
-                Logger.Info("Connecting to " + pipeName + " (" + sandbox +")");
-                ConnectedPipe = pipe;
-                _stream = new NamedPipeClientStream(".", pipeName);
-                _stream.Connect();
+	            //Attempt to connect
+	            Logger.Info("Connecting to " + pipeName + " (" + sandbox + ")");
+	            ConnectedPipe = pipe;
+	            _stream = new NamedPipeClientStream(".", pipeName);
+	            _stream.Connect();
 
-                Logger.Info("Connected");
-                return true;
+	            Logger.Info("Connected");
+	            return true;
             }
+            catch (DllNotFoundException)
+            {
+	            throw;
+			}
             catch(Exception e)
             {
                 Logger.Error("Failed: " + e.GetType().FullName + ", " + e.Message);
