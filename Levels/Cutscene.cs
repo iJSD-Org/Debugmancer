@@ -55,9 +55,15 @@ public class Cutscene : Node2D
 		if(_scene == 6)
 		{
 			Hide();
-			GetParent().GetNode<AnimationPlayer>("AnimationPlayer").Play("Transition");
-			GetParent().GetNode<Label>("Debug").Show();
-			GetParent().GetNode<Label>("Mancer").Show();
+			GetParent().GetNode<AnimationPlayer>("MenuAnimPlayer").Play("Transition");
+		}
+	}
+
+	private void _on_MenuAnimPlayer_finished(string anim_name)
+	{
+		if (anim_name == "Transition")
+		{
+			GetParent().GetNode<AnimationPlayer>("MenuAnimPlayer").Play("FadeIn");
 		}
 	}
 }

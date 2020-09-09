@@ -77,10 +77,10 @@ scale = Vector2( 3.33874, 3.32804 )
 texture = ExtResource( 4 )
 
 [node name="Label1" type="Label" parent="."]
-margin_left = 4.7896
-margin_top = 9.08679
-margin_right = 301.79
-margin_bottom = 38.0868
+margin_left = 39.8712
+margin_top = 12.9517
+margin_right = 336.872
+margin_bottom = 41.9517
 custom_fonts/font = SubResource( 3 )
 text = "It's a normal saturday night, you decided to visit the arcade
 "
@@ -90,13 +90,12 @@ __meta__ = {
 
 [node name="Label2" type="Label" parent="."]
 visible = false
-margin_left = 55.0
-margin_top = 3.0
-margin_right = 263.0
-margin_bottom = 60.0
+margin_left = 11.2966
+margin_top = 13.4056
+margin_right = 327.297
+margin_bottom = 70.4056
 custom_fonts/font = SubResource( 4 )
-text = "But one arcade machine catches your eye, 
-placed in the very corner of the room
+text = "But one arcade machine catches your eye, placed in the corner of the room
 
 "
 __meta__ = {
@@ -105,10 +104,10 @@ __meta__ = {
 
 [node name="Label3" type="Label" parent="."]
 visible = false
-margin_left = 1.58919
-margin_top = 8.21084
-margin_right = 320.589
-margin_bottom = 35.2108
+margin_left = 37.2654
+margin_top = 13.265
+margin_right = 356.265
+margin_bottom = 40.2649
 custom_fonts/font = SubResource( 5 )
 text = "Trying to play the broken machine, you get sucked right into it!
 "
