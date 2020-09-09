@@ -1,8 +1,7 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Levels/map_tilese.tres" type="TileSet" id=1]
 [ext_resource path="res://Objects/Player/Player.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Objects/EnemySpawner.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Objects/TempEnemy3/TempEnemy3.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Objects/TempEnemy4/TempEnemy4.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Objects/TempEnemy1/TempEnemy1.tscn" type="PackedScene" id=7]
@@ -55,6 +54,5 @@ position = Vector2( -2.97194, 519.118 )
 position = Vector2( 410.584, 531.73 )
 
 [node name="PlayerCamera" parent="." instance=ExtResource( 9 )]
+position = Vector2( 0, 0 )
 zoom = Vector2( 1.1, 1.1 )
-
-[node name="EnemySpawner" parent="." instance=ExtResource( 3 )]
