@@ -12,7 +12,6 @@
 [ext_resource path="res://Assets/Sprites/Energy_Full.png" type="Texture" id=10]
 [ext_resource path="res://Assets/Sprites/Energy.png" type="Texture" id=11]
 
-
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 5.28344, 7.37858 )
 
@@ -152,10 +151,13 @@ __meta__ = {
 [node name="Health" type="TextureProgress" parent="HUD/VBoxContainer"]
 margin_right = 64.0
 margin_bottom = 16.0
+min_value = -10.0
 max_value = 25.0
+value = 1.0
 texture_under = ExtResource( 9 )
 texture_over = ExtResource( 9 )
 texture_progress = ExtResource( 8 )
+tint_progress = Color( 0.966797, 0.966797, 0.966797, 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -164,7 +166,6 @@ __meta__ = {
 margin_top = 20.0
 margin_right = 64.0
 margin_bottom = 36.0
-max_value = 100.0
 value = 100.0
 rounded = true
 texture_under = ExtResource( 11 )
