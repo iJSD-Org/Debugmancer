@@ -13,7 +13,6 @@ namespace Debugmancer.Objects.TempEnemy1
 	{
 		[Signal]
 		public delegate void StateChanged();
-
 		public State CurrentState;
 		public Stack<State> StateStack = new Stack<State>();
 		public readonly Dictionary<string, Node> StatesMap = new Dictionary<string, Node>();
@@ -21,7 +20,6 @@ namespace Debugmancer.Objects.TempEnemy1
 		private KinematicBody2D _player;
 		private readonly Random _random = new Random();
 		private int _shots;
-
 		public override void _Ready()
 		{
 			_player = GetParent().GetNode<KinematicBody2D>("Player");
@@ -91,7 +89,11 @@ namespace Debugmancer.Objects.TempEnemy1
 			await Task.Delay(100);
 			Modulate = new Color(1, 1, 1);
 			if (health == 0)
+			{
+				Globals.score += Math.Ceiling(50 * Globals.scoreMultiplier);
+				GetParent().GetNode<KinematicBody2D>("Player").GetNode<Label>("HUD/Score").Text = $"Score:{Globals.score}";
 				ChangeState("Dead");
+			}
 		}
 
 		private void ChangeState(string stateName)
