@@ -33,6 +33,7 @@ tracks/0/keys = {
 [node name="TempEnemy4" type="KinematicBody2D" groups=[
 "enemy",
 ]]
+position = Vector2( 8.22012, 1.81196 )
 collision_layer = 8
 script = ExtResource( 2 )
 

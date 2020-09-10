@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Debugmancer.Objects.Roach.States;
@@ -80,7 +81,11 @@ namespace Debugmancer.Objects.Roach
 			await Task.Delay(100);
 			Modulate = new Color(1, 1, 1);
 			if (health == 0)
+			{
+				Globals.score += Math.Ceiling(25 * Globals.scoreMultiplier);
+				GetParent().GetNode<KinematicBody2D>("Player").GetNode<Label>("HUD/Score").Text = $"Score:{Globals.score}";
 				ChangeState("Dead");
+			}
 		}
 
 		public void Hitbox_BodyEntered(Node body)

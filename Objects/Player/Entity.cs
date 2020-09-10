@@ -20,7 +20,7 @@ namespace Debugmancer.Objects.Player
 		public Stack<State> StateStack = new Stack<State>();
 		private readonly Timer _dashCooldownTimer = new Timer();
 		public readonly Dictionary<string, Node> StatesMap = new Dictionary<string, Node>();
-
+		public static int score = 0;
 		public override void _Ready()
 		{
 			GetNode<TextureProgress>("HUD/VBoxContainer/Health").MaxValue = 25;

@@ -10,14 +10,14 @@ namespace Debugmancer.Objects
 		[Export] public Array<PackedScene> Enemies = new Array<PackedScene> {
 			(PackedScene)ResourceLoader.Load("res://Objects/TempEnemy1/TempEnemy1.tscn"),
 			(PackedScene)ResourceLoader.Load("res://Objects/TempEnemy2/TempEnemy2.tscn"),
-			(PackedScene)ResourceLoader.Load("res://Objects/TempEnemy2/TempEnemy3.tscn"),
-			(PackedScene)ResourceLoader.Load("res://Objects/TempEnemy2/TempEnemy4.tscn"),
-			(PackedScene)ResourceLoader.Load("res://Objects/TempEnemy2/TempEnemy4.tscn"),
+			(PackedScene)ResourceLoader.Load("res://Objects/TempEnemy3/TempEnemy3.tscn"),
+			(PackedScene)ResourceLoader.Load("res://Objects/TempEnemy4/TempEnemy4.tscn"),
+			(PackedScene)ResourceLoader.Load("res://Objects/TempEnemy5/TempEnemy5.tscn"),
 			(PackedScene)ResourceLoader.Load("res://Objects/Roach/Roach.tscn")
 		};
 		[Export] public double EnemyMultiplier = 1;
 		private readonly Random _random = new Random();
-
+		
 		public void SpawnTimer_timeout()
 		{
 			List<Vector2> areas = new List<Vector2> {
@@ -36,8 +36,10 @@ namespace Debugmancer.Objects
 				GetParent().AddChild(enemy);
 				enemyPosition.x += 15;
 				enemyPosition.y += 15;
+				GD.Print("EnemySpawned");
 			}
-			EnemyMultiplier += .1;
+			EnemyMultiplier += .3;
+			Globals.scoreMultiplier += .5;
 			GetNode<Timer>("SpawnTimer").WaitTime -= 0.2f;
 		}
 	}

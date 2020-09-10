@@ -73,7 +73,11 @@ namespace Debugmancer.Objects.TempEnemy4
 			await Task.Delay(100);
 			Modulate = new Color(1, 1, 1);
 			if (health == 0)
+			{
+				Globals.score += Math.Ceiling(125 * Globals.scoreMultiplier);
+				GetParent().GetNode<KinematicBody2D>("Player").GetNode<Label>("HUD/Score").Text = $"Score:{Globals.score}";
 				ChangeState("Dead");
+			}
 		}
 
 		private void ChangeState(string stateName)
