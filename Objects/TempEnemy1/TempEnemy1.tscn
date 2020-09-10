@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Assets/Sprites/Entities/Virus SPriteSheet.png" type="Texture" id=1]
 [ext_resource path="res://Objects/TempEnemy1/Entity.cs" type="Script" id=2]
@@ -6,13 +6,7 @@
 [ext_resource path="res://Objects/TempEnemy1/States/Chase.cs" type="Script" id=4]
 [ext_resource path="res://Objects/TempEnemy1/States/Stagger.cs" type="Script" id=5]
 
-[sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 5.67272, 7.93158 )
-
-[sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 6.5777, 8.2843 )
-
-[sub_resource type="Animation" id=3]
+[sub_resource type="Animation" id=1]
 resource_name = "Chase"
 length = 0.5
 loop = true
@@ -41,9 +35,9 @@ position = Vector2( 0.187325, 0.0338287 )
 texture = ExtResource( 1 )
 hframes = 5
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( 0.12774, 0.0541687 )
-shape = SubResource( 1 )
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+position = Vector2( -11.8127, -11.9662 )
+polygon = PoolVector2Array( 21, 18, 19, 20, 15, 22, 9, 23, 5, 20, 4, 19, 1, 10, 1, 9, 6, 2, 7, 1, 8, 1, 20, 4, 21, 5 )
 
 [node name="ShootTimer" type="Timer" parent="."]
 
@@ -53,9 +47,9 @@ wait_time = 2.0
 [node name="Hitbox" type="Area2D" parent="."]
 collision_layer = 2
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
-position = Vector2( 0.140467, 0.0468225 )
-shape = SubResource( 2 )
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Hitbox"]
+position = Vector2( -11.8127, -11.9662 )
+polygon = PoolVector2Array( 21, 18, 19, 20, 15, 22, 9, 23, 5, 20, 4, 19, 1, 10, 1, 9, 6, 2, 7, 1, 8, 1, 20, 4, 21, 5 )
 
 [node name="RayCast2D" type="RayCast2D" parent="."]
 collision_mask = 8
@@ -73,6 +67,6 @@ script = ExtResource( 4 )
 script = ExtResource( 5 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/Chase = SubResource( 3 )
+anims/Chase = SubResource( 1 )
 [connection signal="timeout" from="ShootTimer" to="." method="ShootTimer_timeout"]
 [connection signal="body_entered" from="Hitbox" to="." method="Hitbox_BodyEntered"]
