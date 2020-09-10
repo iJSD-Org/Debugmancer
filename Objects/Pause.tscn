@@ -1,0 +1,65 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Objects/Pause.cs" type="Script" id=1]
+
+[node name="PauseCanvas" type="CanvasLayer"]
+layer = 5
+
+[node name="Pause" type="Control" parent="."]
+pause_mode = 2
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Overlay" type="ColorRect" parent="Pause"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 0.588235 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Panel" type="Panel" parent="Pause"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -45.0
+margin_top = -45.0
+margin_right = 45.0
+margin_bottom = 45.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Pause/Panel"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -38.0
+margin_top = -38.0
+margin_right = 38.0
+margin_bottom = 38.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Pause/Panel/VBoxContainer"]
+margin_right = 76.0
+margin_bottom = 14.0
+text = "PAUSED"
+align = 1
+
+[node name="ResumeButton" type="Button" parent="Pause/Panel/VBoxContainer"]
+margin_top = 18.0
+margin_right = 76.0
+margin_bottom = 38.0
+action_mode = 0
+text = "RESUME"
+flat = true
+[connection signal="button_up" from="Pause/Panel/VBoxContainer/ResumeButton" to="Pause" method="_on_Button_button_up"]
