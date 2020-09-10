@@ -1,9 +1,7 @@
 using Godot;
-using System;
 
 public class Introduction : Node2D
 {
-	private bool _nextScene;
 	private int _scene = 1;
 	public override void _Ready()
 	{
