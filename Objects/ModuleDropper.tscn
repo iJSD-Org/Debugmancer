@@ -10,7 +10,7 @@
 [ext_resource path="res://Assets/Sprites/Module 5 .png" type="Texture" id=8]
 [ext_resource path="res://Objects/ModuleDropper.cs" type="Script" id=9]
 
-[sub_resource type="Animation" id=6]
+[sub_resource type="Animation" id=1]
 resource_name = "FadeIn"
 length = 2.0
 tracks/0/type = "bezier"
@@ -94,23 +94,23 @@ tracks/7/keys = {
 "times": PoolRealArray( 0, 2 )
 }
 
-[sub_resource type="DynamicFont" id=1]
-size = 8
-font_data = ExtResource( 2 )
-
 [sub_resource type="DynamicFont" id=2]
-size = 7
+size = 8
 font_data = ExtResource( 2 )
 
 [sub_resource type="DynamicFont" id=3]
-size = 8
+size = 7
 font_data = ExtResource( 2 )
 
 [sub_resource type="DynamicFont" id=4]
+size = 8
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=5]
 size = 7
 font_data = ExtResource( 3 )
 
-[sub_resource type="DynamicFont" id=5]
+[sub_resource type="DynamicFont" id=6]
 size = 8
 font_data = ExtResource( 5 )
 
@@ -174,11 +174,10 @@ __meta__ = {
 }
 
 [node name="FadeAnim" type="AnimationPlayer" parent="ModuleDropper"]
-anims/FadeIn = SubResource( 6 )
+anims/FadeIn = SubResource( 1 )
 
 [node name="Overlay" type="ColorRect" parent="ModuleDropper/FadeAnim"]
 visible = false
-self_modulate = Color( 1, 1, 1, 0 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_bottom = 1.52588e-05
@@ -189,7 +188,6 @@ __meta__ = {
 
 [node name="Book" type="TextureRect" parent="ModuleDropper/FadeAnim"]
 visible = false
-modulate = Color( 1, 1, 1, 0 )
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -231,7 +229,7 @@ margin_left = -49.5
 margin_top = 5.0
 margin_right = 49.5
 margin_bottom = 16.0
-custom_fonts/font = SubResource( 1 )
+custom_fonts/font = SubResource( 2 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "Module Unlocked!"
 align = 1
@@ -262,7 +260,7 @@ anchor_bottom = 1.0
 margin_left = -40.0
 margin_top = -27.0
 margin_right = 40.0
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = SubResource( 3 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "Debugging Module"
 align = 1
@@ -282,7 +280,7 @@ __meta__ = {
 margin_top = 4.0
 margin_right = 62.0
 margin_bottom = 18.0
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = SubResource( 4 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "Description:"
 valign = 1
@@ -296,10 +294,17 @@ margin_left = -41.1254
 margin_top = -21.5
 margin_right = 42.8746
 margin_bottom = 22.5
-custom_fonts/normal_font = SubResource( 4 )
+custom_fonts/normal_font = SubResource( 5 )
 custom_colors/default_color = Color( 0, 0, 0, 1 )
-text = "Your weapon in fighting against bugs, given to you by iJSD! 
-Consumes 1 Energy
+text = "Your weapon in fighting against bugs, given by iJSD!
+
+Consumes more energy the lower your energy  gets!
+
+Consumes 3 energy when energy > 80%
+
+Consumes 5 energy when energy >= 50%
+
+Consumes 8 energy when energy < 50%
 "
 __meta__ = {
 "_edit_use_anchors_": false
@@ -311,10 +316,10 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 margin_left = -43.5
-margin_top = -22.0
+margin_top = -18.0
 margin_right = 43.5
-margin_bottom = -8.0
-custom_fonts/font = SubResource( 5 )
+margin_bottom = -4.0
+custom_fonts/font = SubResource( 6 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "Left Click to Shoot"
 valign = 1
@@ -349,7 +354,7 @@ margin_left = -49.5
 margin_top = 5.0
 margin_right = 49.5
 margin_bottom = 16.0
-custom_fonts/font = SubResource( 1 )
+custom_fonts/font = SubResource( 2 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "Module Unlocked!"
 align = 1
@@ -380,7 +385,7 @@ anchor_bottom = 1.0
 margin_left = -42.0
 margin_top = -27.0
 margin_right = 42.0
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = SubResource( 3 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "Self-Study Module"
 align = 1
@@ -400,7 +405,7 @@ __meta__ = {
 margin_top = 4.0
 margin_right = 62.0
 margin_bottom = 18.0
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = SubResource( 4 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "Description:"
 valign = 1
@@ -414,7 +419,7 @@ margin_left = -41.5
 margin_top = -21.5
 margin_right = 42.5
 margin_bottom = 22.5
-custom_fonts/normal_font = SubResource( 4 )
+custom_fonts/normal_font = SubResource( 5 )
 custom_colors/default_color = Color( 0, 0, 0, 1 )
 text = "Unlocks dashing! While dashing you are immune to damage! 
 Consumes 5 Energy
@@ -432,7 +437,7 @@ margin_left = -43.5
 margin_top = -22.0
 margin_right = 43.5
 margin_bottom = -8.0
-custom_fonts/font = SubResource( 5 )
+custom_fonts/font = SubResource( 6 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "Shift to Dash"
 valign = 1
@@ -468,7 +473,7 @@ margin_left = -49.5
 margin_top = 5.0
 margin_right = 49.5
 margin_bottom = 16.0
-custom_fonts/font = SubResource( 1 )
+custom_fonts/font = SubResource( 2 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "Module Unlocked!"
 align = 1
@@ -499,7 +504,7 @@ anchor_bottom = 1.0
 margin_left = -42.5
 margin_top = -27.0
 margin_right = 42.5
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = SubResource( 3 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "Basic Programming
 Module"
@@ -523,7 +528,7 @@ __meta__ = {
 margin_top = 4.0
 margin_right = 62.0
 margin_bottom = 18.0
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = SubResource( 4 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "Description:"
 valign = 1
@@ -537,7 +542,7 @@ margin_left = -41.1254
 margin_top = -21.5
 margin_right = 42.8746
 margin_bottom = 22.5
-custom_fonts/normal_font = SubResource( 4 )
+custom_fonts/normal_font = SubResource( 5 )
 custom_colors/default_color = Color( 0, 0, 0, 1 )
 text = "Basic Programming will be your lifeline in whatever program!"
 __meta__ = {
@@ -553,7 +558,7 @@ margin_left = -43.5
 margin_top = -27.0
 margin_right = 43.5
 margin_bottom = -4.0
-custom_fonts/font = SubResource( 5 )
+custom_fonts/font = SubResource( 6 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "+1 HP per 25 
 Seconds"
@@ -590,7 +595,7 @@ margin_left = -49.5
 margin_top = 5.0
 margin_right = 49.5
 margin_bottom = 16.0
-custom_fonts/font = SubResource( 1 )
+custom_fonts/font = SubResource( 2 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "Module Unlocked!"
 align = 1
@@ -621,7 +626,7 @@ anchor_bottom = 1.0
 margin_left = -39.5
 margin_top = -27.0
 margin_right = 39.5
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = SubResource( 3 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "Data Structures
 Module"
@@ -642,7 +647,7 @@ __meta__ = {
 margin_top = 4.0
 margin_right = 62.0
 margin_bottom = 18.0
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = SubResource( 4 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "Description:"
 valign = 1
@@ -659,7 +664,7 @@ margin_left = -41.1254
 margin_top = -23.5
 margin_right = 42.8746
 margin_bottom = 20.5
-custom_fonts/normal_font = SubResource( 4 )
+custom_fonts/normal_font = SubResource( 5 )
 custom_colors/default_color = Color( 0, 0, 0, 1 )
 text = "You've learnt data structures, a programming fundamental, you'll kill bugs faster"
 __meta__ = {
@@ -675,7 +680,7 @@ margin_left = -43.5
 margin_top = -25.0
 margin_right = 43.5
 margin_bottom = -2.0
-custom_fonts/font = SubResource( 5 )
+custom_fonts/font = SubResource( 6 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "Your damage 
 dealt is doubled!"
@@ -712,7 +717,7 @@ margin_left = -49.5
 margin_top = 5.0
 margin_right = 49.5
 margin_bottom = 16.0
-custom_fonts/font = SubResource( 1 )
+custom_fonts/font = SubResource( 2 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "Module Unlocked!"
 align = 1
@@ -743,7 +748,7 @@ anchor_bottom = 1.0
 margin_left = -39.5
 margin_top = -27.0
 margin_right = 39.5
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = SubResource( 3 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "OOP Module"
 align = 1
@@ -763,7 +768,7 @@ __meta__ = {
 margin_top = 4.0
 margin_right = 62.0
 margin_bottom = 18.0
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = SubResource( 4 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "Description:"
 valign = 1
@@ -777,7 +782,7 @@ margin_left = -41.1254
 margin_top = -21.5
 margin_right = 42.8746
 margin_bottom = 22.5
-custom_fonts/normal_font = SubResource( 4 )
+custom_fonts/normal_font = SubResource( 5 )
 custom_colors/default_color = Color( 0, 0, 0, 1 )
 text = "Another programming fundamental, learning this will lengthen your time in the indusrtry"
 __meta__ = {
@@ -793,7 +798,7 @@ margin_left = -43.5
 margin_top = -28.0
 margin_right = 43.5
 margin_bottom = -5.0
-custom_fonts/font = SubResource( 5 )
+custom_fonts/font = SubResource( 6 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "Health increased
 by 10 points!"
@@ -830,7 +835,7 @@ margin_left = -49.5
 margin_top = 5.0
 margin_right = 49.5
 margin_bottom = 16.0
-custom_fonts/font = SubResource( 1 )
+custom_fonts/font = SubResource( 2 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "Module Unlocked!"
 align = 1
@@ -862,7 +867,7 @@ margin_left = -39.5
 margin_top = -26.4054
 margin_right = 39.5
 margin_bottom = 0.594604
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = SubResource( 3 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "Git Module"
 align = 1
@@ -882,7 +887,7 @@ __meta__ = {
 margin_top = 4.0
 margin_right = 62.0
 margin_bottom = 18.0
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = SubResource( 4 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "Description:"
 valign = 1
@@ -896,7 +901,7 @@ margin_left = -41.1254
 margin_top = -24.5
 margin_right = 42.8746
 margin_bottom = 19.5
-custom_fonts/normal_font = SubResource( 4 )
+custom_fonts/normal_font = SubResource( 5 )
 custom_colors/default_color = Color( 0, 0, 0, 1 )
 text = "Learning Git will get you out of sticky situations, let you revert yo old versions of your project"
 __meta__ = {
@@ -912,7 +917,7 @@ margin_left = -43.5
 margin_top = -24.0
 margin_right = 43.5
 margin_bottom = -1.0
-custom_fonts/font = SubResource( 5 )
+custom_fonts/font = SubResource( 6 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "Revives on death
 1 time"

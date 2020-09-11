@@ -12,7 +12,7 @@ public class Pause : Control
             GD.Print(GetTree().Paused);
         }
     }
-    public void _on_Button_button_up()
+    public void _on_ResumeButton_button_up()
     {
         GetTree().Paused = false;
         Visible = false;

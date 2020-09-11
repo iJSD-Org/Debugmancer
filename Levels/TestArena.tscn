@@ -1,9 +1,10 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Levels/map_tilese.tres" type="TileSet" id=1]
 [ext_resource path="res://Objects/Player/Player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Objects/Pause.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Objects/TempEnemy3/TempEnemy3.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Objects/EnemySpawner.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Objects/TempEnemy4/TempEnemy4.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Objects/TempEnemy1/TempEnemy1.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Objects/ModuleDropper.tscn" type="PackedScene" id=8]
@@ -59,3 +60,5 @@ zoom = Vector2( 1.1, 1.1 )
 [node name="ModuleDropper" parent="." instance=ExtResource( 8 )]
 
 [node name="PauseCanvas" parent="." instance=ExtResource( 3 )]
+
+[node name="EnemySpawner" parent="." instance=ExtResource( 5 )]
