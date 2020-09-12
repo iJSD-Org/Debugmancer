@@ -7,9 +7,6 @@ namespace Debugmancer.Objects
 	{
 		public int _modulesDropped = 0;
 		public Control _module;
-		public override void _Ready()
-		{
-		}
 		public override void _Input(InputEvent @event)
 		{
 			if(Input.IsActionPressed("E")) 
@@ -42,7 +39,6 @@ namespace Debugmancer.Objects
 		}
 		public void ShowModule(Control module)
 		{
-
 			GetTree().Paused = true;
 			_modulesDropped++;
 			_module = module;
