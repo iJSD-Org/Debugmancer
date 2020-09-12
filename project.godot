@@ -17,6 +17,8 @@ _global_script_class_icons={
 
 config/name="Debugmancer"
 run/main_scene="res://Levels/TestArena.tscn"
+boot_splash/image="res://Assets/Sprites/black.png"
+boot_splash/bg_color=Color( 0.141176, 0.141176, 0.141176, 1 )
 config/icon="res://icon.png"
 
 [display]

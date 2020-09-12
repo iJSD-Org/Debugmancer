@@ -1,69 +1,70 @@
 using Godot;
-using System;
-using System.Threading.Tasks;
 
-public class Cutscene : Node2D
+namespace Debugmancer.Levels
 {
-	private int _scene = 1;
-	public override void _Ready()
+	public class Cutscene : Node2D
 	{
-		GetNode<Timer>("Timer").Start();
-		GetNode<AnimationPlayer>("AnimationPlayer").Play("FadeIn");
-	}
-
-	private void _on_Timer_timeout()
-	{
-		if (_scene == 1) GetNode<AudioStreamPlayer>("AudioStreamPlayer").Play();
-
-		 GetNode<Timer>("Timer").Stop();
-		 GetNode<AnimationPlayer>("AnimationPlayer").Play("FadeOut");
-		 if(_scene == 5)
-		 {
-			 _scene++;
-		 }
-	}
-
-	private void _on_AnimationPlayer_finished(string anim_name)
-	{
-		if (anim_name == "FadeOut" && _scene != 6)
+		private int _scene = 1;
+		public override void _Ready()
 		{
-			//hide the previous scene
-			if (_scene <= 3)
-			{
-				GetNode<Sprite>($"Sprite{_scene}").Hide();
-				GetNode<Label>($"Label{_scene}").Hide();
-			}
-			else
-			{
-				GetNode<Label>($"Label{_scene}").Hide();
-			}
-			//switch to the next scene
-			_scene++;
-			 GetNode<AnimationPlayer>("AnimationPlayer").Play("FadeIn");
-			if (_scene <= 3)
-			{
-				GetNode<Sprite>($"Sprite{_scene}").Show();
-				GetNode<Label>($"Label{_scene}").Show();
-			}
-			else
-			{
-				GetNode<Label>($"Label{_scene}").Show();
-			}
 			GetNode<Timer>("Timer").Start();
+			GetNode<AnimationPlayer>("AnimationPlayer").Play("FadeIn");
 		}
 
-		if(_scene == 6)
+		private void _on_Timer_timeout()
 		{
-			Hide();
-			GetParent().GetNode<AnimationPlayer>("MenuAnimPlayer").Play("Transition");
-		}
-	}
+			if (_scene == 1) GetNode<AudioStreamPlayer>("AudioStreamPlayer").Play();
 
-	private void _on_MenuAnimPlayer_finished(string anim_name)
-	{
-		if (anim_name == "Transition")
+			GetNode<Timer>("Timer").Stop();
+			GetNode<AnimationPlayer>("AnimationPlayer").Play("FadeOut");
+			if(_scene == 5)
+			{
+				_scene++;
+			}
+		}
+
+		private void _on_AnimationPlayer_finished(string anim_name)
 		{
-			GetParent().GetNode<AnimationPlayer>("MenuAnimPlayer").Play("FadeIn");
+			if (anim_name == "FadeOut" && _scene != 6)
+			{
+				//hide the previous scene
+				if (_scene <= 3)
+				{
+					GetNode<Sprite>($"Sprite{_scene}").Hide();
+					GetNode<Label>($"Label{_scene}").Hide();
+				}
+				else
+				{
+					GetNode<Label>($"Label{_scene}").Hide();
+				}
+				//switch to the next scene
+				_scene++;
+				GetNode<AnimationPlayer>("AnimationPlayer").Play("FadeIn");
+				if (_scene <= 3)
+				{
+					GetNode<Sprite>($"Sprite{_scene}").Show();
+					GetNode<Label>($"Label{_scene}").Show();
+				}
+				else
+				{
+					GetNode<Label>($"Label{_scene}").Show();
+				}
+				GetNode<Timer>("Timer").Start();
+			}
+
+			if(_scene == 6)
+			{
+				Hide();
+				GetParent().GetNode<AnimationPlayer>("MenuAnimPlayer").Play("Transition");
+			}
+		}
+
+		private void _on_MenuAnimPlayer_finished(string anim_name)
+		{
+			if (anim_name == "Transition")
+			{
+				GetParent().GetNode<AnimationPlayer>("MenuAnimPlayer").Play("FadeIn");
+			}
 		}
 	}
 }
