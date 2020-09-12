@@ -55,15 +55,15 @@ namespace Debugmancer.Levels
 			if(_scene == 6)
 			{
 				Hide();
-				GetParent().GetNode<AnimationPlayer>("MenuAnimPlayer").Play("Transition");
+				GetNode<AnimationPlayer>("../MenuAnimPlayer").Play("Transition");
 			}
 		}
 
-		private void _on_MenuAnimPlayer_finished(string anim_name)
+		private void _on_MenuAnimPlayer_finished(string animName)
 		{
-			if (anim_name == "Transition")
+			if (animName == "Transition")
 			{
-				GetParent().GetNode<AnimationPlayer>("MenuAnimPlayer").Play("FadeIn");
+				GetNode<AnimationPlayer>("../MenuAnimPlayer").Play("FadeIn");
 			}
 		}
 	}

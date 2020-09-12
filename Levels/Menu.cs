@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public class Menu : Node
+public class Menu : Control
 {
 	private void _on_Start_pressed()
 	{

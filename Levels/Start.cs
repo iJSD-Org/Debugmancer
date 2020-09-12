@@ -2,7 +2,7 @@ using Godot;
 
 namespace Debugmancer.Levels
 {
-	public class Introduction : Node2D
+	public class Start : Node2D
 	{
 		private int _scene = 1;
 		public override void _Ready()

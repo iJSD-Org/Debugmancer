@@ -56,7 +56,6 @@ margin_left = 23.1278
 margin_top = 36.6653
 margin_right = 87.1278
 margin_bottom = 76.6653
-mouse_default_cursor_shape = 2
 texture_normal = ExtResource( 3 )
 texture_hover = ExtResource( 6 )
 __meta__ = {
