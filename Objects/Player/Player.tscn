@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://Assets/Sprites/Entities/Game Changer SpriteSheet.png" type="Texture" id=1]
 [ext_resource path="res://Objects/Player/States/Idle.cs" type="Script" id=2]
@@ -11,6 +11,7 @@
 [ext_resource path="res://Assets/Sprites/Health.png" type="Texture" id=9]
 [ext_resource path="res://Assets/Sprites/Energy_Full.png" type="Texture" id=10]
 [ext_resource path="res://Assets/Sprites/Energy.png" type="Texture" id=11]
+[ext_resource path="res://Objects/Player/Camera.tscn" type="PackedScene" id=12]
 
 [sub_resource type="Animation" id=1]
 resource_name = "Dash"
@@ -140,6 +141,7 @@ script = ExtResource( 5 )
 [node name="HUD" type="CanvasLayer" parent="."]
 
 [node name="VBoxContainer" type="VBoxContainer" parent="HUD"]
+anchor_right = 0.075
 margin_right = 40.0
 margin_bottom = 40.0
 __meta__ = {
@@ -173,6 +175,7 @@ __meta__ = {
 }
 
 [node name="Score" type="Label" parent="HUD"]
+anchor_right = 0.196875
 margin_left = 202.234
 margin_top = 0.8909
 margin_right = 242.234
@@ -187,6 +190,9 @@ anims/Dash = SubResource( 1 )
 anims/Dash_Flipped = SubResource( 2 )
 anims/Idle = SubResource( 3 )
 anims/Walk = SubResource( 4 )
+
+[node name="Camera" parent="." instance=ExtResource( 12 )]
+position = Vector2( 0.0125217, -0.00294733 )
 [connection signal="area_entered" from="Hitbox" to="." method="Hitbox_AreaEntered"]
 [connection signal="timeout" from="BodyTimer" to="." method="BodyTimer_timeout"]
 [connection signal="timeout" from="ScentTimer" to="." method="AddScent"]

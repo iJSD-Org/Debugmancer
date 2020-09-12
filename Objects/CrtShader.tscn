@@ -40,7 +40,6 @@ COLOR = texture(SCREEN_TEXTURE,xy);
 
 
 "
-custom_defines = ""
 
 [sub_resource type="ShaderMaterial" id=2]
 shader = SubResource( 1 )
@@ -61,7 +60,6 @@ void fragment()
 	color_left = color_left*vec4(0.25,0.5,color_bleeding,1);
 	COLOR.rgba = (current_color + color_left);
 }"
-custom_defines = ""
 
 [sub_resource type="ShaderMaterial" id=4]
 shader = SubResource( 3 )
@@ -89,7 +87,6 @@ c = c - n*c*(1.0 - scanline_alpha);
 c.a = 1.0;
 COLOR = c;
 }"
-custom_defines = ""
 
 [sub_resource type="ShaderMaterial" id=6]
 shader = SubResource( 5 )
@@ -103,14 +100,14 @@ shader_param/lines_velocity = 30.0
 shader = ExtResource( 1 )
 shader_param/screen_width = 1024.0
 shader_param/screen_height = 600.0
-shader_param/BarrelPower = 1.05
-shader_param/color_bleeding = 2.0
+shader_param/BarrelPower = 1.03
+shader_param/color_bleeding = 1.4
 shader_param/bleeding_range_x = 2.0
 shader_param/bleeding_range_y = 2.0
 shader_param/lines_distance = 3.0
 shader_param/scan_size = 2.0
 shader_param/scanline_alpha = 0.9
-shader_param/lines_velocity = 1.0
+shader_param/lines_velocity = 0.9
 
 [node name="Shaders" type="Control"]
 margin_right = 40.0

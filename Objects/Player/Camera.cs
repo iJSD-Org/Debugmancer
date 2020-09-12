@@ -1,9 +1,9 @@
 using System;
 using Godot;
 
-namespace Debugmancer.Objects
+namespace Debugmancer.Objects.Player
 {
-	public class ScreenShake : Camera2D
+	public class Camera : Camera2D
 	{
 		[Export] public float Amplitude = 16;
 
@@ -27,8 +27,8 @@ namespace Debugmancer.Objects
 		public override void _PhysicsProcess(float delta)
 		{
 			Position = new Vector2(
-				(-((GetParent().GetNode<KinematicBody2D>("Player").Position.x - GetGlobalMousePosition().x) / 2 * .6f) + GetParent().GetNode<KinematicBody2D>("Player").Position.x), 
-				(-((GetParent().GetNode<KinematicBody2D>("Player").Position.y - GetGlobalMousePosition().y) / 2 * .6f) + GetParent().GetNode<KinematicBody2D>("Player").Position.y));
+				(-((GetParent<KinematicBody2D>().Position.x - GetGlobalMousePosition().x) / 2 * .6f) + GetParent<KinematicBody2D>().GlobalPosition.x), 
+				(-((GetParent<KinematicBody2D>().Position.y - GetGlobalMousePosition().y) / 2 * .6f) + GetParent<KinematicBody2D>().GlobalPosition.y));
 		}
 		
 		public void StartShake()

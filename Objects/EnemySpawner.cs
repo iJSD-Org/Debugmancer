@@ -7,14 +7,7 @@ namespace Debugmancer.Objects
 {
 	public class EnemySpawner : Node
 	{
-		[Export] public Array<PackedScene> Enemies = new Array<PackedScene> {
-			(PackedScene)ResourceLoader.Load("res://Objects/TempEnemy1/TempEnemy1.tscn"),
-			(PackedScene)ResourceLoader.Load("res://Objects/TempEnemy2/TempEnemy2.tscn"),
-			(PackedScene)ResourceLoader.Load("res://Objects/TempEnemy3/TempEnemy3.tscn"),
-			(PackedScene)ResourceLoader.Load("res://Objects/TempEnemy4/TempEnemy4.tscn"),
-			(PackedScene)ResourceLoader.Load("res://Objects/TempEnemy5/TempEnemy5.tscn"),
-			(PackedScene)ResourceLoader.Load("res://Objects/Roach/Roach.tscn")
-		};
+		[Export] public Array<PackedScene> Enemies = new Array<PackedScene>();
 		[Export] public double EnemyMultiplier = 1;
 		private readonly Random _random = new Random();
 		

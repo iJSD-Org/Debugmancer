@@ -1,10 +1,10 @@
 [gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Assets/Sprites/Entities/SpriteSheet Void.png" type="Texture" id=1]
-[ext_resource path="res://Objects/TempEnemy4/Entity.cs" type="Script" id=2]
-[ext_resource path="res://Objects/Health.cs" type="Script" id=3]
-[ext_resource path="res://Objects/TempEnemy4/States/Stagger.cs" type="Script" id=4]
-[ext_resource path="res://Objects/TempEnemy4/States/Chase.cs" type="Script" id=5]
+[ext_resource path="res://Objects/Enemies/Void/States/Stagger.cs" type="Script" id=2]
+[ext_resource path="res://Objects/Enemies/Void/Entity.cs" type="Script" id=3]
+[ext_resource path="res://Objects/Enemies/Void/States/Chase.cs" type="Script" id=4]
+[ext_resource path="res://Objects/Health.cs" type="Script" id=5]
 
 [sub_resource type="Animation" id=1]
 resource_name = "Chase"
@@ -24,12 +24,12 @@ tracks/0/keys = {
 "values": [ 0, 1, 2, 3 ]
 }
 
-[node name="TempEnemy4" type="KinematicBody2D" groups=[
+[node name="Void" type="KinematicBody2D" groups=[
 "enemy",
 ]]
 position = Vector2( 8.22012, 1.81196 )
 collision_layer = 8
-script = ExtResource( 2 )
+script = ExtResource( 3 )
 
 [node name="Sprite" type="Sprite" parent="."]
 position = Vector2( 0.31498, 0 )
@@ -60,16 +60,16 @@ enabled = true
 collision_mask = 8
 
 [node name="Health" type="Node" parent="."]
-script = ExtResource( 3 )
+script = ExtResource( 5 )
 MaxHealth = 10
 
 [node name="States" type="Node" parent="."]
 
 [node name="Chase" type="Node" parent="States"]
-script = ExtResource( 5 )
+script = ExtResource( 4 )
 
 [node name="Stagger" type="Node" parent="States"]
-script = ExtResource( 4 )
+script = ExtResource( 2 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/Chase = SubResource( 1 )

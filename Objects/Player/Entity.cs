@@ -122,7 +122,7 @@ namespace Debugmancer.Objects.Player
 
 		public async void OnHealthChanged(int health)
 		{
-			((ScreenShake)GetParent().GetNode<Camera2D>("PlayerCamera")).StartShake();
+			((Camera)GetNode<Camera2D>("Camera")).StartShake();
 			GetNode<TextureProgress>("HUD/VBoxContainer/Health").Value = health;
 			GD.Print(GetNode<TextureProgress>("HUD/VBoxContainer/Health").Value);
 			Modulate = Color.ColorN("Red");
