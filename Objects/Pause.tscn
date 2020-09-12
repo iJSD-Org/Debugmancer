@@ -62,13 +62,16 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="TextureButton" type="TextureButton" parent="Pause/PauseBox"]
+[node name="QuitButton" type="TextureButton" parent="Pause/PauseBox"]
 margin_left = 22.8618
 margin_top = 63.1764
 margin_right = 86.8618
 margin_bottom = 103.176
 texture_normal = ExtResource( 4 )
 texture_hover = ExtResource( 7 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Label" type="Label" parent="Pause"]
 anchor_left = 0.5
@@ -87,3 +90,4 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 [connection signal="button_up" from="Pause/PauseBox/ResumeButton" to="Pause" method="_on_ResumeButton_button_up"]
+[connection signal="button_up" from="Pause/PauseBox/QuitButton" to="Pause" method="_on_QuitButton_button_up"]

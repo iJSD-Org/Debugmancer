@@ -8,5 +8,7 @@ namespace Debugmancer.Objects
         public static double score = 0;
         public static double scoreMultiplier = 1;
         public static bool canDash = false;
+        public static int playerDamage = 1;
+        public static int critChance = 1;
     }
 }

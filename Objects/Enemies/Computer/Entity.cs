@@ -39,9 +39,17 @@ namespace Debugmancer.Objects.TempEnemy3
 		{
 			Health health = (Health)GetNode("Health");
 
-			if (area.IsInGroup("playerBullet")) health.Damage(1);
+			if (area.IsInGroup("playerBullet")) 
+			{
+				if(health.CurrentHealth - Globals.playerDamage > 0) health.Damage(Globals.playerDamage);
+				else health.Damage(Globals.playerDamage - (health.CurrentHealth - Globals.playerDamage));
+			}
 
-			if (area.IsInGroup("playerCritBullet")) health.Damage(2);
+			if (area.IsInGroup("playerCritBullet")) 
+			{
+				if(health.CurrentHealth - (Globals.playerDamage * 2) > 0) health.Damage(Globals.playerDamage * 2);
+				else health.Damage(Globals.playerDamage - (health.CurrentHealth - (Globals.playerDamage * 2)));
+			}
 		}
 
 		private void SpawnBullet()

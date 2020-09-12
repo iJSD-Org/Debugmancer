@@ -85,17 +85,20 @@ namespace Debugmancer.Objects.TempEnemy5
 		public void _on_Hitbox_body_entered(Area2D body)
 		{
 			Health health = (Health)GetNode("Health");
-			if (body.IsInGroup("playerBullet")) health.Damage(1);
-
+			if (body.IsInGroup("playerBullet")) 
+			{
+				if(health.CurrentHealth - Globals.playerDamage > 0) health.Damage(Globals.playerDamage);
+				else health.Damage(Globals.playerDamage - (health.CurrentHealth - Globals.playerDamage));
+			}
 			
 			if (body.IsInGroup("playerCritBullet"))
 			{
-				if(health.CurrentHealth >= 2)
+				if(health.CurrentHealth - (Globals.playerDamage * 2) > 0)
 				{
-					 ChangeState("Teleport");
-					 health.Damage(2);
+					ChangeState("Teleport");
+					health.Damage(Globals.playerDamage * 2);
 				}
-				else health.Damage(1);
+				else health.Damage(Globals.playerDamage - (health.CurrentHealth - (Globals.playerDamage * 2)));
 			}
 		}
 	}

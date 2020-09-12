@@ -16,4 +16,8 @@ public class Pause : Control
 		GetTree().Paused = false;
 		Visible = false;
 	}
+	public void _on_QuitButton_button_up()
+	{
+		
+	}
 }
