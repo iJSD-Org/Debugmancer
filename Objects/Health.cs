@@ -33,10 +33,10 @@ namespace Debugmancer.Objects
 
 		public void Recover(int amount)
 		{
-			CurrentHealth -= amount;
-			if (CurrentHealth < 0)
+			CurrentHealth += amount;
+			if (CurrentHealth > MaxHealth)
 			{
-				CurrentHealth = 0;
+				CurrentHealth = MaxHealth;
 			}
 			EmitSignal(nameof(HealthChanged), CurrentHealth);
 			//debug

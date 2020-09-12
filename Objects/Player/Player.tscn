@@ -122,6 +122,9 @@ autostart = true
 wait_time = 0.35
 one_shot = true
 
+[node name="RecoverTimer" type="Timer" parent="."]
+wait_time = 25.0
+
 [node name="Health" type="Node" parent="."]
 script = ExtResource( 3 )
 MaxHealth = 25
@@ -196,4 +199,5 @@ position = Vector2( 0.0125217, -0.00294733 )
 [connection signal="timeout" from="BodyTimer" to="." method="BodyTimer_timeout"]
 [connection signal="timeout" from="ScentTimer" to="." method="AddScent"]
 [connection signal="timeout" from="DashTimer" to="States/Dash" method="DashTimer_timeout"]
+[connection signal="timeout" from="RecoverTimer" to="." method="_on_RecoverTimer_timeout"]
 [connection signal="HealthChanged" from="Health" to="." method="OnHealthChanged"]

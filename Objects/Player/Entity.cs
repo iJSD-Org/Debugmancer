@@ -20,7 +20,7 @@ namespace Debugmancer.Objects.Player
 		public Stack<State> StateStack = new Stack<State>();
 		private readonly Timer _dashCooldownTimer = new Timer();
 		public readonly Dictionary<string, Node> StatesMap = new Dictionary<string, Node>();
-		public static int score = 0;
+		public bool _isRecover = false; 
 		public override void _Ready()
 		{
 			GetNode<TextureProgress>("HUD/VBoxContainer/Health").MaxValue = 25;
@@ -94,7 +94,7 @@ namespace Debugmancer.Objects.Player
 			}
 			else if (stateName == "Dash")
 			{
-				if (!_dashCooldownTimer.Enabled)
+				if (!_dashCooldownTimer.Enabled && Globals.canDash)
 				{
 					_dashCooldownTimer.Start();
 					StateStack.Push((State)StatesMap[stateName]);
@@ -125,7 +125,7 @@ namespace Debugmancer.Objects.Player
 			((Camera)GetNode<Camera2D>("Camera")).StartShake();
 			GetNode<TextureProgress>("HUD/VBoxContainer/Health").Value = health;
 			GD.Print(GetNode<TextureProgress>("HUD/VBoxContainer/Health").Value);
-			Modulate = Color.ColorN("Red");
+			Modulate = _isRecover ? Color.ColorN("Green") : Color.ColorN("Red");
 			await Task.Delay(100);
 			Modulate = new Color(1, 1, 1);
 			if (health == 0)
@@ -144,8 +144,10 @@ namespace Debugmancer.Objects.Player
 
 		public void Hitbox_BodyEntered(Area2D body)
 		{
-			if (body.IsInGroup("enemy"))
+			if (body.IsInGroup("enemy")) {
+				_isRecover = false;
 				((Health)GetNode("Health")).Damage(2);
+			}
 		}
 
 		public void BodyTimer_timeout()
@@ -154,16 +156,26 @@ namespace Debugmancer.Objects.Player
 				GetNode<Area2D>("Hitbox").GetOverlappingBodies().OfType<KinematicBody2D>().ToList();
 			if (bodies.Any(b => b.IsInGroup("enemy")))
 			{
+				_isRecover = false;
 				((Health)GetNode("Health")).Damage(2);
 			}
 		}
 
+		public void _on_RecoverTimer_timeout()
+		{
+			_isRecover = true;
+			((Health)GetNode("Health")).Recover(1);
+		}
 		public void Hitbox_AreaEntered(Area2D area)
 		{
-			if (area.IsInGroup("shotgunBullet"))
+			if (area.IsInGroup("shotgunBullet")) {
+				_isRecover = false;
 				((Health)GetNode("Health")).Damage(5);
-			if (area.IsInGroup("enemyBullet"))
+			}
+			if (area.IsInGroup("enemyBullet")) {
+				_isRecover = false;
 				((Health)GetNode("Health")).Damage(1);
+			}
 		}
 		#endregion
 	}
