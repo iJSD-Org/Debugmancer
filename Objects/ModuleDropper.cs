@@ -27,8 +27,16 @@ namespace Debugmancer.Objects
 			if(Globals.score > 2000 && _modulesDropped == 5) ShowModule(GetNode<Control>("ModuleDropper/FadeAnim/Book/GitModule"));
 			else if(Globals.score > 1500 && _modulesDropped == 4) ShowModule( GetNode<Control>("ModuleDropper/FadeAnim/Book/OOPModule"));
 			else if(Globals.score > 1000 && _modulesDropped == 3) ShowModule(GetNode<Control>("ModuleDropper/FadeAnim/Book/DataStructuresModule"));
-			else if(Globals.score > 500 && _modulesDropped == 2) ShowModule(GetNode<Control>("ModuleDropper/FadeAnim/Book/BasicProgrammingModule"));
-			else if(Globals.score > 250 && _modulesDropped == 1) ShowModule(GetNode<Control>("ModuleDropper/FadeAnim/Book/SelfStudyModule"));
+			else if(Globals.score > 500 && _modulesDropped == 2)
+			{
+				ShowModule(GetNode<Control>("ModuleDropper/FadeAnim/Book/BasicProgrammingModule"));
+				GetParent().GetNode("TestArena/Player").GetNode<Timer>("RecoverTimer").Start();
+			}
+			else if(Globals.score > 250 && _modulesDropped == 1) 
+			{
+				ShowModule(GetNode<Control>("ModuleDropper/FadeAnim/Book/SelfStudyModule"));
+				Globals.canDash = true;
+			}
 			else if(Globals.score >= 0 && _modulesDropped == 0) ShowModule(GetNode<Control>("ModuleDropper/FadeAnim/Book/DebugModule"));
 
 		}

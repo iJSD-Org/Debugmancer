@@ -24,7 +24,7 @@ tracks/0/keys = {
 }
 
 [node name="Spider" type="KinematicBody2D" groups=[
-"enemies",
+"enemy",
 ]]
 collision_layer = 8
 script = ExtResource( 4 )
