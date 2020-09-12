@@ -7,9 +7,8 @@ public class Pause : Control
 	{
 		if(Input.IsActionJustPressed("pause"))
 		{
-			GetTree().Paused = GetTree().Paused ? false:true;
+			GetTree().Paused = !GetTree().Paused;
 			Visible = GetTree().Paused;
-			GD.Print(GetTree().Paused);
 		}
 	}
 	public void _on_ResumeButton_button_up()
