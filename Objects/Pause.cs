@@ -5,7 +5,7 @@ public class Pause : Control
 {
 	public override void _Input(InputEvent @event)
 	{
-		if(Input.IsActionPressed("pause"))
+		if(Input.IsActionJustPressed("pause"))
 		{
 			GetTree().Paused = GetTree().Paused ? false:true;
 			Visible = GetTree().Paused;
