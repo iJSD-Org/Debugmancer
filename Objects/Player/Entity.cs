@@ -94,11 +94,14 @@ namespace Debugmancer.Objects.Player
 			}
 			else if (stateName == "Dash")
 			{
-				if (!_dashCooldownTimer.Enabled && Globals.canDash)
+				if (!_dashCooldownTimer.Enabled && Globals.canDash && Globals.energy - 5 > 0)
 				{
+					Globals.energy -= 5;
+					GetNode<TextureProgress>("HUD/VBoxContainer/Energy").Value = Globals.energy;
 					_dashCooldownTimer.Start();
 					StateStack.Push((State)StatesMap[stateName]);
 				}
+
 			}
 			else if (stateName == "Dead")
 			{
