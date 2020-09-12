@@ -87,10 +87,15 @@ namespace Debugmancer.Objects.TempEnemy5
 			Health health = (Health)GetNode("Health");
 			if (body.IsInGroup("playerBullet")) health.Damage(1);
 
+			
 			if (body.IsInGroup("playerCritBullet"))
 			{
-				health.Damage(2);
-				ChangeState("Teleport");
+				if(health.CurrentHealth >= 2)
+				{
+					 ChangeState("Teleport");
+					 health.Damage(2);
+				}
+				else health.Damage(1);
 			}
 		}
 	}

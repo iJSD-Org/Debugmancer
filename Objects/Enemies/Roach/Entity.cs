@@ -93,10 +93,14 @@ namespace Debugmancer.Objects.Roach
 			Health health = (Health)GetNode("Health");
 			if (body.IsInGroup("playerBullet")) health.Damage(1);
 
-			if (body.IsInGroup("playerCritBullet") && health.CurrentHealth <= 0)
+			if (body.IsInGroup("playerCritBullet"))
 			{
-				health.Damage(2);
-				ChangeState("Stagger");
+				if(health.CurrentHealth >= 2)
+				{
+					 ChangeState("Stagger");
+					 health.Damage(2);
+				}
+				else health.Damage(1);
 			}
 		}
 	}

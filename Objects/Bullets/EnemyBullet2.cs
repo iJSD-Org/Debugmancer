@@ -19,7 +19,7 @@ namespace Debugmancer.Objects.Bullets
 
 		public void _on_EnemyBullet_body_entered(Area2D body)
 		{
-			if (!body.IsInGroup("enemies") && !body.IsInGroup("playerBullet") ) QueueFree();
+			if (!body.IsInGroup("enemy") && !body.IsInGroup("playerBullet") ) QueueFree();
 		}
 	}
 }

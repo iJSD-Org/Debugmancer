@@ -88,7 +88,6 @@ script = ExtResource( 7 )
 
 [node name="Sprite" type="Sprite" parent="."]
 position = Vector2( 0.176479, -0.19362 )
-rotation = -0.0349066
 texture = ExtResource( 1 )
 vframes = 2
 hframes = 4
@@ -122,6 +121,9 @@ autostart = true
 [node name="DashTimer" type="Timer" parent="."]
 wait_time = 0.35
 one_shot = true
+
+[node name="RecoverTimer" type="Timer" parent="."]
+wait_time = 25.0
 
 [node name="Health" type="Node" parent="."]
 script = ExtResource( 3 )
@@ -197,4 +199,5 @@ position = Vector2( 0.0125217, -0.00294733 )
 [connection signal="timeout" from="BodyTimer" to="." method="BodyTimer_timeout"]
 [connection signal="timeout" from="ScentTimer" to="." method="AddScent"]
 [connection signal="timeout" from="DashTimer" to="States/Dash" method="DashTimer_timeout"]
+[connection signal="timeout" from="RecoverTimer" to="." method="_on_RecoverTimer_timeout"]
 [connection signal="HealthChanged" from="Health" to="." method="OnHealthChanged"]

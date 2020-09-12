@@ -25,7 +25,7 @@ tracks/0/keys = {
 }
 
 [node name="Virus" type="KinematicBody2D" groups=[
-"enemies",
+"enemy",
 ]]
 collision_layer = 8
 script = ExtResource( 3 )

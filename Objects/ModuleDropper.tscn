@@ -418,7 +418,7 @@ anchor_bottom = 0.5
 margin_left = -41.5
 margin_top = -21.5
 margin_right = 42.5
-margin_bottom = 22.5
+margin_bottom = 18.5
 custom_fonts/normal_font = SubResource( 5 )
 custom_colors/default_color = Color( 0, 0, 0, 1 )
 text = "Unlocks dashing! While dashing you are immune to damage! 
@@ -660,10 +660,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -41.1254
+margin_left = -41.5
 margin_top = -23.5
-margin_right = 42.8746
-margin_bottom = 20.5
+margin_right = 42.5
+margin_bottom = 15.5
 custom_fonts/normal_font = SubResource( 5 )
 custom_colors/default_color = Color( 0, 0, 0, 1 )
 text = "You've learnt data structures, a programming fundamental, you'll kill bugs faster"
@@ -753,6 +753,9 @@ custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "OOP Module"
 align = 1
 valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="DescriptionPanel" type="Panel" parent="ModuleDropper/FadeAnim/Book/OOPModule"]
 self_modulate = Color( 1, 1, 1, 0 )
@@ -778,13 +781,13 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -41.1254
+margin_left = -41.5
 margin_top = -21.5
-margin_right = 42.8746
-margin_bottom = 22.5
+margin_right = 42.5
+margin_bottom = 13.5
 custom_fonts/normal_font = SubResource( 5 )
 custom_colors/default_color = Color( 0, 0, 0, 1 )
-text = "Another programming fundamental, learning this will lengthen your time in the indusrtry"
+text = "Another programming fundamental, Learning OOP will help you when working in teams, finishing things faster"
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -800,8 +803,8 @@ margin_right = 43.5
 margin_bottom = -5.0
 custom_fonts/font = SubResource( 6 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
-text = "Health increased
-by 10 points!"
+text = "Crit Chance 
+Doubled!"
 valign = 1
 __meta__ = {
 "_edit_use_anchors_": false
@@ -897,13 +900,14 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -41.1254
+margin_left = -41.5
 margin_top = -24.5
-margin_right = 42.8746
-margin_bottom = 19.5
+margin_right = 42.5
+margin_bottom = 16.5
 custom_fonts/normal_font = SubResource( 5 )
 custom_colors/default_color = Color( 0, 0, 0, 1 )
-text = "Learning Git will get you out of sticky situations, let you revert yo old versions of your project"
+text = "Learning Git will help get you out of sticky situations, let you revert to old versions of your project, thus increasing your margin of error.
+Learning Git will lengthen your time in the indusrtry"
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -919,8 +923,8 @@ margin_right = 43.5
 margin_bottom = -1.0
 custom_fonts/font = SubResource( 6 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
-text = "Revives on death
-1 time"
+text = "HP increased
+by 10 points!"
 valign = 1
 __meta__ = {
 "_edit_use_anchors_": false

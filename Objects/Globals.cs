@@ -7,5 +7,6 @@ namespace Debugmancer.Objects
     {
         public static double score = 0;
         public static double scoreMultiplier = 1;
+        public static bool canDash = false;
     }
 }
