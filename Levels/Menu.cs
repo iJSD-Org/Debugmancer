@@ -1,28 +1,30 @@
 using Godot;
-using System;
 
-public class Menu : Control
+namespace Debugmancer.Levels
 {
-	private void _on_Start_pressed()
+	public class Menu : Control
 	{
-		GetNode<ColorRect>("ColorRect").Show();
-		GetNode<AnimationPlayer>("MenuAnimPlayer").Play("FadeOut");
-	}
-
-	private void _on_Quit_pressed()
-	{
-		GetTree().Quit();
-	}
-
-	private void _on_MenuAnimPlayer_finished(string anim_name)
-	{
-		if (anim_name == "FadeIn")
+		private void _on_Start_pressed()
 		{
-			GetNode<ColorRect>("ColorRect").Hide();
+			GetNode<ColorRect>("ColorRect").Show();
+			GetNode<AnimationPlayer>("MenuAnimPlayer").Play("FadeOut");
 		}
-		if (anim_name == "FadeOut")
+
+		private void _on_Quit_pressed()
 		{
-			GetTree().ChangeScene("res://Levels/TestArena.tscn");
+			GetTree().Quit();
+		}
+
+		private void _on_MenuAnimPlayer_finished(string anim_name)
+		{
+			if (anim_name == "FadeIn")
+			{
+				GetNode<ColorRect>("ColorRect").Hide();
+			}
+			if (anim_name == "FadeOut")
+			{
+				GetTree().ChangeScene("res://Levels/TestArena.tscn");
+			}
 		}
 	}
 }
