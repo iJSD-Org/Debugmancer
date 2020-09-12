@@ -1,7 +1,7 @@
 using System.Threading.Tasks;
 using Godot;
 
-namespace Debugmancer.Objects.TempEnemy4.States
+namespace Debugmancer.Objects.Enemies.Void.States
 {
 	public class Stagger : State
 	{

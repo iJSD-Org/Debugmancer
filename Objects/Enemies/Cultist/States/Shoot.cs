@@ -1,9 +1,7 @@
-using System;
-using System.Threading.Tasks;
 using Debugmancer.Objects.Bullets;
 using Godot;
 
-namespace Debugmancer.Objects.TempEnemy5.States
+namespace Debugmancer.Objects.Enemies.Cultist.States
 {
 	public class Shoot : State
 	{

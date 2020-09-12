@@ -1,7 +1,7 @@
 using System.Threading.Tasks;
 using Godot;
 
-namespace Debugmancer.Objects.TempEnemy1.States
+namespace Debugmancer.Objects.Enemies.Virus.States
 {
 	public class Stagger : State
 	{

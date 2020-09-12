@@ -1,6 +1,6 @@
 using Godot;
 
-namespace Debugmancer.Objects.TempEnemy5.States
+namespace Debugmancer.Objects.Enemies.Cultist.States
 {
 	public class Teleport : State
 	{

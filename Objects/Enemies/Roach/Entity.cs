@@ -1,10 +1,10 @@
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using Debugmancer.Objects.Roach.States;
+using Debugmancer.Objects.Enemies.Roach.States;
 using Godot;
 
-namespace Debugmancer.Objects.Roach
+namespace Debugmancer.Objects.Enemies.Roach
 {
 	public class Entity : KinematicBody2D
 	{

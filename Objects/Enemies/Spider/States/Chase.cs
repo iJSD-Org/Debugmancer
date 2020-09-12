@@ -1,7 +1,7 @@
 using Debugmancer.Objects.Player;
 using Godot;
 
-namespace Debugmancer.Objects.TempEnemy2.States
+namespace Debugmancer.Objects.Enemies.Spider.States
 {
 	public class Chase : State
 	{

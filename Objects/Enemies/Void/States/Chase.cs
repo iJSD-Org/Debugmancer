@@ -1,7 +1,8 @@
 using Debugmancer.Objects.Player;
 using Godot;
+using Entity = Debugmancer.Objects.Enemies.Void.Entity;
 
-namespace Debugmancer.Objects.TempEnemy4.States
+namespace Debugmancer.Objects.Enemies.Void.States
 {
 	public class Chase : State
 	{

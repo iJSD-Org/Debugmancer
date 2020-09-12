@@ -1,10 +1,10 @@
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using Debugmancer.Objects.TempEnemy5.States;
+using Debugmancer.Objects.Enemies.Cultist.States;
 using Godot;
 
-namespace Debugmancer.Objects.TempEnemy5
+namespace Debugmancer.Objects.Enemies.Cultist
 {
 	public class Entity : KinematicBody2D
 	{

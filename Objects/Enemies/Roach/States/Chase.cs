@@ -1,7 +1,7 @@
 using Debugmancer.Objects.Player;
 using Godot;
 
-namespace Debugmancer.Objects.Roach.States
+namespace Debugmancer.Objects.Enemies.Roach.States
 {
 	public class Chase : State
 	{

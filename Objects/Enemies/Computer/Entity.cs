@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 using Debugmancer.Objects.Bullets;
 using Godot;
 
-namespace Debugmancer.Objects.TempEnemy3
+namespace Debugmancer.Objects.Enemies.Computer
 {
 	public class Entity : KinematicBody2D
 	{

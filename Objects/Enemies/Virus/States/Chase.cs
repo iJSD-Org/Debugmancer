@@ -1,7 +1,7 @@
 using Debugmancer.Objects.Player;
 using Godot;
 
-namespace Debugmancer.Objects.TempEnemy1.States
+namespace Debugmancer.Objects.Enemies.Virus.States
 {
 	public class Chase : State
 	{

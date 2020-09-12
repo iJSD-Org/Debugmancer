@@ -2,10 +2,10 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Debugmancer.Objects.Bullets;
-using Debugmancer.Objects.TempEnemy2.States;
+using Debugmancer.Objects.Enemies.Spider.States;
 using Godot;
 
-namespace Debugmancer.Objects.TempEnemy2
+namespace Debugmancer.Objects.Enemies.Spider
 {
 	public class Entity : KinematicBody2D
 	{
