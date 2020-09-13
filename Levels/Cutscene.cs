@@ -11,6 +11,11 @@ namespace Debugmancer.Levels
 			GetNode<AnimationPlayer>("AnimationPlayer").Play("FadeIn");
 		}
 
+		public override void _ExitTree()
+		{
+			Input.SetMouseMode(Input.MouseMode.Visible);
+		}
+
 		public override void _Process(float delta)
 		{
 			if (Input.IsKeyPressed((int)KeyList.E))
