@@ -6,7 +6,7 @@ namespace Debugmancer
 	{
 		public override void _Input(InputEvent @event)
 		{
-			if (@event.IsActionPressed("toggle_fullscreen"))
+			if (@event.IsActionPressed("toggle_fullscreen") && !OS.IsWindowAlwaysOnTop())
 			{
 				OS.WindowFullscreen = !OS.WindowFullscreen;
 			}

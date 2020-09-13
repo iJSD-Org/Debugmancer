@@ -12,6 +12,11 @@ namespace Debugmancer.Levels
 			Input.SetMouseMode(Input.MouseMode.Hidden);
 		}
 
+		public override void _ExitTree()
+		{
+			OS.SetWindowAlwaysOnTop(false);
+		}
+
 		private void _on_Timer_timeout()
 		{
 			GetNode<Timer>("Timer").Stop();
