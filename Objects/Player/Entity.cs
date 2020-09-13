@@ -105,7 +105,8 @@ namespace Debugmancer.Objects.Player
 			}
 			else if (stateName == "Dead")
 			{
-				QueueFree();
+				Engine.TimeScale = 0.5f;
+				GetNode<AnimationPlayer>("AnimationPlayer").Play("FadeOut");
 				return;
 			}
 			else
@@ -178,6 +179,15 @@ namespace Debugmancer.Objects.Player
 			if (area.IsInGroup("enemyBullet")) {
 				_isRecover = false;
 				((Health)GetNode("Health")).Damage(1);
+			}
+		}
+
+		private void _on_AnimationPlayer_finished(string anim_name)
+		{
+			if (anim_name == "FadeOut")
+			{
+				Engine.TimeScale = 1f;
+				GetTree().ChangeScene("res://Levels/Death screen.tscn");
 			}
 		}
 		#endregion

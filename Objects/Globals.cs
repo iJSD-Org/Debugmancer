@@ -11,5 +11,6 @@ namespace Debugmancer.Objects
         public static int playerDamage = 1;
         public static int critChance = 1;
         public static int energy = 100;
+        public static bool fromDeath = false;
     }
 }

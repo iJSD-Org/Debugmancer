@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://Assets/Sprites/Entities/Game Changer SpriteSheet.png" type="Texture" id=1]
 [ext_resource path="res://Objects/Player/States/Idle.cs" type="Script" id=2]
@@ -45,6 +45,21 @@ tracks/0/keys = {
 "transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
 "update": 0,
 "values": [ 0.0, -10.0, -20.0, -10.0, 0.0 ]
+}
+
+[sub_resource type="Animation" id=5]
+resource_name = "FadeOut"
+tracks/0/type = "value"
+tracks/0/path = NodePath("HUD/ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 0, 0, 0, 0 ), Color( 0, 0, 0, 1 ) ]
 }
 
 [sub_resource type="Animation" id=3]
@@ -187,17 +202,28 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="ColorRect" type="ColorRect" parent="HUD"]
+margin_right = 317.0
+margin_bottom = 179.0
+color = Color( 0, 0, 0, 0 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/Dash = SubResource( 1 )
 anims/Dash_Flipped = SubResource( 2 )
+anims/FadeOut = SubResource( 5 )
 anims/Idle = SubResource( 3 )
 anims/Walk = SubResource( 4 )
 
 [node name="Camera" parent="." instance=ExtResource( 12 )]
 position = Vector2( 0.0125217, -0.00294733 )
+Amplitude = 10.0
 [connection signal="area_entered" from="Hitbox" to="." method="Hitbox_AreaEntered"]
 [connection signal="timeout" from="BodyTimer" to="." method="BodyTimer_timeout"]
 [connection signal="timeout" from="ScentTimer" to="." method="AddScent"]
 [connection signal="timeout" from="DashTimer" to="States/Dash" method="DashTimer_timeout"]
 [connection signal="timeout" from="RecoverTimer" to="." method="_on_RecoverTimer_timeout"]
 [connection signal="HealthChanged" from="Health" to="." method="OnHealthChanged"]
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_finished"]

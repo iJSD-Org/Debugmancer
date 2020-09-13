@@ -1,9 +1,10 @@
 using Godot;
+using Debugmancer.Objects;
 
 namespace Debugmancer.Levels
 {
 	public class Menu : Control
-	{
+	{      
 		private void _on_Start_pressed()
 		{
 			GetNode<ColorRect>("ColorRect").Show();

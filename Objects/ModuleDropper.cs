@@ -28,7 +28,6 @@ namespace Debugmancer.Objects
 				GetParent().GetNode("TestArena/Player").GetNode<TextureProgress>("HUD/VBoxContainer/Health").Value = 25;
 				GetParent().GetNode("TestArena/Player").GetNode<Health>("Health").MaxHealth += 10;
 				GetParent().GetNode("TestArena/Player").GetNode<Health>("Health").Recover(10);
-
 			}
 			else if(Globals.score > 1500 && _modulesDropped == 4) 
 			{
