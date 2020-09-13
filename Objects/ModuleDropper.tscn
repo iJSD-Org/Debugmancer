@@ -1,26 +1,952 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=18 format=2]
 
-[ext_resource path="res://icon.png" type="Texture" id=1]
+[ext_resource path="res://Assets/Sprites/Module 1.png" type="Texture" id=1]
+[ext_resource path="res://Assets/Pixelated Font.TTF" type="DynamicFontData" id=2]
+[ext_resource path="res://Assets/Jeebz-Regular.ttf" type="DynamicFontData" id=3]
+[ext_resource path="res://Assets/Sprites/Book UI.png" type="Texture" id=4]
+[ext_resource path="res://Assets/Jeebz-Bold.ttf" type="DynamicFontData" id=5]
+[ext_resource path="res://Assets/Sprites/Module 2 Sprite.png" type="Texture" id=6]
+[ext_resource path="res://Assets/Sprites/Nodule 3 Sprite.png" type="Texture" id=7]
+[ext_resource path="res://Assets/Sprites/Module 5 .png" type="Texture" id=8]
+[ext_resource path="res://Objects/ModuleDropper.cs" type="Script" id=9]
 
-[node name="ModuleDropper" type="Node"]
+[sub_resource type="Animation" id=1]
+resource_name = "FadeIn"
+length = 2.0
+tracks/0/type = "bezier"
+tracks/0/path = NodePath("FadeAnim/Book:modulate:r")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"points": PoolRealArray( 1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 2 )
+}
+tracks/1/type = "bezier"
+tracks/1/path = NodePath("FadeAnim/Book:modulate:g")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"points": PoolRealArray( 1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 2 )
+}
+tracks/2/type = "bezier"
+tracks/2/path = NodePath("FadeAnim/Book:modulate:b")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"points": PoolRealArray( 1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 2 )
+}
+tracks/3/type = "bezier"
+tracks/3/path = NodePath("FadeAnim/Book:modulate:a")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"points": PoolRealArray( 0, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 2 )
+}
+tracks/4/type = "bezier"
+tracks/4/path = NodePath("FadeAnim/Overlay:self_modulate:r")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"points": PoolRealArray( 1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 2 )
+}
+tracks/5/type = "bezier"
+tracks/5/path = NodePath("FadeAnim/Overlay:self_modulate:g")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"points": PoolRealArray( 1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 2 )
+}
+tracks/6/type = "bezier"
+tracks/6/path = NodePath("FadeAnim/Overlay:self_modulate:b")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"points": PoolRealArray( 1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 2 )
+}
+tracks/7/type = "bezier"
+tracks/7/path = NodePath("FadeAnim/Overlay:self_modulate:a")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"points": PoolRealArray( 0, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 2 )
+}
 
-[node name="CenterContainer" type="CenterContainer" parent="."]
-visible = false
+[sub_resource type="DynamicFont" id=2]
+size = 8
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=3]
+size = 7
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=4]
+size = 8
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=5]
+size = 7
+font_data = ExtResource( 3 )
+
+[sub_resource type="DynamicFont" id=6]
+size = 8
+font_data = ExtResource( 5 )
+
+[sub_resource type="Animation" id=7]
+resource_name = "Blink"
+length = 2.0
+loop = true
+tracks/0/type = "bezier"
+tracks/0/path = NodePath("BlinkAnim/Label:self_modulate:r")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"points": PoolRealArray( 1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 1, 2 )
+}
+tracks/1/type = "bezier"
+tracks/1/path = NodePath("BlinkAnim/Label:self_modulate:g")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"points": PoolRealArray( 1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 1, 2 )
+}
+tracks/2/type = "bezier"
+tracks/2/path = NodePath("BlinkAnim/Label:self_modulate:b")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"points": PoolRealArray( 1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 1, 2 )
+}
+tracks/3/type = "bezier"
+tracks/3/path = NodePath("BlinkAnim/Label:self_modulate:a")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"points": PoolRealArray( 1, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 1, 2 )
+}
+
+[sub_resource type="DynamicFont" id=8]
+font_data = ExtResource( 3 )
+
+[node name="ModuleCanvas" type="CanvasLayer"]
+pause_mode = 2
+script = ExtResource( 9 )
+
+[node name="ModuleDropper" type="Control" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 3.77972
-margin_right = 3.77972
-use_top_left = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="TextureRect" type="TextureRect" parent="CenterContainer"]
-stretch_mode = 4
+[node name="FadeAnim" type="AnimationPlayer" parent="ModuleDropper"]
+anims/FadeIn = SubResource( 1 )
 
-[node name="Shade" type="Sprite" parent="CenterContainer"]
-modulate = Color( 0, 0, 0, 0.313726 )
-self_modulate = Color( 0, 0, 0, 1 )
-position = Vector2( 1.25999, -1.13307 )
-scale = Vector2( 319.76, 183.962 )
+[node name="Overlay" type="ColorRect" parent="ModuleDropper/FadeAnim"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_bottom = 1.52588e-05
+color = Color( 0, 0, 0, 0.588235 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Book" type="TextureRect" parent="ModuleDropper/FadeAnim"]
+visible = false
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -124.764
+margin_top = -115.0
+margin_right = 125.236
+margin_bottom = 135.0
+texture = ExtResource( 4 )
+stretch_mode = 6
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="DebugModule" type="Control" parent="ModuleDropper/FadeAnim/Book"]
+visible = false
+anchor_left = -0.14
+anchor_top = 0.08
+anchor_right = 1.14
+anchor_bottom = 0.796
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="ModulePanel" type="Panel" parent="ModuleDropper/FadeAnim/Book/DebugModule"]
+self_modulate = Color( 1, 1, 1, 0 )
+margin_left = 57.0
+margin_top = 43.0
+margin_right = 156.0
+margin_bottom = 123.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label2" type="Label" parent="ModuleDropper/FadeAnim/Book/DebugModule/ModulePanel"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -49.5
+margin_top = 5.0
+margin_right = 49.5
+margin_bottom = 16.0
+custom_fonts/font = SubResource( 2 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "Module Unlocked!"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect" type="TextureRect" parent="ModuleDropper/FadeAnim/Book/DebugModule/ModulePanel"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -20.0
+margin_top = -24.0
+margin_right = 20.0
+margin_bottom = 16.0
 texture = ExtResource( 1 )
+stretch_mode = 6
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="ModuleDropper/FadeAnim/Book/DebugModule/ModulePanel"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -40.0
+margin_top = -27.0
+margin_right = 40.0
+custom_fonts/font = SubResource( 3 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "Debugging Module"
+align = 1
+valign = 1
+
+[node name="DescriptionPanel" type="Panel" parent="ModuleDropper/FadeAnim/Book/DebugModule"]
+self_modulate = Color( 1, 1, 1, 0 )
+margin_left = 161.0
+margin_top = 43.0
+margin_right = 256.0
+margin_bottom = 124.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="ModuleDropper/FadeAnim/Book/DebugModule/DescriptionPanel"]
+margin_top = 4.0
+margin_right = 62.0
+margin_bottom = 18.0
+custom_fonts/font = SubResource( 4 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "Description:"
+valign = 1
+
+[node name="RichTextLabel" type="RichTextLabel" parent="ModuleDropper/FadeAnim/Book/DebugModule/DescriptionPanel"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -41.1254
+margin_top = -21.5
+margin_right = 42.8746
+margin_bottom = 22.5
+custom_fonts/normal_font = SubResource( 5 )
+custom_colors/default_color = Color( 0, 0, 0, 1 )
+text = "Your weapon in fighting against bugs, given by iJSD!
+
+Consumes more energy the lower your energy  gets!
+
+Consumes 3 energy when energy > 80%
+
+Consumes 5 energy when energy >= 50%
+
+Consumes 8 energy when energy < 50%
+"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label2" type="Label" parent="ModuleDropper/FadeAnim/Book/DebugModule/DescriptionPanel"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -43.5
+margin_top = -18.0
+margin_right = 43.5
+margin_bottom = -4.0
+custom_fonts/font = SubResource( 6 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "Left Click to Shoot"
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SelfStudyModule" type="Control" parent="ModuleDropper/FadeAnim/Book"]
+visible = false
+anchor_left = -0.14
+anchor_top = 0.08
+anchor_right = 1.14
+anchor_bottom = 0.796
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="ModulePanel" type="Panel" parent="ModuleDropper/FadeAnim/Book/SelfStudyModule"]
+self_modulate = Color( 1, 1, 1, 0 )
+margin_left = 57.0
+margin_top = 43.0
+margin_right = 156.0
+margin_bottom = 123.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label2" type="Label" parent="ModuleDropper/FadeAnim/Book/SelfStudyModule/ModulePanel"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -49.5
+margin_top = 5.0
+margin_right = 49.5
+margin_bottom = 16.0
+custom_fonts/font = SubResource( 2 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "Module Unlocked!"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect" type="TextureRect" parent="ModuleDropper/FadeAnim/Book/SelfStudyModule/ModulePanel"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -20.0
+margin_top = -26.0
+margin_right = 20.0
+margin_bottom = 14.0
+texture = ExtResource( 6 )
+stretch_mode = 6
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="ModuleDropper/FadeAnim/Book/SelfStudyModule/ModulePanel"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -42.0
+margin_top = -27.0
+margin_right = 42.0
+custom_fonts/font = SubResource( 3 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "Self-Study Module"
+align = 1
+valign = 1
+
+[node name="DescriptionPanel" type="Panel" parent="ModuleDropper/FadeAnim/Book/SelfStudyModule"]
+self_modulate = Color( 1, 1, 1, 0 )
+margin_left = 161.0
+margin_top = 43.0
+margin_right = 256.0
+margin_bottom = 124.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="ModuleDropper/FadeAnim/Book/SelfStudyModule/DescriptionPanel"]
+margin_top = 4.0
+margin_right = 62.0
+margin_bottom = 18.0
+custom_fonts/font = SubResource( 4 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "Description:"
+valign = 1
+
+[node name="RichTextLabel" type="RichTextLabel" parent="ModuleDropper/FadeAnim/Book/SelfStudyModule/DescriptionPanel"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -41.5
+margin_top = -21.5
+margin_right = 42.5
+margin_bottom = 18.5
+custom_fonts/normal_font = SubResource( 5 )
+custom_colors/default_color = Color( 0, 0, 0, 1 )
+text = "Unlocks dashing! While dashing you are immune to damage! 
+Consumes 5 Energy
+"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label2" type="Label" parent="ModuleDropper/FadeAnim/Book/SelfStudyModule/DescriptionPanel"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -43.5
+margin_top = -22.0
+margin_right = 43.5
+margin_bottom = -8.0
+custom_fonts/font = SubResource( 6 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "Shift to Dash"
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="BasicProgrammingModule" type="Control" parent="ModuleDropper/FadeAnim/Book"]
+visible = false
+anchor_left = -0.14
+anchor_top = 0.08
+anchor_right = 1.14
+anchor_bottom = 0.796
+margin_right = -3.05176e-05
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="ModulePanel" type="Panel" parent="ModuleDropper/FadeAnim/Book/BasicProgrammingModule"]
+self_modulate = Color( 1, 1, 1, 0 )
+margin_left = 57.0
+margin_top = 43.0
+margin_right = 156.0
+margin_bottom = 123.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label2" type="Label" parent="ModuleDropper/FadeAnim/Book/BasicProgrammingModule/ModulePanel"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -49.5
+margin_top = 5.0
+margin_right = 49.5
+margin_bottom = 16.0
+custom_fonts/font = SubResource( 2 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "Module Unlocked!"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect" type="TextureRect" parent="ModuleDropper/FadeAnim/Book/BasicProgrammingModule/ModulePanel"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -20.0
+margin_top = -30.0
+margin_right = 20.0
+margin_bottom = 10.0
+texture = ExtResource( 7 )
+stretch_mode = 6
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="ModuleDropper/FadeAnim/Book/BasicProgrammingModule/ModulePanel"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -42.5
+margin_top = -27.0
+margin_right = 42.5
+custom_fonts/font = SubResource( 3 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "Basic Programming
+Module"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="DescriptionPanel" type="Panel" parent="ModuleDropper/FadeAnim/Book/BasicProgrammingModule"]
+self_modulate = Color( 1, 1, 1, 0 )
+margin_left = 161.0
+margin_top = 43.0
+margin_right = 256.0
+margin_bottom = 124.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="ModuleDropper/FadeAnim/Book/BasicProgrammingModule/DescriptionPanel"]
+margin_top = 4.0
+margin_right = 62.0
+margin_bottom = 18.0
+custom_fonts/font = SubResource( 4 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "Description:"
+valign = 1
+
+[node name="RichTextLabel" type="RichTextLabel" parent="ModuleDropper/FadeAnim/Book/BasicProgrammingModule/DescriptionPanel"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -41.1254
+margin_top = -21.5
+margin_right = 42.8746
+margin_bottom = 22.5
+custom_fonts/normal_font = SubResource( 5 )
+custom_colors/default_color = Color( 0, 0, 0, 1 )
+text = "Basic Programming will be your lifeline in whatever program!"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label2" type="Label" parent="ModuleDropper/FadeAnim/Book/BasicProgrammingModule/DescriptionPanel"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -43.5
+margin_top = -27.0
+margin_right = 43.5
+margin_bottom = -4.0
+custom_fonts/font = SubResource( 6 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "+1 HP per 25 
+Seconds"
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="DataStructuresModule" type="Control" parent="ModuleDropper/FadeAnim/Book"]
+visible = false
+anchor_left = -0.14
+anchor_top = 0.08
+anchor_right = 1.14
+anchor_bottom = 0.796
+margin_right = -3.05176e-05
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="ModulePanel" type="Panel" parent="ModuleDropper/FadeAnim/Book/DataStructuresModule"]
+self_modulate = Color( 1, 1, 1, 0 )
+margin_left = 57.0
+margin_top = 43.0
+margin_right = 156.0
+margin_bottom = 123.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label2" type="Label" parent="ModuleDropper/FadeAnim/Book/DataStructuresModule/ModulePanel"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -49.5
+margin_top = 5.0
+margin_right = 49.5
+margin_bottom = 16.0
+custom_fonts/font = SubResource( 2 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "Module Unlocked!"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect" type="TextureRect" parent="ModuleDropper/FadeAnim/Book/DataStructuresModule/ModulePanel"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -20.0
+margin_top = -24.0
+margin_right = 20.0
+margin_bottom = 16.0
+texture = ExtResource( 1 )
+stretch_mode = 6
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="ModuleDropper/FadeAnim/Book/DataStructuresModule/ModulePanel"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -39.5
+margin_top = -27.0
+margin_right = 39.5
+custom_fonts/font = SubResource( 3 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "Data Structures
+Module"
+align = 1
+valign = 1
+
+[node name="DescriptionPanel" type="Panel" parent="ModuleDropper/FadeAnim/Book/DataStructuresModule"]
+self_modulate = Color( 1, 1, 1, 0 )
+margin_left = 161.0
+margin_top = 43.0
+margin_right = 256.0
+margin_bottom = 124.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="ModuleDropper/FadeAnim/Book/DataStructuresModule/DescriptionPanel"]
+margin_top = 4.0
+margin_right = 62.0
+margin_bottom = 18.0
+custom_fonts/font = SubResource( 4 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "Description:"
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RichTextLabel" type="RichTextLabel" parent="ModuleDropper/FadeAnim/Book/DataStructuresModule/DescriptionPanel"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -41.5
+margin_top = -23.5
+margin_right = 42.5
+margin_bottom = 15.5
+custom_fonts/normal_font = SubResource( 5 )
+custom_colors/default_color = Color( 0, 0, 0, 1 )
+text = "You've learnt data structures, a programming fundamental, you'll kill bugs faster"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label2" type="Label" parent="ModuleDropper/FadeAnim/Book/DataStructuresModule/DescriptionPanel"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -43.5
+margin_top = -25.0
+margin_right = 43.5
+margin_bottom = -2.0
+custom_fonts/font = SubResource( 6 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "Your damage 
+dealt is doubled!"
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="OOPModule" type="Control" parent="ModuleDropper/FadeAnim/Book"]
+visible = false
+anchor_left = -0.14
+anchor_top = 0.08
+anchor_right = 1.14
+anchor_bottom = 0.796
+margin_right = -3.05176e-05
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="ModulePanel" type="Panel" parent="ModuleDropper/FadeAnim/Book/OOPModule"]
+self_modulate = Color( 1, 1, 1, 0 )
+margin_left = 57.0
+margin_top = 43.0
+margin_right = 156.0
+margin_bottom = 123.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label2" type="Label" parent="ModuleDropper/FadeAnim/Book/OOPModule/ModulePanel"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -49.5
+margin_top = 5.0
+margin_right = 49.5
+margin_bottom = 16.0
+custom_fonts/font = SubResource( 2 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "Module Unlocked!"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect" type="TextureRect" parent="ModuleDropper/FadeAnim/Book/OOPModule/ModulePanel"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -18.0
+margin_top = -26.0
+margin_right = 22.0
+margin_bottom = 14.0
+texture = ExtResource( 8 )
+stretch_mode = 6
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="ModuleDropper/FadeAnim/Book/OOPModule/ModulePanel"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -39.5
+margin_top = -27.0
+margin_right = 39.5
+custom_fonts/font = SubResource( 3 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "OOP Module"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="DescriptionPanel" type="Panel" parent="ModuleDropper/FadeAnim/Book/OOPModule"]
+self_modulate = Color( 1, 1, 1, 0 )
+margin_left = 161.0
+margin_top = 43.0
+margin_right = 256.0
+margin_bottom = 124.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="ModuleDropper/FadeAnim/Book/OOPModule/DescriptionPanel"]
+margin_top = 4.0
+margin_right = 62.0
+margin_bottom = 18.0
+custom_fonts/font = SubResource( 4 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "Description:"
+valign = 1
+
+[node name="RichTextLabel" type="RichTextLabel" parent="ModuleDropper/FadeAnim/Book/OOPModule/DescriptionPanel"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -41.5
+margin_top = -21.5
+margin_right = 42.5
+margin_bottom = 13.5
+custom_fonts/normal_font = SubResource( 5 )
+custom_colors/default_color = Color( 0, 0, 0, 1 )
+text = "Another programming fundamental, Learning OOP will help you when working in teams, finishing things faster"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label2" type="Label" parent="ModuleDropper/FadeAnim/Book/OOPModule/DescriptionPanel"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -43.5
+margin_top = -28.0
+margin_right = 43.5
+margin_bottom = -5.0
+custom_fonts/font = SubResource( 6 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "Crit Chance 
+Doubled!"
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="GitModule" type="Control" parent="ModuleDropper/FadeAnim/Book"]
+visible = false
+anchor_left = -0.14
+anchor_top = 0.08
+anchor_right = 1.14
+anchor_bottom = 0.796
+margin_right = -3.05176e-05
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="ModulePanel" type="Panel" parent="ModuleDropper/FadeAnim/Book/GitModule"]
+self_modulate = Color( 1, 1, 1, 0 )
+margin_left = 57.0
+margin_top = 43.0
+margin_right = 156.0
+margin_bottom = 123.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label2" type="Label" parent="ModuleDropper/FadeAnim/Book/GitModule/ModulePanel"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -49.5
+margin_top = 5.0
+margin_right = 49.5
+margin_bottom = 16.0
+custom_fonts/font = SubResource( 2 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "Module Unlocked!"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect" type="TextureRect" parent="ModuleDropper/FadeAnim/Book/GitModule/ModulePanel"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -18.0
+margin_top = -26.0
+margin_right = 22.0
+margin_bottom = 14.0
+texture = ExtResource( 8 )
+stretch_mode = 6
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="ModuleDropper/FadeAnim/Book/GitModule/ModulePanel"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -39.5
+margin_top = -26.4054
+margin_right = 39.5
+margin_bottom = 0.594604
+custom_fonts/font = SubResource( 3 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "Git Module"
+align = 1
+valign = 1
+
+[node name="DescriptionPanel" type="Panel" parent="ModuleDropper/FadeAnim/Book/GitModule"]
+self_modulate = Color( 1, 1, 1, 0 )
+margin_left = 161.0
+margin_top = 43.0
+margin_right = 256.0
+margin_bottom = 124.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="ModuleDropper/FadeAnim/Book/GitModule/DescriptionPanel"]
+margin_top = 4.0
+margin_right = 62.0
+margin_bottom = 18.0
+custom_fonts/font = SubResource( 4 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "Description:"
+valign = 1
+
+[node name="RichTextLabel" type="RichTextLabel" parent="ModuleDropper/FadeAnim/Book/GitModule/DescriptionPanel"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -41.5
+margin_top = -24.5
+margin_right = 42.5
+margin_bottom = 16.5
+custom_fonts/normal_font = SubResource( 5 )
+custom_colors/default_color = Color( 0, 0, 0, 1 )
+text = "Learning Git will help get you out of sticky situations, let you revert to old versions of your project, thus increasing your margin of error.
+Learning Git will lengthen your time in the indusrtry"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label2" type="Label" parent="ModuleDropper/FadeAnim/Book/GitModule/DescriptionPanel"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -43.5
+margin_top = -24.0
+margin_right = 43.5
+margin_bottom = -1.0
+custom_fonts/font = SubResource( 6 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "HP increased
+by 10 points!"
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="BlinkAnim" type="AnimationPlayer" parent="ModuleDropper"]
+anims/Blink = SubResource( 7 )
+
+[node name="Label" type="Label" parent="ModuleDropper/BlinkAnim"]
+visible = false
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -95.0
+margin_top = -35.0
+margin_right = 95.0
+margin_bottom = -16.0
+custom_fonts/font = SubResource( 8 )
+text = "Press E to continue"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}

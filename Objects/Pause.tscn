@@ -1,0 +1,93 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://Objects/Pause.cs" type="Script" id=1]
+[ext_resource path="res://Assets/Sprites/Pause UI.png" type="Texture" id=2]
+[ext_resource path="res://Assets/Sprites/Resume button.png" type="Texture" id=3]
+[ext_resource path="res://Assets/Sprites/Quit button.png" type="Texture" id=4]
+[ext_resource path="res://Assets/Pixelated Font.TTF" type="DynamicFontData" id=5]
+[ext_resource path="res://Assets/Sprites/Resume button hovered.png" type="Texture" id=6]
+[ext_resource path="res://Assets/Sprites/Quit button hovered.png" type="Texture" id=7]
+
+[sub_resource type="DynamicFont" id=1]
+size = 17
+font_data = ExtResource( 5 )
+
+[node name="PauseCanvas" type="CanvasLayer"]
+layer = 5
+
+[node name="Pause" type="Control" parent="."]
+pause_mode = 2
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Overlay" type="ColorRect" parent="Pause"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 0.157501
+margin_top = -0.23597
+margin_right = 0.157501
+margin_bottom = -0.235962
+color = Color( 0, 0, 0, 0.588235 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PauseBox" type="TextureRect" parent="Pause"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -54.6663
+margin_top = -50.0
+margin_right = 73.3337
+margin_bottom = 78.0
+texture = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ResumeButton" type="TextureButton" parent="Pause/PauseBox"]
+margin_left = 23.1278
+margin_top = 36.6653
+margin_right = 87.1278
+margin_bottom = 76.6653
+texture_normal = ExtResource( 3 )
+texture_hover = ExtResource( 6 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="QuitButton" type="TextureButton" parent="Pause/PauseBox"]
+margin_left = 22.8618
+margin_top = 63.1764
+margin_right = 86.8618
+margin_bottom = 103.176
+texture_normal = ExtResource( 4 )
+texture_hover = ExtResource( 7 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Pause"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -43.0
+margin_top = -62.5
+margin_right = 45.0
+margin_bottom = -37.5
+custom_fonts/font = SubResource( 1 )
+text = "PAUSED"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="button_up" from="Pause/PauseBox/ResumeButton" to="Pause" method="_on_ResumeButton_button_up"]
+[connection signal="button_up" from="Pause/PauseBox/QuitButton" to="Pause" method="_on_QuitButton_button_up"]

@@ -1,0 +1,71 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://Assets/Sprites/Entities/Spider SpriteSheet-export.png" type="Texture" id=1]
+[ext_resource path="res://Objects/Enemies/Spider/States/Stagger.cs" type="Script" id=2]
+[ext_resource path="res://Objects/Enemies/Spider/States/Chase.cs" type="Script" id=3]
+[ext_resource path="res://Objects/Enemies/Spider/Entity.cs" type="Script" id=4]
+[ext_resource path="res://Objects/Health.cs" type="Script" id=5]
+
+[sub_resource type="Animation" id=1]
+length = 0.65
+loop = true
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.15, 0.3, 0.45 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3 ]
+}
+
+[node name="Spider" type="KinematicBody2D" groups=[
+"enemy",
+]]
+collision_layer = 8
+script = ExtResource( 4 )
+
+[node name="Sprite" type="Sprite" parent="."]
+texture = ExtResource( 1 )
+vframes = 3
+hframes = 4
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+position = Vector2( -12, -12 )
+polygon = PoolVector2Array( 22, 11, 21, 17, 20, 18, 14, 20, 8, 20, 2, 18, 1, 12, 1, 10, 4, 7, 8, 5, 15, 5, 19, 7 )
+
+[node name="ShootTimer" type="Timer" parent="."]
+
+[node name="DashTimer" type="Timer" parent="."]
+wait_time = 2.0
+
+[node name="Hitbox" type="Area2D" parent="."]
+collision_layer = 2
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Hitbox"]
+position = Vector2( -12, -12 )
+polygon = PoolVector2Array( 22, 11, 21, 17, 20, 18, 14, 20, 8, 20, 2, 18, 1, 12, 1, 10, 4, 7, 8, 5, 15, 5, 19, 7 )
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+collision_mask = 8
+
+[node name="Health" type="Node" parent="."]
+script = ExtResource( 5 )
+MaxHealth = 10
+
+[node name="States" type="Node" parent="."]
+
+[node name="Chase" type="Node" parent="States"]
+script = ExtResource( 3 )
+
+[node name="Stagger" type="Node" parent="States"]
+script = ExtResource( 2 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/Chase = SubResource( 1 )
+[connection signal="timeout" from="ShootTimer" to="." method="ShootTimer_timeout"]
+[connection signal="body_entered" from="Hitbox" to="." method="Hitbox_BodyEntered"]

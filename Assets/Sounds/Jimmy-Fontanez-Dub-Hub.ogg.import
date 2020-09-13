@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Jimmy-Fontanez-Dub-Hub.ogg-fb06b3ae89d46ce50a4299db0b6fd39a.oggstr"
+
+[deps]
+
+source_file="res://Assets/Sounds/Jimmy-Fontanez-Dub-Hub.ogg"
+dest_files=[ "res://.import/Jimmy-Fontanez-Dub-Hub.ogg-fb06b3ae89d46ce50a4299db0b6fd39a.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

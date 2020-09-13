@@ -1,0 +1,87 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://Assets/Sprites/Entities/Cockroach SpriteSheet.png" type="Texture" id=1]
+[ext_resource path="res://Objects/Enemies/Roach/States/Chase.cs" type="Script" id=2]
+[ext_resource path="res://Objects/Enemies/Roach/States/Stagger.cs" type="Script" id=3]
+[ext_resource path="res://Objects/Enemies/Roach/Entity.cs" type="Script" id=4]
+[ext_resource path="res://Objects/Health.cs" type="Script" id=5]
+
+[sub_resource type="Animation" id=1]
+length = 0.5
+loop = true
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("../Roach/Roach3:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.15, 0.3, 0.45 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3 ]
+}
+
+[sub_resource type="Animation" id=2]
+length = 0.65
+loop = true
+step = 0.025
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.15, 0.3, 0.45 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 4, 5, 6, 7 ]
+}
+
+[node name="Roach" type="KinematicBody2D" groups=[
+"enemy",
+]]
+collision_layer = 2147483652
+collision_mask = 0
+script = ExtResource( 4 )
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 0, 0.0936432 )
+texture = ExtResource( 1 )
+vframes = 2
+hframes = 4
+frame = 4
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+position = Vector2( -8, -23.9064 )
+polygon = PoolVector2Array( 13, 25, 12, 30, 11, 31, 3, 31, 0, 27, 0, 25, 2, 17, 13, 17 )
+
+[node name="Hitbox" type="Area2D" parent="."]
+collision_layer = 2
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Hitbox"]
+position = Vector2( -8, -23.9064 )
+polygon = PoolVector2Array( 13, 25, 12, 30, 11, 31, 3, 31, 0, 27, 0, 25, 2, 17, 13, 17 )
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+enabled = true
+collision_mask = 2147483656
+
+[node name="Health" type="Node" parent="."]
+script = ExtResource( 5 )
+MaxHealth = 5
+
+[node name="States" type="Node" parent="."]
+
+[node name="Chase" type="Node" parent="States"]
+script = ExtResource( 2 )
+
+[node name="Stagger" type="Node" parent="States"]
+script = ExtResource( 3 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/Idle = SubResource( 1 )
+anims/Walk = SubResource( 2 )
+[connection signal="body_entered" from="Hitbox" to="." method="Hitbox_BodyEntered"]

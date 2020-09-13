@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://Assets/Sprites/Entities/Game Changer SpriteSheet.png" type="Texture" id=1]
 [ext_resource path="res://Objects/Player/States/Idle.cs" type="Script" id=2]
@@ -7,12 +7,13 @@
 [ext_resource path="res://Objects/Player/States/Dash.cs" type="Script" id=5]
 [ext_resource path="res://Objects/Gun.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Objects/Player/Entity.cs" type="Script" id=7]
+[ext_resource path="res://Assets/Sprites/Health_Full.png" type="Texture" id=8]
+[ext_resource path="res://Assets/Sprites/Health.png" type="Texture" id=9]
+[ext_resource path="res://Assets/Sprites/Energy_Full.png" type="Texture" id=10]
+[ext_resource path="res://Assets/Sprites/Energy.png" type="Texture" id=11]
+[ext_resource path="res://Objects/Player/Camera.tscn" type="PackedScene" id=12]
 
-
-[sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 5.28344, 7.37858 )
-
-[sub_resource type="Animation" id=2]
+[sub_resource type="Animation" id=1]
 resource_name = "Dash"
 length = 0.3
 step = 0.013
@@ -29,7 +30,7 @@ tracks/0/keys = {
 "values": [ 0.0, 10.0, 20.0, 10.0, 0.0 ]
 }
 
-[sub_resource type="Animation" id=3]
+[sub_resource type="Animation" id=2]
 resource_name = "Dash_Flipped"
 length = 0.3
 step = 0.013
@@ -46,7 +47,22 @@ tracks/0/keys = {
 "values": [ 0.0, -10.0, -20.0, -10.0, 0.0 ]
 }
 
-[sub_resource type="Animation" id=4]
+[sub_resource type="Animation" id=5]
+resource_name = "FadeOut"
+tracks/0/type = "value"
+tracks/0/path = NodePath("HUD/ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 0, 0, 0, 0 ), Color( 0, 0, 0, 1 ) ]
+}
+
+[sub_resource type="Animation" id=3]
 length = 0.95
 loop = true
 tracks/0/type = "value"
@@ -62,7 +78,7 @@ tracks/0/keys = {
 "values": [ 3, 6, 4, 7 ]
 }
 
-[sub_resource type="Animation" id=5]
+[sub_resource type="Animation" id=4]
 length = 0.65
 loop = true
 step = 0.05
@@ -87,27 +103,27 @@ script = ExtResource( 7 )
 
 [node name="Sprite" type="Sprite" parent="."]
 position = Vector2( 0.176479, -0.19362 )
-rotation = -0.0349066
 texture = ExtResource( 1 )
 vframes = 2
 hframes = 4
 frame = 4
 region_rect = Rect2( 0, 0, 16, 16 )
 
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+position = Vector2( -7.82352, -24.1936 )
+rotation = -0.0349066
+polygon = PoolVector2Array( 14, 25, 13, 30, 12, 31, 4, 31, 3, 26, 3, 17, 14, 17 )
+
 [node name="Gun" parent="." instance=ExtResource( 6 )]
 position = Vector2( 9.88201, 0 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( 0.157916, 0.288688 )
-shape = SubResource( 1 )
 
 [node name="Hitbox" type="Area2D" parent="."]
 collision_mask = 2
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
-position = Vector2( 0.157916, 0.288688 )
-scale = Vector2( 1.1, 1.1 )
-shape = SubResource( 1 )
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Hitbox"]
+position = Vector2( -7.82352, -24.1936 )
+rotation = -0.0349066
+polygon = PoolVector2Array( 14, 25, 13, 30, 12, 31, 4, 31, 3, 26, 3, 17, 14, 17 )
 
 [node name="BodyTimer" type="Timer" parent="."]
 wait_time = 0.5
@@ -120,6 +136,9 @@ autostart = true
 [node name="DashTimer" type="Timer" parent="."]
 wait_time = 0.35
 one_shot = true
+
+[node name="RecoverTimer" type="Timer" parent="."]
+wait_time = 25.0
 
 [node name="Health" type="Node" parent="."]
 script = ExtResource( 3 )
@@ -138,23 +157,73 @@ script = ExtResource( 5 )
 
 [node name="HUD" type="CanvasLayer" parent="."]
 
-[node name="Health" type="Label" parent="HUD"]
-margin_left = 244.382
-margin_top = 0.297295
-margin_right = 318.382
-margin_bottom = 14.2973
-text = "Health:"
+[node name="VBoxContainer" type="VBoxContainer" parent="HUD"]
+anchor_right = 0.075
+margin_right = 40.0
+margin_bottom = 40.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Health" type="TextureProgress" parent="HUD/VBoxContainer"]
+margin_right = 64.0
+margin_bottom = 16.0
+min_value = -10.0
+max_value = 25.0
+value = 1.0
+texture_under = ExtResource( 9 )
+texture_over = ExtResource( 9 )
+texture_progress = ExtResource( 8 )
+tint_progress = Color( 0.966797, 0.966797, 0.966797, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Energy" type="TextureProgress" parent="HUD/VBoxContainer"]
+margin_top = 20.0
+margin_right = 64.0
+margin_bottom = 36.0
+value = 100.0
+rounded = true
+texture_under = ExtResource( 11 )
+texture_progress = ExtResource( 10 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Score" type="Label" parent="HUD"]
+anchor_right = 0.196875
+margin_left = 202.234
+margin_top = 0.8909
+margin_right = 242.234
+margin_bottom = 14.8909
+text = "Score:00000000"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect" type="ColorRect" parent="HUD"]
+margin_right = 317.0
+margin_bottom = 179.0
+color = Color( 0, 0, 0, 0 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/Dash = SubResource( 2 )
-anims/Dash_Flipped = SubResource( 3 )
-anims/Idle = SubResource( 4 )
-anims/Walk = SubResource( 5 )
+anims/Dash = SubResource( 1 )
+anims/Dash_Flipped = SubResource( 2 )
+anims/FadeOut = SubResource( 5 )
+anims/Idle = SubResource( 3 )
+anims/Walk = SubResource( 4 )
+
+[node name="Camera" parent="." instance=ExtResource( 12 )]
+position = Vector2( 0.0125217, -0.00294733 )
+Amplitude = 10.0
 [connection signal="area_entered" from="Hitbox" to="." method="Hitbox_AreaEntered"]
 [connection signal="timeout" from="BodyTimer" to="." method="BodyTimer_timeout"]
 [connection signal="timeout" from="ScentTimer" to="." method="AddScent"]
 [connection signal="timeout" from="DashTimer" to="States/Dash" method="DashTimer_timeout"]
+[connection signal="timeout" from="RecoverTimer" to="." method="_on_RecoverTimer_timeout"]
 [connection signal="HealthChanged" from="Health" to="." method="OnHealthChanged"]
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_finished"]

@@ -12,7 +12,7 @@ namespace Debugmancer.Objects.Player.States
 		public override void Enter(KinematicBody2D host)
 		{
 			host.GetNode<Timer>("DashTimer").Start();
-			host.GetNode<CollisionShape2D>("Hitbox/CollisionShape2D").Disabled = true;
+			host.GetNode<CollisionPolygon2D>("Hitbox/CollisionPolygon2D").Disabled = true;
 			host.GetNode<AnimationPlayer>("AnimationPlayer")
 				.Play(!host.GetNode<Sprite>("Sprite").FlipH ? "Dash" : "Dash_Flipped");
 			_inputDirection = new Vector2(
@@ -26,7 +26,7 @@ namespace Debugmancer.Objects.Player.States
 
 		public override void Exit(KinematicBody2D host)
 		{
-			host.GetNode<CollisionShape2D>("Hitbox/CollisionShape2D").Disabled = false;
+			host.GetNode<CollisionPolygon2D>("Hitbox/CollisionPolygon2D").Disabled = false;
 		}
 
 		public override void HandleInput(KinematicBody2D host, InputEvent @event)
