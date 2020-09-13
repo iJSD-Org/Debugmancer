@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using Debugmancer.NamedPipeClient;
 using DiscordRPC;
 using Godot;
@@ -20,9 +20,9 @@ namespace Debugmancer
 				Details = "https://github.com/sitiom/Debugmancer",
 				Assets = new Assets()
 				{
-					SmallImageKey = "godot",
+					SmallImageKey = "godot-3",
 					SmallImageText = "Made with Godot Engine",
-					LargeImageKey = "godot",
+					LargeImageKey = "bugmancer",
 				},
 				Timestamps = new Timestamps(DateTime.UtcNow)
 			};
