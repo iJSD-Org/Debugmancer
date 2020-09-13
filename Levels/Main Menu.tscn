@@ -1,14 +1,13 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://Assets/bitmgothic.medium.ttf" type="DynamicFontData" id=1]
-[ext_resource path="res://Levels/Cutscene.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Assets/Sprites/Start.png" type="Texture" id=3]
 [ext_resource path="res://Assets/Sprites/Quit.png" type="Texture" id=4]
 [ext_resource path="res://Assets/Sprites/Start Hovered.png" type="Texture" id=5]
 [ext_resource path="res://Levels/Menu.cs" type="Script" id=6]
 [ext_resource path="res://Assets/Sprites/Quit Hovered.png" type="Texture" id=7]
 
-[sub_resource type="Animation" id=3]
+[sub_resource type="Animation" id=1]
 resource_name = "FadeIn"
 length = 0.8
 tracks/0/type = "value"
@@ -24,7 +23,7 @@ tracks/0/keys = {
 "values": [ Color( 0, 0, 0, 1 ), Color( 0, 0, 0, 1 ), Color( 0, 0, 0, 0 ) ]
 }
 
-[sub_resource type="Animation" id=4]
+[sub_resource type="Animation" id=2]
 resource_name = "FadeOut"
 length = 0.5
 tracks/0/type = "value"
@@ -40,7 +39,7 @@ tracks/0/keys = {
 "values": [ Color( 0, 0, 0, 0 ), Color( 0, 0, 0, 1 ) ]
 }
 
-[sub_resource type="Animation" id=5]
+[sub_resource type="Animation" id=3]
 resource_name = "Transition"
 length = 1.5
 tracks/0/type = "value"
@@ -68,12 +67,12 @@ tracks/1/keys = {
 "values": [ Vector2( -300, 27 ), Vector2( 20, 27 ) ]
 }
 
-[sub_resource type="DynamicFont" id=1]
+[sub_resource type="DynamicFont" id=4]
 size = 26
 outline_size = 1
 font_data = ExtResource( 1 )
 
-[sub_resource type="DynamicFont" id=2]
+[sub_resource type="DynamicFont" id=5]
 size = 26
 outline_size = 1
 font_data = ExtResource( 1 )
@@ -89,9 +88,9 @@ __meta__ = {
 }
 
 [node name="MenuAnimPlayer" type="AnimationPlayer" parent="."]
-anims/FadeIn = SubResource( 3 )
-anims/FadeOut = SubResource( 4 )
-anims/Transition = SubResource( 5 )
+anims/FadeIn = SubResource( 1 )
+anims/FadeOut = SubResource( 2 )
+anims/Transition = SubResource( 3 )
 
 [node name="Start" type="TextureButton" parent="."]
 margin_left = 130.561
@@ -126,13 +125,11 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Cutscene" parent="." instance=ExtResource( 2 )]
-
 [node name="Debug" type="Label" parent="."]
 margin_left = 300.0
 margin_right = 580.0
 margin_bottom = 27.0
-custom_fonts/font = SubResource( 1 )
+custom_fonts/font = SubResource( 4 )
 custom_colors/font_color = Color( 0.207843, 0.207843, 0.380392, 1 )
 custom_colors/font_outline_modulate = Color( 1, 1, 1, 1 )
 text = "Debug"
@@ -147,7 +144,7 @@ margin_left = -300.0
 margin_top = 27.0
 margin_right = -19.9998
 margin_bottom = 54.0
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = SubResource( 5 )
 custom_colors/font_color = Color( 0.207843, 0.207843, 0.380392, 1 )
 custom_colors/font_outline_modulate = Color( 1, 1, 1, 1 )
 text = "Mancer"
@@ -156,6 +153,5 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 [connection signal="animation_finished" from="MenuAnimPlayer" to="." method="_on_MenuAnimPlayer_finished"]
-[connection signal="animation_finished" from="MenuAnimPlayer" to="Cutscene" method="_on_MenuAnimPlayer_finished"]
 [connection signal="pressed" from="Start" to="." method="_on_Start_pressed"]
 [connection signal="pressed" from="Quit" to="." method="_on_Quit_pressed"]

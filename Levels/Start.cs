@@ -32,7 +32,7 @@ namespace Debugmancer.Levels
 			}
 			else if(_scene == 3)
 			{
-				GetTree().ChangeScene("res://Levels/Main Menu.tscn");
+				GetTree().ChangeScene("res://Levels/Cutscene.tscn");
 			}
 		}
 	

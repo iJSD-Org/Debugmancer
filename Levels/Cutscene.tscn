@@ -1,11 +1,10 @@
-[gd_scene load_steps=38 format=2]
+[gd_scene load_steps=37 format=2]
 
 [ext_resource path="res://Assets/Sprites/Fast-Forward/fast-forward14.png" type="Texture" id=1]
 [ext_resource path="res://Assets/Sprites/Scene 1 .png" type="Texture" id=2]
 [ext_resource path="res://Assets/Sprites/Scene 2.png" type="Texture" id=3]
 [ext_resource path="res://Assets/Sprites/Scene 3.png" type="Texture" id=4]
 [ext_resource path="res://Levels/Cutscene.cs" type="Script" id=5]
-[ext_resource path="res://Assets/Sounds/Jimmy-Fontanez-Dub-Hub.ogg" type="AudioStream" id=6]
 [ext_resource path="res://Assets/Jeebz-Regular.ttf" type="DynamicFontData" id=7]
 [ext_resource path="res://Assets/Sprites/Fast-Forward/fast-forward10.png" type="Texture" id=8]
 [ext_resource path="res://Assets/Sprites/Fast-Forward/fast-forward18.png" type="Texture" id=9]
@@ -179,14 +178,10 @@ __meta__ = {
 [node name="Timer" type="Timer" parent="."]
 wait_time = 3.0
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 6 )
-volume_db = -3.0
-
 [node name="ColorRect" type="ColorRect" parent="."]
 margin_right = 324.0
 margin_bottom = 180.0
-color = Color( 0, 0, 0, 0 )
+color = Color( 0, 0, 0, 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -196,7 +191,7 @@ visible = false
 position = Vector2( 290.424, 167.711 )
 scale = Vector2( 0.123468, 0.123468 )
 frames = SubResource( 6 )
-frame = 8
+frame = 21
 speed_scale = 1.84
 playing = true
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_finished"]

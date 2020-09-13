@@ -82,7 +82,7 @@ margin_top = 107.0
 margin_right = 239.541
 margin_bottom = 148.0
 custom_fonts/font = SubResource( 1 )
-text = "You scored : 15000
+text = "You scored : -----
 "
 __meta__ = {
 "_edit_use_anchors_": false

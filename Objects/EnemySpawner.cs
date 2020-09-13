@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Debugmancer.Objects.Player;
 using Godot;
 using Godot.Collections;
 
@@ -32,7 +33,7 @@ namespace Debugmancer.Objects
 				GD.Print("EnemySpawned");
 			}
 			EnemyMultiplier += .3;
-			Globals.scoreMultiplier += .5;
+			Globals.ScoreMultiplier += .5;
 			GetNode<Timer>("SpawnTimer").WaitTime -= 0.2f;
 		}
 	}

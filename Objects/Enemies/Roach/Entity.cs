@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Debugmancer.Objects.Enemies.Roach.States;
+using Debugmancer.Objects.Player;
 using Godot;
 
 namespace Debugmancer.Objects.Enemies.Roach
@@ -82,8 +83,8 @@ namespace Debugmancer.Objects.Enemies.Roach
 			Modulate = new Color(1, 1, 1);
 			if (health == 0)
 			{
-				Globals.score += Math.Ceiling(25 * Globals.scoreMultiplier);
-				GetParent().GetNode<KinematicBody2D>("Player").GetNode<Label>("HUD/Score").Text = $"Score:{Globals.score}";
+				Globals.Score += Math.Ceiling(25 * Globals.ScoreMultiplier);
+				GetParent().GetNode<KinematicBody2D>("Player").GetNode<Label>("HUD/Score").Text = $"Score:{Globals.Score}";
 				ChangeState("Dead");
 			}
 		}
@@ -93,18 +94,18 @@ namespace Debugmancer.Objects.Enemies.Roach
 			Health health = (Health)GetNode("Health");
 			if (body.IsInGroup("playerBullet")) 
 			{
-				if(health.CurrentHealth - Globals.playerDamage > 0) health.Damage(Globals.playerDamage);
-				else health.Damage(Globals.playerDamage - (health.CurrentHealth - Globals.playerDamage));
+				if(health.CurrentHealth - Globals.PlayerDamage > 0) health.Damage(Globals.PlayerDamage);
+				else health.Damage(Globals.PlayerDamage - (health.CurrentHealth - Globals.PlayerDamage));
 			}
 
 			if (body.IsInGroup("playerCritBullet"))
 			{
-				if(health.CurrentHealth - (Globals.playerDamage * 2) > 0)
+				if(health.CurrentHealth - (Globals.PlayerDamage * 2) > 0)
 				{
 					ChangeState("Stagger");
-					health.Damage(Globals.playerDamage * 2);
+					health.Damage(Globals.PlayerDamage * 2);
 				}
-				else health.Damage(Globals.playerDamage - (health.CurrentHealth - (Globals.playerDamage * 2)));
+				else health.Damage(Globals.PlayerDamage - (health.CurrentHealth - (Globals.PlayerDamage * 2)));
 			}
 		}
 	}

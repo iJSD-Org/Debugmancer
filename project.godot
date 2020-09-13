@@ -25,6 +25,7 @@ config/icon="res://icon.png"
 
 FullscreenToggle="*res://FullscreenToggle.cs"
 RichPresence="*res://RichPresence.cs"
+BackgroundMusic="*res://Objects/BackgroundMusic.tscn"
 
 [display]
 

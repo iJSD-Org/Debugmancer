@@ -4,7 +4,19 @@ using Debugmancer.Objects;
 namespace Debugmancer.Levels
 {
 	public class Menu : Control
-	{      
+	{
+		public override void _EnterTree()
+		{
+			Engine.TimeScale = 1;
+			GetNode<AudioStreamPlayer>("/root/BackgroundMusic/MenuMusic").PitchScale = 1;
+			GetNode<AnimationPlayer>("MenuAnimPlayer").Play("Transition");
+		}
+
+		public override void _ExitTree()
+		{
+			GetNode<AudioStreamPlayer>("/root/BackgroundMusic/MenuMusic").Stop();
+		}
+
 		private void _on_Start_pressed()
 		{
 			GetNode<ColorRect>("ColorRect").Show();
@@ -16,15 +28,19 @@ namespace Debugmancer.Levels
 			GetTree().Quit();
 		}
 
-		private void _on_MenuAnimPlayer_finished(string anim_name)
+		private void _on_MenuAnimPlayer_finished(string animName)
 		{
-			if (anim_name == "FadeIn")
+			if (animName == "FadeIn")
 			{
 				GetNode<ColorRect>("ColorRect").Hide();
 			}
-			if (anim_name == "FadeOut")
+			if (animName == "FadeOut")
 			{
 				GetTree().ChangeScene("res://Levels/TestArena.tscn");
+			}
+			if (animName == "Transition")
+			{
+				GetNode<AnimationPlayer>("MenuAnimPlayer").Play("FadeIn");
 			}
 		}
 	}

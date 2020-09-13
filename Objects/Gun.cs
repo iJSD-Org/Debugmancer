@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using Debugmancer.Objects.Player;
 
 namespace Debugmancer.Objects
 {
@@ -19,10 +20,10 @@ namespace Debugmancer.Objects
 		}
 		public void Fire()
 		{
-			if (_canShoot && Globals.energy - 8 > 0)
+			if (_canShoot && Globals.Energy - 8 > 0)
 			{
 				Random random = new Random();
-				RigidBody2D bulletInstance = random.Next(1, 10) > Globals.critChance ? (RigidBody2D)Bullet.Instance() : (RigidBody2D)CritBullet.Instance();
+				RigidBody2D bulletInstance = random.Next(1, 10) > Globals.CritChance ? (RigidBody2D)Bullet.Instance() : (RigidBody2D)CritBullet.Instance();
 				bulletInstance.Position = GetNode<Node2D>("GunPoint").GlobalPosition;
 				bulletInstance.Rotation = Rotation;
 				bulletInstance.ApplyImpulse(new Vector2(0, 0), new Vector2(BulletSpeed, 0).Rotated(Rotation));
@@ -30,26 +31,26 @@ namespace Debugmancer.Objects
 				ReduceEnergy();
 				ShootTimer();
 			}
-			GetParent().GetNode<TextureProgress>("HUD/VBoxContainer/Energy").Value = Globals.energy;
+			GetParent().GetNode<TextureProgress>("HUD/VBoxContainer/Energy").Value = Globals.Energy;
 		}
 		public void _on_RegenTimer_timeout()
 		{
-			if (Globals.energy < MaxEnergy)
+			if (Globals.Energy < MaxEnergy)
 			{
-				if(Globals.energy > (MaxEnergy *.8)) Globals.energy += 16;
-				if(Globals.energy >= (MaxEnergy * .5)) Globals.energy += 13;
-				if(Globals.energy < (MaxEnergy * .5)) Globals.energy += 8;
-				if(Globals.energy > MaxEnergy) Globals.energy = MaxEnergy;
-				GD.Print(Globals.energy);
+				if(Globals.Energy > (MaxEnergy *.8)) Globals.Energy += 16;
+				if(Globals.Energy >= (MaxEnergy * .5)) Globals.Energy += 13;
+				if(Globals.Energy < (MaxEnergy * .5)) Globals.Energy += 8;
+				if(Globals.Energy > MaxEnergy) Globals.Energy = MaxEnergy;
+				GD.Print(Globals.Energy);
 			}
-			GetParent().GetNode<TextureProgress>("HUD/VBoxContainer/Energy").Value = Globals.energy;
+			GetParent().GetNode<TextureProgress>("HUD/VBoxContainer/Energy").Value = Globals.Energy;
 		}
 		public void ReduceEnergy()
 		{
-			if(Globals.energy > (MaxEnergy *.8)) Globals.energy -= 3;
-			if(Globals.energy >= (MaxEnergy * .5)) Globals.energy -= 5;
-			if(Globals.energy < (MaxEnergy * .5)) Globals.energy -= 8;
-			GetParent().GetNode<TextureProgress>("HUD/VBoxContainer/Energy").Value = Globals.energy;
+			if(Globals.Energy > (MaxEnergy *.8)) Globals.Energy -= 3;
+			if(Globals.Energy >= (MaxEnergy * .5)) Globals.Energy -= 5;
+			if(Globals.Energy < (MaxEnergy * .5)) Globals.Energy -= 8;
+			GetParent().GetNode<TextureProgress>("HUD/VBoxContainer/Energy").Value = Globals.Energy;
 		}
 		public async void ShootTimer()
 		{
