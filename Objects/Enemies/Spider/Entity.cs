@@ -37,10 +37,9 @@ namespace Debugmancer.Objects.Enemies.Spider
 
 			GetNode("Health").Connect(nameof(Health.HealthChanged), this, nameof(OnHealthChanged));
 
-			GetNode<Timer>("ShootTimer").WaitTime = (float)(_random.NextDouble() * (.7 - .1) + .1);
-			GetNode<Timer>("ShootTimer").Start();
+			GetNode<Timer>("ShootTimer").WaitTime = (float)(_random.NextDouble() * (.15 - .1) + .1);
 
-			StateStack.Push((State)StatesMap["Chase"]);
+			StateStack.Push((State)StatesMap["Idle"]);
 			ChangeState("Idle");
 		}
 
@@ -50,8 +49,7 @@ namespace Debugmancer.Objects.Enemies.Spider
 		}
 
 		private void ShootTimer_timeout()
-		{
-			
+		{		
 			GetNode<Timer>("ShootTimer").Stop();
 			// Shoot
 			if(canShoot)
@@ -106,6 +104,7 @@ namespace Debugmancer.Objects.Enemies.Spider
 		{
 			if (body.IsInGroup("player"))
 			{
+				GetNode<Timer>("ShootTimer").Start();
 				_player = body;
 				canShoot = true;
 				ChangeState("Chase");
@@ -115,6 +114,7 @@ namespace Debugmancer.Objects.Enemies.Spider
 		{
 			if (body.IsInGroup("player"))
 			{
+				GetNode<Timer>("ShootTimer").Stop();
 				canShoot = false;
 				ChangeState("Idle");
 			}
