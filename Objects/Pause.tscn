@@ -4,7 +4,7 @@
 [ext_resource path="res://Assets/Sprites/Pause UI.png" type="Texture" id=2]
 [ext_resource path="res://Assets/Sprites/Resume button.png" type="Texture" id=3]
 [ext_resource path="res://Assets/Sprites/Quit button.png" type="Texture" id=4]
-[ext_resource path="res://Assets/Pixelated Font.TTF" type="DynamicFontData" id=5]
+[ext_resource path="res://Assets/Jeebz-Regular.ttf" type="DynamicFontData" id=5]
 [ext_resource path="res://Assets/Sprites/Resume button hovered.png" type="Texture" id=6]
 [ext_resource path="res://Assets/Sprites/Quit button hovered.png" type="Texture" id=7]
 
@@ -52,10 +52,10 @@ __meta__ = {
 }
 
 [node name="ResumeButton" type="TextureButton" parent="Pause/PauseBox"]
-margin_left = 23.1278
-margin_top = 36.6653
-margin_right = 87.1278
-margin_bottom = 76.6653
+margin_left = 23.0
+margin_top = 37.0
+margin_right = 87.0
+margin_bottom = 69.0
 texture_normal = ExtResource( 3 )
 texture_hover = ExtResource( 6 )
 __meta__ = {
@@ -63,10 +63,10 @@ __meta__ = {
 }
 
 [node name="QuitButton" type="TextureButton" parent="Pause/PauseBox"]
-margin_left = 22.8618
-margin_top = 63.1764
-margin_right = 86.8618
-margin_bottom = 103.176
+margin_left = 23.0
+margin_top = 63.0
+margin_right = 87.0
+margin_bottom = 95.0
 texture_normal = ExtResource( 4 )
 texture_hover = ExtResource( 7 )
 __meta__ = {

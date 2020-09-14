@@ -20,11 +20,12 @@ namespace Debugmancer.Objects.Player
 		public Stack<State> StateStack = new Stack<State>();
 		private readonly Timer _dashCooldownTimer = new Timer();
 		public readonly Dictionary<string, Node> StatesMap = new Dictionary<string, Node>();
-		public bool _isRecover = false; 
+		private bool _isRecover;
+		
 		public override void _Ready()
 		{
-			GetNode<TextureProgress>("HUD/VBoxContainer/Health").MaxValue = 25;
-			GetNode<TextureProgress>("HUD/VBoxContainer/Health").Value = 25;
+			GetNode<TextureProgress>("HUD/VBoxContainer/Health").MaxValue = ((Health)GetNode("Health")).MaxHealth;
+			GetNode<TextureProgress>("HUD/VBoxContainer/Health").Value = ((Health)GetNode("Health")).CurrentHealth;
 			StatesMap.Add("Idle", GetNode("States/Idle"));
 			StatesMap.Add("Move", GetNode("States/Move"));
 			StatesMap.Add("Dash", GetNode("States/Dash"));
@@ -42,6 +43,8 @@ namespace Debugmancer.Objects.Player
 
 			StateStack.Push((State)StatesMap["Idle"]);
 			ChangeState("Idle");
+			GetNode<Label>("HUD/User").Text =
+				((RichPresence) GetNode("/root/RichPresence")).Client.CurrentUser.ToString();
 		}
 
 		public override void _Process(float delta)
@@ -95,10 +98,10 @@ namespace Debugmancer.Objects.Player
 			}
 			else if (stateName == "Dash")
 			{
-				if (!_dashCooldownTimer.Enabled && Globals.canDash && Globals.energy - 5 > 0)
+				if (!_dashCooldownTimer.Enabled && Globals.CanDash && Globals.Energy - 5 > 0)
 				{
-					Globals.energy -= 5;
-					GetNode<TextureProgress>("HUD/VBoxContainer/Energy").Value = Globals.energy;
+					Globals.Energy -= 5;
+					GetNode<TextureProgress>("HUD/VBoxContainer/Energy").Value = Globals.Energy;
 					_dashCooldownTimer.Start();
 					StateStack.Push((State)StatesMap[stateName]);
 				}
@@ -129,7 +132,6 @@ namespace Debugmancer.Objects.Player
 		{
 			((Camera)GetNode<Camera2D>("Camera")).StartShake();
 			GetNode<TextureProgress>("HUD/VBoxContainer/Health").Value = health;
-			GD.Print(GetNode<TextureProgress>("HUD/VBoxContainer/Health").Value);
 			Modulate = _isRecover ? Color.ColorN("Green") : Color.ColorN("Red");
 			await Task.Delay(100);
 			Modulate = new Color(1, 1, 1);
@@ -183,9 +185,9 @@ namespace Debugmancer.Objects.Player
 			}
 		}
 
-		private void _on_AnimationPlayer_finished(string anim_name)
+		private void _on_AnimationPlayer_finished(string animName)
 		{
-			if (anim_name == "FadeOut")
+			if (animName == "FadeOut")
 			{
 				Engine.TimeScale = 1f;
 				GetTree().ChangeScene("res://Levels/Death screen.tscn");

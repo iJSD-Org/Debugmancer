@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/CHORD.wav-b9d58948b38fb264b835588755cd5ef4.sample"
+
+[deps]
+
+source_file="res://Assets/Sounds/Windows 3.1/CHORD.wav"
+dest_files=[ "res://.import/CHORD.wav-b9d58948b38fb264b835588755cd5ef4.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0
