@@ -1,23 +1,25 @@
 using Godot;
-using System;
 
-public class Pause : Control
+namespace Debugmancer.Objects
 {
-	public override void _Input(InputEvent @event)
+	public class Pause : Control
 	{
-		if(Input.IsActionJustPressed("pause"))
+		public override void _Input(InputEvent @event)
 		{
-			GetTree().Paused = !GetTree().Paused;
-			Visible = GetTree().Paused;
+			if(Input.IsActionJustPressed("pause"))
+			{
+				GetTree().Paused = !GetTree().Paused;
+				Visible = GetTree().Paused;
+			}
 		}
-	}
-	public void _on_ResumeButton_button_up()
-	{
-		GetTree().Paused = false;
-		Visible = false;
-	}
-	public void _on_QuitButton_button_up()
-	{
+		public void _on_ResumeButton_button_up()
+		{
+			GetTree().Paused = false;
+			Visible = false;
+		}
+		public void _on_QuitButton_button_up()
+		{
 		
+		}
 	}
 }

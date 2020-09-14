@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Debugmancer.Objects.Enemies.Cultist.States;
+using Debugmancer.Objects.Player;
 using Godot;
 
 namespace Debugmancer.Objects.Enemies.Cultist
@@ -76,8 +77,8 @@ namespace Debugmancer.Objects.Enemies.Cultist
 			Modulate = new Color(1, 1, 1);
 			if (health == 0)
 			{
-				Globals.score += Math.Ceiling(150 * Globals.scoreMultiplier);
-				GetParent().GetNode<KinematicBody2D>("Player").GetNode<Label>("HUD/Score").Text = $"Score:{Globals.score}";
+				Globals.Score += Math.Ceiling(150 * Globals.ScoreMultiplier);
+				GetParent().GetNode<KinematicBody2D>("Player").GetNode<Label>("HUD/Score").Text = $"Score: {Globals.Score}";
 				QueueFree();
 			}
 		}
@@ -87,18 +88,18 @@ namespace Debugmancer.Objects.Enemies.Cultist
 			Health health = (Health)GetNode("Health");
 			if (body.IsInGroup("playerBullet")) 
 			{
-				if(health.CurrentHealth - Globals.playerDamage > 0) health.Damage(Globals.playerDamage);
-				else health.Damage(Globals.playerDamage - (health.CurrentHealth - Globals.playerDamage));
+				if(health.CurrentHealth - Globals.PlayerDamage > 0) health.Damage(Globals.PlayerDamage);
+				else health.Damage(Globals.PlayerDamage - (health.CurrentHealth - Globals.PlayerDamage));
 			}
 			
 			if (body.IsInGroup("playerCritBullet"))
 			{
-				if(health.CurrentHealth - (Globals.playerDamage * 2) > 0)
+				if(health.CurrentHealth - (Globals.PlayerDamage * 2) > 0)
 				{
 					ChangeState("Teleport");
-					health.Damage(Globals.playerDamage * 2);
+					health.Damage(Globals.PlayerDamage * 2);
 				}
-				else health.Damage(Globals.playerDamage - (health.CurrentHealth - (Globals.playerDamage * 2)));
+				else health.Damage(Globals.PlayerDamage - (health.CurrentHealth - (Globals.PlayerDamage * 2)));
 			}
 		}
 	}

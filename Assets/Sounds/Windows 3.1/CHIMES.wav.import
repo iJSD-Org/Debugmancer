@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/CHIMES.wav-be905b4afa79d3446117aaaa73a4b6fb.sample"
+
+[deps]
+
+source_file="res://Assets/Sounds/Windows 3.1/CHIMES.wav"
+dest_files=[ "res://.import/CHIMES.wav-be905b4afa79d3446117aaaa73a4b6fb.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

@@ -1,6 +1,7 @@
 using System;
 using System.Threading.Tasks;
 using Debugmancer.Objects.Bullets;
+using Debugmancer.Objects.Player;
 using Godot;
 
 namespace Debugmancer.Objects.Enemies.Computer
@@ -54,14 +55,14 @@ namespace Debugmancer.Objects.Enemies.Computer
 
 			if (area.IsInGroup("playerBullet")) 
 			{
-				if(health.CurrentHealth - Globals.playerDamage > 0) health.Damage(Globals.playerDamage);
-				else health.Damage(Globals.playerDamage - (health.CurrentHealth - Globals.playerDamage));
+				if(health.CurrentHealth - Globals.PlayerDamage > 0) health.Damage(Globals.PlayerDamage);
+				else health.Damage(Globals.PlayerDamage - (health.CurrentHealth - Globals.PlayerDamage));
 			}
 
 			if (area.IsInGroup("playerCritBullet")) 
 			{
-				if(health.CurrentHealth - (Globals.playerDamage * 2) > 0) health.Damage(Globals.playerDamage * 2);
-				else health.Damage(Globals.playerDamage - (health.CurrentHealth - (Globals.playerDamage * 2)));
+				if(health.CurrentHealth - (Globals.PlayerDamage * 2) > 0) health.Damage(Globals.PlayerDamage * 2);
+				else health.Damage(Globals.PlayerDamage - (health.CurrentHealth - (Globals.PlayerDamage * 2)));
 			}
 		}
 
@@ -179,8 +180,8 @@ namespace Debugmancer.Objects.Enemies.Computer
 			Modulate = new Color(1, 1, 1);
 			if (health == 0)
 			{
-				Globals.score += Math.Ceiling(100 * Globals.scoreMultiplier);
-				GetParent().GetNode<KinematicBody2D>("Player").GetNode<Label>("HUD/Score").Text = $"Score:{Globals.score}";
+				Globals.Score += Math.Ceiling(100 * Globals.ScoreMultiplier);
+				GetParent().GetNode<KinematicBody2D>("Player").GetNode<Label>("HUD/Score").Text = $"Score: {Globals.Score}";
 				QueueFree();
 			}
 		}

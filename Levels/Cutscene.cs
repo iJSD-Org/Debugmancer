@@ -7,10 +7,13 @@ namespace Debugmancer.Levels
 		private int _scene = 1;
 		public override void _Ready()
 		{
-			Engine.TimeScale = 2.5f;
-			GetNode<AudioStreamPlayer>("AudioStreamPlayer").PitchScale = 2.5f;
 			GetNode<Timer>("Timer").Start();
 			GetNode<AnimationPlayer>("AnimationPlayer").Play("FadeIn");
+		}
+
+		public override void _ExitTree()
+		{
+			Input.SetMouseMode(Input.MouseMode.Visible);
 		}
 
 		public override void _Process(float delta)
@@ -18,7 +21,7 @@ namespace Debugmancer.Levels
 			if (Input.IsKeyPressed((int)KeyList.E))
 			{
 				Engine.TimeScale = 2.5f;
-				GetNode<AudioStreamPlayer>("AudioStreamPlayer").PitchScale = 2.5f;
+				GetNode<AudioStreamPlayer>("/root/BackgroundMusic/MenuMusic").PitchScale = 2.5f;
 				GetNode<AnimatedSprite>("FastForwardSprite").Show();
 			}
 			else
@@ -27,7 +30,7 @@ namespace Debugmancer.Levels
 				{
 
 					Engine.TimeScale = 1;
-					GetNode<AudioStreamPlayer>("AudioStreamPlayer").PitchScale = 1;
+					GetNode<AudioStreamPlayer>("/root/BackgroundMusic/MenuMusic").PitchScale = 1;
 					GetNode<AnimatedSprite>("FastForwardSprite").Hide();
 				}
 			}
@@ -35,7 +38,7 @@ namespace Debugmancer.Levels
 
 		private void _on_Timer_timeout()
 		{
-			if (_scene == 1) GetNode<AudioStreamPlayer>("AudioStreamPlayer").Play();
+			if (_scene == 1) GetNode<AudioStreamPlayer>("/root/BackgroundMusic/MenuMusic").Play();
 
 			GetNode<Timer>("Timer").Stop();
 			GetNode<AnimationPlayer>("AnimationPlayer").Play("FadeOut");
@@ -77,18 +80,7 @@ namespace Debugmancer.Levels
 			if(_scene == 6)
 			{
 				Hide();
-				GetNode<AnimationPlayer>("../MenuAnimPlayer").Play("Transition");
-				Engine.TimeScale = 1;
-				GetNode<AudioStreamPlayer>("AudioStreamPlayer").PitchScale = 1;
-				SetProcess(false);
-			}
-		}
-
-		private void _on_MenuAnimPlayer_finished(string animName)
-		{
-			if (animName == "Transition")
-			{
-				GetNode<AnimationPlayer>("../MenuAnimPlayer").Play("FadeIn");
+				GetTree().ChangeScene("res://Levels/Main Menu.tscn");
 			}
 		}
 	}
