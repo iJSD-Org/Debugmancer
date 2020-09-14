@@ -11,23 +11,24 @@ namespace Debugmancer.Objects.Enemies.Spider
 	{
 		[Signal]
 		public delegate void StateChanged();
-
 		public State CurrentState;
 		public Stack<State> StateStack = new Stack<State>();
 		public readonly Dictionary<string, Node> StatesMap = new Dictionary<string, Node>();
 		private readonly PackedScene _bulletScene = (PackedScene)ResourceLoader.Load("res://Objects/Bullets/EnemyBullet.tscn");
 		private KinematicBody2D _player;
 		private readonly Random _random = new Random();
+		public static bool canShoot = false;
 		private int _shots;
 
 		public override void _Ready()
 		{
-			_player = GetParent().GetNode<KinematicBody2D>("Player");
 			GetNode<AnimationPlayer>("AnimationPlayer").Play("Chase");
 			StatesMap.Add("Chase", GetNode("States/Chase"));
 			StatesMap.Add("Stagger", GetNode("States/Stagger"));
+			StatesMap.Add("Idle", GetNode("States/Idle"));
+			StatesMap.Add("Wander", GetNode("States/Wander"));
 
-			CurrentState = (State)GetNode("States/Chase");
+			CurrentState = (Idle)GetNode("States/Idle");
 
 			foreach (Node state in StatesMap.Values)
 			{
@@ -40,7 +41,7 @@ namespace Debugmancer.Objects.Enemies.Spider
 			GetNode<Timer>("ShootTimer").Start();
 
 			StateStack.Push((State)StatesMap["Chase"]);
-			ChangeState("Chase");
+			ChangeState("Idle");
 		}
 
 		public override void _PhysicsProcess(float delta)
@@ -50,9 +51,14 @@ namespace Debugmancer.Objects.Enemies.Spider
 
 		private void ShootTimer_timeout()
 		{
+			
 			GetNode<Timer>("ShootTimer").Stop();
 			// Shoot
+			if(canShoot)
+			{
 			EnemyBullet bullet = (EnemyBullet)_bulletScene.Instance();
+			GD.Print(Position);
+			//IT BECOMES NULL HERE FOR SOPAMDOPISAJNCOUEWSAHBNFUIEGBHJKASBGXCHJKSABHKCBSDAHJKHBFJUKSAHDCUKSAHF
 			bullet.Speed = 85;
 			bullet.Position = Position;
 			bullet.Direction = new Vector2(_player.Position.x - Position.x, _player.Position.y - Position.y).Normalized();
@@ -68,8 +74,14 @@ namespace Debugmancer.Objects.Enemies.Spider
 				GetNode<Timer>("ShootTimer").WaitTime = (float)(_random.NextDouble() * (.4 - .1) + .1);
 				GetNode<Timer>("ShootTimer").Start();
 			}
-		}
+			}
 
+			else 
+			{
+				GetNode<Timer>("ShootTimer").WaitTime = (float)(_random.NextDouble() * (.15 - .1) + .1);
+				GetNode<Timer>("ShootTimer").Start();
+			}
+		}
 		public void Hitbox_BodyEntered(Area2D body)
 		{
 			Health health = (Health)GetNode("Health");
@@ -90,6 +102,23 @@ namespace Debugmancer.Objects.Enemies.Spider
 				else health.Damage(Globals.playerDamage - (health.CurrentHealth - (Globals.playerDamage * 2)));
 			}
 		}
+		private void _on_ChaseBox_body_entered(KinematicBody2D body)
+		{
+			if (body.IsInGroup("player"))
+			{
+				_player = body;
+				canShoot = true;
+				ChangeState("Chase");
+			} 
+		}
+		private void _on_ChaseBox_body_exited(KinematicBody2D body)
+		{
+			if (body.IsInGroup("player"))
+			{
+				canShoot = false;
+				ChangeState("Idle");
+			}
+		}
 
 		public async void OnHealthChanged(int health)
 		{
@@ -105,7 +134,7 @@ namespace Debugmancer.Objects.Enemies.Spider
 		}
 
 		private void ChangeState(string stateName)
-		{
+		{		
 			CurrentState.Exit(this);
 			if (stateName == "Previous")
 			{

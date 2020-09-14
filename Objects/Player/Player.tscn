@@ -47,7 +47,7 @@ tracks/0/keys = {
 "values": [ 0.0, -10.0, -20.0, -10.0, 0.0 ]
 }
 
-[sub_resource type="Animation" id=5]
+[sub_resource type="Animation" id=3]
 resource_name = "FadeOut"
 tracks/0/type = "value"
 tracks/0/path = NodePath("HUD/ColorRect:color")
@@ -62,7 +62,7 @@ tracks/0/keys = {
 "values": [ Color( 0, 0, 0, 0 ), Color( 0, 0, 0, 1 ) ]
 }
 
-[sub_resource type="Animation" id=3]
+[sub_resource type="Animation" id=4]
 length = 0.95
 loop = true
 tracks/0/type = "value"
@@ -78,7 +78,7 @@ tracks/0/keys = {
 "values": [ 3, 6, 4, 7 ]
 }
 
-[sub_resource type="Animation" id=4]
+[sub_resource type="Animation" id=5]
 length = 0.65
 loop = true
 step = 0.05
@@ -213,9 +213,9 @@ __meta__ = {
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/Dash = SubResource( 1 )
 anims/Dash_Flipped = SubResource( 2 )
-anims/FadeOut = SubResource( 5 )
-anims/Idle = SubResource( 3 )
-anims/Walk = SubResource( 4 )
+anims/FadeOut = SubResource( 3 )
+anims/Idle = SubResource( 4 )
+anims/Walk = SubResource( 5 )
 
 [node name="Camera" parent="." instance=ExtResource( 12 )]
 position = Vector2( 0.0125217, -0.00294733 )
