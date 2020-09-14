@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://Assets/bitmgothic.medium.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://Assets/Themes/Classic311/Classic311.tres" type="Theme" id=2]
@@ -9,6 +9,7 @@
 [ext_resource path="res://Assets/Sprites/Quit Hovered.png" type="Texture" id=7]
 [ext_resource path="res://Objects/ConnectionFailedDialog.cs" type="Script" id=8]
 [ext_resource path="res://Assets/Sounds/Windows 3.1/CHORD.wav" type="AudioStream" id=9]
+[ext_resource path="res://Levels/Settings.tscn" type="PackedScene" id=10]
 
 [sub_resource type="Animation" id=1]
 resource_name = "FadeIn"
@@ -106,11 +107,11 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Start2" type="TextureButton" parent="."]
+[node name="Settings" type="TextureButton" parent="."]
 margin_left = 130.561
-margin_top = 72.126
+margin_top = 92.071
 margin_right = 430.561
-margin_bottom = 172.126
+margin_bottom = 192.071
 rect_scale = Vector2( 0.2, 0.2 )
 texture_normal = ExtResource( 3 )
 texture_hover = ExtResource( 5 )
@@ -120,9 +121,9 @@ __meta__ = {
 
 [node name="Quit" type="TextureButton" parent="."]
 margin_left = 130.561
-margin_top = 96.874
+margin_top = 110.083
 margin_right = 430.561
-margin_bottom = 196.874
+margin_bottom = 210.083
 rect_scale = Vector2( 0.2, 0.2 )
 texture_normal = ExtResource( 4 )
 texture_hover = ExtResource( 7 )
@@ -131,7 +132,6 @@ __meta__ = {
 }
 
 [node name="ColorRect" type="ColorRect" parent="."]
-visible = false
 margin_left = 0.561264
 margin_right = 317.561
 margin_bottom = 180.0
@@ -169,14 +169,14 @@ __meta__ = {
 }
 
 [node name="ConnectionFailedDialog" type="AcceptDialog" parent="."]
-margin_left = 98.841
-margin_top = 75.6032
-margin_right = 416.841
-margin_bottom = 173.603
+margin_left = 99.0
+margin_top = 76.0
+margin_right = 396.0
+margin_bottom = 174.0
 rect_scale = Vector2( 0.4, 0.4 )
 popup_exclusive = true
-dialog_text = "Cannot connect to Discord client.
-Open your Discord client and restart the game."
+dialog_text = "Connection to Discord client is not present.
+Reconnect and try again."
 dialog_autowrap = true
 script = ExtResource( 8 )
 __meta__ = {
@@ -185,8 +185,11 @@ __meta__ = {
 
 [node name="Alert" type="AudioStreamPlayer" parent="ConnectionFailedDialog"]
 stream = ExtResource( 9 )
+
+[node name="SettingsDialog" parent="." instance=ExtResource( 10 )]
+visible = false
 [connection signal="animation_finished" from="MenuAnimPlayer" to="." method="_on_MenuAnimPlayer_animation_finished"]
 [connection signal="pressed" from="Start" to="." method="_on_Start_pressed"]
-[connection signal="pressed" from="Start2" to="." method="_on_Start_pressed"]
+[connection signal="pressed" from="Settings" to="." method="_on_Settings_pressed"]
 [connection signal="pressed" from="Quit" to="." method="_on_Quit_pressed"]
 [connection signal="about_to_show" from="ConnectionFailedDialog" to="ConnectionFailedDialog" method="ConnectionFailedDialog_AboutToShow"]

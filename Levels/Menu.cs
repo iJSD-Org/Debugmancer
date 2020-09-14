@@ -31,6 +31,12 @@ namespace Debugmancer.Levels
 			}
 		}
 
+		private void _on_Settings_pressed()
+		{
+			GetNode<WindowDialog>("SettingsDialog").PopupCentered();
+		}
+
+
 		private void _on_Quit_pressed()
 		{
 			GetTree().Quit();
