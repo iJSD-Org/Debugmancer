@@ -1,5 +1,4 @@
 using Godot;
-using Debugmancer.Objects;
 
 namespace Debugmancer.Levels
 {
@@ -50,7 +49,7 @@ namespace Debugmancer.Levels
 			}
 			if (animName == "FadeOut")
 			{
-				GetTree().ChangeScene("res://Levels/TestArena.tscn");
+				GetTree().ChangeScene("res://Levels/Arena.tscn");
 			}
 			if (animName == "Transition")
 			{
