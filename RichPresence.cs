@@ -13,6 +13,11 @@ namespace Debugmancer
 		{
 			Client = new DiscordRpcClient("752376874339926187", -1, null, true, new UnityNamedPipe()) { ShutdownOnly = true };
 
+			Client.OnReady += (o, e) =>
+			{
+				GD.Print($"Received Ready from user {Client.CurrentUser}");
+			};
+
 			Client.Initialize();
 
 			DiscordRPC.RichPresence rp = new DiscordRPC.RichPresence

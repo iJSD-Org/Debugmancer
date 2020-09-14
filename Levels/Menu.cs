@@ -19,8 +19,16 @@ namespace Debugmancer.Levels
 
 		private void _on_Start_pressed()
 		{
-			GetNode<ColorRect>("ColorRect").Show();
-			GetNode<AnimationPlayer>("MenuAnimPlayer").Play("FadeOut");
+			if (((RichPresence)GetNode("/root/RichPresence")).Client.CurrentUser != null)
+			{
+				GetNode<ColorRect>("ColorRect").Show();
+				GetNode<AnimationPlayer>("MenuAnimPlayer").Play("FadeOut");
+			}
+			else
+			{
+				GetNode<AcceptDialog>("ConnectionFailedDialog").PopupCentered();
+				GD.Print("Show");
+			}
 		}
 
 		private void _on_Quit_pressed()
@@ -28,7 +36,7 @@ namespace Debugmancer.Levels
 			GetTree().Quit();
 		}
 
-		private void _on_MenuAnimPlayer_finished(string animName)
+		private void _on_MenuAnimPlayer_animation_finished(string animName)
 		{
 			if (animName == "FadeIn")
 			{

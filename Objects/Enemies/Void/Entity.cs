@@ -84,7 +84,7 @@ namespace Debugmancer.Objects.Enemies.Void
 			if (health == 0)
 			{
 				Globals.Score += Math.Ceiling(125 * Globals.ScoreMultiplier);
-				GetParent().GetNode<KinematicBody2D>("Player").GetNode<Label>("HUD/Score").Text = $"Score:{Globals.Score}";
+				GetParent().GetNode<KinematicBody2D>("Player").GetNode<Label>("HUD/Score").Text = $"Score: {Globals.Score}";
 				ChangeState("Dead");
 			}
 		}

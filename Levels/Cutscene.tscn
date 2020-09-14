@@ -191,7 +191,7 @@ visible = false
 position = Vector2( 290.424, 167.711 )
 scale = Vector2( 0.123468, 0.123468 )
 frames = SubResource( 6 )
-frame = 21
+frame = 9
 speed_scale = 1.84
 playing = true
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_finished"]

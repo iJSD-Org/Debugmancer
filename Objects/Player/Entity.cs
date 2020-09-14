@@ -43,6 +43,8 @@ namespace Debugmancer.Objects.Player
 
 			StateStack.Push((State)StatesMap["Idle"]);
 			ChangeState("Idle");
+			GetNode<Label>("HUD/User").Text =
+				((RichPresence) GetNode("/root/RichPresence")).Client.CurrentUser.ToString();
 		}
 
 		public override void _Process(float delta)
