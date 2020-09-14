@@ -45,18 +45,17 @@ namespace Debugmancer.Objects.Enemies.Spider
 
 		public override void _PhysicsProcess(float delta)
 		{
+			GD.Print(GetNode<VisibilityNotifier2D>("VisibilityNotifier2D").IsOnScreen());
 			CurrentState.Update(this, delta);
 		}
 
 		private void ShootTimer_timeout()
 		{		
 			GetNode<Timer>("ShootTimer").Stop();
-			// Shoot
 			if(canShoot)
 			{
 			EnemyBullet bullet = (EnemyBullet)_bulletScene.Instance();
 			GD.Print(Position);
-			//IT BECOMES NULL HERE FOR SOPAMDOPISAJNCOUEWSAHBNFUIEGBHJKASBGXCHJKSABHKCBSDAHJKHBFJUKSAHDCUKSAHF
 			bullet.Speed = 85;
 			bullet.Position = Position;
 			bullet.Direction = new Vector2(_player.Position.x - Position.x, _player.Position.y - Position.y).Normalized();
@@ -80,6 +79,7 @@ namespace Debugmancer.Objects.Enemies.Spider
 				GetNode<Timer>("ShootTimer").Start();
 			}
 		}
+
 		public void Hitbox_BodyEntered(Area2D body)
 		{
 			Health health = (Health)GetNode("Health");
@@ -100,26 +100,19 @@ namespace Debugmancer.Objects.Enemies.Spider
 				else health.Damage(Globals.playerDamage - (health.CurrentHealth - (Globals.playerDamage * 2)));
 			}
 		}
-		private void _on_ChaseBox_body_entered(KinematicBody2D body)
-		{
-			if (body.IsInGroup("player"))
-			{
-				GetNode<Timer>("ShootTimer").Start();
-				_player = body;
-				canShoot = true;
-				ChangeState("Chase");
-			} 
-		}
-		private void _on_ChaseBox_body_exited(KinematicBody2D body)
-		{
-			if (body.IsInGroup("player"))
-			{
-				GetNode<Timer>("ShootTimer").Stop();
-				canShoot = false;
-				ChangeState("Idle");
-			}
-		}
 
+		private void _on_VisibilityNotifier2D_screen_entered()
+		{
+			_player = GetParent().GetNode<KinematicBody2D>("Player");
+			GetNode<Timer>("ShootTimer").Start();
+			canShoot = true;
+			ChangeState("Chase");
+		}
+		private void _on_VisibilityNotifier2D_screen_exited()
+		{
+			canShoot = false;
+			ChangeState("Idle");
+		}
 		public async void OnHealthChanged(int health)
 		{
 			Modulate = Color.ColorN("Red");
@@ -134,7 +127,8 @@ namespace Debugmancer.Objects.Enemies.Spider
 		}
 
 		private void ChangeState(string stateName)
-		{		
+		{
+			GD.Print(stateName);
 			CurrentState.Exit(this);
 			if (stateName == "Previous")
 			{

@@ -44,24 +44,17 @@ namespace Debugmancer.Objects.Enemies.Spider.States
 			host.MoveAndSlide(_direction * Speed);
 		}
 
-		private void _on_ChaseBox_body_exited(KinematicBody2D body)
+		private void _on_ChaseTimer_timeout()
 		{
-			if (body.IsInGroup("player"))
-			{
-				_canChase = false;
-			}
-		}
-
-		private void _on_ChaseBox_body_entered(KinematicBody2D body)
-		{
-			if (body.IsInGroup("player"))
+			if (GetParent().GetParent().GetNode<VisibilityNotifier2D>("VisibilityNotifier2D").IsOnScreen())
 			{
 				_canChase = true;
 			}
-		}
-
-		private void _on_ChaseTimer_timeout()
-		{
+			else
+			{
+				_canChase = false;
+			}
+			
 			_chaseTimer.Stop();		
 			if(_canChase)
 			{

@@ -37,21 +37,23 @@ namespace Debugmancer.Objects.Enemies.Spider.States
 
 		public override void Update(KinematicBody2D host, float delta)
 		{
-            //he chillin
+			host.MoveAndSlide(Vector2.Zero);
 		}
 
         private void _on_IdleTimer_timeout()
         {
+			if (GetParent().GetParent().GetNode<VisibilityNotifier2D>("VisibilityNotifier2D").IsOnScreen())
+			{
+				GD.Print("ON SCREEN");
+				_chase = true;
+			}
+			else
+			{
+				_chase = false;
+			}
             _idleTimer.Stop();
             if (!_chase || _random.Next(1,10) < WanderChance) EmitSignal(nameof(Finished), "Wander");
             else EmitSignal(nameof(Finished), "Chase");
-        }
-
-        private void _on_ChaseBox_body_entered(KinematicBody2D body)
-        {
-            if (body.IsInGroup("player")) _chase = true;
-        
-            else _chase = false;
         }
     }   
 }

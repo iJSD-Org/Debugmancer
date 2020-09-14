@@ -10,6 +10,7 @@ namespace Debugmancer.Objects.Enemies.Computer
 		private readonly PackedScene _bulletScene = (PackedScene)ResourceLoader.Load("res://Objects/Bullets/EnemyBullet2.tscn");
 		private readonly Random _random = new Random();
 		private int _shots;
+		private bool _canShoot = false;
 
 		public override void _Ready()
 		{
@@ -20,7 +21,7 @@ namespace Debugmancer.Objects.Enemies.Computer
 		{
 			GetNode<Timer>("ShootTimer").Stop();
 
-			SpawnBullet();
+			if(_canShoot) SpawnBullet();
 
 			if (++_shots == 6)
 			{
@@ -33,6 +34,18 @@ namespace Debugmancer.Objects.Enemies.Computer
 				GetNode<Timer>("ShootTimer").WaitTime = (float)(_random.NextDouble() * (.4 - .1) + .1);
 				GetNode<Timer>("ShootTimer").Start();
 			}
+		}
+
+		private void _on_VisibilityNotifier2D_screen_entered()
+		{
+			GetNode<Timer>("ShootTimer").Start();
+			_canShoot = true;
+		}
+
+		private void _on_VisibilityNotifier2D_screen_exited()
+		{
+			GetNode<Timer>("ShootTimer").Stop();
+			_canShoot = false;
 		}
 
 		public void Hitbox_BodyEntered(Area2D area)

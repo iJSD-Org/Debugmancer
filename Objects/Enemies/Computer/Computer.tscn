@@ -27,7 +27,6 @@ frame = 147
 shape = SubResource( 1 )
 
 [node name="ShootTimer" type="Timer" parent="."]
-autostart = true
 
 [node name="Hitbox" type="Area2D" parent="."]
 collision_layer = 2147483650
@@ -124,5 +123,10 @@ position = Vector2( -0.098671, -0.334053 )
 [node name="Health" type="Node" parent="."]
 script = ExtResource( 3 )
 MaxHealth = 10
+
+[node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]
+position = Vector2( -0.140469, 0.421399 )
+scale = Vector2( 0.55519, 0.95786 )
 [connection signal="timeout" from="ShootTimer" to="." method="ShootTimer_timeout"]
 [connection signal="body_entered" from="Hitbox" to="." method="Hitbox_BodyEntered"]
+[connection signal="screen_entered" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_entered"]

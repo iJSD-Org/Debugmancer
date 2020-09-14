@@ -1,12 +1,12 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Assets/Sprites/Entities/Spider SpriteSheet-export.png" type="Texture" id=1]
 [ext_resource path="res://Objects/Enemies/Spider/States/Stagger.cs" type="Script" id=2]
 [ext_resource path="res://Objects/Enemies/Spider/States/Chase.cs" type="Script" id=3]
 [ext_resource path="res://Objects/Enemies/Spider/Entity.cs" type="Script" id=4]
 [ext_resource path="res://Objects/Health.cs" type="Script" id=5]
-[ext_resource path="res://Objects/Enemies/Spider/Wander.cs" type="Script" id=6]
-[ext_resource path="res://Objects/Enemies/Spider/Idle.cs" type="Script" id=7]
+[ext_resource path="res://Objects/Enemies/Spider/States/Idle.cs" type="Script" id=6]
+[ext_resource path="res://Objects/Enemies/Spider/States/Wander.cs" type="Script" id=7]
 
 [sub_resource type="Animation" id=1]
 length = 0.65
@@ -24,9 +24,6 @@ tracks/0/keys = {
 "update": 1,
 "values": [ 0, 1, 2, 3 ]
 }
-
-[sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 158.594, 76.9461 )
 
 [node name="Spider" type="KinematicBody2D" groups=[
 "enemy",
@@ -77,12 +74,12 @@ wait_time = 1.3
 script = ExtResource( 2 )
 
 [node name="Idle" type="Node" parent="States"]
-script = ExtResource( 7 )
+script = ExtResource( 6 )
 
 [node name="IdleTimer" type="Timer" parent="States/Idle"]
 
 [node name="Wander" type="Node" parent="States"]
-script = ExtResource( 6 )
+script = ExtResource( 7 )
 
 [node name="WanderTimer" type="Timer" parent="States/Wander"]
 wait_time = 2.0
@@ -90,19 +87,13 @@ wait_time = 2.0
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/Chase = SubResource( 1 )
 
-[node name="ChaseBox" type="Area2D" parent="."]
-collision_layer = 2
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="ChaseBox"]
-position = Vector2( -0.115257, 0.28212 )
-shape = SubResource( 2 )
+[node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]
+position = Vector2( -0.327754, 0.23411 )
+scale = Vector2( 0.967225, 0.733114 )
 [connection signal="timeout" from="ShootTimer" to="." method="ShootTimer_timeout"]
 [connection signal="body_entered" from="Hitbox" to="." method="Hitbox_BodyEntered"]
 [connection signal="timeout" from="States/Chase/ChaseTimer" to="States/Chase" method="_on_ChaseTimer_timeout"]
 [connection signal="timeout" from="States/Idle/IdleTimer" to="States/Idle" method="_on_IdleTimer_timeout"]
 [connection signal="timeout" from="States/Wander/WanderTimer" to="States/Wander" method="_on_WanderTimer_timeout"]
-[connection signal="body_entered" from="ChaseBox" to="States/Chase" method="_on_ChaseBox_body_entered"]
-[connection signal="body_entered" from="ChaseBox" to="." method="_on_ChaseBox_body_entered"]
-[connection signal="body_entered" from="ChaseBox" to="States/Idle" method="_on_ChaseBox_body_entered"]
-[connection signal="body_exited" from="ChaseBox" to="States/Chase" method="_on_ChaseBox_body_exited"]
-[connection signal="body_exited" from="ChaseBox" to="." method="_on_ChaseBox_body_exited"]
+[connection signal="screen_entered" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_entered"]
+[connection signal="screen_exited" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_exited"]

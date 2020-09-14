@@ -61,4 +61,6 @@ layer = 128
 layer = 126
 
 [node name="Shaders" parent="ShaderLayer" instance=ExtResource( 12 )]
+anchor_left = 0.00131397
+anchor_right = 0.00131397
 mouse_filter = 2

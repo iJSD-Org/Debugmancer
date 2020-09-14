@@ -2,14 +2,14 @@ using Godot;
 using System;
 
 
-namespace Debugmancer.Objects.Enemies.Spider.States
+namespace Debugmancer.Objects.Enemies.Virus.States
 {   
     public class Wander : State
     {
         [Export] public int Speed = 40;
         private Vector2 _dir = new Vector2();
         private Timer _wanderTimer;
-        private RayCast2D _look;
+
         private Random _random = new Random();
         public override void _Ready()
         {
@@ -24,10 +24,7 @@ namespace Debugmancer.Objects.Enemies.Spider.States
 		{
 			_wanderTimer.Start();
             _dir.x = _random.Next(-50,50);
-            _dir.y = _random.Next(-50,50);
-            _look = host.GetNode<RayCast2D>("RayCast2D");
-            GD.Print(_look.CastTo + " " + _dir);
-            _look.CastTo = _dir;
+            _dir.y = _random.Next(-50,50);   
         }
 		public override void Exit(KinematicBody2D host)
 		{
@@ -41,11 +38,6 @@ namespace Debugmancer.Objects.Enemies.Spider.States
 
 		public override void Update(KinematicBody2D host, float delta)
 		{
-            _look.ForceRaycastUpdate();
-            if (_look.IsColliding())
-            {
-                if (_look.GetCollisionPoint() - host.GlobalPosition <= new Vector2(20,20))  _dir = Vector2.Zero;
-            }
             host.MoveAndSlide(_dir.Normalized() * Speed);
 		}
 
