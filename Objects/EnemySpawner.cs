@@ -15,19 +15,21 @@ namespace Debugmancer.Objects
 		public void SpawnTimer_timeout()
 		{
 			List<Vector2> areas = new List<Vector2> {
-				new Vector2(_random.Next(-425, -10), _random.Next(425, 600)),
-				new Vector2(_random.Next(30, 105), _random.Next(100, 270)),
-				new Vector2(_random.Next(30, 1210), _random.Next(335, 580)),
-				new Vector2(_random.Next(30, 420), _random.Next(650, 935)),
-				new Vector2(_random.Next(1050, 1380), _random.Next(635, 800)),
+				new Vector2(_random.Next(-425, -10), _random.Next(425, 600)), //leftmost space
+				new Vector2(_random.Next(30, 105), _random.Next(100, 270)), //top
+				new Vector2(_random.Next(30, 1190), _random.Next(500, 590)), //center bottom
+				new Vector2(_random.Next(30, 850), _random.Next(335, 440)), //center top
+				new Vector2(_random.Next(30, 190), _random.Next(650, 935)), //bottom left
+				new Vector2(_random.Next(260, 420), _random.Next(650, 935)), //bottom right
+				new Vector2(_random.Next(910, 1220), _random.Next(330, 420)),//rightmost space
 			};
 
-			Vector2 enemyPosition = areas[_random.Next(areas.Count)];
+			Vector2 enemyPosition = areas[_random.Next(areas.Count)];	
 			for (double enemyAmount = Math.Ceiling(3 * EnemyMultiplier); enemyAmount > 0; enemyAmount--)
 			{
 				KinematicBody2D enemy = (KinematicBody2D)Enemies[_random.Next(Enemies.Count)].Instance();
 				enemy.Position = enemyPosition;
-				GetParent().AddChild(enemy);
+				GetParent().AddChild(enemy); 
 				enemyPosition.x += 15;
 				enemyPosition.y += 15;
 				GD.Print("EnemySpawned");
