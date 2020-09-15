@@ -122,7 +122,7 @@ position = Vector2( -0.098671, -0.334053 )
 
 [node name="Health" type="Node" parent="."]
 script = ExtResource( 3 )
-MaxHealth = 10
+MaxHealth = 8
 
 [node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]
 position = Vector2( -0.140469, 0.421399 )
