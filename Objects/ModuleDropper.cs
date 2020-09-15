@@ -22,7 +22,7 @@ namespace Debugmancer.Objects
 		}
 		public override void _Process(float delta)
 		{
-			if(Globals.Score > 2000 && ModulesDropped == 5)
+			if(Globals.Score > 3000 && ModulesDropped == 5)
 			{
 				ShowModule(GetNode<Control>("ModuleDropper/FadeAnim/Book/GitModule"));
 				GetParent().GetNode("TestArena/Player").GetNode<TextureProgress>("HUD/VBoxContainer/Health").MaxValue = 25;
@@ -30,22 +30,22 @@ namespace Debugmancer.Objects
 				GetParent().GetNode("TestArena/Player").GetNode<Health>("Health").MaxHealth += 10;
 				GetParent().GetNode("TestArena/Player").GetNode<Health>("Health").Recover(10);
 			}
-			else if(Globals.Score > 1500 && ModulesDropped == 4) 
+			else if(Globals.Score > 2200 && ModulesDropped == 4) 
 			{
 				ShowModule( GetNode<Control>("ModuleDropper/FadeAnim/Book/OOPModule"));
 				Globals.CritChance *= 2;
 			}
-			else if(Globals.Score > 1000 && ModulesDropped == 3) 
+			else if(Globals.Score > 1500 && ModulesDropped == 3) 
 			{
 				ShowModule(GetNode<Control>("ModuleDropper/FadeAnim/Book/DataStructuresModule"));
 				Globals.PlayerDamage *= 2;
 			}
-			else if(Globals.Score > 500 && ModulesDropped == 2)
+			else if(Globals.Score > 800 && ModulesDropped == 2)
 			{
 				ShowModule(GetNode<Control>("ModuleDropper/FadeAnim/Book/BasicProgrammingModule"));
 				GetParent().GetNode("TestArena/Player").GetNode<Timer>("RecoverTimer").Start();
 			}
-			else if(Globals.Score > 250 && ModulesDropped == 1) 
+			else if(Globals.Score > 300 && ModulesDropped == 1) 
 			{
 				ShowModule(GetNode<Control>("ModuleDropper/FadeAnim/Book/SelfStudyModule"));
 				Globals.CanDash = true;

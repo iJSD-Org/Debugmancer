@@ -35,7 +35,7 @@ namespace Debugmancer.Objects
 				GD.Print("EnemySpawned");
 			}
 			EnemyMultiplier += .3;
-			Globals.ScoreMultiplier += .5;
+			Globals.ScoreMultiplier += .3;
 			GetNode<Timer>("SpawnTimer").WaitTime -= 0.2f;
 		}
 	}
