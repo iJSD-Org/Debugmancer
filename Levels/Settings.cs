@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Linq;
 using DiscordRPC;
 using DiscordRPC.Message;
@@ -13,8 +14,32 @@ namespace Debugmancer.Levels
 			DiscordRpcClient client = ((RichPresence)GetNode("/root/RichPresence")).Client;
 			GetNode<Label>("TabContainer/Discord/VBoxContainer/Label").Text = client.CurrentUser != null ? $"Connected as {client.CurrentUser}" : "Not connected";
 			OptionButton options = GetNode<OptionButton>("TabContainer/Display/VBoxContainer/HBoxContainer/OptionButton");
-			string[] resolutions = { "800x600", "960x540", "1280x720", "1920x1080" };
-			foreach (string resolution in resolutions)
+			List<Vector2> resolutions = new List<Vector2> { new Vector2(800, 600), new Vector2(960, 540), new Vector2(1280, 720), new Vector2(1920, 1080) };
+
+			if (!resolutions.Contains(OS.WindowSize))
+			{
+				resolutions.Add(OS.WindowSize);
+				resolutions.Sort((v1, v2) =>
+				{
+					if (v1.x > v2.y)
+					{
+						return 1;
+					}
+
+					if (v1.x == v2.x)
+					{
+						if (v1.y > v2.y)
+						{
+							return 1;
+						}
+
+						return -1;
+					}
+					return -1;
+				});
+			}
+
+			foreach (string resolution in resolutions.Select(r => $"{r.x}x{r.y}"))
 			{
 				options.AddItem(resolution);
 			}
@@ -22,9 +47,9 @@ namespace Debugmancer.Levels
 			GetNode<Button>("TabContainer/Discord/VBoxContainer/HBoxContainer/Button").Disabled = client.CurrentUser != null;
 
 			// Select current resolution
-			options.Selected = resolutions.Select((value, index) => new { value, index })
-				.SkipWhile(pair => $"{OS.WindowSize.x}x{OS.WindowSize.y}" != pair.value).First().index;
 
+			options.Selected = resolutions.Select((value, index) => new { value, index })
+				.SkipWhile(pair => OS.WindowSize != pair.value).First().index;
 			client.OnReady += client_OnReady;
 			client.OnConnectionFailed += client_OnConnectionFailed;
 		}
