@@ -151,7 +151,11 @@ namespace Debugmancer.Objects.Player
 
 		public void Hitbox_BodyEntered(Area2D body)
 		{
-			if (body.IsInGroup("enemy")) {
+			if (body.IsInGroup("roach")) {
+				_isRecover = false;
+				((Health)GetNode("Health")).Damage(5);
+			}
+			else if (body.IsInGroup("enemy")) {
 				_isRecover = false;
 				((Health)GetNode("Health")).Damage(2);
 			}
@@ -177,7 +181,7 @@ namespace Debugmancer.Objects.Player
 		{
 			if (area.IsInGroup("shotgunBullet")) {
 				_isRecover = false;
-				((Health)GetNode("Health")).Damage(5);
+				((Health)GetNode("Health")).Damage(3);
 			}
 			if (area.IsInGroup("enemyBullet")) {
 				_isRecover = false;
