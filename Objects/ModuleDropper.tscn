@@ -421,8 +421,8 @@ margin_bottom = 18.5
 custom_fonts/normal_font = SubResource( 5 )
 custom_colors/default_color = Color( 0, 0, 0, 1 )
 text = "Unlocks dashing! While dashing you are immune to damage! 
-Consumes 5 Energy
-"
+Consumes 10 Energy
+2 Seconds Cooldown"
 __meta__ = {
 "_edit_use_anchors_": false
 }

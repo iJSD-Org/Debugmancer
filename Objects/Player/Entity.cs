@@ -39,7 +39,7 @@ namespace Debugmancer.Objects.Player
 
 			_dashCooldownTimer.AutoReset = false;
 			_dashCooldownTimer.Enabled = false;
-			_dashCooldownTimer.Interval = 500;
+			_dashCooldownTimer.Interval = 1000;
 
 			StateStack.Push((State)StatesMap["Idle"]);
 			ChangeState("Idle");
@@ -100,7 +100,7 @@ namespace Debugmancer.Objects.Player
 			{
 				if (!_dashCooldownTimer.Enabled && Globals.CanDash && Globals.Energy - 5 > 0)
 				{
-					Globals.Energy -= 5;
+					Globals.Energy -= 10;
 					GetNode<TextureProgress>("HUD/VBoxContainer/Energy").Value = Globals.Energy;
 					_dashCooldownTimer.Start();
 					StateStack.Push((State)StatesMap[stateName]);
