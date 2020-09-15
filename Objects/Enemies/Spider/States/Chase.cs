@@ -6,8 +6,8 @@ namespace Debugmancer.Objects.Enemies.Spider.States
 {
 	public class Chase : State
 	{
-		[Export] public int Speed = 60;
-		[Export] public int SpaceOutChance = 4;
+		[Export] public int Speed = 85;
+		[Export] public int SpaceOutChance = 6;
 		private bool _canChase = true;
 		private Vector2 _direction;
 		private Player.Entity _target;
