@@ -1,3 +1,4 @@
+using System;
 using Debugmancer.Objects.Player;
 using Godot;
 
@@ -6,19 +7,27 @@ namespace Debugmancer.Objects.Enemies.Spider.States
 	public class Chase : State
 	{
 		[Export] public int Speed = 60;
+		[Export] public int SpaceOutChance = 4;
+		private bool _canChase = true;
 		private Vector2 _direction;
 		private Player.Entity _target;
+		private Timer _chaseTimer;
+		private Random _random = new Random();
+        public override void _Ready()
+        {
+           _chaseTimer = GetNode<Timer>("ChaseTimer");
+        }
 
 		public void Init(Player.Entity target)
 		{
 			_target = target;
+			_chaseTimer.Start();
 		}
 
 		public override void Enter(KinematicBody2D host)
 		{
-			// TODO: Switch to Chase Animation
+			
 		}
-
 		public override void Exit(KinematicBody2D host)
 		{
 			// Nothing to do here
@@ -31,15 +40,36 @@ namespace Debugmancer.Objects.Enemies.Spider.States
 
 		public override void Update(KinematicBody2D host, float delta)
 		{
-			ChaseTarget(host);
+			if(_canChase) ChaseTarget(host);
 			host.MoveAndSlide(_direction * Speed);
 		}
 
+		private void _on_ChaseTimer_timeout()
+		{
+			if (GetParent().GetParent().GetNode<VisibilityNotifier2D>("VisibilityNotifier2D").IsOnScreen())
+			{
+				_canChase = true;
+			}
+			else
+			{
+				_canChase = false;
+			}
+			
+			_chaseTimer.Stop();		
+			if(_canChase)
+			{
+				string state = _random.Next(1, 10) > SpaceOutChance ? "Chase" : "Idle";
+				EmitSignal(nameof(Finished), state);
+			}
+			else
+			{
+				EmitSignal(nameof(Finished), "Idle");
+			}
+		}
 		private void ChaseTarget(KinematicBody2D host)
 		{
-
 			RayCast2D look = host.GetNode<RayCast2D>("RayCast2D");
-			look.CastTo = _target.Position - host.Position;
+			if(_target != null) look.CastTo = _target.Position - host.Position;
 			look.ForceRaycastUpdate();
 
 			// if we can see the target, chase it

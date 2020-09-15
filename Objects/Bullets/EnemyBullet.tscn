@@ -24,7 +24,6 @@ frame = 1168
 shape = SubResource( 1 )
 
 [node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]
-position = Vector2( 0.0208569, -0.0417135 )
-scale = Vector2( 0.201182, 0.207439 )
+scale = Vector2( 0.27, 0.248 )
 [connection signal="body_entered" from="." to="." method="_on_EnemyBullet_body_entered"]
 [connection signal="screen_exited" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_exited"]

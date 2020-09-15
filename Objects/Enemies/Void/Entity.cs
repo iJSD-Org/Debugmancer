@@ -12,22 +12,24 @@ namespace Debugmancer.Objects.Enemies.Void
 	{
 		[Signal]
 		public delegate void StateChanged();
-
 		public State CurrentState;
 		public Stack<State> StateStack = new Stack<State>();
 		public readonly Dictionary<string, Node> StatesMap = new Dictionary<string, Node>();
-
-		private readonly PackedScene _shotgunScene = (PackedScene)ResourceLoader.Load("res://Objects/Bullets/ShotgunBullet.tscn");
+		private readonly PackedScene _bulletScene = (PackedScene)ResourceLoader.Load("res://Objects/Bullets/ShotgunBullet.tscn");
 		private KinematicBody2D _player;
+		private readonly Random _random = new Random();
+		public static bool canShoot = false;
+		private int _shots;
 
 		public override void _Ready()
 		{
-			_player = GetParent().GetNode<KinematicBody2D>("Player");
 			GetNode<AnimationPlayer>("AnimationPlayer").Play("Chase");
 			StatesMap.Add("Chase", GetNode("States/Chase"));
 			StatesMap.Add("Stagger", GetNode("States/Stagger"));
+			StatesMap.Add("Idle", GetNode("States/Idle"));
+			StatesMap.Add("Wander", GetNode("States/Wander"));
 
-			CurrentState = (State)GetNode("States/Chase");
+			CurrentState = (Idle)GetNode("States/Idle");
 
 			foreach (Node state in StatesMap.Values)
 			{
@@ -36,8 +38,10 @@ namespace Debugmancer.Objects.Enemies.Void
 
 			GetNode("Health").Connect(nameof(Health.HealthChanged), this, nameof(OnHealthChanged));
 
-			StateStack.Push((State)StatesMap["Chase"]);
-			ChangeState("Chase");
+			GetNode<Timer>("ShootTimer").WaitTime = (float)(_random.NextDouble() * (.15 - .1) + .1);
+
+			StateStack.Push((State)StatesMap["Idle"]);
+			ChangeState("Idle");
 		}
 
 		public override void _PhysicsProcess(float delta)
@@ -46,13 +50,26 @@ namespace Debugmancer.Objects.Enemies.Void
 		}
 
 		private void ShootTimer_timeout()
-		{
-			var bullet = (ShotgunBullet)_shotgunScene.Instance();
+		{		
+			GetNode<Timer>("ShootTimer").Stop();
+			ShotgunBullet bullet = (ShotgunBullet)_bulletScene.Instance();
 			bullet.Speed = 150;
 			bullet.Position = Position;
 			bullet.Rotation = (_player.Position - GlobalPosition).Angle();
 			bullet.Direction = new Vector2(_player.Position.x - Position.x, _player.Position.y - Position.y).Normalized();
 			GetParent().AddChild(bullet);
+			if (++_shots == 2)
+			{
+				_shots = 0;
+				GetNode<Timer>("ShootTimer").WaitTime = (float)(_random.NextDouble() * (2.5 - .95) + .95);
+				GetNode<Timer>("ShootTimer").Start();
+			}
+			else
+			{
+				GetNode<Timer>("ShootTimer").WaitTime = (float)(_random.NextDouble() * (.7 - .3) + .3);
+				GetNode<Timer>("ShootTimer").Start();
+			}
+			
 		}
 
 		public void Hitbox_BodyEntered(Area2D body)
@@ -76,6 +93,20 @@ namespace Debugmancer.Objects.Enemies.Void
 			}
 		}
 
+		private void _on_VisibilityNotifier2D_screen_entered()
+		{
+			_player = GetParent().GetNode<KinematicBody2D>("Player");
+			canShoot = true;
+			GetNode<Timer>("ShootTimer").Start();
+			ChangeState("Chase");
+		}
+		private void _on_VisibilityNotifier2D_screen_exited()
+		{
+			GetNode<Timer>("ShootTimer").Stop();
+			GD.Print("VOID EXITED");
+			canShoot = false;
+			ChangeState("Idle");
+		}
 		public async void OnHealthChanged(int health)
 		{
 			Modulate = Color.ColorN("Red");
@@ -90,7 +121,7 @@ namespace Debugmancer.Objects.Enemies.Void
 		}
 
 		private void ChangeState(string stateName)
-		{
+		{		
 			CurrentState.Exit(this);
 			if (stateName == "Previous")
 			{

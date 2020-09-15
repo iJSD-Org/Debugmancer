@@ -15,13 +15,16 @@ namespace Debugmancer.Objects.Enemies.Roach
 		public State CurrentState;
 		public Stack<State> StateStack = new Stack<State>();
 		public readonly Dictionary<string, Node> StatesMap = new Dictionary<string, Node>();
+		private KinematicBody2D _player;
 
 		public override void _Ready()
 		{
 			StatesMap.Add("Chase", GetNode("States/Chase"));
 			StatesMap.Add("Stagger", GetNode("States/Stagger"));
+			StatesMap.Add("Idle", GetNode("States/Idle"));
+			StatesMap.Add("Wander", GetNode("States/Wander"));
 
-			CurrentState = (State)GetNode("States/Chase");
+			CurrentState = (Idle)GetNode("States/Idle");
 
 			foreach (Node state in StatesMap.Values)
 			{
@@ -30,8 +33,8 @@ namespace Debugmancer.Objects.Enemies.Roach
 
 			GetNode("Health").Connect(nameof(Health.HealthChanged), this, nameof(OnHealthChanged));
 
-			StateStack.Push((State)StatesMap["Chase"]);
-			ChangeState("Chase");
+			StateStack.Push((State)StatesMap["Idle"]);
+			ChangeState("Idle");
 		}
 
 		public override void _PhysicsProcess(float delta)
@@ -66,7 +69,7 @@ namespace Debugmancer.Objects.Enemies.Roach
 			// Pass target to Chase State
 			if (stateName == "Chase")
 			{
-				((Chase)CurrentState).Init((Player.Entity)GetParent().GetNode<KinematicBody2D>("Player"));
+				((Chase)CurrentState).Init((Player.Entity)_player);
 			}
 
 			// We don"t want to reinitialize the state if we"re going back to the previous state
@@ -74,6 +77,17 @@ namespace Debugmancer.Objects.Enemies.Roach
 				CurrentState.Enter(this);
 
 			EmitSignal(nameof(StateChanged), CurrentState.Name);
+		}
+
+		private void _on_VisibilityNotifier2D_screen_entered()
+		{
+			_player = GetParent().GetNode<KinematicBody2D>("Player");
+			ChangeState("Chase");
+		}
+		private void _on_VisibilityNotifier2D_screen_exited()
+		{
+			GetNode<Timer>("States/Chase/ChaseTimer").Stop();		
+			ChangeState("Idle");
 		}
 
 		public async void OnHealthChanged(int health)
