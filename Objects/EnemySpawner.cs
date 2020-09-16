@@ -11,9 +11,22 @@ namespace Debugmancer.Objects
 		[Export] public Array<PackedScene> Enemies = new Array<PackedScene>();
 		[Export] public double EnemyMultiplier = 1;
 		private readonly Random _random = new Random();
+		private double _maxEnemies;
+		private double _enemiesSpawned;
+		private double _enemyLimit = 0;
+		private float _timerCoolDown = 35;
+
+        public override void _Ready()
+        {
+			_maxEnemies = Math.Ceiling(3 * EnemyMultiplier);
+			GetNode<Timer>("SpawnTimer").Start();
+        }
+
+        
 		
 		public void SpawnTimer_timeout()
 		{
+			GetNode<Timer>("SpawnTimer").Stop();
 			List<Vector2> areas = new List<Vector2> {
 				new Vector2(_random.Next(-425, -10), _random.Next(425, 600)), //leftmost space
 				new Vector2(_random.Next(30, 105), _random.Next(100, 270)), //top
@@ -25,18 +38,30 @@ namespace Debugmancer.Objects
 			};
 
 			Vector2 enemyPosition = areas[_random.Next(areas.Count)];	
-			for (double enemyAmount = Math.Ceiling(3 * EnemyMultiplier); enemyAmount > 0; enemyAmount--)
+			
+			if(_enemyLimit <= _maxEnemies)
 			{
+				_enemiesSpawned++;
+				_enemyLimit++;
+				GetNode<Timer>("SpawnTimer").WaitTime = 0.7f;
 				KinematicBody2D enemy = (KinematicBody2D)Enemies[_random.Next(Enemies.Count)].Instance();
 				enemy.Position = enemyPosition;
 				GetParent().AddChild(enemy); 
 				enemyPosition.x += 15;
 				enemyPosition.y += 15;
-				GD.Print("EnemySpawned");
+				GetNode<Timer>("SpawnTimer").Start();
 			}
-			EnemyMultiplier += .3;
-			Globals.ScoreMultiplier += .3;
-			GetNode<Timer>("SpawnTimer").WaitTime -= 0.2f;
+
+			else
+			{
+				_enemyLimit = 0;
+				GetNode<Timer>("SpawnTimer").WaitTime = _timerCoolDown;
+				GetNode<Timer>("SpawnTimer").Start();
+				_maxEnemies = Math.Ceiling(3 * EnemyMultiplier);
+				EnemyMultiplier += .3;
+				Globals.ScoreMultiplier += .3;
+				_timerCoolDown -= 0.2f;
+			}	
 		}
 	}
 }
