@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://Levels/map_tilese.tres" type="TileSet" id=1]
 [ext_resource path="res://Objects/Enemies/Roach/Roach.tscn" type="PackedScene" id=2]
@@ -13,6 +13,7 @@
 [ext_resource path="res://Objects/EnemySpawner.tscn" type="PackedScene" id=11]
 [ext_resource path="res://Objects/Enemies/Void/Void.tscn" type="PackedScene" id=12]
 [ext_resource path="res://Levels/Arena.cs" type="Script" id=13]
+[ext_resource path="res://Assets/Sounds/arena_bgm.wav" type="AudioStream" id=14]
 
 [node name="Arena" type="Node"]
 script = ExtResource( 13 )
@@ -82,3 +83,8 @@ margin_top = -47.3051
 margin_right = 46.1213
 margin_bottom = -7.30511
 mouse_filter = 2
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+pause_mode = 2
+stream = ExtResource( 14 )
+autoplay = true
