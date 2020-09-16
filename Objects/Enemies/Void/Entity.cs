@@ -18,7 +18,6 @@ namespace Debugmancer.Objects.Enemies.Void
 		private readonly PackedScene _bulletScene = (PackedScene)ResourceLoader.Load("res://Objects/Bullets/ShotgunBullet.tscn");
 		private KinematicBody2D _player;
 		private readonly Random _random = new Random();
-		private bool _canShoot;
 		private int _shots;
 
 		public override void _Ready()
@@ -96,7 +95,6 @@ namespace Debugmancer.Objects.Enemies.Void
 		private void _on_VisibilityNotifier2D_screen_entered()
 		{
 			_player = GetParent().GetNode<KinematicBody2D>("Player");
-			_canShoot = true;
 			GetNode<Timer>("ShootTimer").Start();
 			ChangeState("Chase");
 		}
@@ -104,7 +102,6 @@ namespace Debugmancer.Objects.Enemies.Void
 		{
 			GetNode<Timer>("ShootTimer").Stop();
 			GD.Print("VOID EXITED");
-			_canShoot = false;
 			ChangeState("Idle");
 		}
 		public async void OnHealthChanged(int health)
