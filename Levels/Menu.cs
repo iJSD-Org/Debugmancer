@@ -52,8 +52,8 @@ namespace Debugmancer.Levels
 			}
 			if (animName == "FadeOut")
 			{
-				GetTree().ChangeScene("res://Levels/Arena.tscn");
 				GetNode<AudioStreamPlayer>("/root/BackgroundMusic/MenuMusic").Stop();
+				GetTree().ChangeScene("res://Levels/Arena.tscn");
 			}
 			if (animName == "Transition")
 			{

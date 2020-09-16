@@ -12,14 +12,14 @@ namespace Debugmancer.Objects.Enemies.Cultist.States
 			_target = target;
 		}
 
-		private void _on_AnimationPlayer_finished(string anim_name)
+		private void _on_AnimationPlayer_finished(string animName)
 		{
-			if (anim_name == "Disappear")
+			if (animName == "Disappear")
 			{
 				_host.GetNode<AnimationPlayer>("AnimationPlayer").Play("Appear");
 				_host.Position = ((Player.Entity)_target).ScentTrail[0].Position;
 			}
-			if (anim_name == "Appear")
+			if (animName == "Appear")
 			{
 				EmitSignal(nameof(Finished), "Shoot");
 			}
