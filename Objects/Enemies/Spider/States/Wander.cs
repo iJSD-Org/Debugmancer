@@ -19,6 +19,7 @@ namespace Debugmancer.Objects.Enemies.Spider.States
 
 		public override void Enter(KinematicBody2D host)
 		{
+			host.GetNode<AnimationPlayer>("AnimationPlayer").Play("Chase");
 			_wanderTimer.Start();
 			_dir.x = _random.Next(-50, 50);
 			_dir.y = _random.Next(-50, 50);

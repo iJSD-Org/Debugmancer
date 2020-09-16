@@ -17,6 +17,7 @@ namespace Debugmancer.Objects.Enemies.Spider.States
 
         public override void Enter(KinematicBody2D host)
 		{
+			host.GetNode<AnimationPlayer>("AnimationPlayer").Play("Idle");
            _idleTimer.Start();
 		}
 

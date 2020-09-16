@@ -22,7 +22,6 @@ namespace Debugmancer.Objects.Enemies.Void
 
 		public override void _Ready()
 		{
-			GetNode<AnimationPlayer>("AnimationPlayer").Play("Chase");
 			StatesMap.Add("Chase", GetNode("States/Chase"));
 			StatesMap.Add("Stagger", GetNode("States/Stagger"));
 			StatesMap.Add("Idle", GetNode("States/Idle"));

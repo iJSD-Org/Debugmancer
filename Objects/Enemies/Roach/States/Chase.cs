@@ -27,7 +27,7 @@ namespace Debugmancer.Objects.Enemies.Roach.States
 
 		public override void Enter(KinematicBody2D host)
 		{
-
+			host.GetNode<AnimationPlayer>("AnimationPlayer").Play("Walk");
 		}
 		public override void Exit(KinematicBody2D host)
 		{
