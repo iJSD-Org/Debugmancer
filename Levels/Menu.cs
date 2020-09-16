@@ -10,6 +10,11 @@ namespace Debugmancer.Levels
 			GetNode<AudioStreamPlayer>("/root/BackgroundMusic/MenuMusic").PitchScale = 1;
 			GetNode<AnimationPlayer>("MenuAnimPlayer").Play("Transition");
 		}
+
+		private void _button_hovered()
+		{
+			GetNode<AudioStreamPlayer>("AudioStreamPlayer").Play();
+		}
 		private void _on_Start_pressed()
 		{
 			if (((RichPresence)GetNode("/root/RichPresence")).Client.CurrentUser != null)

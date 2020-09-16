@@ -23,6 +23,7 @@ namespace Debugmancer.Objects
 		{
 			if (_canShoot && Globals.Energy - 8 > 0)
 			{
+				GetNode<AudioStreamPlayer>("AudioStreamPlayer").Play();
 				Random random = new Random();
 				RigidBody2D bulletInstance = random.Next(1, 10) > Globals.CritChance ? (RigidBody2D)Bullet.Instance() : (RigidBody2D)CritBullet.Instance();
 				bulletInstance.Position = GetNode<Node2D>("GunPoint").GlobalPosition;
