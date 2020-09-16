@@ -21,7 +21,7 @@ namespace Debugmancer.Levels
 				resolutions.Add(OS.WindowSize);
 				resolutions.Sort((v1, v2) =>
 				{
-					if (v1.x > v2.y)
+					if (v1.x > v2.x)
 					{
 						return 1;
 					}
@@ -33,6 +33,10 @@ namespace Debugmancer.Levels
 							return 1;
 						}
 
+						if (v1.y == v2.y)
+						{
+							return 0;
+						}
 						return -1;
 					}
 					return -1;
