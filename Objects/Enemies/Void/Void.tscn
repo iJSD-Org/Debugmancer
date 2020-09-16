@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Assets/Sprites/Entities/SpriteSheet Void.png" type="Texture" id=1]
 [ext_resource path="res://Objects/Enemies/Void/States/Stagger.cs" type="Script" id=2]
@@ -26,6 +26,23 @@ tracks/0/keys = {
 "values": [ 0, 1, 2, 3 ]
 }
 
+[sub_resource type="Animation" id=2]
+resource_name = "Idle"
+loop = true
+step = 0.025
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.225, 0.375, 0.525, 0.675, 0.825, 0.95 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 4, 5, 6, 7, 8, 9, 10, 11 ]
+}
+
 [node name="Void" type="KinematicBody2D" groups=[
 "enemy",
 ]]
@@ -39,6 +56,7 @@ position = Vector2( 0.31498, 0 )
 texture = ExtResource( 1 )
 vframes = 3
 hframes = 4
+frame = 9
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 position = Vector2( -7.64079, -7.85659 )
@@ -87,6 +105,7 @@ script = ExtResource( 6 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/Chase = SubResource( 1 )
+anims/Idle = SubResource( 2 )
 
 [node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]
 position = Vector2( -0.648915, 0.147481 )

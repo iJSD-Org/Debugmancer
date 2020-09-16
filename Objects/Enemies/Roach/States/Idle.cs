@@ -17,6 +17,7 @@ namespace Debugmancer.Objects.Enemies.Roach.States
 		public override void Enter(KinematicBody2D host)
 		{
 			_idleTimer.Start();
+			host.GetNode<AnimationPlayer>("AnimationPlayer").Play("Idle");
 		}
 
 		public override void Exit(KinematicBody2D host)

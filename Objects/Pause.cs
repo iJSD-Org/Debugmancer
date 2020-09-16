@@ -19,7 +19,9 @@ namespace Debugmancer.Objects
 		}
 		public void _on_QuitButton_button_up()
 		{
-		
+			GetNode<AudioStreamPlayer>("/root/BackgroundMusic/MenuMusic").Play(12.47f);
+			GetTree().Paused = false;
+			GetTree().ChangeScene("res://Levels/Main Menu.tscn");
 		}
 	}
 }

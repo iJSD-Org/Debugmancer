@@ -16,11 +16,13 @@ namespace Debugmancer.Objects.Enemies.Computer
 		private int _bulletSpeed = 90;
 		public override void _Ready()
 		{
+			GetNode<AnimationPlayer>("AnimationPlayer").Play("Idle");
 			GetNode("Health").Connect(nameof(Health.HealthChanged), this, nameof(OnHealthChanged));
 		}
 
 		private void ShootTimer_timeout()
 		{
+			GetNode<AnimationPlayer>("AnimationPlayer").Play("Shoot");
 			GetNode<Timer>("ShootTimer").Stop();
 
 			if(_canShoot) SpawnBullet();
@@ -30,6 +32,7 @@ namespace Debugmancer.Objects.Enemies.Computer
 				_shots = 0;
 				GetNode<Timer>("ShootTimer").WaitTime = (float)(_random.NextDouble() * (6 - .95) + .95);
 				GetNode<Timer>("ShootTimer").Start();
+				GetNode<AnimationPlayer>("AnimationPlayer").Play("Idle");
 			}
 			else
 			{

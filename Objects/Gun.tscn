@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://Assets/Sprites/gun.png" type="Texture" id=1]
 [ext_resource path="res://Objects/Gun.cs" type="Script" id=2]
+[ext_resource path="res://Assets/Sounds/sfx-weapon-singleshot2.ogg" type="AudioStream" id=3]
 
 [node name="Gun" type="Sprite"]
 scale = Vector2( 0.02, 0.02 )
@@ -13,4 +14,7 @@ position = Vector2( 208.768, -90.3218 )
 
 [node name="RegenTimer" type="Timer" parent="."]
 autostart = true
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 3 )
 [connection signal="timeout" from="RegenTimer" to="." method="_on_RegenTimer_timeout"]

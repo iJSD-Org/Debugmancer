@@ -20,6 +20,14 @@ namespace Debugmancer.Levels
 			LoadLeaderboard();
 		}
 
+		public override void _Input(InputEvent @event)
+		{
+			if(Input.IsActionPressed("E")) 
+			{
+				GetTree().ChangeScene("res://Levels/Main Menu.tscn");
+			}
+		}
+
 		public void GetLeaderboard()
 		{
 			string uri = "http://dreamlo.com/lb/5f536936eb371809c4113b75/json";

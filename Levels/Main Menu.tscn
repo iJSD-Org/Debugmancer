@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://Assets/bitmgothic.medium.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://Assets/Themes/Classic311/Classic311.tres" type="Theme" id=2]
@@ -12,6 +12,9 @@
 [ext_resource path="res://Levels/Settings.tscn" type="PackedScene" id=10]
 [ext_resource path="res://Assets/Sprites/Settings hovered.png" type="Texture" id=11]
 [ext_resource path="res://Assets/Sprites/Settings.png" type="Texture" id=12]
+[ext_resource path="res://Assets/Sprites/Leaderboard button hovered-export.png" type="Texture" id=13]
+[ext_resource path="res://Assets/Sprites/Leaderboard button-export.png" type="Texture" id=14]
+[ext_resource path="res://Assets/Sounds/Menu Navigate.ogg" type="AudioStream" id=15]
 
 [sub_resource type="Animation" id=1]
 resource_name = "FadeIn"
@@ -55,10 +58,10 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 1.2, 1.5 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PoolRealArray( 0, 0.7, 1.1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
 "update": 0,
-"values": [ Vector2( 300, 0 ), Vector2( 20, 0 ) ]
+"values": [ Vector2( 250, 0 ), Vector2( 300, 0 ), Vector2( 20, 0 ) ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("Mancer:rect_position")
@@ -67,10 +70,10 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 1.2, 1.5 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PoolRealArray( 0, 0.7, 1.1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
 "update": 0,
-"values": [ Vector2( -300, 27 ), Vector2( 20, 27 ) ]
+"values": [ Vector2( -250, 27 ), Vector2( -300, 27 ), Vector2( 20, 27 ) ]
 }
 
 [sub_resource type="DynamicFont" id=4]
@@ -121,11 +124,23 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="Leaderboard" type="TextureButton" parent="."]
+margin_left = 100.211
+margin_top = 115.603
+margin_right = 736.211
+margin_bottom = 185.603
+rect_scale = Vector2( 0.2, 0.2 )
+texture_normal = ExtResource( 14 )
+texture_hover = ExtResource( 13 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="Quit" type="TextureButton" parent="."]
-margin_left = 128.879
-margin_top = 113.867
-margin_right = 428.879
-margin_bottom = 213.867
+margin_left = 130.293
+margin_top = 135.348
+margin_right = 430.293
+margin_bottom = 235.348
 rect_scale = Vector2( 0.2, 0.2 )
 texture_normal = ExtResource( 4 )
 texture_hover = ExtResource( 7 )
@@ -143,8 +158,8 @@ __meta__ = {
 }
 
 [node name="Debug" type="Label" parent="."]
-margin_left = 300.0
-margin_right = 580.0
+margin_left = 20.0
+margin_right = 300.0
 margin_bottom = 27.0
 custom_fonts/font = SubResource( 4 )
 custom_colors/font_color = Color( 0.207843, 0.207843, 0.380392, 1 )
@@ -157,9 +172,9 @@ __meta__ = {
 }
 
 [node name="Mancer" type="Label" parent="."]
-margin_left = -300.0
+margin_left = 20.0
 margin_top = 27.0
-margin_right = -19.9998
+margin_right = 300.0
 margin_bottom = 54.0
 custom_fonts/font = SubResource( 5 )
 custom_colors/font_color = Color( 0.207843, 0.207843, 0.380392, 1 )
@@ -189,9 +204,16 @@ __meta__ = {
 stream = ExtResource( 9 )
 
 [node name="SettingsDialog" parent="." instance=ExtResource( 10 )]
-visible = false
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 15 )
 [connection signal="animation_finished" from="MenuAnimPlayer" to="." method="_on_MenuAnimPlayer_animation_finished"]
+[connection signal="mouse_entered" from="Start" to="." method="_button_hovered"]
 [connection signal="pressed" from="Start" to="." method="_on_Start_pressed"]
+[connection signal="mouse_entered" from="Settings" to="." method="_button_hovered"]
 [connection signal="pressed" from="Settings" to="." method="_on_Settings_pressed"]
+[connection signal="mouse_entered" from="Leaderboard" to="." method="_button_hovered"]
+[connection signal="pressed" from="Leaderboard" to="." method="_on_Leaderboard_pressed"]
+[connection signal="mouse_entered" from="Quit" to="." method="_button_hovered"]
 [connection signal="pressed" from="Quit" to="." method="_on_Quit_pressed"]
 [connection signal="about_to_show" from="ConnectionFailedDialog" to="ConnectionFailedDialog" method="ConnectionFailedDialog_AboutToShow"]

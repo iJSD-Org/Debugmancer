@@ -3,7 +3,6 @@
 [ext_resource path="res://Levels/Settings.cs" type="Script" id=1]
 
 [node name="SettingsDialog" type="WindowDialog"]
-visible = true
 margin_left = 229.803
 margin_top = 130.051
 margin_right = 478.803

@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/NANI.ogg-9ac286e7d922faaca65783f7174c8b79.oggstr"
+
+[deps]
+
+source_file="res://Assets/Sounds/NANI.ogg"
+dest_files=[ "res://.import/NANI.ogg-9ac286e7d922faaca65783f7174c8b79.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

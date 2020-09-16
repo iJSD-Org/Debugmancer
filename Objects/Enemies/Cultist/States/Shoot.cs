@@ -20,6 +20,7 @@ namespace Debugmancer.Objects.Enemies.Cultist.States
 		{
 			_shots = 0;
 			_host = host;
+			host.GetNode<AnimationPlayer>("AnimationPlayer").Play("Chase");
 			_host.GetNode<Node2D>("BulletSpawn").Rotation = new Vector2(_target.Position.x - _host.Position.x,
 				_target.Position.y - _host.Position.y).Angle();
 			GetNode<Timer>("ShootTimer").Start();

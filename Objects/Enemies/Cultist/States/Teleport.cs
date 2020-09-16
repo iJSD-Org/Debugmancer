@@ -5,16 +5,31 @@ namespace Debugmancer.Objects.Enemies.Cultist.States
 	public class Teleport : State
 	{
 		private KinematicBody2D _target;
+		private KinematicBody2D _host;
 
 		public void Init(KinematicBody2D target)
 		{
 			_target = target;
 		}
 
+		private void _on_AnimationPlayer_finished(string animName)
+		{
+			if (animName == "Disappear")
+			{
+				_host.GetNode<AnimationPlayer>("AnimationPlayer").Play("Appear");
+				_host.Position = ((Player.Entity)_target).ScentTrail[0].Position;
+			}
+			if (animName == "Appear")
+			{
+				EmitSignal(nameof(Finished), "Shoot");
+			}
+		}
+
 		public override void Enter(KinematicBody2D host)
 		{
-			host.Position = ((Player.Entity)_target).ScentTrail[0].Position;
-			EmitSignal(nameof(Finished), "Shoot");
+			_host = host;
+			host.GetNode<AudioStreamPlayer2D>("AudioStreamPlayer2D").Play();
+			host.GetNode<AnimationPlayer>("AnimationPlayer").Play("Disappear");
 		}
 
 		public override void Exit(KinematicBody2D host)

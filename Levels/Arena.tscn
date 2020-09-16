@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://Levels/map_tilese.tres" type="TileSet" id=1]
 [ext_resource path="res://Objects/Enemies/Roach/Roach.tscn" type="PackedScene" id=2]
@@ -13,6 +13,7 @@
 [ext_resource path="res://Objects/EnemySpawner.tscn" type="PackedScene" id=11]
 [ext_resource path="res://Objects/Enemies/Void/Void.tscn" type="PackedScene" id=12]
 [ext_resource path="res://Levels/Arena.cs" type="Script" id=13]
+[ext_resource path="res://Assets/Sounds/arena_bgm.wav" type="AudioStream" id=14]
 
 [node name="Arena" type="Node"]
 script = ExtResource( 13 )
@@ -53,7 +54,19 @@ scale = Vector2( 0.962824, 1 )
 Enemies = [ ExtResource( 7 ), ExtResource( 9 ), ExtResource( 2 ), ExtResource( 5 ), ExtResource( 4 ), ExtResource( 12 ) ]
 
 [node name="Roach" parent="TestArena" instance=ExtResource( 2 )]
-position = Vector2( 500, 500 )
+position = Vector2( 142.936, 339.874 )
+
+[node name="Virus" parent="TestArena" instance=ExtResource( 4 )]
+position = Vector2( 257.65, 595.434 )
+
+[node name="Void" parent="TestArena" instance=ExtResource( 12 )]
+position = Vector2( 705.297, 490.211 )
+
+[node name="Spider" parent="TestArena" instance=ExtResource( 5 )]
+position = Vector2( 373.138, 170.175 )
+
+[node name="Computer" parent="TestArena" instance=ExtResource( 7 )]
+position = Vector2( -110.412, 516.134 )
 
 [node name="ModuleDropper" parent="." instance=ExtResource( 10 )]
 layer = 128
@@ -65,4 +78,14 @@ layer = 128
 layer = 126
 
 [node name="Shaders" parent="ShaderLayer" instance=ExtResource( 3 )]
+margin_left = 6.12128
+margin_top = -47.3051
+margin_right = 46.1213
+margin_bottom = -7.30511
 mouse_filter = 2
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+pause_mode = 2
+stream = ExtResource( 14 )
+volume_db = 0.8
+autoplay = true
