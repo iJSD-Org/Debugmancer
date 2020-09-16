@@ -12,8 +12,9 @@ namespace Debugmancer.Objects
 		[Export] public float BulletSpeed = 600f;
 		[Export] public float FireRate = 0.2f;
 		private bool _canShoot = true;
-		//[Export] public int Energy = 100; 
-		[Export] public int MaxEnergy = 100; 
+
+		[Export] public int MaxEnergy = 100;
+
 		public override void _Process(float delta)
 		{
 			Rotation = GetParent<KinematicBody2D>().GetAngleTo(GetGlobalMousePosition());
@@ -37,19 +38,19 @@ namespace Debugmancer.Objects
 		{
 			if (Globals.Energy < MaxEnergy)
 			{
-				if(Globals.Energy > (MaxEnergy *.8)) Globals.Energy += 16;
-				if(Globals.Energy >= (MaxEnergy * .5)) Globals.Energy += 13;
-				if(Globals.Energy < (MaxEnergy * .5)) Globals.Energy += 8;
-				if(Globals.Energy > MaxEnergy) Globals.Energy = MaxEnergy;
+				if (Globals.Energy > (MaxEnergy * .8)) Globals.Energy += 16;
+				if (Globals.Energy >= (MaxEnergy * .5)) Globals.Energy += 13;
+				if (Globals.Energy < (MaxEnergy * .5)) Globals.Energy += 8;
+				if (Globals.Energy > MaxEnergy) Globals.Energy = MaxEnergy;
 				GD.Print(Globals.Energy);
 			}
 			GetParent().GetNode<TextureProgress>("HUD/VBoxContainer/Energy").Value = Globals.Energy;
 		}
 		public void ReduceEnergy()
 		{
-			if(Globals.Energy > (MaxEnergy *.8)) Globals.Energy -= 3;
-			if(Globals.Energy >= (MaxEnergy * .5)) Globals.Energy -= 5;
-			if(Globals.Energy < (MaxEnergy * .5)) Globals.Energy -= 8;
+			if (Globals.Energy > (MaxEnergy * .8)) Globals.Energy -= 3;
+			if (Globals.Energy >= (MaxEnergy * .5)) Globals.Energy -= 5;
+			if (Globals.Energy < (MaxEnergy * .5)) Globals.Energy -= 8;
 			GetParent().GetNode<TextureProgress>("HUD/VBoxContainer/Energy").Value = Globals.Energy;
 		}
 		public async void ShootTimer()

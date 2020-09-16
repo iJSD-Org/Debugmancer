@@ -11,7 +11,7 @@ namespace Debugmancer.Objects.Enemies.Computer
 		private readonly PackedScene _bulletScene = (PackedScene)ResourceLoader.Load("res://Objects/Bullets/EnemyBullet2.tscn");
 		private readonly Random _random = new Random();
 		private int _shots;
-		private bool _canShoot = false;
+		private bool _canShoot;
 		private int _bulletSpeed = 90;
 		public override void _Ready()
 		{

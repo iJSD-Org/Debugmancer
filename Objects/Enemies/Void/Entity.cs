@@ -18,7 +18,7 @@ namespace Debugmancer.Objects.Enemies.Void
 		private readonly PackedScene _bulletScene = (PackedScene)ResourceLoader.Load("res://Objects/Bullets/ShotgunBullet.tscn");
 		private KinematicBody2D _player;
 		private readonly Random _random = new Random();
-		public static bool canShoot = false;
+		private bool _canShoot;
 		private int _shots;
 
 		public override void _Ready()
@@ -50,7 +50,7 @@ namespace Debugmancer.Objects.Enemies.Void
 		}
 
 		private void ShootTimer_timeout()
-		{		
+		{
 			GetNode<Timer>("ShootTimer").Stop();
 			ShotgunBullet bullet = (ShotgunBullet)_bulletScene.Instance();
 			bullet.Speed = 130;
@@ -69,22 +69,22 @@ namespace Debugmancer.Objects.Enemies.Void
 				GetNode<Timer>("ShootTimer").WaitTime = (float)(_random.NextDouble() * (.7 - .3) + .3);
 				GetNode<Timer>("ShootTimer").Start();
 			}
-			
+
 		}
 
 		public void Hitbox_BodyEntered(Area2D body)
 		{
 			Health health = (Health)GetNode("Health");
 
-			if (body.IsInGroup("playerBullet")) 
+			if (body.IsInGroup("playerBullet"))
 			{
-				if(health.CurrentHealth - Globals.PlayerDamage > 0) health.Damage(Globals.PlayerDamage);
+				if (health.CurrentHealth - Globals.PlayerDamage > 0) health.Damage(Globals.PlayerDamage);
 				else health.Damage(Globals.PlayerDamage - (health.CurrentHealth - Globals.PlayerDamage));
 			}
 
 			if (body.IsInGroup("playerCritBullet"))
 			{
-				if(health.CurrentHealth - (Globals.PlayerDamage * 2) > 0)
+				if (health.CurrentHealth - (Globals.PlayerDamage * 2) > 0)
 				{
 					ChangeState("Stagger");
 					health.Damage(Globals.PlayerDamage * 2);
@@ -96,7 +96,7 @@ namespace Debugmancer.Objects.Enemies.Void
 		private void _on_VisibilityNotifier2D_screen_entered()
 		{
 			_player = GetParent().GetNode<KinematicBody2D>("Player");
-			canShoot = true;
+			_canShoot = true;
 			GetNode<Timer>("ShootTimer").Start();
 			ChangeState("Chase");
 		}
@@ -104,7 +104,7 @@ namespace Debugmancer.Objects.Enemies.Void
 		{
 			GetNode<Timer>("ShootTimer").Stop();
 			GD.Print("VOID EXITED");
-			canShoot = false;
+			_canShoot = false;
 			ChangeState("Idle");
 		}
 		public async void OnHealthChanged(int health)
@@ -121,7 +121,7 @@ namespace Debugmancer.Objects.Enemies.Void
 		}
 
 		private void ChangeState(string stateName)
-		{		
+		{
 			CurrentState.Exit(this);
 			if (stateName == "Previous")
 			{

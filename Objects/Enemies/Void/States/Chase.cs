@@ -12,11 +12,12 @@ namespace Debugmancer.Objects.Enemies.Void.States
 		private Vector2 _direction;
 		private Player.Entity _target;
 		private Timer _chaseTimer;
-		private Random _random = new Random();
-        public override void _Ready()
-        {
-           _chaseTimer = GetNode<Timer>("ChaseTimer");
-        }
+		private readonly Random _random = new Random();
+
+		public override void _Ready()
+		{
+			_chaseTimer = GetNode<Timer>("ChaseTimer");
+		}
 
 		public void Init(Player.Entity target)
 		{
@@ -26,7 +27,7 @@ namespace Debugmancer.Objects.Enemies.Void.States
 
 		public override void Enter(KinematicBody2D host)
 		{
-			
+
 		}
 		public override void Exit(KinematicBody2D host)
 		{
@@ -40,25 +41,18 @@ namespace Debugmancer.Objects.Enemies.Void.States
 
 		public override void Update(KinematicBody2D host, float delta)
 		{
-			if(_canChase) ChaseTarget(host);
+			if (_canChase) ChaseTarget(host);
 			host.MoveAndSlide(_direction * Speed);
 		}
 
 
 		private void _on_ChaseTimer_timeout()
 		{
-			if (GetParent().GetParent().GetNode<VisibilityNotifier2D>("VisibilityNotifier2D").IsOnScreen())
-			{
-				_canChase = true;
-			}
-			else
-			{
-				_canChase = false;
-			}
+			_canChase = GetParent().GetParent().GetNode<VisibilityNotifier2D>("VisibilityNotifier2D").IsOnScreen();
 
-			_chaseTimer.Stop();		
-			
-			if(_canChase)
+			_chaseTimer.Stop();
+
+			if (_canChase)
 			{
 				string state = _random.Next(1, 10) > SpaceOutChance ? "Chase" : "Idle";
 				EmitSignal(nameof(Finished), state);
@@ -71,7 +65,7 @@ namespace Debugmancer.Objects.Enemies.Void.States
 		private void ChaseTarget(KinematicBody2D host)
 		{
 			RayCast2D look = host.GetNode<RayCast2D>("RayCast2D");
-			if(_target != null) look.CastTo = _target.Position - host.Position;
+			if (_target != null) look.CastTo = _target.Position - host.Position;
 			look.ForceRaycastUpdate();
 
 			// if we can see the target, chase it

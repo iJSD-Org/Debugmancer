@@ -18,7 +18,7 @@ namespace Debugmancer.Objects.Enemies.Spider
 		private readonly PackedScene _bulletScene = (PackedScene)ResourceLoader.Load("res://Objects/Bullets/EnemyBullet.tscn");
 		private KinematicBody2D _player;
 		private readonly Random _random = new Random();
-		public static bool canShoot = false;
+		private bool _canShoot;
 		private int _shots;
 
 		public override void _Ready()
@@ -51,30 +51,30 @@ namespace Debugmancer.Objects.Enemies.Spider
 		}
 
 		private void ShootTimer_timeout()
-		{		
+		{
 			GetNode<Timer>("ShootTimer").Stop();
-			if(canShoot)
+			if (_canShoot)
 			{
-			EnemyBullet bullet = (EnemyBullet)_bulletScene.Instance();
-			GD.Print(Position);
-			bullet.Speed = 85;
-			bullet.Position = Position;
-			bullet.Direction = new Vector2(_player.Position.x - Position.x, _player.Position.y - Position.y).Normalized();
-			GetParent().AddChild(bullet);
-			if (++_shots == 20)
-			{
-				_shots = 0;
-				GetNode<Timer>("ShootTimer").WaitTime = (float)(_random.NextDouble() * (2.5 - .95) + .95);
-				GetNode<Timer>("ShootTimer").Start();
-			}
-			else
-			{
-				GetNode<Timer>("ShootTimer").WaitTime = (float)(_random.NextDouble() * (.4 - .1) + .1);
-				GetNode<Timer>("ShootTimer").Start();
-			}
+				EnemyBullet bullet = (EnemyBullet)_bulletScene.Instance();
+				GD.Print(Position);
+				bullet.Speed = 85;
+				bullet.Position = Position;
+				bullet.Direction = new Vector2(_player.Position.x - Position.x, _player.Position.y - Position.y).Normalized();
+				GetParent().AddChild(bullet);
+				if (++_shots == 20)
+				{
+					_shots = 0;
+					GetNode<Timer>("ShootTimer").WaitTime = (float)(_random.NextDouble() * (2.5 - .95) + .95);
+					GetNode<Timer>("ShootTimer").Start();
+				}
+				else
+				{
+					GetNode<Timer>("ShootTimer").WaitTime = (float)(_random.NextDouble() * (.4 - .1) + .1);
+					GetNode<Timer>("ShootTimer").Start();
+				}
 			}
 
-			else 
+			else
 			{
 				GetNode<Timer>("ShootTimer").WaitTime = (float)(_random.NextDouble() * (.15 - .1) + .1);
 				GetNode<Timer>("ShootTimer").Start();
@@ -85,15 +85,15 @@ namespace Debugmancer.Objects.Enemies.Spider
 		{
 			Health health = (Health)GetNode("Health");
 
-			if (body.IsInGroup("playerBullet")) 
+			if (body.IsInGroup("playerBullet"))
 			{
-				if(health.CurrentHealth - Globals.PlayerDamage > 0) health.Damage(Globals.PlayerDamage);
+				if (health.CurrentHealth - Globals.PlayerDamage > 0) health.Damage(Globals.PlayerDamage);
 				else health.Damage(Globals.PlayerDamage - (health.CurrentHealth - Globals.PlayerDamage));
 			}
 
 			if (body.IsInGroup("playerCritBullet"))
 			{
-				if(health.CurrentHealth - (Globals.PlayerDamage * 2) > 0)
+				if (health.CurrentHealth - (Globals.PlayerDamage * 2) > 0)
 				{
 					ChangeState("Stagger");
 					health.Damage(Globals.PlayerDamage * 2);
@@ -106,12 +106,12 @@ namespace Debugmancer.Objects.Enemies.Spider
 		{
 			_player = GetParent().GetNode<KinematicBody2D>("Player");
 			GetNode<Timer>("ShootTimer").Start();
-			canShoot = true;
+			_canShoot = true;
 			ChangeState("Chase");
 		}
 		private void _on_VisibilityNotifier2D_screen_exited()
 		{
-			canShoot = false;
+			_canShoot = false;
 			ChangeState("Idle");
 		}
 		public async void OnHealthChanged(int health)
