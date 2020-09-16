@@ -5,7 +5,6 @@ using System.Linq;
 using System.Net;
 using Debugmancer.Models;
 using Godot;
-using Mono.Web;
 using Newtonsoft.Json.Linq;
 
 namespace Debugmancer.Levels
@@ -36,8 +35,8 @@ namespace Debugmancer.Levels
 						JObject leaderboard = JObject.Parse(reader.ReadToEnd());
 						try
 						{
-							List<JToken> results = leaderboard["dreamlo"]["leaderboard"]["entry"].Children().ToList();
-							ScoreEntries = results.Select(result => result.ToObject<ScoreEntry>()).ToList();
+							List<JToken> results = leaderboard["dreamlo"]?["leaderboard"]?["entry"]?.Children().ToList();
+							ScoreEntries = (results ?? throw new InvalidOperationException()).Select(result => result.ToObject<ScoreEntry>()).ToList();
 						}
 						catch
 						{
@@ -56,23 +55,6 @@ namespace Debugmancer.Levels
 				instance.GetNode<Label>("HBoxContainer/Name").Text = scoreEntry.Name;
 				instance.GetNode<Label>("HBoxContainer/Score").Text = scoreEntry.Score.ToString();
 				GetNode<VBoxContainer>("Panel/ScrollContainer/VBoxContainer").AddChild(instance);
-			}
-		}
-
-		public void AddScoreEntry(string name, int score)
-		{
-
-			string url = $"http://dreamlo.com/lb/i_4PXzwaHUKL5JkjB4_RMw1VmyiI6leUCyInbaAIlpzg/add/{HttpUtility.UrlEncode(name)}/{score}";
-			HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
-			using (HttpWebResponse response = (HttpWebResponse)request.GetResponse())
-			{
-				using (Stream stream = response.GetResponseStream())
-				{
-					using (StreamReader reader = new StreamReader(stream))
-					{
-						//Console.WriteLine(reader.ReadToEnd());
-					}
-				}
 			}
 		}
 	}
