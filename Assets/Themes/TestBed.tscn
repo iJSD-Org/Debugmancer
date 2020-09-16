@@ -88,10 +88,10 @@ __meta__ = {
 
 [node name="ControlsDialog" type="WindowDialog" parent="GUI"]
 visible = true
-margin_left = 277.0
-margin_top = 175.0
-margin_right = 784.0
-margin_bottom = 524.0
+margin_left = 74.0
+margin_top = 104.0
+margin_right = 581.0
+margin_bottom = 453.0
 window_title = "Demo Window"
 script = ExtResource( 2 )
 __meta__ = {
@@ -216,10 +216,10 @@ __meta__ = {
 }
 
 [node name="Panel" type="Panel" parent="GUI/ControlsDialog/TabContainer/Buttons"]
-margin_left = 17.0
-margin_top = 66.0
-margin_right = 172.0
-margin_bottom = 157.0
+margin_left = 16.0
+margin_top = 69.0
+margin_right = 171.0
+margin_bottom = 160.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -436,12 +436,13 @@ margin_left = 7.0
 margin_top = 94.0
 margin_right = 293.0
 margin_bottom = 286.0
+columns = 5
+select_mode = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="AcceptDialog" type="AcceptDialog" parent="GUI"]
-visible = true
 margin_left = 332.401
 margin_top = 272.527
 margin_right = 622.401
