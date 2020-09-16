@@ -109,8 +109,9 @@ namespace Debugmancer.Objects.Player
 			}
 			else if (stateName == "Dead")
 			{
-				Engine.TimeScale = 0.5f;
-				GetNode<AnimationPlayer>("AnimationPlayer").Play("FadeOut");
+				Globals.IsDying = true;
+				Engine.TimeScale = 0.4f;
+				GetNode<AnimationPlayer>("FadePlayer").Play("FadeOut");
 				return;
 			}
 			else
@@ -149,7 +150,7 @@ namespace Debugmancer.Objects.Player
 			ScentTrail.Add(scent);
 		}
 
-		public void Hitbox_BodyEntered(Area2D body)
+		public void Hitbox_BodyEntered(KinematicBody2D body)
 		{
 			if (body.IsInGroup("roach")) {
 				_isRecover = false;
@@ -189,7 +190,7 @@ namespace Debugmancer.Objects.Player
 			}
 		}
 
-		private void _on_AnimationPlayer_finished(string animName)
+		private void _on_FadePlayer_finished(string animName)
 		{
 			if (animName == "FadeOut")
 			{
