@@ -104,6 +104,8 @@ anims/Idle = SubResource( 1 )
 anims/Walk = SubResource( 2 )
 
 [node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]
+position = Vector2( -1.125, 0.375 )
+scale = Vector2( 0.59375, 0.75 )
 [connection signal="body_entered" from="Hitbox" to="." method="Hitbox_BodyEntered"]
 [connection signal="timeout" from="States/Chase/ChaseTimer" to="States/Chase" method="_on_ChaseTimer_timeout"]
 [connection signal="timeout" from="States/Idle/IdleTimer" to="States/Idle" method="_on_IdleTimer_timeout"]

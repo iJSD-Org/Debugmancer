@@ -55,20 +55,6 @@ tracks/0/keys = {
 }
 
 [sub_resource type="Animation" id=5]
-tracks/0/type = "value"
-tracks/0/path = NodePath("HUD/ColorRect:color")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 1 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ Color( 0, 0, 0, 0 ), Color( 0, 0, 0, 1 ) ]
-}
-
-[sub_resource type="Animation" id=6]
 length = 0.95
 loop = true
 tracks/0/type = "value"
@@ -84,7 +70,7 @@ tracks/0/keys = {
 "values": [ 3, 6, 4, 7 ]
 }
 
-[sub_resource type="Animation" id=7]
+[sub_resource type="Animation" id=6]
 length = 0.65
 loop = true
 step = 0.05
@@ -99,6 +85,21 @@ tracks/0/keys = {
 "transitions": PoolRealArray( 1, 1, 1, 1 ),
 "update": 1,
 "values": [ 2, 1, 0, 3 ]
+}
+
+[sub_resource type="Animation" id=7]
+resource_name = "FadeOut"
+tracks/0/type = "value"
+tracks/0/path = NodePath("HUD/ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 0, 0, 0, 0 ), Color( 0, 0, 0, 1 ) ]
 }
 
 [node name="Player" type="KinematicBody2D" groups=[
@@ -118,7 +119,7 @@ region_rect = Rect2( 0, 0, 16, 16 )
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 position = Vector2( -7.82352, -24.1936 )
 rotation = -0.0349066
-polygon = PoolVector2Array( 14, 25, 13, 30, 12, 31, 4, 31, 3, 26, 3, 17, 14, 17 )
+polygon = PoolVector2Array( 11.9807, 25.7159, 11.1175, 29.8242, 10.8019, 30.0642, 3.98228, 29.9255, 3.29373, 25.926, 3.5441, 18.2821, 12.2286, 18.6185 )
 
 [node name="Gun" parent="." instance=ExtResource( 6 )]
 position = Vector2( 9.88201, 0 )
@@ -129,7 +130,7 @@ collision_mask = 2
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Hitbox"]
 position = Vector2( -7.82352, -24.1936 )
 rotation = -0.0349066
-polygon = PoolVector2Array( 14, 25, 13, 30, 12, 31, 4, 31, 3, 26, 3, 17, 14, 17 )
+polygon = PoolVector2Array( 12.2439, 25.8359, 11.2118, 30.1647, 10.7961, 30.4, 3.83148, 30.2833, 3.05086, 26.2223, 3.27734, 18.0018, 12.6014, 18.2957 )
 
 [node name="BodyTimer" type="Timer" parent="."]
 wait_time = 0.5
@@ -224,10 +225,10 @@ __meta__ = {
 }
 
 [node name="ColorRect" type="ColorRect" parent="HUD"]
-visible = false
-margin_right = 320.0
+margin_left = -0.0525551
+margin_right = 319.947
 margin_bottom = 181.0
-color = Color( 0, 0, 0, 0 )
+color = Color( 0, 0, 0, 0.1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -235,17 +236,20 @@ __meta__ = {
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/Dash = SubResource( 3 )
 anims/Dash_Flipped = SubResource( 4 )
-anims/FadeOut = SubResource( 5 )
-anims/Idle = SubResource( 6 )
-anims/Walk = SubResource( 7 )
+anims/Idle = SubResource( 5 )
+anims/Walk = SubResource( 6 )
 
 [node name="Camera" parent="." instance=ExtResource( 12 )]
 position = Vector2( 0.0125217, -0.00294733 )
-Amplitude = 6.0
+Amplitude = 10.0
+
+[node name="FadePlayer" type="AnimationPlayer" parent="."]
+anims/FadeOut = SubResource( 7 )
 [connection signal="area_entered" from="Hitbox" to="." method="Hitbox_AreaEntered"]
+[connection signal="body_entered" from="Hitbox" to="." method="Hitbox_BodyEntered"]
 [connection signal="timeout" from="BodyTimer" to="." method="BodyTimer_timeout"]
 [connection signal="timeout" from="ScentTimer" to="." method="AddScent"]
 [connection signal="timeout" from="DashTimer" to="States/Dash" method="DashTimer_timeout"]
 [connection signal="timeout" from="RecoverTimer" to="." method="_on_RecoverTimer_timeout"]
 [connection signal="HealthChanged" from="Health" to="." method="OnHealthChanged"]
-[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_finished"]
+[connection signal="animation_finished" from="FadePlayer" to="." method="_on_FadePlayer_finished"]
