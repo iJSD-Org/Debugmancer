@@ -58,6 +58,12 @@ position = Vector2( 500, 500 )
 [node name="Cultist" parent="TestArena" instance=ExtResource( 9 )]
 position = Vector2( 444.997, 158.071 )
 
+[node name="Computer" parent="TestArena" instance=ExtResource( 7 )]
+position = Vector2( 202.627, 333.606 )
+
+[node name="Void" parent="TestArena" instance=ExtResource( 12 )]
+position = Vector2( -8.6174, 410.866 )
+
 [node name="ModuleDropper" parent="." instance=ExtResource( 10 )]
 layer = 128
 
