@@ -58,10 +58,10 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 1.2, 1.5 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PoolRealArray( 0, 0.7, 1.1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
 "update": 0,
-"values": [ Vector2( 300, 0 ), Vector2( 20, 0 ) ]
+"values": [ Vector2( 250, 0 ), Vector2( 300, 0 ), Vector2( 20, 0 ) ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("Mancer:rect_position")
@@ -70,10 +70,10 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 1.2, 1.5 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PoolRealArray( 0, 0.7, 1.1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
 "update": 0,
-"values": [ Vector2( -300, 27 ), Vector2( 20, 27 ) ]
+"values": [ Vector2( -250, 27 ), Vector2( -300, 27 ), Vector2( 20, 27 ) ]
 }
 
 [sub_resource type="DynamicFont" id=4]
@@ -158,8 +158,8 @@ __meta__ = {
 }
 
 [node name="Debug" type="Label" parent="."]
-margin_left = 300.0
-margin_right = 580.0
+margin_left = 20.0
+margin_right = 300.0
 margin_bottom = 27.0
 custom_fonts/font = SubResource( 4 )
 custom_colors/font_color = Color( 0.207843, 0.207843, 0.380392, 1 )
@@ -172,9 +172,9 @@ __meta__ = {
 }
 
 [node name="Mancer" type="Label" parent="."]
-margin_left = -300.0
+margin_left = 20.0
 margin_top = 27.0
-margin_right = -19.9998
+margin_right = 300.0
 margin_bottom = 54.0
 custom_fonts/font = SubResource( 5 )
 custom_colors/font_color = Color( 0.207843, 0.207843, 0.380392, 1 )
@@ -204,7 +204,6 @@ __meta__ = {
 stream = ExtResource( 9 )
 
 [node name="SettingsDialog" parent="." instance=ExtResource( 10 )]
-visible = false
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 15 )
