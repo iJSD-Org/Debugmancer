@@ -10,12 +10,6 @@ namespace Debugmancer.Levels
 			GetNode<AudioStreamPlayer>("/root/BackgroundMusic/MenuMusic").PitchScale = 1;
 			GetNode<AnimationPlayer>("MenuAnimPlayer").Play("Transition");
 		}
-
-		public override void _ExitTree()
-		{
-			GetNode<AudioStreamPlayer>("/root/BackgroundMusic/MenuMusic").Stop();
-		}
-
 		private void _on_Start_pressed()
 		{
 			if (((RichPresence)GetNode("/root/RichPresence")).Client.CurrentUser != null)
@@ -35,6 +29,10 @@ namespace Debugmancer.Levels
 			GetNode<WindowDialog>("SettingsDialog").PopupCentered();
 		}
 
+		private void _on_Leaderboard_pressed()
+		{
+			GetTree().ChangeScene("res://Levels/Leaderboard.tscn");
+		}
 
 		private void _on_Quit_pressed()
 		{
@@ -50,6 +48,7 @@ namespace Debugmancer.Levels
 			if (animName == "FadeOut")
 			{
 				GetTree().ChangeScene("res://Levels/Arena.tscn");
+				GetNode<AudioStreamPlayer>("/root/BackgroundMusic/MenuMusic").Stop();
 			}
 			if (animName == "Transition")
 			{

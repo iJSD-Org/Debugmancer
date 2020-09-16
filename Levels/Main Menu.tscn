@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://Assets/bitmgothic.medium.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://Assets/Themes/Classic311/Classic311.tres" type="Theme" id=2]
@@ -12,6 +12,8 @@
 [ext_resource path="res://Levels/Settings.tscn" type="PackedScene" id=10]
 [ext_resource path="res://Assets/Sprites/Settings hovered.png" type="Texture" id=11]
 [ext_resource path="res://Assets/Sprites/Settings.png" type="Texture" id=12]
+[ext_resource path="res://Assets/Sprites/Leaderboard button hovered-export.png" type="Texture" id=13]
+[ext_resource path="res://Assets/Sprites/Leaderboard button-export.png" type="Texture" id=14]
 
 [sub_resource type="Animation" id=1]
 resource_name = "FadeIn"
@@ -121,11 +123,23 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="Leaderboard" type="TextureButton" parent="."]
+margin_left = 100.211
+margin_top = 115.603
+margin_right = 736.211
+margin_bottom = 185.603
+rect_scale = Vector2( 0.2, 0.2 )
+texture_normal = ExtResource( 14 )
+texture_hover = ExtResource( 13 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="Quit" type="TextureButton" parent="."]
-margin_left = 128.879
-margin_top = 113.867
-margin_right = 428.879
-margin_bottom = 213.867
+margin_left = 130.293
+margin_top = 135.348
+margin_right = 430.293
+margin_bottom = 235.348
 rect_scale = Vector2( 0.2, 0.2 )
 texture_normal = ExtResource( 4 )
 texture_hover = ExtResource( 7 )
@@ -193,5 +207,6 @@ visible = false
 [connection signal="animation_finished" from="MenuAnimPlayer" to="." method="_on_MenuAnimPlayer_animation_finished"]
 [connection signal="pressed" from="Start" to="." method="_on_Start_pressed"]
 [connection signal="pressed" from="Settings" to="." method="_on_Settings_pressed"]
+[connection signal="pressed" from="Leaderboard" to="." method="_on_Leaderboard_pressed"]
 [connection signal="pressed" from="Quit" to="." method="_on_Quit_pressed"]
 [connection signal="about_to_show" from="ConnectionFailedDialog" to="ConnectionFailedDialog" method="ConnectionFailedDialog_AboutToShow"]

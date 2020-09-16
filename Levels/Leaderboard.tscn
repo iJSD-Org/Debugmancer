@@ -1,7 +1,7 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Assets/Themes/Classic311/Classic311.tres" type="Theme" id=1]
-[ext_resource path="res://Assets/Sprites/leaderboard.png" type="Texture" id=2]
+[ext_resource path="res://Assets/Sprites/Leaderboard.png" type="Texture" id=2]
 [ext_resource path="res://Assets/Jeebz-Regular.ttf" type="DynamicFontData" id=3]
 [ext_resource path="res://Levels/Leaderboard.cs" type="Script" id=5]
 [ext_resource path="res://Assets/Jeebz-Bold.ttf" type="DynamicFontData" id=6]
@@ -12,6 +12,10 @@ font_data = ExtResource( 3 )
 [sub_resource type="DynamicFont" id=2]
 size = 7
 font_data = ExtResource( 6 )
+
+[sub_resource type="DynamicFont" id=3]
+size = 8
+font_data = ExtResource( 3 )
 
 [node name="Leaderboard" type="Control"]
 anchor_right = 1.0
@@ -110,3 +114,12 @@ align = 2
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="Label2" type="Label" parent="."]
+margin_left = 235.815
+margin_top = 166.134
+margin_right = 343.815
+margin_bottom = 180.134
+custom_fonts/font = SubResource( 3 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+text = "Press [E] to go back"
