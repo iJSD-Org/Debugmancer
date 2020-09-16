@@ -119,7 +119,7 @@ region_rect = Rect2( 0, 0, 16, 16 )
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 position = Vector2( -7.82352, -24.1936 )
 rotation = -0.0349066
-polygon = PoolVector2Array( 12.4667, 25.822, 11.1175, 29.8242, 10.9886, 30.5033, 3.95218, 30.205, 3, 26, 3.26737, 18.191, 12.4102, 18.4051 )
+polygon = PoolVector2Array( 11.9807, 25.7159, 11.1175, 29.8242, 10.8019, 30.0642, 3.98228, 29.9255, 3.29373, 25.926, 3.5441, 18.2821, 12.2286, 18.6185 )
 
 [node name="Gun" parent="." instance=ExtResource( 6 )]
 position = Vector2( 9.88201, 0 )
@@ -130,7 +130,7 @@ collision_mask = 2
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Hitbox"]
 position = Vector2( -7.82352, -24.1936 )
 rotation = -0.0349066
-polygon = PoolVector2Array( 13.0683, 25.1594, 12.0464, 30.3299, 10.7675, 30.8111, 3.20584, 30.4945, 2.6771, 26.0586, 2.55038, 17.6401, 13.057, 17.9544 )
+polygon = PoolVector2Array( 12.2439, 25.8359, 11.2118, 30.1647, 10.7961, 30.4, 3.83148, 30.2833, 3.05086, 26.2223, 3.27734, 18.0018, 12.6014, 18.2957 )
 
 [node name="BodyTimer" type="Timer" parent="."]
 wait_time = 0.5
