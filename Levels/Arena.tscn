@@ -55,6 +55,9 @@ Enemies = [ ExtResource( 7 ), ExtResource( 9 ), ExtResource( 2 ), ExtResource( 5
 [node name="Roach" parent="TestArena" instance=ExtResource( 2 )]
 position = Vector2( 500, 500 )
 
+[node name="Cultist" parent="TestArena" instance=ExtResource( 9 )]
+position = Vector2( 444.997, 158.071 )
+
 [node name="ModuleDropper" parent="." instance=ExtResource( 10 )]
 layer = 128
 
