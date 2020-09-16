@@ -241,7 +241,7 @@ anims/Walk = SubResource( 7 )
 
 [node name="Camera" parent="." instance=ExtResource( 12 )]
 position = Vector2( 0.0125217, -0.00294733 )
-Amplitude = 10.0
+Amplitude = 6.0
 [connection signal="area_entered" from="Hitbox" to="." method="Hitbox_AreaEntered"]
 [connection signal="timeout" from="BodyTimer" to="." method="BodyTimer_timeout"]
 [connection signal="timeout" from="ScentTimer" to="." method="AddScent"]

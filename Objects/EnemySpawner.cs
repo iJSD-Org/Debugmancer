@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Debugmancer.Objects.Player;
 using Godot;
 using Godot.Collections;
@@ -12,9 +13,9 @@ namespace Debugmancer.Objects
 		[Export] public double EnemyMultiplier = 1;
 		private readonly Random _random = new Random();
 		private double _maxEnemies;
-		private double _enemiesSpawned;
-		private double _enemyLimit = 0;
+		private double _enemies = 0;
 		private float _timerCoolDown = 35;
+
 
         public override void _Ready()
         {
@@ -26,6 +27,8 @@ namespace Debugmancer.Objects
 		
 		public void SpawnTimer_timeout()
 		{
+			int enemies = GetChildren().Cast<Node>().Count(c => c.IsInGroup("enemy"));
+
 			GetNode<Timer>("SpawnTimer").Stop();
 			List<Vector2> areas = new List<Vector2> {
 				new Vector2(_random.Next(-425, -10), _random.Next(425, 600)), //leftmost space
@@ -38,11 +41,10 @@ namespace Debugmancer.Objects
 			};
 
 			Vector2 enemyPosition = areas[_random.Next(areas.Count)];	
-			
-			if(_enemyLimit <= _maxEnemies)
-			{
-				_enemiesSpawned++;
-				_enemyLimit++;
+
+			if(_enemies <= _maxEnemies && enemies < 20)
+			{		
+				_enemies++;
 				GetNode<Timer>("SpawnTimer").WaitTime = 0.7f;
 				KinematicBody2D enemy = (KinematicBody2D)Enemies[_random.Next(Enemies.Count)].Instance();
 				enemy.Position = enemyPosition;
@@ -54,7 +56,7 @@ namespace Debugmancer.Objects
 
 			else
 			{
-				_enemyLimit = 0;
+				_enemies = 0;
 				GetNode<Timer>("SpawnTimer").WaitTime = _timerCoolDown;
 				GetNode<Timer>("SpawnTimer").Start();
 				_maxEnemies = Math.Ceiling(3 * EnemyMultiplier);
