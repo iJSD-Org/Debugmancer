@@ -8,19 +8,14 @@ namespace Debugmancer.Objects.Enemies.Spider.States
     {
          [Export] public int WanderChance = 5;
         private Timer _idleTimer; 
-        private Random _random = new Random();
-        private bool _chase = false;
+        private readonly Random _random = new Random();
+        private bool _chase;
         public override void _Ready()
         {
             _idleTimer = GetNode<Timer>("IdleTimer");
         }
 
-        public void Init(Player.Entity target)
-		{
-        
-		}
-
-		public override void Enter(KinematicBody2D host)
+        public override void Enter(KinematicBody2D host)
 		{
            _idleTimer.Start();
 		}

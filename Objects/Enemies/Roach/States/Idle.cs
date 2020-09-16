@@ -14,11 +14,6 @@ namespace Debugmancer.Objects.Enemies.Roach.States
 			_idleTimer = GetNode<Timer>("IdleTimer");
 		}
 
-		public void Init(Player.Entity target)
-		{
-
-		}
-
 		public override void Enter(KinematicBody2D host)
 		{
 			_idleTimer.Start();
