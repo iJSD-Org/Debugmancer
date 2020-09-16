@@ -97,7 +97,7 @@ namespace Debugmancer.Objects.Enemies.Roach
 			Modulate = new Color(1, 1, 1);
 			if (health == 0)
 			{
-				Globals.Score += Math.Ceiling(35 * Globals.ScoreMultiplier);
+				Globals.Score += (int)Math.Ceiling(35 * Globals.ScoreMultiplier);
 				GetParent().GetNode<KinematicBody2D>("Player").GetNode<Label>("HUD/Score").Text = $"Score: {Globals.Score}";
 				ChangeState("Dead");
 			}
