@@ -8,6 +8,5 @@ namespace Debugmancer.Objects.Player
         public static int PlayerDamage = 1;
         public static int CritChance = 1;
         public static int Energy = 100;
-        public static int Enemies = 0;
     }
 }

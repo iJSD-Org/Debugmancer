@@ -17,13 +17,13 @@ namespace Debugmancer.Objects
 		private float _timerCoolDown = 35;
 
 
-        public override void _Ready()
-        {
+		public override void _Ready()
+		{
 			_maxEnemies = Math.Ceiling(3 * EnemyMultiplier);
 			GetNode<Timer>("SpawnTimer").Start();
-        }
+		}
 
-        
+		
 		
 		public void SpawnTimer_timeout()
 		{
@@ -44,7 +44,6 @@ namespace Debugmancer.Objects
 			
 			if(_enemies <= _maxEnemies && enemies < 20)
 			{		
-				Globals.Enemies++;
 				_enemies++;
 				GetNode<Timer>("SpawnTimer").WaitTime = 0.7f;
 				KinematicBody2D enemy = (KinematicBody2D)Enemies[_random.Next(Enemies.Count)].Instance();
