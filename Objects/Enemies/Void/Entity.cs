@@ -53,7 +53,7 @@ namespace Debugmancer.Objects.Enemies.Void
 		{		
 			GetNode<Timer>("ShootTimer").Stop();
 			ShotgunBullet bullet = (ShotgunBullet)_bulletScene.Instance();
-			bullet.Speed = 150;
+			bullet.Speed = 130;
 			bullet.Position = Position;
 			bullet.Rotation = (_player.Position - GlobalPosition).Angle();
 			bullet.Direction = new Vector2(_player.Position.x - Position.x, _player.Position.y - Position.y).Normalized();
