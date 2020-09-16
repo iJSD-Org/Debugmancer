@@ -120,6 +120,7 @@ namespace Debugmancer.Objects.Enemies.Virus
 			Modulate = new Color(1, 1, 1);
 			if (health == 0)
 			{
+				Globals.Enemies--;
 				Globals.Score += Math.Ceiling(50 * Globals.ScoreMultiplier);
 				GetParent().GetNode<KinematicBody2D>("Player").GetNode<Label>("HUD/Score").Text = $"Score: {Globals.Score}";
 				ChangeState("Dead");

@@ -77,6 +77,7 @@ namespace Debugmancer.Objects.Enemies.Cultist
 			Modulate = new Color(1, 1, 1);
 			if (health == 0)
 			{
+				Globals.Enemies--;
 				Globals.Score += Math.Ceiling(200 * Globals.ScoreMultiplier);
 				GetParent().GetNode<KinematicBody2D>("Player").GetNode<Label>("HUD/Score").Text = $"Score: {Globals.Score}";
 				QueueFree();

@@ -41,9 +41,10 @@ namespace Debugmancer.Objects
 			};
 
 			Vector2 enemyPosition = areas[_random.Next(areas.Count)];	
-
+			
 			if(_enemies <= _maxEnemies && enemies < 20)
 			{		
+				Globals.Enemies++;
 				_enemies++;
 				GetNode<Timer>("SpawnTimer").WaitTime = 0.7f;
 				KinematicBody2D enemy = (KinematicBody2D)Enemies[_random.Next(Enemies.Count)].Instance();
