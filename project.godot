@@ -25,7 +25,6 @@ config/icon="res://icon.png"
 
 RichPresence="*res://RichPresence.cs"
 BackgroundMusic="*res://Objects/BackgroundMusic.tscn"
-Leaderboard="*res://Leaderboard.cs"
 
 [display]
 
