@@ -58,7 +58,7 @@ script = ExtResource( 5 )
 wait_time = 0.05
 
 [node name="CooldownTimer" type="Timer" parent="States/Shoot"]
-wait_time = 0.3
+wait_time = 0.6
 
 [node name="Teleport" type="Node" parent="States"]
 script = ExtResource( 2 )

@@ -2,6 +2,7 @@ using System;
 using System.Threading.Tasks;
 using Debugmancer.Objects.Bullets;
 using Debugmancer.Objects.Player;
+
 using Godot;
 
 namespace Debugmancer.Objects.Enemies.Computer
@@ -180,6 +181,7 @@ namespace Debugmancer.Objects.Enemies.Computer
 			Modulate = new Color(1, 1, 1);
 			if (health == 0)
 			{
+				Globals.Enemies--;
 				Globals.Score += Math.Ceiling(100 * Globals.ScoreMultiplier);
 				GetParent().GetNode<KinematicBody2D>("Player").GetNode<Label>("HUD/Score").Text = $"Score: {Globals.Score}";
 				QueueFree();
