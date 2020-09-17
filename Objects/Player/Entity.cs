@@ -131,7 +131,7 @@ namespace Debugmancer.Objects.Player
 
 		public async void OnHealthChanged(int health)
 		{
-			((Camera)GetNode<Camera2D>("Camera")).StartShake();
+			if (!Globals.IsRecover)((Camera)GetNode<Camera2D>("Camera")).StartShake();
 			GetNode<TextureProgress>("HUD/VBoxContainer/Health").Value = health;
 			Modulate = _isRecover ? Color.ColorN("Green") : Color.ColorN("Red");
 			await Task.Delay(100);
@@ -158,7 +158,7 @@ namespace Debugmancer.Objects.Player
 			}
 			else if (body.IsInGroup("enemy")) {
 				_isRecover = false;
-				((Health)GetNode("Health")).Damage(2);
+				((Health)GetNode("Health")).Damage(1);
 			}
 		}
 
@@ -182,11 +182,11 @@ namespace Debugmancer.Objects.Player
 		{
 			if (area.IsInGroup("shotgunBullet")) {
 				_isRecover = false;
-				((Health)GetNode("Health")).Damage(3);
+				((Health)GetNode("Health")).Damage(4);
 			}
 			if (area.IsInGroup("enemyBullet")) {
 				_isRecover = false;
-				((Health)GetNode("Health")).Damage(1);
+				((Health)GetNode("Health")).Damage(2);
 			}
 		}
 

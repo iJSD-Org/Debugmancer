@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=2]
+[gd_scene load_steps=38 format=2]
 
 [ext_resource path="res://Assets/Sprites/Fast-Forward/fast-forward14.png" type="Texture" id=1]
 [ext_resource path="res://Assets/Sprites/Scene 1 .png" type="Texture" id=2]
@@ -83,6 +83,10 @@ animations = [ {
 "name": "default",
 "speed": 5.0
 } ]
+
+[sub_resource type="DynamicFont" id=7]
+size = 9
+font_data = ExtResource( 7 )
 
 [node name="Cutscene" type="Node2D"]
 script = ExtResource( 5 )
@@ -191,8 +195,19 @@ visible = false
 position = Vector2( 290.424, 167.711 )
 scale = Vector2( 0.123468, 0.123468 )
 frames = SubResource( 6 )
-frame = 9
+frame = 14
 speed_scale = 1.84
 playing = true
+
+[node name="FastForwadIndicator" type="Label" parent="."]
+margin_left = 3.65679
+margin_top = 167.264
+margin_right = 138.657
+margin_bottom = 181.264
+custom_fonts/font = SubResource( 7 )
+text = "Hold [E] to fast forward"
+__meta__ = {
+"_edit_use_anchors_": false
+}
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_finished"]
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

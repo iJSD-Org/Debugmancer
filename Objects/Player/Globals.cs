@@ -9,5 +9,6 @@ namespace Debugmancer.Objects.Player
         public static int CritChance = 1;
         public static int Energy = 100;
         public static bool IsDying = false;
+        public static bool IsRecover = false;
     }
 }
