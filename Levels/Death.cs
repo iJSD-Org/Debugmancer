@@ -18,6 +18,7 @@ namespace Debugmancer.Levels
 		{
 			GetNode<AnimationPlayer>("AnimationPlayer").Play("FadeIn");
 			GetNode<Label>("Score").Text = $"You scored : {Globals.Score}";
+			Globals.ResetValues();
 		}
 
 		public override void _Process(float delta)

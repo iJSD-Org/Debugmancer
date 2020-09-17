@@ -90,4 +90,4 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 [connection signal="button_up" from="Pause/PauseBox/ResumeButton" to="Pause" method="_on_ResumeButton_button_up"]
-[connection signal="pressed" from="Pause/PauseBox/QuitButton" to="Pause" method="_on_QuitButton_pressed"]
+[connection signal="pressed" from="Pause/PauseBox/QuitButton" to="Pause" method="_on_QuitButton_button_up"]

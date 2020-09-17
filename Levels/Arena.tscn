@@ -53,8 +53,20 @@ scale = Vector2( 0.962824, 1 )
 [node name="EnemySpawner" parent="TestArena" instance=ExtResource( 11 )]
 Enemies = [ ExtResource( 7 ), ExtResource( 9 ), ExtResource( 2 ), ExtResource( 5 ), ExtResource( 4 ), ExtResource( 12 ) ]
 
+[node name="Roach" parent="TestArena" instance=ExtResource( 2 )]
+position = Vector2( 142.936, 339.874 )
+
+[node name="Virus" parent="TestArena" instance=ExtResource( 4 )]
+position = Vector2( 257.65, 595.434 )
+
+[node name="Void" parent="TestArena" instance=ExtResource( 12 )]
+position = Vector2( 705.297, 490.211 )
+
+[node name="Spider" parent="TestArena" instance=ExtResource( 5 )]
+position = Vector2( 373.138, 170.175 )
+
 [node name="Computer" parent="TestArena" instance=ExtResource( 7 )]
-position = Vector2( 244.588, 397.134 )
+position = Vector2( -110.412, 516.134 )
 
 [node name="ModuleDropper" parent="." instance=ExtResource( 10 )]
 layer = 128
@@ -66,10 +78,10 @@ layer = 128
 layer = 126
 
 [node name="Shaders" parent="ShaderLayer" instance=ExtResource( 3 )]
-margin_left = -41.5827
-margin_top = -16.9662
-margin_right = -1.58265
-margin_bottom = 23.0338
+margin_left = 6.12128
+margin_top = -47.3051
+margin_right = 46.1213
+margin_bottom = -7.30511
 mouse_filter = 2
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
