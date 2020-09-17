@@ -15,29 +15,25 @@ namespace Debugmancer.Objects
 		private double _maxEnemies;
 		private double _enemies = 0;
 		private float _timerCoolDown = 35;
-
-
 		public override void _Ready()
 		{
 			_maxEnemies = Math.Ceiling(3 * EnemyMultiplier);
 			GetNode<Timer>("SpawnTimer").Start();
 		}
 
-		
-		
 		public void SpawnTimer_timeout()
 		{
 			int enemies = GetChildren().Cast<Node>().Count(c => c.IsInGroup("enemy"));
 
 			GetNode<Timer>("SpawnTimer").Stop();
 			List<Vector2> areas = new List<Vector2> {
-				new Vector2(_random.Next(-425, -10), _random.Next(425, 600)), //leftmost space
-				new Vector2(_random.Next(30, 105), _random.Next(100, 270)), //top
-				new Vector2(_random.Next(30, 1190), _random.Next(500, 590)), //center bottom
-				new Vector2(_random.Next(30, 850), _random.Next(335, 440)), //center top
-				new Vector2(_random.Next(30, 190), _random.Next(650, 935)), //bottom left
-				new Vector2(_random.Next(260, 420), _random.Next(650, 935)), //bottom right
-				new Vector2(_random.Next(910, 1220), _random.Next(330, 420)),//rightmost space
+				new Vector2(_random.Next(-385, -55), _random.Next(450, 550)), //leftmost space
+				new Vector2(_random.Next(50, 540), _random.Next(125, 270)), //top
+				new Vector2(_random.Next(50, 1090), _random.Next(500, 590)), //center bottom
+				new Vector2(_random.Next(50, 750), _random.Next(335, 440)), //center top
+				new Vector2(_random.Next(50, 150), _random.Next(650, 835)), //bottom left
+				new Vector2(_random.Next(260, 370), _random.Next(650, 835)), //bottom right
+				new Vector2(_random.Next(910, 1120), _random.Next(330, 380)),//rightmost space
 			};
 
 			Vector2 enemyPosition = areas[_random.Next(areas.Count)];	
@@ -48,9 +44,8 @@ namespace Debugmancer.Objects
 				GetNode<Timer>("SpawnTimer").WaitTime = 0.7f;
 				KinematicBody2D enemy = (KinematicBody2D)Enemies[_random.Next(Enemies.Count)].Instance();
 				enemy.Position = enemyPosition;
+				float a = _random.Next(0,1) == 0 ? enemyPosition.x += 15 : enemyPosition.y += 15;
 				GetParent().AddChild(enemy); 
-				enemyPosition.x += 15;
-				enemyPosition.y += 15;
 				GetNode<Timer>("SpawnTimer").Start();
 			}
 
