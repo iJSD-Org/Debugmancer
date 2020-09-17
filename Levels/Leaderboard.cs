@@ -30,7 +30,7 @@ namespace Debugmancer.Levels
 
 		public void GetLeaderboard()
 		{
-			string uri = "http://dreamlo.com/lb/5f536936eb371809c4113b75/json";
+			string uri = "http://dreamlo.com/lb/5f63459ceb371809c4315ad6/json";
 
 			HttpWebRequest request = (HttpWebRequest)WebRequest.Create(uri);
 			using (HttpWebResponse response = (HttpWebResponse)request.GetResponse())
