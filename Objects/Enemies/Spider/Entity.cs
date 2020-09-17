@@ -56,14 +56,14 @@ namespace Debugmancer.Objects.Enemies.Spider
 			{
 				EnemyBullet bullet = (EnemyBullet)_bulletScene.Instance();
 				GD.Print(Position);
-				bullet.Speed = 100;
+				bullet.Speed = 105;
 				bullet.Position = Position;
 				bullet.Direction = new Vector2(_player.Position.x - Position.x, _player.Position.y - Position.y).Normalized();
 				GetParent().AddChild(bullet);
 				if (++_shots == 20)
 				{
 					_shots = 0;
-					GetNode<Timer>("ShootTimer").WaitTime = (float)(_random.NextDouble() * (2.5 - .95) + .95);
+					GetNode<Timer>("ShootTimer").WaitTime = (float)(_random.NextDouble() * (2.0 - .85) + .85);
 					GetNode<Timer>("ShootTimer").Start();
 				}
 				else

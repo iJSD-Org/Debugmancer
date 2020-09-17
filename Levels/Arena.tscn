@@ -87,5 +87,6 @@ mouse_filter = 2
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 pause_mode = 2
 stream = ExtResource( 14 )
-volume_db = 0.8
+volume_db = 0.6
 autoplay = true
+[connection signal="finished" from="AudioStreamPlayer" to="." method="_on_AudioStreamPlayer_finished"]

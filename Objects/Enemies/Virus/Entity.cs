@@ -56,11 +56,11 @@ namespace Debugmancer.Objects.Enemies.Virus
 			{
 				EnemyBullet bullet = (EnemyBullet)_bulletScene.Instance();
 				GD.Print(Position);
-				bullet.Speed = 90;
+				bullet.Speed = 100;
 				bullet.Position = Position;
 				bullet.Direction = new Vector2(_player.Position.x - Position.x, _player.Position.y - Position.y).Normalized();
 				GetParent().AddChild(bullet);
-				if (++_shots == 5)
+				if (++_shots == 10)
 				{
 					_shots = 0;
 					GetNode<Timer>("ShootTimer").WaitTime = (float)(_random.NextDouble() * (2.5 - .95) + .95);

@@ -61,7 +61,7 @@ namespace Debugmancer.Objects.Enemies.Cultist.States
 		private void SpawnBullet()
 		{
 			var bullet = (EnemyBullet2)_bulletScene.Instance();
-			bullet.Speed = 85;
+			bullet.Speed = 100;
 			bullet.Rotation = _host.GetNode<Node2D>("BulletSpawn").Rotation;
 			bullet.GlobalPosition = _host.Position;
 			bullet.Direction = Vector2.Right.Rotated(_host.GetNode<Position2D>("BulletSpawn/Position2D").RotationDegrees);
