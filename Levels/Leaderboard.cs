@@ -22,7 +22,7 @@ namespace Debugmancer.Levels
 
 		public override void _Input(InputEvent @event)
 		{
-			if(Input.IsActionPressed("E")) 
+			if (Input.IsActionPressed("E"))
 			{
 				GetTree().ChangeScene("res://Levels/Main Menu.tscn");
 			}
@@ -37,19 +37,23 @@ namespace Debugmancer.Levels
 			{
 				using (Stream stream = response.GetResponseStream())
 				{
-					using (StreamReader reader = new StreamReader(stream ?? throw new InvalidOperationException()))
+					try
 					{
-						//Deserialize Result
-						JObject leaderboard = JObject.Parse(reader.ReadToEnd());
-						try
+						using (StreamReader reader = new StreamReader(stream ?? throw new InvalidOperationException()))
 						{
-							List<JToken> results = leaderboard["dreamlo"]?["leaderboard"]?["entry"]?.Children().ToList();
-							ScoreEntries = (results ?? throw new InvalidOperationException()).Select(result => result.ToObject<ScoreEntry>()).ToList();
+							//Deserialize Result
+							JObject leaderboard = JObject.Parse(reader.ReadToEnd());
+
+							List<JToken> results = leaderboard["dreamlo"]?["leaderboard"]?["entry"]?.Children()
+								.ToList();
+							ScoreEntries = (results ?? throw new InvalidOperationException())
+								.Select(result => result.ToObject<ScoreEntry>()).ToList();
+
 						}
-						catch
-						{
-							// None if there is no result
-						}
+					}
+					catch
+					{
+						// Nothing will happen if response is empty or null
 					}
 				}
 			}
@@ -59,7 +63,7 @@ namespace Debugmancer.Levels
 		{
 			foreach (ScoreEntry scoreEntry in ScoreEntries)
 			{
-				Node instance =  _leaderboardItem.Instance();
+				Node instance = _leaderboardItem.Instance();
 				instance.GetNode<Label>("HBoxContainer/Name").Text = scoreEntry.Name;
 				instance.GetNode<Label>("HBoxContainer/Score").Text = scoreEntry.Score.ToString();
 				GetNode<VBoxContainer>("Panel/ScrollContainer/VBoxContainer").AddChild(instance);
