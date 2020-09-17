@@ -12,12 +12,19 @@ namespace Debugmancer.Objects
 		{
 			if(Input.IsActionPressed("E")) 
 			{
-				GetNode<ColorRect>("ModuleDropper/FadeAnim/Overlay").Visible = false;
-				GetNode<TextureRect>("ModuleDropper/FadeAnim/Book").Visible = false;
-				GetNode<Label>("ModuleDropper/BlinkAnim/Label").Visible = false;
-				GetNode<AnimationPlayer>("ModuleDropper/BlinkAnim").Stop();
-				Module.Visible = false;
-				GetTree().Paused = false;
+				try
+				{
+					GetNode<ColorRect>("ModuleDropper/FadeAnim/Overlay").Visible = false;
+					GetNode<TextureRect>("ModuleDropper/FadeAnim/Book").Visible = false;
+					GetNode<Label>("ModuleDropper/BlinkAnim/Label").Visible = false;
+					GetNode<AnimationPlayer>("ModuleDropper/BlinkAnim").Stop();
+					Module.Visible = false;
+					GetTree().Paused = false;
+				}
+				catch
+				{
+					// suppress error
+				}
 			}
 		}
 		public override void _Process(float delta)

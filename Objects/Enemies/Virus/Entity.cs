@@ -56,7 +56,7 @@ namespace Debugmancer.Objects.Enemies.Virus
 			{
 				EnemyBullet bullet = (EnemyBullet)_bulletScene.Instance();
 				GD.Print(Position);
-				bullet.Speed = 85;
+				bullet.Speed = 90;
 				bullet.Position = Position;
 				bullet.Direction = new Vector2(_player.Position.x - Position.x, _player.Position.y - Position.y).Normalized();
 				GetParent().AddChild(bullet);

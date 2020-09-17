@@ -85,6 +85,7 @@ MaxHealth = 6
 
 [node name="Chase" type="Node" parent="States"]
 script = ExtResource( 3 )
+SpaceOutChance = 3
 
 [node name="ChaseTimer" type="Timer" parent="States/Chase"]
 wait_time = 1.3

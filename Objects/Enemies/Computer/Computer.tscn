@@ -57,7 +57,6 @@ script = ExtResource( 2 )
 texture = ExtResource( 1 )
 vframes = 3
 hframes = 4
-frame = 3
 
 [node name="CollisionPolygon2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )

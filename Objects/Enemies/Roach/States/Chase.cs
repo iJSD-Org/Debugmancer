@@ -6,8 +6,8 @@ namespace Debugmancer.Objects.Enemies.Roach.States
 {
 	public class Chase : State
 	{
-		[Export] public int Speed = 60;
-		[Export] public int SpaceOutChance = 4;
+		[Export] public int Speed = 90;
+		[Export] public int SpaceOutChance;
 		private bool _canChase = true;
 		private Vector2 _direction;
 		private Player.Entity _target;

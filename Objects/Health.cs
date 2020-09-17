@@ -1,3 +1,4 @@
+using Debugmancer.Objects.Player;
 using Godot;
 
 namespace Debugmancer.Objects
@@ -17,6 +18,7 @@ namespace Debugmancer.Objects
 
 		public void Damage(int amount)
 		{
+			Globals.IsRecover = false;
 			if(CurrentHealth <= 0) return;
 			CurrentHealth -= amount;
 			if (CurrentHealth <= 0)
@@ -33,6 +35,7 @@ namespace Debugmancer.Objects
 
 		public void Recover(int amount)
 		{
+			Globals.IsRecover = true;
 			CurrentHealth += amount;
 			if (CurrentHealth > MaxHealth)
 			{
