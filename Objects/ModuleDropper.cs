@@ -8,12 +8,14 @@ namespace Debugmancer.Objects
 	{
 		public int ModulesDropped;
 		public Control Module;
+		public static bool IsInModule = false;
 		public override void _Input(InputEvent @event)
 		{
-			if(Input.IsActionPressed("E")) 
+			if(Input.IsActionPressed("E") && !Pause.IsPaused)	 
 			{
 				try
 				{
+					IsInModule = false;
 					GetNode<ColorRect>("ModuleDropper/FadeAnim/Overlay").Visible = false;
 					GetNode<TextureRect>("ModuleDropper/FadeAnim/Book").Visible = false;
 					GetNode<Label>("ModuleDropper/BlinkAnim/Label").Visible = false;
@@ -64,6 +66,7 @@ namespace Debugmancer.Objects
 		}
 		public void ShowModule(Control module)
 		{
+			IsInModule = true;
 			GetTree().Paused = true;
 			ModulesDropped++;
 			Module = module;
