@@ -14,7 +14,7 @@ namespace Debugmancer.Objects
 			{
 				try
 				{
-					GetParent().GetNode("Pause").GetNode("Pause").SetProcessInput(true);
+					GetParent().GetNode("Pause/Pause").SetProcessInput(true);
 					GetNode<ColorRect>("ModuleDropper/FadeAnim/Overlay").Visible = false;
 					GetNode<TextureRect>("ModuleDropper/FadeAnim/Book").Visible = false;
 					GetNode<Label>("ModuleDropper/BlinkAnim/Label").Visible = false;
@@ -65,7 +65,7 @@ namespace Debugmancer.Objects
 		}
 		public void ShowModule(Control module)
 		{
-			GetParent().GetNode("Pause").GetNode("Pause").SetProcessInput(false);
+			GetParent().GetNode("Pause/Pause").SetProcessInput(false);
 			GetTree().Paused = true;
 			ModulesDropped++; 
 			Module = module;

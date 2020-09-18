@@ -10,12 +10,12 @@ namespace Debugmancer.Objects
 			{
 				GetTree().Paused = !GetTree().Paused;
 				Visible = GetTree().Paused;
-				GetParent().GetParent().GetNode("ModuleDropper").SetProcessInput(!GetTree().Paused);
+				GetNode("../../ModuleDropper").SetProcessInput(!GetTree().Paused);
 			}
 		}
 		public void _on_ResumeButton_button_up()
 		{
-			GetParent().GetParent().GetNode("ModuleDropper").SetProcessInput(true);
+			GetNode("../../ModuleDropper").SetProcessInput(true);
 			GetTree().Paused = false;
 			Visible = false;	
 		}
