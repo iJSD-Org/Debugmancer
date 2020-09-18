@@ -2,7 +2,6 @@ using System.IO;
 using System.Net;
 using Debugmancer.Objects.Player;
 using Godot;
-using Mono.Web;
 
 namespace Debugmancer.Levels
 {
@@ -34,7 +33,7 @@ namespace Debugmancer.Levels
 		public void AddScoreEntry(string name, int score)
 		{
 
-			string url = $"http://dreamlo.com/lb/Pv6PwoSKi0e2o9TOfiZb-QuaU0x_d4VE2kmz0kXoVsqg/add/{HttpUtility.UrlEncode(name)}/{score}";
+			string url = $"http://dreamlo.com/lb/Pv6PwoSKi0e2o9TOfiZb-QuaU0x_d4VE2kmz0kXoVsqg/add/{WebUtility.UrlEncode(name)}/{score}";
 			HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
 			using (HttpWebResponse response = (HttpWebResponse)request.GetResponse())
 			{
