@@ -3,23 +3,21 @@ using Godot;
 namespace Debugmancer.Objects
 {
 	public class Pause : Control
-	{
-		
-		public static bool IsPaused = false;
+	{		
 		public override void _Input(InputEvent @event)
 		{
-			if(Input.IsActionJustPressed("pause") && !ModuleDropper.IsInModule)
+			if(Input.IsActionJustPressed("pause"))
 			{
 				GetTree().Paused = !GetTree().Paused;
-				IsPaused = Visible = GetTree().Paused;
+				Visible = GetTree().Paused;
+				GetParent().GetParent().GetNode("ModuleDropper").SetProcessInput(!GetTree().Paused);
 			}
 		}
 		public void _on_ResumeButton_button_up()
 		{
+			GetParent().GetParent().GetNode("ModuleDropper").SetProcessInput(true);
 			GetTree().Paused = false;
-			Visible = false;
-			IsPaused = false;
-			
+			Visible = false;	
 		}
 		public void _on_QuitButton_button_up()
 		{
