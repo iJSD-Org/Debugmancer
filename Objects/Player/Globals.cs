@@ -10,7 +10,6 @@ namespace Debugmancer.Objects.Player
 		public static int Energy = 100;
 		public static bool IsDying;
 		public static bool IsRecover;
-
 		public static void ResetValues()
 		{
 			Score = 0;

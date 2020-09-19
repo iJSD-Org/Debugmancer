@@ -10,10 +10,11 @@ namespace Debugmancer.Objects
 		public Control Module;
 		public override void _Input(InputEvent @event)
 		{
-			if(Input.IsActionPressed("E")) 
+			if(Input.IsActionJustPressed("E"))
 			{
 				try
 				{
+					GetParent().GetNode("Pause/Pause").SetProcessInput(true);
 					GetNode<ColorRect>("ModuleDropper/FadeAnim/Overlay").Visible = false;
 					GetNode<TextureRect>("ModuleDropper/FadeAnim/Book").Visible = false;
 					GetNode<Label>("ModuleDropper/BlinkAnim/Label").Visible = false;
@@ -64,8 +65,9 @@ namespace Debugmancer.Objects
 		}
 		public void ShowModule(Control module)
 		{
+			GetParent().GetNode("Pause/Pause").SetProcessInput(false);
 			GetTree().Paused = true;
-			ModulesDropped++;
+			ModulesDropped++; 
 			Module = module;
 			GetNode<ColorRect>("ModuleDropper/FadeAnim/Overlay").Visible = true;
 			GetNode<TextureRect>("ModuleDropper/FadeAnim/Book").Visible = true;
