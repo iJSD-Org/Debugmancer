@@ -130,7 +130,7 @@ collision_mask = 2
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Hitbox"]
 position = Vector2( -7.82352, -24.1936 )
 rotation = -0.0349066
-polygon = PoolVector2Array( 12.2439, 25.8359, 11.2118, 30.1647, 10.7961, 30.4, 3.83148, 30.2833, 3.05086, 26.2223, 3.27734, 18.0018, 12.6014, 18.2957 )
+polygon = PoolVector2Array( 12.2843, 25.976, 11.2366, 30.2739, 10.8649, 30.4846, 3.7025, 30.3723, 2.87833, 26.2582, 3.17864, 17.8818, 12.6443, 18.1948 )
 
 [node name="BodyTimer" type="Timer" parent="."]
 wait_time = 0.5
@@ -225,8 +225,8 @@ __meta__ = {
 }
 
 [node name="ColorRect" type="ColorRect" parent="HUD"]
-margin_left = -0.0525551
-margin_right = 319.947
+margin_left = -0.0711365
+margin_right = 319.928
 margin_bottom = 181.0
 color = Color( 0, 0, 0, 0.1 )
 __meta__ = {

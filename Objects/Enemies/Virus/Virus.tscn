@@ -30,6 +30,7 @@ tracks/0/keys = {
 "enemy",
 ]]
 collision_layer = 8
+collision_mask = 9
 script = ExtResource( 3 )
 
 [node name="Sprite" type="Sprite" parent="."]

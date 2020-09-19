@@ -51,15 +51,15 @@ namespace Debugmancer.Objects.Enemies.Void
 		{
 			GetNode<Timer>("ShootTimer").Stop();
 			ShotgunBullet bullet = (ShotgunBullet)_bulletScene.Instance();
-			bullet.Speed = 130;
+			bullet.Speed = 140;
 			bullet.Position = Position;
 			bullet.Rotation = (_player.Position - GlobalPosition).Angle();
 			bullet.Direction = new Vector2(_player.Position.x - Position.x, _player.Position.y - Position.y).Normalized();
 			GetParent().AddChild(bullet);
-			if (++_shots == 2)
+			if (++_shots == 3)
 			{
 				_shots = 0;
-				GetNode<Timer>("ShootTimer").WaitTime = (float)(_random.NextDouble() * (2.5 - .95) + .95);
+				GetNode<Timer>("ShootTimer").WaitTime = (float)(_random.NextDouble() * (1.5 - .95) + .95);
 				GetNode<Timer>("ShootTimer").Start();
 			}
 			else

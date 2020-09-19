@@ -24,7 +24,6 @@ namespace Debugmancer.Objects
 			if (CurrentHealth <= 0)
 			{
 				CurrentHealth = 0;
-				EmitSignal(nameof(HealthChanged));
 			}
 
 			EmitSignal(nameof(HealthChanged), CurrentHealth);

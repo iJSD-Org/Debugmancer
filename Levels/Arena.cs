@@ -15,5 +15,10 @@ namespace Debugmancer.Levels
 		{
 			Input.SetCustomMouseCursor(null);
 		}
+
+		private void _on_AudioStreamPlayer_finished()
+		{
+			GetNode<AudioStreamPlayer>("AudioStreamPlayer").Play();
+		}
 	}
 }

@@ -1,3 +1,4 @@
+using Debugmancer.Objects.Player;
 using Godot;
 
 namespace Debugmancer.Objects
@@ -21,6 +22,7 @@ namespace Debugmancer.Objects
 		}
 		public void _on_QuitButton_button_up()
 		{
+			Globals.ResetValues();
 			GetNode<AudioStreamPlayer>("/root/BackgroundMusic/MenuMusic").Play(12.47f);
 			GetTree().Paused = false;
 			GetTree().ChangeScene("res://Levels/Main Menu.tscn");
