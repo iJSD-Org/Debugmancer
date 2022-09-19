@@ -3,9 +3,9 @@ using Godot;
 
 namespace Debugmancer.Objects.Enemies.Void.States
 {
-	public class Stagger : State
+	public partial class Stagger : State
 	{
-		public override async void Enter(KinematicBody2D host)
+		public override async void Enter(CharacterBody2D host)
 		{
 			// TODO: Switch to Stagger Animation
 			host.Modulate = Color.Color8(255, 0, 0);
@@ -14,17 +14,17 @@ namespace Debugmancer.Objects.Enemies.Void.States
 			EmitSignal(nameof(Finished), "Previous");
 		}
 
-		public override void Exit(KinematicBody2D host)
+		public override void Exit(CharacterBody2D host)
 		{
 			// Nothing to do here
 		}
 
-		public override void HandleInput(KinematicBody2D host, InputEvent @event)
+		public override void HandleInput(CharacterBody2D host, InputEvent @event)
 		{
 			// Nothing to do here
 		}
 
-		public override void Update(KinematicBody2D host, float delta)
+		public override void Update(CharacterBody2D host, float delta)
 		{
 			// Do nothing here, being in this state causes the stagger itself
 		}

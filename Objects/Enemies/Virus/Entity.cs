@@ -8,15 +8,15 @@ using Godot;
 
 namespace Debugmancer.Objects.Enemies.Virus
 {
-	public class Entity : KinematicBody2D
+	public partial class Entity : CharacterBody2D
 	{
 		[Signal]
-		public delegate void StateChanged();
+		public delegate void StateChangedEventHandler();
 		public State CurrentState;
-		public Stack<State> StateStack = new Stack<State>();
-		public readonly Dictionary<string, Node> StatesMap = new Dictionary<string, Node>();
+		public Stack<State> StateStack = new();
+		public readonly Dictionary<string, Node> StatesMap = new();
 		private readonly PackedScene _bulletScene = (PackedScene)ResourceLoader.Load("res://Objects/Bullets/EnemyBullet.tscn");
-		private KinematicBody2D _player;
+		private CharacterBody2D _player;
 		private readonly Random _random = new Random();
 		private bool _canShoot;
 		private int _shots;
@@ -33,10 +33,10 @@ namespace Debugmancer.Objects.Enemies.Virus
 
 			foreach (Node state in StatesMap.Values)
 			{
-				state.Connect(nameof(State.Finished), this, nameof(ChangeState));
+				state.Connect(nameof(State.Finished),new Callable(this,nameof(ChangeState)));
 			}
 
-			GetNode("Health").Connect(nameof(Health.HealthChanged), this, nameof(OnHealthChanged));
+			GetNode("Health").Connect(nameof(Health.HealthChanged),new Callable(this,nameof(OnHealthChanged)));
 
 			GetNode<Timer>("ShootTimer").WaitTime = (float)(_random.NextDouble() * (.15 - .1) + .1);
 
@@ -44,9 +44,9 @@ namespace Debugmancer.Objects.Enemies.Virus
 			ChangeState("Idle");
 		}
 
-		public override void _PhysicsProcess(float delta)
+		public override void _PhysicsProcess(double delta)
 		{
-			CurrentState.Update(this, delta);
+			CurrentState.Update(this, (float)delta);
 		}
 
 		private void ShootTimer_timeout()
@@ -54,7 +54,7 @@ namespace Debugmancer.Objects.Enemies.Virus
 			GetNode<Timer>("ShootTimer").Stop();
 			if (_canShoot)
 			{
-				EnemyBullet bullet = (EnemyBullet)_bulletScene.Instance();
+				EnemyBullet bullet = (EnemyBullet)_bulletScene.Instantiate();
 				GD.Print(Position);
 				bullet.Speed = 100;
 				bullet.Position = Position;
@@ -80,7 +80,7 @@ namespace Debugmancer.Objects.Enemies.Virus
 			}
 		}
 
-		public void Hitbox_BodyEntered(Area2D body)
+		public void Hitbox_BodyEntered(Node2D body)
 		{
 			Health health = (Health)GetNode("Health");
 
@@ -103,7 +103,7 @@ namespace Debugmancer.Objects.Enemies.Virus
 
 		private void _on_VisibilityNotifier2D_screen_entered()
 		{
-			_player = GetParent().GetNode<KinematicBody2D>("Player");
+			_player = GetParent().GetNode<CharacterBody2D>("Player");
 			GetNode<Timer>("ShootTimer").Start();
 			_canShoot = true;
 			ChangeState("Chase");
@@ -115,13 +115,13 @@ namespace Debugmancer.Objects.Enemies.Virus
 		}
 		public async void OnHealthChanged(int health)
 		{
-			Modulate = Color.ColorN("Red");
+			Modulate = new Color("Red");
 			await Task.Delay(100);
 			Modulate = new Color(1, 1, 1);
 			if (health == 0)
 			{
 				Globals.Score += (int)Math.Ceiling(50 * Globals.ScoreMultiplier);
-				GetParent().GetNode<KinematicBody2D>("Player").GetNode<Label>("HUD/Score").Text = $"Score: {Globals.Score}";
+				GetParent().GetNode<CharacterBody2D>("Player").GetNode<Label>("HUD/Score").Text = $"Score: {Globals.Score}";
 				ChangeState("Dead");
 			}
 		}

@@ -6,7 +6,7 @@ using Godot;
 
 namespace Debugmancer.Levels
 {
-	public class Settings : WindowDialog
+	public partial class Settings : Window
 	{
 
 		public override void _Ready()
@@ -14,11 +14,12 @@ namespace Debugmancer.Levels
 			DiscordRpcClient client = ((RichPresence)GetNode("/root/RichPresence")).Client;
 			GetNode<Label>("TabContainer/Discord/VBoxContainer/Label").Text = client.CurrentUser != null ? $"Connected as {client.CurrentUser}" : "Not connected";
 			OptionButton options = GetNode<OptionButton>("TabContainer/Display/VBoxContainer/HBoxContainer/OptionButton");
-			List<Vector2> resolutions = new List<Vector2> { new Vector2(800, 600), new Vector2(960, 540), new Vector2(1280, 720), new Vector2(1920, 1080) };
+			List<Vector2i> resolutions = new List<Vector2i> { new Vector2i(800, 600), new Vector2i(960, 540), new Vector2i(1280, 720), new Vector2i(1920, 1080) };
+			
 
-			if (!resolutions.Contains(OS.WindowSize))
+			if (!resolutions.Contains(DisplayServer.WindowGetSize()))
 			{
-				resolutions.Add(OS.WindowSize);
+				resolutions.Add(DisplayServer.WindowGetSize());
 				resolutions.Sort((v1, v2) =>
 				{
 					if (v1.x > v2.x)
@@ -48,12 +49,12 @@ namespace Debugmancer.Levels
 				options.AddItem(resolution);
 			}
 
-			GetNode<Button>("TabContainer/Discord/VBoxContainer/HBoxContainer/Button").Disabled = client.CurrentUser != null;
+			GetNode<Godot.Button>("TabContainer/Discord/VBoxContainer/HBoxContainer/Button").Disabled = client.CurrentUser != null;
 
 			// Select current resolution
 
 			options.Selected = resolutions.Select((value, index) => new { value, index })
-				.SkipWhile(pair => OS.WindowSize != pair.value).First().index;
+				.SkipWhile(pair => DisplayServer.WindowGetSize() != pair.value).First().index;
 			client.OnReady += client_OnReady;
 			client.OnConnectionFailed += client_OnConnectionFailed;
 		}
@@ -61,13 +62,14 @@ namespace Debugmancer.Levels
 		private void _on_SettingsDialog_about_to_show()
 		{
 			DiscordRpcClient client = ((RichPresence)GetNode("/root/RichPresence")).Client;
-			GetNode<Button>("TabContainer/Discord/VBoxContainer/HBoxContainer/Button").Disabled = client.CurrentUser != null;
+			GetNode<Godot.Button>("TabContainer/Discord/VBoxContainer/HBoxContainer/Button").Disabled = client.CurrentUser != null;
 			GetNode<Label>("TabContainer/Discord/VBoxContainer/Label").Text = client.CurrentUser != null ? $"Connected as {client.CurrentUser}" : "Not connected";
 		}
 
 		private void _on_CheckButton_toggled(bool buttonPressed)
 		{
-			OS.WindowFullscreen = buttonPressed;
+			ProjectSettings.SetSetting("display/window/size/fullscreen", true);
+
 			GetNode<OptionButton>("TabContainer/Display/VBoxContainer/HBoxContainer/OptionButton").Disabled =
 				buttonPressed;
 		}
@@ -75,19 +77,19 @@ namespace Debugmancer.Levels
 		private void _on_Button_pressed()
 		{
 			DiscordRpcClient client = ((RichPresence)GetNode("/root/RichPresence")).Client;
-			GetNode<Button>("TabContainer/Discord/VBoxContainer/HBoxContainer/Button").Disabled = true;
+			GetNode<Godot.Button>("TabContainer/Discord/VBoxContainer/HBoxContainer/Button").Disabled = true;
 			GetNode<Label>("TabContainer/Discord/VBoxContainer/Label").Text = "Connecting...";
 		}
 
 		private void client_OnReady(object sender, ReadyMessage e)
 		{
-			GetNode<Button>("TabContainer/Discord/VBoxContainer/HBoxContainer/Button").Disabled = true;
+			GetNode<Godot.Button>("TabContainer/Discord/VBoxContainer/HBoxContainer/Button").Disabled = true;
 			GetNode<Label>("TabContainer/Discord/VBoxContainer/Label").Text = $"Connected as {e.User}";
 		}
 
 		private void client_OnConnectionFailed(object sender, ConnectionFailedMessage e)
 		{
-			GetNode<Button>("TabContainer/Discord/VBoxContainer/HBoxContainer/Button").Disabled = false;
+			GetNode<Godot.Button>("TabContainer/Discord/VBoxContainer/HBoxContainer/Button").Disabled = false;
 			GetNode<Label>("TabContainer/Discord/VBoxContainer/Label").Text = "Connection failed";
 		}
 
@@ -95,7 +97,7 @@ namespace Debugmancer.Levels
 		{
 			int[] res = GetNode<OptionButton>("TabContainer/Display/VBoxContainer/HBoxContainer/OptionButton")
 				.GetItemText(index).Split('x').Select(int.Parse).ToArray();
-			OS.WindowSize = new Vector2(res[0], res[1]);
+			DisplayServer.WindowSetSize(new Vector2i(res[0], res[1]));
 		}
 
 	}

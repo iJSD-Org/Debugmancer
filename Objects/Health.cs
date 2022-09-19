@@ -3,10 +3,10 @@ using Godot;
 
 namespace Debugmancer.Objects
 {
-	public class Health : Node
+	public partial class Health : Node
 	{
 		[Signal]
-		public delegate void HealthChanged(int health);
+		public delegate void HealthChangedEventHandler(int health);
 
 		public int CurrentHealth;
 		[Export] public int MaxHealth = 100;

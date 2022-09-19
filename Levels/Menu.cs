@@ -2,7 +2,7 @@ using Godot;
 
 namespace Debugmancer.Levels
 {
-	public class Menu : Control
+	public partial class Menu : Control
 	{
 		public override void _EnterTree()
 		{
@@ -31,12 +31,12 @@ namespace Debugmancer.Levels
 
 		private void _on_Settings_pressed()
 		{
-			GetNode<WindowDialog>("SettingsDialog").PopupCentered();
+			GetNode<Window>("SettingsDialog").PopupCentered();
 		}
 
 		private void _on_Leaderboard_pressed()
 		{
-			GetTree().ChangeScene("res://Levels/Leaderboard.tscn");
+			GetTree().ChangeSceneToFile("res://Levels/Leaderboard.tscn");
 		}
 
 		private void _on_Quit_pressed()
@@ -53,7 +53,7 @@ namespace Debugmancer.Levels
 			if (animName == "FadeOut")
 			{
 				GetNode<AudioStreamPlayer>("/root/BackgroundMusic/MenuMusic").Stop();
-				GetTree().ChangeScene("res://Levels/Arena.tscn");
+				GetTree().ChangeSceneToFile("res://Levels/Arena.tscn");
 			}
 			if (animName == "Transition")
 			{

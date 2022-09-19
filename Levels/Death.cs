@@ -1,13 +1,16 @@
 using System;
 using System.IO;
 using System.Net;
+using System.Net.Http;
 using Debugmancer.Objects.Player;
 using Godot;
 
 namespace Debugmancer.Levels
 {
-	public class Death : Control
+	public partial class Death : Control
 	{
+
+		private static readonly HttpClient Client = new();
 
 		public override void _EnterTree()
 		{
@@ -21,7 +24,7 @@ namespace Debugmancer.Levels
 			Globals.ResetValues();
 		}
 
-		public override void _Process(float delta)
+		public override void _Process(double delta)
 		{
 			base._Process(delta);
 
@@ -31,33 +34,28 @@ namespace Debugmancer.Levels
 			}
 		}
 
-		public void AddScoreEntry(string name, int score)
+		public async void AddScoreEntry(string name, int score)
 		{
 
 			string url = $"http://dreamlo.com/lb/Pv6PwoSKi0e2o9TOfiZb-QuaU0x_d4VE2kmz0kXoVsqg/add/{Uri.EscapeDataString(name)}/{score}";
-			HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
-			using (HttpWebResponse response = (HttpWebResponse)request.GetResponse())
+
+			HttpResponseMessage response = await Client.GetAsync(url);
+			response.EnsureSuccessStatusCode();
+			Stream stream = await response.Content.ReadAsStreamAsync();
+			using StreamReader reader = new StreamReader(stream);
+			if (await reader.ReadToEndAsync() == "OK")
 			{
-				using (Stream stream = response.GetResponseStream())
-				{
-					using (StreamReader reader = new StreamReader(stream ?? new MemoryStream()))
-					{
-						if (reader.ReadToEnd() == "OK")
-						{
-							Label scoreStatus = GetNode<Label>("ScoreStatus");
-							scoreStatus.Text = "Score upload Success!";
-							scoreStatus.AddColorOverride("font_color",Color.ColorN("Green"));
-						}
-						else
-						{
-							Label scoreStatus = GetNode<Label>("ScoreStatus");
-							scoreStatus.Text = "Score upload fail!";
-							scoreStatus.AddColorOverride("font_color", Color.ColorN("Red"));
-						}
-						GetNode<Label>("Prompt").Visible = true;
-					}
-				}
+				Label scoreStatus = GetNode<Label>("ScoreStatus");
+				scoreStatus.Text = "Score upload Success!";
+				scoreStatus.AddThemeColorOverride("font_color", new Color("Green"));
 			}
+			else
+			{
+				Label scoreStatus = GetNode<Label>("ScoreStatus");
+				scoreStatus.Text = "Score upload fail!";
+				scoreStatus.AddThemeColorOverride("font_color", new Color("Red"));
+			}
+			GetNode<Label>("Prompt").Visible = true;
 		}
 
 		public void _on_AnimationPlayer_finished(string animName)
@@ -65,7 +63,7 @@ namespace Debugmancer.Levels
 			if (animName == "FadeOut")
 			{
 				GetNode<AudioStreamPlayer>("/root/BackgroundMusic/MenuMusic").Play(12.47f);
-				GetTree().ChangeScene("res://Levels/Main Menu.tscn");
+				GetTree().ChangeSceneToFile("res://Levels/Main Menu.tscn");
 			}
 		}
 	}

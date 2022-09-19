@@ -1,9 +1,9 @@
-extends WindowDialog
+extends Window
 
-onready var optionButton = $TabContainer/Buttons/Control/OptionButton
-onready var menuButton = $TabContainer/Buttons/Control/MenuButton
-onready var progressBar = $TabContainer/Extra/ProgressBar
-onready var tree = $TabContainer/Extra/Tree
+@onready var optionButton = $TabContainer/Buttons/Control/OptionButton
+@onready var menuButton = $TabContainer/Buttons/Control/MenuButton
+@onready var progressBar = $TabContainer/Extra/ProgressBar
+@onready var tree = $TabContainer/Extra/Tree
 
 func _ready():
 	optionButton.add_item("Option 1")
@@ -40,10 +40,10 @@ func _on_Dialog_hide():
 	queue_free()
 
 func _on_Dialog_gui_input(event):
-	# Focus the dialog when user click on the title bar
+	# Focus the dialog when user click checked the title bar
 	# Godot seems to not support well multiple windows 
-	# or I can't figure out how to make them move on top when clicked.
-	# This is still not idea. It only works if you click on the title bar.
-	if event is InputEventMouseButton and event.button_index == BUTTON_LEFT and event.pressed:
+	# or I can't figure out how to make them move checked top when clicked.
+	# This is still not idea. It only works if you click checked the title bar.
+	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
 		var parent = self.get_parent()
 		parent.move_child(self, parent.get_child_count())

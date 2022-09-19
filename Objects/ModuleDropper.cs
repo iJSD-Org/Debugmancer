@@ -4,7 +4,7 @@ using Debugmancer.Objects.Player;
 
 namespace Debugmancer.Objects
 {
-	public class ModuleDropper : CanvasLayer
+	public partial class ModuleDropper : CanvasLayer
 	{
 		public int ModulesDropped;
 		public Control Module;
@@ -28,15 +28,15 @@ namespace Debugmancer.Objects
 				}
 			}
 		}
-		public override void _Process(float delta)
+		public override void _Process(double delta)
 		{
 			if(!Globals.IsDying)
 			{
 				if(Globals.Score > 2000 && ModulesDropped == 5)
 				{
 					ShowModule(GetNode<Control>("ModuleDropper/FadeAnim/Book/GitModule"));
-					GetParent().GetNode("TestArena/Player").GetNode<TextureProgress>("HUD/VBoxContainer/Health").MaxValue = 25;
-					GetParent().GetNode("TestArena/Player").GetNode<TextureProgress>("HUD/VBoxContainer/Health").Value = 25;
+					GetParent().GetNode("TestArena/Player").GetNode<TextureProgressBar>("HUD/VBoxContainer/Health").MaxValue = 25;
+					GetParent().GetNode("TestArena/Player").GetNode<TextureProgressBar>("HUD/VBoxContainer/Health").Value = 25;
 					GetParent().GetNode("TestArena/Player").GetNode<Health>("Health").MaxHealth += 10;
 					GetParent().GetNode("TestArena/Player").GetNode<Health>("Health").Recover(10);
 				}

@@ -3,7 +3,7 @@ using Godot;
 
 namespace Debugmancer.Objects.Player
 {
-	public class Camera : Camera2D
+	public partial class Camera : Camera2D
 	{
 		[Export] public float Amplitude = 16;
 
@@ -20,15 +20,15 @@ namespace Debugmancer.Objects.Player
 
 		public override void _Ready()
 		{
-			SetAsToplevel(true);
+			TopLevel = true;
 			SetProcess(false);
 			StartPosition = GlobalPosition;
 		}
-		public override void _PhysicsProcess(float delta)
+		public override void _PhysicsProcess(double delta)
 		{
 			Position = new Vector2(
-				(-((GetParent<KinematicBody2D>().Position.x - GetGlobalMousePosition().x) / 2 * .6f) + GetParent<KinematicBody2D>().GlobalPosition.x), 
-				(-((GetParent<KinematicBody2D>().Position.y - GetGlobalMousePosition().y) / 2 * .6f) + GetParent<KinematicBody2D>().GlobalPosition.y));
+				(-((GetParent<CharacterBody2D>().Position.x - GetGlobalMousePosition().x) / 2 * .6f) + GetParent<CharacterBody2D>().GlobalPosition.x), 
+				(-((GetParent<CharacterBody2D>().Position.y - GetGlobalMousePosition().y) / 2 * .6f) + GetParent<CharacterBody2D>().GlobalPosition.y));
 		}
 		
 		public void StartShake()
@@ -54,7 +54,7 @@ namespace Debugmancer.Objects.Player
 			State = newState;
 		}
 
-		public override void _Process(float delta)
+		public override void _Process(double delta)
 		{
 			Vector2 shakeOffset = new Vector2(
 				(float) (_random.NextDouble() * (Amplitude - -Amplitude) + -Amplitude), 
@@ -65,7 +65,6 @@ namespace Debugmancer.Objects.Player
 		public void ShakeTimer_timeout()
 		{
 			ChangeState(States.Idle);
-
 		}
 	}
 }

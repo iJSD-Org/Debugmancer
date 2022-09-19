@@ -3,7 +3,7 @@ using Godot;
 
 namespace Debugmancer.Objects
 {
-	public class Pause : Control
+	public partial class Pause : Control
 	{		
 		public override void _Input(InputEvent @event)
 		{
@@ -25,7 +25,7 @@ namespace Debugmancer.Objects
 			Globals.ResetValues();
 			GetNode<AudioStreamPlayer>("/root/BackgroundMusic/MenuMusic").Play(12.47f);
 			GetTree().Paused = false;
-			GetTree().ChangeScene("res://Levels/Main Menu.tscn");
+			GetTree().ChangeSceneToFile("res://Levels/Main Menu.tscn");
 		}
 	}
 }

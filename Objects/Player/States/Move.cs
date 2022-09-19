@@ -3,23 +3,23 @@ using Godot;
 
 namespace Debugmancer.Objects.Player.States
 {
-	public class Move : State
+	public partial class Move : State
 	{
 		[Export] public int Speed;
 		public Vector2 Velocity;
-		public override void Enter(KinematicBody2D host)
+		public override void Enter(CharacterBody2D host)
 		{
 			Speed = 0;
 			Velocity = new Vector2();
-		    host.GetNode<AnimationPlayer>("AnimationPlayer").Play("Walk");
+			host.GetNode<AnimationPlayer>("AnimationPlayer").Play("Walk");
 		}
 
-		public override void Exit(KinematicBody2D host)
+		public override void Exit(CharacterBody2D host)
 		{
 			// Nothing to do here
 		}
 
-		public override void HandleInput(KinematicBody2D host, InputEvent @event)
+		public override void HandleInput(CharacterBody2D host, InputEvent @event)
 		{
 			if (@event.IsActionPressed("dash"))
 			{
@@ -27,7 +27,7 @@ namespace Debugmancer.Objects.Player.States
 			}
 		}
 
-		public override void Update(KinematicBody2D host, float delta)
+		public override void Update(CharacterBody2D host, float delta)
 		{
 			Vector2 inputDirection = new Vector2(
 				Convert.ToInt32(Input.IsActionPressed("move_right")) - Convert.ToInt32(Input.IsActionPressed("move_left")),
@@ -42,13 +42,13 @@ namespace Debugmancer.Objects.Player.States
 			MoveObject(host, Speed, inputDirection);
 		}
 
-		public KinematicCollision2D MoveObject(KinematicBody2D host, int speed, Vector2 direction)
+		public KinematicCollision2D MoveObject(CharacterBody2D host, int speed, Vector2 direction)
 		{
 			Vector2 velocity = direction.Normalized() * speed;
-			host.MoveAndSlide(velocity, Vector2.Zero);
-			if (host.GetSlideCount() == 0)
-				return null;
-			return host.GetSlideCollision(0);
+			host.Velocity = velocity;
+			host.MoveAndSlide();
+			
+			return host.GetSlideCollisionCount() == 0 ? null : host.GetSlideCollision(0);
 		}
 	}
 }

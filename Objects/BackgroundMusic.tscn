@@ -1,9 +1,9 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=2 format=3 uid="uid://dlff2sf6t6viu"]
 
-[ext_resource path="res://Assets/Sounds/Jimmy-Fontanez-Dub-Hub.ogg" type="AudioStream" id=1]
+[ext_resource type="AudioStream" uid="uid://14n67gcllnc3" path="res://Assets/Sounds/Jimmy-Fontanez-Dub-Hub.ogg" id="1"]
 
 [node name="Node" type="Node"]
 
 [node name="MenuMusic" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 1 )
+stream = ExtResource("1")
 volume_db = -3.0

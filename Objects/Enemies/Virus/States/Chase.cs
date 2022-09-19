@@ -4,7 +4,7 @@ using Godot;
 
 namespace Debugmancer.Objects.Enemies.Virus.States
 {
-	public class Chase : State
+	public partial class Chase : State
 	{
 		[Export] public int Speed = 60;
 		[Export] public int SpaceOutChance = 4;
@@ -25,28 +25,29 @@ namespace Debugmancer.Objects.Enemies.Virus.States
 			_chaseTimer.Start();
 		}
 
-		public override void Enter(KinematicBody2D host)
+		public override void Enter(CharacterBody2D host)
 		{
 
 		}
-		public override void Exit(KinematicBody2D host)
-		{
-			// Nothing to do here
-		}
-
-		public override void HandleInput(KinematicBody2D host, InputEvent @event)
+		public override void Exit(CharacterBody2D host)
 		{
 			// Nothing to do here
 		}
 
-		public override void Update(KinematicBody2D host, float delta)
+		public override void HandleInput(CharacterBody2D host, InputEvent @event)
+		{
+			// Nothing to do here
+		}
+
+		public override void Update(CharacterBody2D host, float delta)
 		{
 
 			if (_canChase) ChaseTarget(host);
-			host.MoveAndSlide(_direction * Speed);
+			host.Velocity = _direction * Speed;
+			host.MoveAndSlide();
 		}
 
-		private void _on_VisibilityNotifier2D_screen_exited(KinematicBody2D body)
+		private void _on_VisibilityNotifier2D_screen_exited(CharacterBody2D body)
 		{
 			_canChase = false;
 		}
@@ -58,7 +59,7 @@ namespace Debugmancer.Objects.Enemies.Virus.States
 
 		private void _on_ChaseTimer_timeout()
 		{
-			_canChase = GetParent().GetParent().GetNode<VisibilityNotifier2D>("VisibilityNotifier2D").IsOnScreen();
+			_canChase = GetParent().GetParent().GetNode<VisibleOnScreenNotifier2D>("VisibleOnScreenNotifier2D").IsOnScreen();
 
 			_chaseTimer.Stop();
 
@@ -72,17 +73,17 @@ namespace Debugmancer.Objects.Enemies.Virus.States
 				EmitSignal(nameof(Finished), "Idle");
 			}
 		}
-		private void ChaseTarget(KinematicBody2D host)
+		private void ChaseTarget(CharacterBody2D host)
 		{
 			RayCast2D look = host.GetNode<RayCast2D>("RayCast2D");
-			if (_target != null) look.CastTo = _target.Position - host.Position;
+			if (_target != null) look.TargetPosition = _target.Position - host.Position;
 			look.ForceRaycastUpdate();
 
 			// if we can see the target, chase it
 			if (!look.IsColliding() || ((Node)look.GetCollider()).IsInGroup("player"))
 			{
 				((Entity)host).GetNode<Timer>("ShootTimer").Paused = false;
-				_direction = look.CastTo.Normalized();
+				_direction = look.TargetPosition.Normalized();
 			}
 			// or chase the first scent we see
 			else
@@ -90,12 +91,12 @@ namespace Debugmancer.Objects.Enemies.Virus.States
 				((Entity)host).GetNode<Timer>("ShootTimer").Paused = true;
 				foreach (Scent scent in _target.ScentTrail)
 				{
-					look.CastTo = scent.Position - host.Position;
+					look.TargetPosition = scent.Position - host.Position;
 					look.ForceRaycastUpdate();
 
 					if (!look.IsColliding() || ((Node)look.GetCollider()).IsInGroup("player"))
 					{
-						_direction = look.CastTo.Normalized();
+						_direction = look.TargetPosition.Normalized();
 						break;
 					}
 				}

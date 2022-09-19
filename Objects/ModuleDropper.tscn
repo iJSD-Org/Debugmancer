@@ -1,13 +1,13 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=17 format=3]
 
-[ext_resource path="res://Assets/Sprites/Module 1.png" type="Texture" id=1]
-[ext_resource path="res://Assets/Jeebz-Regular.ttf" type="DynamicFontData" id=3]
-[ext_resource path="res://Assets/Sprites/Book UI.png" type="Texture" id=4]
-[ext_resource path="res://Assets/Jeebz-Bold.ttf" type="DynamicFontData" id=5]
-[ext_resource path="res://Assets/Sprites/Module 2 Sprite.png" type="Texture" id=6]
-[ext_resource path="res://Assets/Sprites/Nodule 3 Sprite.png" type="Texture" id=7]
-[ext_resource path="res://Assets/Sprites/Module 5 .png" type="Texture" id=8]
-[ext_resource path="res://Objects/ModuleDropper.cs" type="Script" id=9]
+[ext_resource type="Texture2D" uid="uid://dprkewxy7iih0" path="res://Assets/Sprites/Module 1.png" id="1"]
+[ext_resource type="FontFile" uid="uid://bqcionx5w0hb4" path="res://Assets/Jeebz-Regular.ttf" id="3"]
+[ext_resource type="Texture2D" uid="uid://n0kvt8eudpbg" path="res://Assets/Sprites/Book UI.png" id="4"]
+[ext_resource type="FontFile" uid="uid://d2v5aqpyfield" path="res://Assets/Jeebz-Bold.ttf" id="5"]
+[ext_resource type="Texture2D" uid="uid://m62f1fsbc2fb" path="res://Assets/Sprites/Module 2 Sprite.png" id="6"]
+[ext_resource type="Texture2D" uid="uid://dsayfxrmw1gia" path="res://Assets/Sprites/Nodule 3 Sprite.png" id="7"]
+[ext_resource type="Texture2D" uid="uid://43wasg48t4hx" path="res://Assets/Sprites/Module 5 .png" id="8"]
+[ext_resource type="Script" path="res://Objects/ModuleDropper.cs" id="9"]
 
 [sub_resource type="Animation" id=1]
 resource_name = "FadeIn"
@@ -19,8 +19,8 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"points": PoolRealArray( 1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0 ),
-"times": PoolRealArray( 0, 2 )
+"points": PackedFloat32Array( 1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0 ),
+"times": PackedFloat32Array( 0, 2 )
 }
 tracks/1/type = "bezier"
 tracks/1/path = NodePath("FadeAnim/Book:modulate:g")
@@ -29,8 +29,8 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"points": PoolRealArray( 1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0 ),
-"times": PoolRealArray( 0, 2 )
+"points": PackedFloat32Array( 1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0 ),
+"times": PackedFloat32Array( 0, 2 )
 }
 tracks/2/type = "bezier"
 tracks/2/path = NodePath("FadeAnim/Book:modulate:b")
@@ -39,8 +39,8 @@ tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"points": PoolRealArray( 1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0 ),
-"times": PoolRealArray( 0, 2 )
+"points": PackedFloat32Array( 1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0 ),
+"times": PackedFloat32Array( 0, 2 )
 }
 tracks/3/type = "bezier"
 tracks/3/path = NodePath("FadeAnim/Book:modulate:a")
@@ -49,8 +49,8 @@ tracks/3/loop_wrap = true
 tracks/3/imported = false
 tracks/3/enabled = true
 tracks/3/keys = {
-"points": PoolRealArray( 0, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0 ),
-"times": PoolRealArray( 0, 2 )
+"points": PackedFloat32Array( 0, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0 ),
+"times": PackedFloat32Array( 0, 2 )
 }
 tracks/4/type = "bezier"
 tracks/4/path = NodePath("FadeAnim/Overlay:self_modulate:r")
@@ -59,8 +59,8 @@ tracks/4/loop_wrap = true
 tracks/4/imported = false
 tracks/4/enabled = true
 tracks/4/keys = {
-"points": PoolRealArray( 1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0 ),
-"times": PoolRealArray( 0, 2 )
+"points": PackedFloat32Array( 1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0 ),
+"times": PackedFloat32Array( 0, 2 )
 }
 tracks/5/type = "bezier"
 tracks/5/path = NodePath("FadeAnim/Overlay:self_modulate:g")
@@ -69,8 +69,8 @@ tracks/5/loop_wrap = true
 tracks/5/imported = false
 tracks/5/enabled = true
 tracks/5/keys = {
-"points": PoolRealArray( 1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0 ),
-"times": PoolRealArray( 0, 2 )
+"points": PackedFloat32Array( 1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0 ),
+"times": PackedFloat32Array( 0, 2 )
 }
 tracks/6/type = "bezier"
 tracks/6/path = NodePath("FadeAnim/Overlay:self_modulate:b")
@@ -79,8 +79,8 @@ tracks/6/loop_wrap = true
 tracks/6/imported = false
 tracks/6/enabled = true
 tracks/6/keys = {
-"points": PoolRealArray( 1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0 ),
-"times": PoolRealArray( 0, 2 )
+"points": PackedFloat32Array( 1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0 ),
+"times": PackedFloat32Array( 0, 2 )
 }
 tracks/7/type = "bezier"
 tracks/7/path = NodePath("FadeAnim/Overlay:self_modulate:a")
@@ -89,27 +89,27 @@ tracks/7/loop_wrap = true
 tracks/7/imported = false
 tracks/7/enabled = true
 tracks/7/keys = {
-"points": PoolRealArray( 0, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0 ),
-"times": PoolRealArray( 0, 2 )
+"points": PackedFloat32Array( 0, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0 ),
+"times": PackedFloat32Array( 0, 2 )
 }
 
-[sub_resource type="DynamicFont" id=2]
+[sub_resource type="FontFile" id=2]
 size = 8
 font_data = ExtResource( 3 )
 
-[sub_resource type="DynamicFont" id=3]
+[sub_resource type="FontFile" id=3]
 size = 7
 font_data = ExtResource( 3 )
 
-[sub_resource type="DynamicFont" id=4]
+[sub_resource type="FontFile" id=4]
 size = 8
 font_data = ExtResource( 3 )
 
-[sub_resource type="DynamicFont" id=5]
+[sub_resource type="FontFile" id=5]
 size = 7
 font_data = ExtResource( 3 )
 
-[sub_resource type="DynamicFont" id=6]
+[sub_resource type="FontFile" id=6]
 size = 8
 font_data = ExtResource( 5 )
 
@@ -124,8 +124,8 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"points": PoolRealArray( 1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0 ),
-"times": PoolRealArray( 0, 1, 2 )
+"points": PackedFloat32Array( 1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0 ),
+"times": PackedFloat32Array( 0, 1, 2 )
 }
 tracks/1/type = "bezier"
 tracks/1/path = NodePath("BlinkAnim/Label:self_modulate:g")
@@ -134,8 +134,8 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"points": PoolRealArray( 1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0 ),
-"times": PoolRealArray( 0, 1, 2 )
+"points": PackedFloat32Array( 1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0 ),
+"times": PackedFloat32Array( 0, 1, 2 )
 }
 tracks/2/type = "bezier"
 tracks/2/path = NodePath("BlinkAnim/Label:self_modulate:b")
@@ -144,8 +144,8 @@ tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"points": PoolRealArray( 1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0 ),
-"times": PoolRealArray( 0, 1, 2 )
+"points": PackedFloat32Array( 1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0 ),
+"times": PackedFloat32Array( 0, 1, 2 )
 }
 tracks/3/type = "bezier"
 tracks/3/path = NodePath("BlinkAnim/Label:self_modulate:a")
@@ -154,15 +154,15 @@ tracks/3/loop_wrap = true
 tracks/3/imported = false
 tracks/3/enabled = true
 tracks/3/keys = {
-"points": PoolRealArray( 1, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0 ),
-"times": PoolRealArray( 0, 1, 2 )
+"points": PackedFloat32Array( 1, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0 ),
+"times": PackedFloat32Array( 0, 1, 2 )
 }
 
-[sub_resource type="DynamicFont" id=8]
+[sub_resource type="FontFile" id=8]
 font_data = ExtResource( 3 )
 
 [node name="ModuleDropper" type="CanvasLayer"]
-pause_mode = 2
+process_mode = 2
 script = ExtResource( 9 )
 
 [node name="ModuleDropper" type="Control" parent="."]
@@ -180,7 +180,7 @@ visible = false
 self_modulate = Color( 1, 1, 1, 0 )
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_bottom = 1.52588e-05
+offset_bottom = 1.52588e-05
 color = Color( 0, 0, 0, 0.588235 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -193,10 +193,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -124.764
-margin_top = -115.0
-margin_right = 125.236
-margin_bottom = 135.0
+offset_left = -124.764
+offset_top = -115.0
+offset_right = 125.236
+offset_bottom = 135.0
 texture = ExtResource( 4 )
 stretch_mode = 6
 __meta__ = {
@@ -215,10 +215,10 @@ __meta__ = {
 
 [node name="ModulePanel" type="Panel" parent="ModuleDropper/FadeAnim/Book/DebugModule"]
 self_modulate = Color( 1, 1, 1, 0 )
-margin_left = 57.0
-margin_top = 43.0
-margin_right = 156.0
-margin_bottom = 123.0
+offset_left = 57.0
+offset_top = 43.0
+offset_right = 156.0
+offset_bottom = 123.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -226,10 +226,10 @@ __meta__ = {
 [node name="Label2" type="Label" parent="ModuleDropper/FadeAnim/Book/DebugModule/ModulePanel"]
 anchor_left = 0.5
 anchor_right = 0.5
-margin_left = -49.5
-margin_top = 5.0
-margin_right = 49.5
-margin_bottom = 16.0
+offset_left = -49.5
+offset_top = 5.0
+offset_right = 49.5
+offset_bottom = 16.0
 custom_fonts/font = SubResource( 2 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "Module Unlocked!"
@@ -243,10 +243,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -20.0
-margin_top = -24.0
-margin_right = 20.0
-margin_bottom = 16.0
+offset_left = -20.0
+offset_top = -24.0
+offset_right = 20.0
+offset_bottom = 16.0
 texture = ExtResource( 1 )
 stretch_mode = 6
 __meta__ = {
@@ -258,9 +258,9 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-margin_left = -40.0
-margin_top = -27.0
-margin_right = 40.0
+offset_left = -40.0
+offset_top = -27.0
+offset_right = 40.0
 custom_fonts/font = SubResource( 3 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "Debugging Module"
@@ -269,18 +269,18 @@ valign = 1
 
 [node name="DescriptionPanel" type="Panel" parent="ModuleDropper/FadeAnim/Book/DebugModule"]
 self_modulate = Color( 1, 1, 1, 0 )
-margin_left = 161.0
-margin_top = 43.0
-margin_right = 256.0
-margin_bottom = 124.0
+offset_left = 161.0
+offset_top = 43.0
+offset_right = 256.0
+offset_bottom = 124.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Label" type="Label" parent="ModuleDropper/FadeAnim/Book/DebugModule/DescriptionPanel"]
-margin_top = 4.0
-margin_right = 62.0
-margin_bottom = 18.0
+offset_top = 4.0
+offset_right = 62.0
+offset_bottom = 18.0
 custom_fonts/font = SubResource( 4 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "Description:"
@@ -291,10 +291,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -41.1254
-margin_top = -21.5
-margin_right = 42.8746
-margin_bottom = 22.5
+offset_left = -41.1254
+offset_top = -21.5
+offset_right = 42.8746
+offset_bottom = 22.5
 custom_fonts/normal_font = SubResource( 5 )
 custom_colors/default_color = Color( 0, 0, 0, 1 )
 text = "Your weapon in fighting against bugs, given by iJSD!
@@ -316,10 +316,10 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-margin_left = -43.5
-margin_top = -18.0
-margin_right = 43.5
-margin_bottom = -4.0
+offset_left = -43.5
+offset_top = -18.0
+offset_right = 43.5
+offset_bottom = -4.0
 custom_fonts/font = SubResource( 6 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "Left Click to Shoot"
@@ -340,10 +340,10 @@ __meta__ = {
 
 [node name="ModulePanel" type="Panel" parent="ModuleDropper/FadeAnim/Book/SelfStudyModule"]
 self_modulate = Color( 1, 1, 1, 0 )
-margin_left = 57.0
-margin_top = 43.0
-margin_right = 156.0
-margin_bottom = 123.0
+offset_left = 57.0
+offset_top = 43.0
+offset_right = 156.0
+offset_bottom = 123.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -351,10 +351,10 @@ __meta__ = {
 [node name="Label2" type="Label" parent="ModuleDropper/FadeAnim/Book/SelfStudyModule/ModulePanel"]
 anchor_left = 0.5
 anchor_right = 0.5
-margin_left = -49.5
-margin_top = 5.0
-margin_right = 49.5
-margin_bottom = 16.0
+offset_left = -49.5
+offset_top = 5.0
+offset_right = 49.5
+offset_bottom = 16.0
 custom_fonts/font = SubResource( 2 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "Module Unlocked!"
@@ -368,10 +368,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -20.0
-margin_top = -26.0
-margin_right = 20.0
-margin_bottom = 14.0
+offset_left = -20.0
+offset_top = -26.0
+offset_right = 20.0
+offset_bottom = 14.0
 texture = ExtResource( 6 )
 stretch_mode = 6
 __meta__ = {
@@ -383,9 +383,9 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-margin_left = -42.0
-margin_top = -27.0
-margin_right = 42.0
+offset_left = -42.0
+offset_top = -27.0
+offset_right = 42.0
 custom_fonts/font = SubResource( 3 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "Self-Study Module"
@@ -394,18 +394,18 @@ valign = 1
 
 [node name="DescriptionPanel" type="Panel" parent="ModuleDropper/FadeAnim/Book/SelfStudyModule"]
 self_modulate = Color( 1, 1, 1, 0 )
-margin_left = 161.0
-margin_top = 43.0
-margin_right = 256.0
-margin_bottom = 124.0
+offset_left = 161.0
+offset_top = 43.0
+offset_right = 256.0
+offset_bottom = 124.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Label" type="Label" parent="ModuleDropper/FadeAnim/Book/SelfStudyModule/DescriptionPanel"]
-margin_top = 4.0
-margin_right = 62.0
-margin_bottom = 18.0
+offset_top = 4.0
+offset_right = 62.0
+offset_bottom = 18.0
 custom_fonts/font = SubResource( 4 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "Description:"
@@ -416,10 +416,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -41.5
-margin_top = -21.5
-margin_right = 42.5
-margin_bottom = 18.5
+offset_left = -41.5
+offset_top = -21.5
+offset_right = 42.5
+offset_bottom = 18.5
 custom_fonts/normal_font = SubResource( 5 )
 custom_colors/default_color = Color( 0, 0, 0, 1 )
 text = "Unlocks dashing! While dashing you are immune to damage! 
@@ -434,10 +434,10 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-margin_left = -43.5
-margin_top = -22.0
-margin_right = 43.5
-margin_bottom = -8.0
+offset_left = -43.5
+offset_top = -22.0
+offset_right = 43.5
+offset_bottom = -8.0
 custom_fonts/font = SubResource( 6 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "Shift to Dash"
@@ -452,17 +452,17 @@ anchor_left = -0.14
 anchor_top = 0.08
 anchor_right = 1.14
 anchor_bottom = 0.796
-margin_right = -3.05176e-05
+offset_right = -3.05176e-05
 __meta__ = {
 "_edit_use_anchors_": true
 }
 
 [node name="ModulePanel" type="Panel" parent="ModuleDropper/FadeAnim/Book/BasicProgrammingModule"]
 self_modulate = Color( 1, 1, 1, 0 )
-margin_left = 57.0
-margin_top = 43.0
-margin_right = 156.0
-margin_bottom = 123.0
+offset_left = 57.0
+offset_top = 43.0
+offset_right = 156.0
+offset_bottom = 123.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -470,10 +470,10 @@ __meta__ = {
 [node name="Label2" type="Label" parent="ModuleDropper/FadeAnim/Book/BasicProgrammingModule/ModulePanel"]
 anchor_left = 0.5
 anchor_right = 0.5
-margin_left = -49.5
-margin_top = 5.0
-margin_right = 49.5
-margin_bottom = 16.0
+offset_left = -49.5
+offset_top = 5.0
+offset_right = 49.5
+offset_bottom = 16.0
 custom_fonts/font = SubResource( 2 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "Module Unlocked!"
@@ -487,10 +487,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -20.0
-margin_top = -30.0
-margin_right = 20.0
-margin_bottom = 10.0
+offset_left = -20.0
+offset_top = -30.0
+offset_right = 20.0
+offset_bottom = 10.0
 texture = ExtResource( 7 )
 stretch_mode = 6
 __meta__ = {
@@ -502,9 +502,9 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-margin_left = -42.5
-margin_top = -27.0
-margin_right = 42.5
+offset_left = -42.5
+offset_top = -27.0
+offset_right = 42.5
 custom_fonts/font = SubResource( 3 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "Basic Programming
@@ -517,18 +517,18 @@ __meta__ = {
 
 [node name="DescriptionPanel" type="Panel" parent="ModuleDropper/FadeAnim/Book/BasicProgrammingModule"]
 self_modulate = Color( 1, 1, 1, 0 )
-margin_left = 161.0
-margin_top = 43.0
-margin_right = 256.0
-margin_bottom = 124.0
+offset_left = 161.0
+offset_top = 43.0
+offset_right = 256.0
+offset_bottom = 124.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Label" type="Label" parent="ModuleDropper/FadeAnim/Book/BasicProgrammingModule/DescriptionPanel"]
-margin_top = 4.0
-margin_right = 62.0
-margin_bottom = 18.0
+offset_top = 4.0
+offset_right = 62.0
+offset_bottom = 18.0
 custom_fonts/font = SubResource( 4 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "Description:"
@@ -539,10 +539,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -41.1254
-margin_top = -21.5
-margin_right = 42.8746
-margin_bottom = 22.5
+offset_left = -41.1254
+offset_top = -21.5
+offset_right = 42.8746
+offset_bottom = 22.5
 custom_fonts/normal_font = SubResource( 5 )
 custom_colors/default_color = Color( 0, 0, 0, 1 )
 text = "Basic Programming will be your lifeline in whatever program!"
@@ -555,10 +555,10 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-margin_left = -43.5
-margin_top = -27.0
-margin_right = 43.5
-margin_bottom = -4.0
+offset_left = -43.5
+offset_top = -27.0
+offset_right = 43.5
+offset_bottom = -4.0
 custom_fonts/font = SubResource( 6 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "+1 HP per 25 
@@ -574,17 +574,17 @@ anchor_left = -0.14
 anchor_top = 0.08
 anchor_right = 1.14
 anchor_bottom = 0.796
-margin_right = -3.05176e-05
+offset_right = -3.05176e-05
 __meta__ = {
 "_edit_use_anchors_": true
 }
 
 [node name="ModulePanel" type="Panel" parent="ModuleDropper/FadeAnim/Book/DataStructuresModule"]
 self_modulate = Color( 1, 1, 1, 0 )
-margin_left = 57.0
-margin_top = 43.0
-margin_right = 156.0
-margin_bottom = 123.0
+offset_left = 57.0
+offset_top = 43.0
+offset_right = 156.0
+offset_bottom = 123.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -592,10 +592,10 @@ __meta__ = {
 [node name="Label2" type="Label" parent="ModuleDropper/FadeAnim/Book/DataStructuresModule/ModulePanel"]
 anchor_left = 0.5
 anchor_right = 0.5
-margin_left = -49.5
-margin_top = 5.0
-margin_right = 49.5
-margin_bottom = 16.0
+offset_left = -49.5
+offset_top = 5.0
+offset_right = 49.5
+offset_bottom = 16.0
 custom_fonts/font = SubResource( 2 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "Module Unlocked!"
@@ -609,10 +609,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -20.0
-margin_top = -24.0
-margin_right = 20.0
-margin_bottom = 16.0
+offset_left = -20.0
+offset_top = -24.0
+offset_right = 20.0
+offset_bottom = 16.0
 texture = ExtResource( 1 )
 stretch_mode = 6
 __meta__ = {
@@ -624,9 +624,9 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-margin_left = -39.5
-margin_top = -27.0
-margin_right = 39.5
+offset_left = -39.5
+offset_top = -27.0
+offset_right = 39.5
 custom_fonts/font = SubResource( 3 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "Data Structures
@@ -636,18 +636,18 @@ valign = 1
 
 [node name="DescriptionPanel" type="Panel" parent="ModuleDropper/FadeAnim/Book/DataStructuresModule"]
 self_modulate = Color( 1, 1, 1, 0 )
-margin_left = 161.0
-margin_top = 43.0
-margin_right = 256.0
-margin_bottom = 124.0
+offset_left = 161.0
+offset_top = 43.0
+offset_right = 256.0
+offset_bottom = 124.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Label" type="Label" parent="ModuleDropper/FadeAnim/Book/DataStructuresModule/DescriptionPanel"]
-margin_top = 4.0
-margin_right = 62.0
-margin_bottom = 18.0
+offset_top = 4.0
+offset_right = 62.0
+offset_bottom = 18.0
 custom_fonts/font = SubResource( 4 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "Description:"
@@ -661,10 +661,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -41.5
-margin_top = -23.5
-margin_right = 42.5
-margin_bottom = 15.5
+offset_left = -41.5
+offset_top = -23.5
+offset_right = 42.5
+offset_bottom = 15.5
 custom_fonts/normal_font = SubResource( 5 )
 custom_colors/default_color = Color( 0, 0, 0, 1 )
 text = "You've learnt data structures, a programming fundamental, you'll kill bugs faster"
@@ -677,10 +677,10 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-margin_left = -43.5
-margin_top = -25.0
-margin_right = 43.5
-margin_bottom = -2.0
+offset_left = -43.5
+offset_top = -25.0
+offset_right = 43.5
+offset_bottom = -2.0
 custom_fonts/font = SubResource( 6 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "Your damage 
@@ -696,17 +696,17 @@ anchor_left = -0.14
 anchor_top = 0.08
 anchor_right = 1.14
 anchor_bottom = 0.796
-margin_right = -3.05176e-05
+offset_right = -3.05176e-05
 __meta__ = {
 "_edit_use_anchors_": true
 }
 
 [node name="ModulePanel" type="Panel" parent="ModuleDropper/FadeAnim/Book/OOPModule"]
 self_modulate = Color( 1, 1, 1, 0 )
-margin_left = 57.0
-margin_top = 43.0
-margin_right = 156.0
-margin_bottom = 123.0
+offset_left = 57.0
+offset_top = 43.0
+offset_right = 156.0
+offset_bottom = 123.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -714,10 +714,10 @@ __meta__ = {
 [node name="Label2" type="Label" parent="ModuleDropper/FadeAnim/Book/OOPModule/ModulePanel"]
 anchor_left = 0.5
 anchor_right = 0.5
-margin_left = -49.5
-margin_top = 5.0
-margin_right = 49.5
-margin_bottom = 16.0
+offset_left = -49.5
+offset_top = 5.0
+offset_right = 49.5
+offset_bottom = 16.0
 custom_fonts/font = SubResource( 2 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "Module Unlocked!"
@@ -731,10 +731,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -18.0
-margin_top = -26.0
-margin_right = 22.0
-margin_bottom = 14.0
+offset_left = -18.0
+offset_top = -26.0
+offset_right = 22.0
+offset_bottom = 14.0
 texture = ExtResource( 8 )
 stretch_mode = 6
 __meta__ = {
@@ -746,9 +746,9 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-margin_left = -39.5
-margin_top = -27.0
-margin_right = 39.5
+offset_left = -39.5
+offset_top = -27.0
+offset_right = 39.5
 custom_fonts/font = SubResource( 3 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "OOP Module"
@@ -760,19 +760,19 @@ __meta__ = {
 
 [node name="DescriptionPanel" type="Panel" parent="ModuleDropper/FadeAnim/Book/OOPModule"]
 self_modulate = Color( 1, 1, 1, 0 )
-margin_left = 161.0
-margin_top = 43.0
-margin_right = 256.0
-margin_bottom = 124.0
+offset_left = 161.0
+offset_top = 43.0
+offset_right = 256.0
+offset_bottom = 124.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Label" type="Label" parent="ModuleDropper/FadeAnim/Book/OOPModule/DescriptionPanel"]
 visible = false
-margin_top = 4.0
-margin_right = 62.0
-margin_bottom = 18.0
+offset_top = 4.0
+offset_right = 62.0
+offset_bottom = 18.0
 custom_fonts/font = SubResource( 4 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "Description:"
@@ -783,10 +783,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -41.5
-margin_top = -21.5
-margin_right = 42.5
-margin_bottom = 13.5
+offset_left = -41.5
+offset_top = -21.5
+offset_right = 42.5
+offset_bottom = 13.5
 custom_fonts/normal_font = SubResource( 5 )
 custom_colors/default_color = Color( 0, 0, 0, 1 )
 text = "Another programming fundamental, Learning OOP will help you when working in teams, finishing things faster"
@@ -799,10 +799,10 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-margin_left = -43.5
-margin_top = -28.0
-margin_right = 43.5
-margin_bottom = -5.0
+offset_left = -43.5
+offset_top = -28.0
+offset_right = 43.5
+offset_bottom = -5.0
 custom_fonts/font = SubResource( 6 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "Crit Chance 
@@ -818,17 +818,17 @@ anchor_left = -0.14
 anchor_top = 0.08
 anchor_right = 1.14
 anchor_bottom = 0.796
-margin_right = -3.05176e-05
+offset_right = -3.05176e-05
 __meta__ = {
 "_edit_use_anchors_": true
 }
 
 [node name="ModulePanel" type="Panel" parent="ModuleDropper/FadeAnim/Book/GitModule"]
 self_modulate = Color( 1, 1, 1, 0 )
-margin_left = 57.0
-margin_top = 43.0
-margin_right = 156.0
-margin_bottom = 123.0
+offset_left = 57.0
+offset_top = 43.0
+offset_right = 156.0
+offset_bottom = 123.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -836,10 +836,10 @@ __meta__ = {
 [node name="Label2" type="Label" parent="ModuleDropper/FadeAnim/Book/GitModule/ModulePanel"]
 anchor_left = 0.5
 anchor_right = 0.5
-margin_left = -49.5
-margin_top = 5.0
-margin_right = 49.5
-margin_bottom = 16.0
+offset_left = -49.5
+offset_top = 5.0
+offset_right = 49.5
+offset_bottom = 16.0
 custom_fonts/font = SubResource( 2 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "Module Unlocked!"
@@ -853,10 +853,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -18.0
-margin_top = -26.0
-margin_right = 22.0
-margin_bottom = 14.0
+offset_left = -18.0
+offset_top = -26.0
+offset_right = 22.0
+offset_bottom = 14.0
 texture = ExtResource( 8 )
 stretch_mode = 6
 __meta__ = {
@@ -868,10 +868,10 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-margin_left = -39.5
-margin_top = -26.4054
-margin_right = 39.5
-margin_bottom = 0.594604
+offset_left = -39.5
+offset_top = -26.4054
+offset_right = 39.5
+offset_bottom = 0.594604
 custom_fonts/font = SubResource( 3 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "Git Module"
@@ -880,18 +880,18 @@ valign = 1
 
 [node name="DescriptionPanel" type="Panel" parent="ModuleDropper/FadeAnim/Book/GitModule"]
 self_modulate = Color( 1, 1, 1, 0 )
-margin_left = 161.0
-margin_top = 43.0
-margin_right = 256.0
-margin_bottom = 124.0
+offset_left = 161.0
+offset_top = 43.0
+offset_right = 256.0
+offset_bottom = 124.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Label" type="Label" parent="ModuleDropper/FadeAnim/Book/GitModule/DescriptionPanel"]
-margin_top = 4.0
-margin_right = 62.0
-margin_bottom = 18.0
+offset_top = 4.0
+offset_right = 62.0
+offset_bottom = 18.0
 custom_fonts/font = SubResource( 4 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "Description:"
@@ -902,10 +902,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -41.5
-margin_top = -24.5
-margin_right = 42.5
-margin_bottom = 16.5
+offset_left = -41.5
+offset_top = -24.5
+offset_right = 42.5
+offset_bottom = 16.5
 custom_fonts/normal_font = SubResource( 5 )
 custom_colors/default_color = Color( 0, 0, 0, 1 )
 text = "Learning Git will help get you out of sticky situations, let you revert to old versions of your project, thus increasing your margin of error.
@@ -919,10 +919,10 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-margin_left = -43.5
-margin_top = -24.0
-margin_right = 43.5
-margin_bottom = -1.0
+offset_left = -43.5
+offset_top = -24.0
+offset_right = 43.5
+offset_bottom = -1.0
 custom_fonts/font = SubResource( 6 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "HP increased
@@ -941,10 +941,10 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-margin_left = -95.0
-margin_top = -35.0
-margin_right = 95.0
-margin_bottom = -16.0
+offset_left = -95.0
+offset_top = -35.0
+offset_right = 95.0
+offset_bottom = -16.0
 custom_fonts/font = SubResource( 8 )
 text = "Press E to continue"
 align = 1
