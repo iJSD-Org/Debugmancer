@@ -7,15 +7,15 @@ using Godot;
 
 namespace Debugmancer.Objects.Enemies.Roach
 {
-	public class Entity : KinematicBody2D
+	public partial class Entity : CharacterBody2D
 	{
 		[Signal]
-		public delegate void StateChanged();
+		public delegate void StateChangedEventHandler();
 
 		public State CurrentState;
-		public Stack<State> StateStack = new Stack<State>();
-		public readonly Dictionary<string, Node> StatesMap = new Dictionary<string, Node>();
-		private KinematicBody2D _player;
+		public Stack<State> StateStack = new();
+		public readonly Dictionary<string, Node> StatesMap = new();
+		private CharacterBody2D _player;
 
 		public override void _Ready()
 		{
@@ -28,18 +28,18 @@ namespace Debugmancer.Objects.Enemies.Roach
 
 			foreach (Node state in StatesMap.Values)
 			{
-				state.Connect(nameof(State.Finished), this, nameof(ChangeState));
+				state.Connect(nameof(State.Finished),new Callable(this,nameof(ChangeState)));
 			}
 
-			GetNode("Health").Connect(nameof(Health.HealthChanged), this, nameof(OnHealthChanged));
+			GetNode("Health").Connect(nameof(Health.HealthChanged),new Callable(this,nameof(OnHealthChanged)));
 
 			StateStack.Push((State)StatesMap["Idle"]);
 			ChangeState("Idle");
 		}
 
-		public override void _PhysicsProcess(float delta)
+		public override void _PhysicsProcess(double delta)
 		{
-			CurrentState.Update(this, delta);
+			CurrentState.Update(this, (float)delta);
 		}
 
 		private void ChangeState(string stateName)
@@ -81,7 +81,7 @@ namespace Debugmancer.Objects.Enemies.Roach
 
 		private void _on_VisibilityNotifier2D_screen_entered()
 		{
-			_player = GetParent().GetNode<KinematicBody2D>("Player");
+			_player = GetParent().GetNode<CharacterBody2D>("Player");
 			ChangeState("Chase");
 		}
 		private void _on_VisibilityNotifier2D_screen_exited()
@@ -92,18 +92,18 @@ namespace Debugmancer.Objects.Enemies.Roach
 
 		public async void OnHealthChanged(int health)
 		{
-			Modulate = Color.ColorN("Red");
+			Modulate = new Color("Red");
 			await Task.Delay(100);
 			Modulate = new Color(1, 1, 1);
 			if (health == 0)
 			{
 				Globals.Score += (int)Math.Ceiling(35 * Globals.ScoreMultiplier);
-				GetParent().GetNode<KinematicBody2D>("Player").GetNode<Label>("HUD/Score").Text = $"Score: {Globals.Score}";
+				GetParent().GetNode<CharacterBody2D>("Player").GetNode<Label>("HUD/Score").Text = $"Score: {Globals.Score}";
 				ChangeState("Dead");
 			}
 		}
 
-		public void Hitbox_BodyEntered(Node body)
+		public void Hitbox_BodyEntered(Node2D body)
 		{
 			Health health = (Health)GetNode("Health");
 			if (body.IsInGroup("playerBullet")) 

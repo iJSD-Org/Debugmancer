@@ -7,11 +7,11 @@ using Godot.Collections;
 
 namespace Debugmancer.Objects
 {
-	public class EnemySpawner : Node
+	public partial class EnemySpawner : Node
 	{
-		[Export] public Array<PackedScene> Enemies = new Array<PackedScene>();
+		[Export] public Array<PackedScene> Enemies = new();
 		[Export] public double EnemyMultiplier = 1;
-		private readonly Random _random = new Random();
+		private readonly Random _random = new();
 		private double _maxEnemies;
 		private double _enemies = 0;
 		private float _timerCoolDown = 35;
@@ -42,7 +42,7 @@ namespace Debugmancer.Objects
 			{		
 				_enemies++;
 				GetNode<Timer>("SpawnTimer").WaitTime = 0.7f;
-				KinematicBody2D enemy = (KinematicBody2D)Enemies[_random.Next(Enemies.Count)].Instance();
+				CharacterBody2D enemy = (CharacterBody2D)Enemies[_random.Next(Enemies.Count)].Instantiate();
 				enemy.Position = enemyPosition;
 				float a = _random.Next(0,1) == 0 ? enemyPosition.x += 15 : enemyPosition.y += 15;
 				GetParent().AddChild(enemy); 

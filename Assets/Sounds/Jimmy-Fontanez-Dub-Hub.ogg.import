@@ -1,15 +1,19 @@
 [remap]
 
-importer="ogg_vorbis"
-type="AudioStreamOGGVorbis"
-path="res://.import/Jimmy-Fontanez-Dub-Hub.ogg-fb06b3ae89d46ce50a4299db0b6fd39a.oggstr"
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://14n67gcllnc3"
+path="res://.godot/imported/Jimmy-Fontanez-Dub-Hub.ogg-fb06b3ae89d46ce50a4299db0b6fd39a.oggvorbisstr"
 
 [deps]
 
 source_file="res://Assets/Sounds/Jimmy-Fontanez-Dub-Hub.ogg"
-dest_files=[ "res://.import/Jimmy-Fontanez-Dub-Hub.ogg-fb06b3ae89d46ce50a4299db0b6fd39a.oggstr" ]
+dest_files=["res://.godot/imported/Jimmy-Fontanez-Dub-Hub.ogg-fb06b3ae89d46ce50a4299db0b6fd39a.oggvorbisstr"]
 
 [params]
 
 loop=true
 loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

@@ -1,11 +1,11 @@
 extends Node
 
-onready var dialog = $GUI/ControlsDialog
-onready var acceptDialog = $GUI/AcceptDialog
-onready var confirmDialog = $GUI/ConfirmationDialog
-onready var fileDialog = $GUI/FileDialog
-onready var themesCtrl = $GUI/TaskBar/Themes
-onready var gui = $GUI
+@onready var dialog = $GUI/ControlsDialog
+@onready var acceptDialog = $GUI/AcceptDialog
+@onready var confirmDialog = $GUI/ConfirmationDialog
+@onready var fileDialog = $GUI/FileDialog
+@onready var themesCtrl = $GUI/TaskBar/Themes
+@onready var gui = $GUI
 
 var themes = {
 	0: ThemeItem.new("Default", "."),
@@ -29,7 +29,7 @@ class ThemeItem:
 	var name = ""
 	var source = ""
 	
-	func _init(name, source):
+	func _init(name,source):
 		self.name = name;
 		self.source = source;
 

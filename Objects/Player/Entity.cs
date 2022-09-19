@@ -7,25 +7,25 @@ using Timer = System.Timers.Timer;
 
 namespace Debugmancer.Objects.Player
 {
-	public class Entity : KinematicBody2D
+	public partial class Entity : CharacterBody2D
 	{
 		[Signal]
-		public delegate void StateChanged();
+		public delegate void StateChangedEventHandler();
 
 		public PackedScene ScentScene = ResourceLoader.Load<PackedScene>("res://Objects/Player/Scent.tscn");
 
-		public List<Scent> ScentTrail = new List<Scent>();
+		public List<Scent> ScentTrail = new();
 
 		public State CurrentState;
-		public Stack<State> StateStack = new Stack<State>();
-		private readonly Timer _dashCooldownTimer = new Timer();
-		public readonly Dictionary<string, Node> StatesMap = new Dictionary<string, Node>();
+		public Stack<State> StateStack = new();
+		private readonly Timer _dashCooldownTimer = new();
+		public readonly Dictionary<string, Node> StatesMap = new();
 		private bool _isRecover;
 		
 		public override void _Ready()
 		{
-			GetNode<TextureProgress>("HUD/VBoxContainer/Health").MaxValue = ((Health)GetNode("Health")).MaxHealth;
-			GetNode<TextureProgress>("HUD/VBoxContainer/Health").Value = ((Health)GetNode("Health")).CurrentHealth;
+			GetNode<TextureProgressBar>("HUD/VBoxContainer/Health").MaxValue = ((Health)GetNode("Health")).MaxHealth;
+			GetNode<TextureProgressBar>("HUD/VBoxContainer/Health").Value = ((Health)GetNode("Health")).CurrentHealth;
 			StatesMap.Add("Idle", GetNode("States/Idle"));
 			StatesMap.Add("Move", GetNode("States/Move"));
 			StatesMap.Add("Dash", GetNode("States/Dash"));
@@ -34,7 +34,7 @@ namespace Debugmancer.Objects.Player
 
 			foreach (Node state in StatesMap.Values)
 			{
-				state.Connect(nameof(State.Finished), this, nameof(ChangeState));
+				state.Connect(nameof(State.Finished),new Callable(this,nameof(ChangeState)));
 			}
 
 			_dashCooldownTimer.AutoReset = false;
@@ -47,17 +47,17 @@ namespace Debugmancer.Objects.Player
 				((RichPresence) GetNode("/root/RichPresence")).Client.CurrentUser.ToString();
 		}
 
-		public override void _Process(float delta)
+		public override void _Process(double delta)
 		{
-			Sprite weapon = GetNode<Sprite>("Gun");
+			Sprite2D weapon = GetNode<Sprite2D>("Gun");
 			if (Math.Abs(weapon.Rotation) < 90 * (Math.PI / 180)) TurnRight();
 			else if (Math.Abs(weapon.Rotation) >= 90 * (Math.PI / 180)) TurnLeft();
 		}
 
 
-		public override void _PhysicsProcess(float delta)
+		public override void _PhysicsProcess(double delta)
 		{
-			CurrentState.Update(this, delta);
+			CurrentState.Update(this, (float)delta);
 		}
 
 		public override void _Input(InputEvent @event)
@@ -65,7 +65,7 @@ namespace Debugmancer.Objects.Player
 			// Firing is the weapon"s responsibility so the weapon should handle it
 			if (@event.IsActionPressed("click"))
 			{
-				((Gun)GetNode<Sprite>("Gun")).Fire();
+				((Gun)GetNode<Sprite2D>("Gun")).Fire();
 				return;
 			}
 			CurrentState.HandleInput(this, @event);
@@ -73,18 +73,18 @@ namespace Debugmancer.Objects.Player
 
 		private void TurnLeft()
 		{
-			Sprite weapon = GetNode<Sprite>("Gun");
+			Sprite2D weapon = GetNode<Sprite2D>("Gun");
 			weapon.Position = new Vector2(-Mathf.Abs(weapon.Position.x), weapon.Position.y);
 			weapon.FlipV = true;
-			Sprite player = GetNode<Sprite>("Sprite");
+			Sprite2D player = GetNode<Sprite2D>("Sprite2D");
 			player.FlipH = true;
 		}
 		private void TurnRight()
 		{
-			Sprite weapon = GetNode<Sprite>("Gun");
+			Sprite2D weapon = GetNode<Sprite2D>("Gun");
 			weapon.Position = new Vector2(Mathf.Abs(weapon.Position.x), weapon.Position.y);
 			weapon.FlipV = false;
-			Sprite player = GetNode<Sprite>("Sprite");
+			Sprite2D player = GetNode<Sprite2D>("Sprite2D");
 			player.FlipH = false;
 		}
 
@@ -101,7 +101,7 @@ namespace Debugmancer.Objects.Player
 				if (!_dashCooldownTimer.Enabled && Globals.CanDash && Globals.Energy - 5 > 0)
 				{
 					Globals.Energy -= 10;
-					GetNode<TextureProgress>("HUD/VBoxContainer/Energy").Value = Globals.Energy;
+					GetNode<TextureProgressBar>("HUD/VBoxContainer/Energy").Value = Globals.Energy;
 					_dashCooldownTimer.Start();
 					StateStack.Push((State)StatesMap[stateName]);
 				}
@@ -132,8 +132,8 @@ namespace Debugmancer.Objects.Player
 		public async void OnHealthChanged(int health)
 		{
 			if (!Globals.IsRecover)((Camera)GetNode<Camera2D>("Camera")).StartShake();
-			GetNode<TextureProgress>("HUD/VBoxContainer/Health").Value = health;
-			Modulate = _isRecover ? Color.ColorN("Green") : Color.ColorN("Red");
+			GetNode<TextureProgressBar>("HUD/VBoxContainer/Health").Value = health;
+			Modulate = _isRecover ? new Color("Green") : new Color("Red");
 			await Task.Delay(100);
 			Modulate = new Color(1, 1, 1);
 			if (health == 0)
@@ -142,7 +142,7 @@ namespace Debugmancer.Objects.Player
 
 		public void AddScent()
 		{
-			Scent scent = (Scent)ScentScene.Instance();
+			Scent scent = (Scent)ScentScene.Instantiate();
 			scent.Position = Position;
 			GetTree().Root.AddChild(scent);
 
@@ -150,7 +150,7 @@ namespace Debugmancer.Objects.Player
 			ScentTrail.Add(scent);
 		}
 
-		public void Hitbox_BodyEntered(KinematicBody2D body)
+		public void Hitbox_BodyEntered(CharacterBody2D body)
 		{
 			if (body.IsInGroup("roach")) {
 				_isRecover = false;
@@ -164,8 +164,8 @@ namespace Debugmancer.Objects.Player
 
 		public void BodyTimer_timeout()
 		{
-			List<KinematicBody2D> bodies =
-				GetNode<Area2D>("Hitbox").GetOverlappingBodies().OfType<KinematicBody2D>().ToList();
+			List<CharacterBody2D> bodies =
+				GetNode<Area2D>("Hitbox").GetOverlappingBodies().OfType<CharacterBody2D>().ToList();
 			if (bodies.Any(b => b.IsInGroup("enemy")))
 			{
 				_isRecover = false;
@@ -195,7 +195,7 @@ namespace Debugmancer.Objects.Player
 			if (animName == "FadeOut")
 			{
 				Engine.TimeScale = 1f;
-				GetTree().ChangeScene("res://Levels/Death screen.tscn");
+				GetTree().ChangeSceneToFile("res://Levels/Death screen.tscn");
 			}
 		}
 		#endregion

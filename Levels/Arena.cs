@@ -2,7 +2,7 @@ using Godot;
 
 namespace Debugmancer.Levels
 {
-	public class Arena : Node
+	public partial class Arena : Node
 	{
 		private readonly Resource _arrow = ResourceLoader.Load("res://Assets/Sprites/Crosshair.png");
 

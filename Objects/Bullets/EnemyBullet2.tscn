@@ -1,30 +1,29 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=4 format=3 uid="uid://de6byubx8x51n"]
 
-[ext_resource path="res://Assets/Sprites/0x72_16x16DungeonTileset.v3.png" type="Texture" id=1]
-[ext_resource path="res://Objects/Bullets/EnemyBullet2.cs" type="Script" id=2]
+[ext_resource type="Texture2D" uid="uid://c5tg8v14lq14k" path="res://Assets/Sprites/0x72_16x16DungeonTileset.v3.png" id="1"]
+[ext_resource type="Script" path="res://Objects/Bullets/EnemyBullet2.cs" id="2"]
 
-[sub_resource type="CircleShape2D" id=1]
+[sub_resource type="CircleShape2D" id="1"]
 radius = 1.99826
 
-[node name="EnemyBullet" type="Area2D" groups=[
-"enemyBullet",
-]]
+[node name="EnemyBullet" type="Area2D" groups=["enemyBullet"]]
 collision_layer = 2
 collision_mask = 5
-script = ExtResource( 2 )
+script = ExtResource("2")
 
-[node name="Sprite" type="Sprite" parent="."]
-position = Vector2( 0.0212421, -0.299397 )
-texture = ExtResource( 1 )
-vframes = 48
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0.0212421, -0.299397)
+texture = ExtResource("1")
 hframes = 48
+vframes = 48
 frame = 1168
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource( 1 )
+shape = SubResource("1")
 
-[node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]
-position = Vector2( 0.0354963, 0.0156648 )
-scale = Vector2( 0.270393, 0.248433 )
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+position = Vector2(0.0354963, 0.0156648)
+scale = Vector2(0.270393, 0.248433)
+
 [connection signal="body_entered" from="." to="." method="_on_EnemyBullet_body_entered"]
-[connection signal="screen_exited" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_exited"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_exited"]

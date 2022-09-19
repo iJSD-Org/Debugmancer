@@ -2,7 +2,7 @@ using Godot;
 
 namespace Debugmancer.Levels
 {
-	public class Cutscene : Node2D
+	public partial class Cutscene : Node2D
 	{
 		private int _scene = 1;
 		public override void _Ready()
@@ -13,26 +13,23 @@ namespace Debugmancer.Levels
 
 		public override void _ExitTree()
 		{
-			Input.SetMouseMode(Input.MouseMode.Visible);
+			Input.MouseMode = Input.MouseModeEnum.Visible;
 		}
 
-		public override void _Process(float delta)
+		public override void _Process(double delta)
 		{
-			if (Input.IsKeyPressed((int)KeyList.E))
+			if (Input.IsKeyPressed(Key.E))
 			{
 				Engine.TimeScale = 2.5f;
 				GetNode<AudioStreamPlayer>("/root/BackgroundMusic/MenuMusic").PitchScale = 2.5f;
-				GetNode<AnimatedSprite>("FastForwardSprite").Show();
+				GetNode<AnimatedSprite2D>("FastForwardSprite").Show();
 			}
 			else
 			{
-				if (Engine.TimeScale == 2.5f)
-				{
-
-					Engine.TimeScale = 1;
-					GetNode<AudioStreamPlayer>("/root/BackgroundMusic/MenuMusic").PitchScale = 1;
-					GetNode<AnimatedSprite>("FastForwardSprite").Hide();
-				}
+				if (Engine.TimeScale != 2.5f) return;
+				Engine.TimeScale = 1;
+				GetNode<AudioStreamPlayer>("/root/BackgroundMusic/MenuMusic").PitchScale = 1;
+				GetNode<AnimatedSprite2D>("FastForwardSprite").Hide();
 			}
 		}
 
@@ -55,7 +52,7 @@ namespace Debugmancer.Levels
 				//hide the previous scene
 				if (_scene <= 3)
 				{
-					GetNode<Sprite>($"Sprite{_scene}").Hide();
+					GetNode<Sprite2D>($"Sprite{_scene}").Hide();
 					GetNode<Label>($"Label{_scene}").Hide();
 				}
 				else
@@ -67,7 +64,7 @@ namespace Debugmancer.Levels
 				GetNode<AnimationPlayer>("AnimationPlayer").Play("FadeIn");
 				if (_scene <= 3)
 				{
-					GetNode<Sprite>($"Sprite{_scene}").Show();
+					GetNode<Sprite2D>($"Sprite{_scene}").Show();
 					GetNode<Label>($"Label{_scene}").Show();
 				}
 				else
@@ -80,7 +77,7 @@ namespace Debugmancer.Levels
 			if(_scene == 6)
 			{
 				Hide();
-				GetTree().ChangeScene("res://Levels/Main Menu.tscn");
+				GetTree().ChangeSceneToFile("res://Levels/Main Menu.tscn");
 			}
 		}
 	}

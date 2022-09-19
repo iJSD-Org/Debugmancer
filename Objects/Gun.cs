@@ -4,7 +4,7 @@ using Debugmancer.Objects.Player;
 
 namespace Debugmancer.Objects
 {
-	public class Gun : Sprite
+	public partial class Gun : Sprite2D
 	{
 		[Export] public PackedScene Bullet = ResourceLoader.Load<PackedScene>("res://Objects/Bullets/Bullet.tscn");
 		[Export] public PackedScene CritBullet = ResourceLoader.Load<PackedScene>("res://Objects/Bullets/CritBullet.tscn");
@@ -15,9 +15,9 @@ namespace Debugmancer.Objects
 
 		[Export] public int MaxEnergy = 100;
 
-		public override void _Process(float delta)
+		public override void _Process(double delta)
 		{
-			Rotation = GetParent<KinematicBody2D>().GetAngleTo(GetGlobalMousePosition());
+			Rotation = GetParent<CharacterBody2D>().GetAngleTo(GetGlobalMousePosition());
 		}
 		public void Fire()
 		{
@@ -25,7 +25,7 @@ namespace Debugmancer.Objects
 			{
 				GetNode<AudioStreamPlayer>("AudioStreamPlayer").Play();
 				Random random = new Random();
-				RigidBody2D bulletInstance = random.Next(1, 10) > Globals.CritChance ? (RigidBody2D)Bullet.Instance() : (RigidBody2D)CritBullet.Instance();
+				RigidBody2D bulletInstance = random.Next(1, 10) > Globals.CritChance ? (RigidBody2D)Bullet.Instantiate() : (RigidBody2D)CritBullet.Instantiate();
 				bulletInstance.Position = GetNode<Node2D>("GunPoint").GlobalPosition;
 				bulletInstance.Rotation = Rotation;
 				bulletInstance.ApplyImpulse(new Vector2(0, 0), new Vector2(BulletSpeed, 0).Rotated(Rotation));
@@ -33,7 +33,7 @@ namespace Debugmancer.Objects
 				ReduceEnergy();
 				ShootTimer();
 			}
-			GetParent().GetNode<TextureProgress>("HUD/VBoxContainer/Energy").Value = Globals.Energy;
+			GetParent().GetNode<TextureProgressBar>("HUD/VBoxContainer/Energy").Value = Globals.Energy;
 		}
 		public void _on_RegenTimer_timeout()
 		{
@@ -45,14 +45,14 @@ namespace Debugmancer.Objects
 				if (Globals.Energy > MaxEnergy) Globals.Energy = MaxEnergy;
 				GD.Print(Globals.Energy);
 			}
-			GetParent().GetNode<TextureProgress>("HUD/VBoxContainer/Energy").Value = Globals.Energy;
+			GetParent().GetNode<TextureProgressBar>("HUD/VBoxContainer/Energy").Value = Globals.Energy;
 		}
 		public void ReduceEnergy()
 		{
 			if (Globals.Energy > (MaxEnergy * .8)) Globals.Energy -= 3;
 			if (Globals.Energy >= (MaxEnergy * .5)) Globals.Energy -= 5;
 			if (Globals.Energy < (MaxEnergy * .5)) Globals.Energy -= 8;
-			GetParent().GetNode<TextureProgress>("HUD/VBoxContainer/Energy").Value = Globals.Energy;
+			GetParent().GetNode<TextureProgressBar>("HUD/VBoxContainer/Energy").Value = Globals.Energy;
 		}
 		public async void ShootTimer()
 		{

@@ -1,13 +1,14 @@
 [remap]
 
 importer="wav"
-type="AudioStreamSample"
-path="res://.import/DING.wav-4226688d4cf7a3a6f8bc7ca87c8d4972.sample"
+type="AudioStreamWAV"
+uid="uid://cywrpd7t2iqpp"
+path="res://.godot/imported/DING.wav-4226688d4cf7a3a6f8bc7ca87c8d4972.sample"
 
 [deps]
 
 source_file="res://Assets/Sounds/Windows 3.1/DING.wav"
-dest_files=[ "res://.import/DING.wav-4226688d4cf7a3a6f8bc7ca87c8d4972.sample" ]
+dest_files=["res://.godot/imported/DING.wav-4226688d4cf7a3a6f8bc7ca87c8d4972.sample"]
 
 [params]
 
@@ -17,5 +18,7 @@ force/max_rate=false
 force/max_rate_hz=44100
 edit/trim=false
 edit/normalize=false
-edit/loop=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
 compress/mode=0

@@ -1,13 +1,14 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=2 format=3 uid="uid://hxxyc028uenn"]
 
-[ext_resource path="res://Objects/Player/Camera.cs" type="Script" id=1]
+[ext_resource type="Script" path="res://Objects/Player/Camera.cs" id="1_xlkvp"]
 
 [node name="Camera" type="Camera2D"]
-position = Vector2( 162.196, 88.1131 )
+position = Vector2(162.196, 88.1131)
 current = true
-script = ExtResource( 1 )
+script = ExtResource("1_xlkvp")
 
 [node name="ShakeTimer" type="Timer" parent="."]
 wait_time = 0.2
 one_shot = true
+
 [connection signal="timeout" from="ShakeTimer" to="." method="ShakeTimer_timeout"]

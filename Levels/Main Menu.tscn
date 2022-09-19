@@ -1,212 +1,170 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=19 format=3 uid="uid://dsqh4rl1q3sum"]
 
-[ext_resource path="res://Assets/bitmgothic.medium.ttf" type="DynamicFontData" id=1]
-[ext_resource path="res://Assets/Themes/Classic311/Classic311.tres" type="Theme" id=2]
-[ext_resource path="res://Assets/Sprites/Start.png" type="Texture" id=3]
-[ext_resource path="res://Assets/Sprites/Quit.png" type="Texture" id=4]
-[ext_resource path="res://Assets/Sprites/Start Hovered.png" type="Texture" id=5]
-[ext_resource path="res://Levels/Menu.cs" type="Script" id=6]
-[ext_resource path="res://Assets/Sprites/Quit Hovered.png" type="Texture" id=7]
-[ext_resource path="res://Objects/ConnectionFailedDialog.cs" type="Script" id=8]
-[ext_resource path="res://Assets/Sounds/Windows 3.1/CHORD.wav" type="AudioStream" id=9]
-[ext_resource path="res://Levels/Settings.tscn" type="PackedScene" id=10]
-[ext_resource path="res://Assets/Sprites/Settings hovered.png" type="Texture" id=11]
-[ext_resource path="res://Assets/Sprites/Settings.png" type="Texture" id=12]
-[ext_resource path="res://Assets/Sprites/Leaderboard button hovered-export.png" type="Texture" id=13]
-[ext_resource path="res://Assets/Sprites/Leaderboard button-export.png" type="Texture" id=14]
-[ext_resource path="res://Assets/Sounds/Menu Navigate.ogg" type="AudioStream" id=15]
+[ext_resource type="Theme" uid="uid://c5gwetapdg72s" path="res://Assets/Themes/Classic311/Classic311.tres" id="2"]
+[ext_resource type="Texture2D" uid="uid://cpi3s5bpy14vx" path="res://Assets/Sprites/Start.png" id="3"]
+[ext_resource type="Texture2D" uid="uid://cmo40hwt16vm2" path="res://Assets/Sprites/Quit.png" id="4"]
+[ext_resource type="Texture2D" uid="uid://ct7wnmldk47eo" path="res://Assets/Sprites/Start Hovered.png" id="5"]
+[ext_resource type="Script" path="res://Levels/Menu.cs" id="6"]
+[ext_resource type="Texture2D" uid="uid://bchis2gs2c0ew" path="res://Assets/Sprites/Quit Hovered.png" id="7"]
+[ext_resource type="Script" path="res://Objects/ConnectionFailedDialog.cs" id="8"]
+[ext_resource type="AudioStream" uid="uid://bu2esfm8n6jhy" path="res://Assets/Sounds/Windows 3.1/CHORD.wav" id="9"]
+[ext_resource type="PackedScene" uid="uid://cl2kf7j53rm3f" path="res://Levels/Settings.tscn" id="10"]
+[ext_resource type="Texture2D" uid="uid://cernb0l03e1s0" path="res://Assets/Sprites/Settings hovered.png" id="11"]
+[ext_resource type="Texture2D" uid="uid://lfd0kx8dlq1n" path="res://Assets/Sprites/Settings.png" id="12"]
+[ext_resource type="Texture2D" uid="uid://jct4a7i3m40a" path="res://Assets/Sprites/Leaderboard button hovered-export.png" id="13"]
+[ext_resource type="Texture2D" uid="uid://caclh0w1mlalb" path="res://Assets/Sprites/Leaderboard button-export.png" id="14"]
+[ext_resource type="AudioStream" uid="uid://cm8v40w7i8xv5" path="res://Assets/Sounds/Menu Navigate.ogg" id="15"]
 
-[sub_resource type="Animation" id=1]
+[sub_resource type="Animation" id="1"]
 resource_name = "FadeIn"
 length = 0.8
 tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
 tracks/0/path = NodePath("ColorRect:color")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.3, 0.8 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
+"times": PackedFloat32Array(0, 0.3, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [ Color( 0, 0, 0, 1 ), Color( 0, 0, 0, 1 ), Color( 0, 0, 0, 0 ) ]
+"values": [Color(0, 0, 0, 1), Color(0, 0, 0, 1), Color(0, 0, 0, 0)]
 }
 
-[sub_resource type="Animation" id=2]
+[sub_resource type="Animation" id="2"]
 resource_name = "FadeOut"
 length = 0.5
 tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
 tracks/0/path = NodePath("ColorRect:color")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.5 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [ Color( 0, 0, 0, 0 ), Color( 0, 0, 0, 1 ) ]
+"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 1)]
 }
 
-[sub_resource type="Animation" id=3]
+[sub_resource type="Animation" id="3"]
 resource_name = "Transition"
 length = 1.5
 tracks/0/type = "value"
-tracks/0/path = NodePath("Debug:rect_position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
+tracks/0/path = NodePath("Debug:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.7, 1.1 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
+"times": PackedFloat32Array(0, 0.7, 1.1),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [ Vector2( 250, 0 ), Vector2( 300, 0 ), Vector2( 20, 0 ) ]
+"values": [Vector2(250, 0), Vector2(300, 0), Vector2(20, 0)]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("Mancer:rect_position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
+tracks/1/path = NodePath("Mancer:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 0.7, 1.1 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
+"times": PackedFloat32Array(0, 0.7, 1.1),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [ Vector2( -250, 27 ), Vector2( -300, 27 ), Vector2( 20, 27 ) ]
+"values": [Vector2(-250, 27), Vector2(-300, 27), Vector2(20, 27)]
 }
 
-[sub_resource type="DynamicFont" id=4]
-size = 26
-outline_size = 1
-font_data = ExtResource( 1 )
-
-[sub_resource type="DynamicFont" id=5]
-size = 26
-outline_size = 1
-font_data = ExtResource( 1 )
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_52cwx"]
+_data = {
+"FadeIn": SubResource("1"),
+"FadeOut": SubResource("2"),
+"Transition": SubResource("3")
+}
 
 [node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 10
 anchor_right = 1.0
-margin_bottom = 64.0
-theme = ExtResource( 2 )
-script = ExtResource( 6 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+offset_bottom = 64.0
+grow_horizontal = 2
+theme = ExtResource("2")
+script = ExtResource("6")
 
 [node name="MenuAnimPlayer" type="AnimationPlayer" parent="."]
-anims/FadeIn = SubResource( 1 )
-anims/FadeOut = SubResource( 2 )
-anims/Transition = SubResource( 3 )
+libraries = {
+"": SubResource("AnimationLibrary_52cwx")
+}
 
 [node name="Start" type="TextureButton" parent="."]
-margin_left = 130.561
-margin_top = 72.126
-margin_right = 430.561
-margin_bottom = 172.126
-rect_scale = Vector2( 0.2, 0.2 )
-texture_normal = ExtResource( 3 )
-texture_hover = ExtResource( 5 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+offset_left = 130.561
+offset_top = 72.126
+offset_right = 430.561
+offset_bottom = 172.126
+scale = Vector2(0.2, 0.2)
+texture_normal = ExtResource("3")
+texture_hover = ExtResource("5")
 
 [node name="Settings" type="TextureButton" parent="."]
-margin_left = 121.732
-margin_top = 91.6506
-margin_right = 491.732
-margin_bottom = 191.651
-rect_scale = Vector2( 0.2, 0.2 )
-texture_normal = ExtResource( 12 )
-texture_hover = ExtResource( 11 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+offset_left = 121.732
+offset_top = 91.6506
+offset_right = 491.732
+offset_bottom = 191.651
+scale = Vector2(0.2, 0.2)
+texture_normal = ExtResource("12")
+texture_hover = ExtResource("11")
 
 [node name="Leaderboard" type="TextureButton" parent="."]
-margin_left = 100.211
-margin_top = 115.603
-margin_right = 736.211
-margin_bottom = 185.603
-rect_scale = Vector2( 0.2, 0.2 )
-texture_normal = ExtResource( 14 )
-texture_hover = ExtResource( 13 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+offset_left = 100.211
+offset_top = 115.603
+offset_right = 736.211
+offset_bottom = 185.603
+scale = Vector2(0.2, 0.2)
+texture_normal = ExtResource("14")
+texture_hover = ExtResource("13")
 
 [node name="Quit" type="TextureButton" parent="."]
-margin_left = 130.293
-margin_top = 135.348
-margin_right = 430.293
-margin_bottom = 235.348
-rect_scale = Vector2( 0.2, 0.2 )
-texture_normal = ExtResource( 4 )
-texture_hover = ExtResource( 7 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+offset_left = 130.293
+offset_top = 135.348
+offset_right = 430.293
+offset_bottom = 235.348
+scale = Vector2(0.2, 0.2)
+texture_normal = ExtResource("4")
+texture_hover = ExtResource("7")
 
 [node name="ColorRect" type="ColorRect" parent="."]
-margin_left = 0.561264
-margin_right = 317.561
-margin_bottom = 180.0
-color = Color( 0, 0, 0, 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+offset_left = 0.561264
+offset_right = 317.561
+offset_bottom = 180.0
+color = Color(0, 0, 0, 1)
 
 [node name="Debug" type="Label" parent="."]
-margin_left = 20.0
-margin_right = 300.0
-margin_bottom = 27.0
-custom_fonts/font = SubResource( 4 )
-custom_colors/font_color = Color( 0.207843, 0.207843, 0.380392, 1 )
-custom_colors/font_outline_modulate = Color( 1, 1, 1, 1 )
+offset_left = 20.0
+offset_right = 300.0
+offset_bottom = 27.0
 text = "Debug"
-align = 1
-valign = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Mancer" type="Label" parent="."]
-margin_left = 20.0
-margin_top = 27.0
-margin_right = 300.0
-margin_bottom = 54.0
-custom_fonts/font = SubResource( 5 )
-custom_colors/font_color = Color( 0.207843, 0.207843, 0.380392, 1 )
-custom_colors/font_outline_modulate = Color( 1, 1, 1, 1 )
+offset_left = 20.0
+offset_top = 27.0
+offset_right = 300.0
+offset_bottom = 54.0
 text = "Mancer"
-align = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="ConnectionFailedDialog" type="AcceptDialog" parent="."]
-margin_left = 99.0
-margin_top = 76.0
-margin_right = 396.0
-margin_bottom = 174.0
-rect_scale = Vector2( 0.4, 0.4 )
-popup_exclusive = true
 dialog_text = "Connection to Discord client is not present.
 Reconnect and try again."
 dialog_autowrap = true
-script = ExtResource( 8 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+script = ExtResource("8")
 
 [node name="Alert" type="AudioStreamPlayer" parent="ConnectionFailedDialog"]
-stream = ExtResource( 9 )
+stream = ExtResource("9")
 
-[node name="SettingsDialog" parent="." instance=ExtResource( 10 )]
+[node name="SettingsDialog" parent="." instance=ExtResource("10")]
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 15 )
+stream = ExtResource("15")
+
 [connection signal="animation_finished" from="MenuAnimPlayer" to="." method="_on_MenuAnimPlayer_animation_finished"]
 [connection signal="mouse_entered" from="Start" to="." method="_button_hovered"]
 [connection signal="pressed" from="Start" to="." method="_on_Start_pressed"]
@@ -216,4 +174,4 @@ stream = ExtResource( 15 )
 [connection signal="pressed" from="Leaderboard" to="." method="_on_Leaderboard_pressed"]
 [connection signal="mouse_entered" from="Quit" to="." method="_button_hovered"]
 [connection signal="pressed" from="Quit" to="." method="_on_Quit_pressed"]
-[connection signal="about_to_show" from="ConnectionFailedDialog" to="ConnectionFailedDialog" method="ConnectionFailedDialog_AboutToShow"]
+[connection signal="about_to_popup" from="ConnectionFailedDialog" to="ConnectionFailedDialog" method="ConnectionFailedDialog_AboutToShow"]

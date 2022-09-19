@@ -1,13 +1,14 @@
 [remap]
 
 importer="wav"
-type="AudioStreamSample"
-path="res://.import/TADA.wav-6f0f65795e3f91dfd34b38f2ad2b82d4.sample"
+type="AudioStreamWAV"
+uid="uid://cf74vnuhhqomu"
+path="res://.godot/imported/TADA.wav-6f0f65795e3f91dfd34b38f2ad2b82d4.sample"
 
 [deps]
 
 source_file="res://Assets/Sounds/Windows 3.1/TADA.wav"
-dest_files=[ "res://.import/TADA.wav-6f0f65795e3f91dfd34b38f2ad2b82d4.sample" ]
+dest_files=["res://.godot/imported/TADA.wav-6f0f65795e3f91dfd34b38f2ad2b82d4.sample"]
 
 [params]
 
@@ -17,5 +18,7 @@ force/max_rate=false
 force/max_rate_hz=44100
 edit/trim=false
 edit/normalize=false
-edit/loop=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
 compress/mode=0

@@ -1,213 +1,174 @@
-[gd_scene load_steps=38 format=2]
+[gd_scene load_steps=34 format=3 uid="uid://bcveqjxrcnqf4"]
 
-[ext_resource path="res://Assets/Sprites/Fast-Forward/fast-forward14.png" type="Texture" id=1]
-[ext_resource path="res://Assets/Sprites/Scene 1 .png" type="Texture" id=2]
-[ext_resource path="res://Assets/Sprites/Scene 2.png" type="Texture" id=3]
-[ext_resource path="res://Assets/Sprites/Scene 3.png" type="Texture" id=4]
-[ext_resource path="res://Levels/Cutscene.cs" type="Script" id=5]
-[ext_resource path="res://Assets/Jeebz-Regular.ttf" type="DynamicFontData" id=7]
-[ext_resource path="res://Assets/Sprites/Fast-Forward/fast-forward10.png" type="Texture" id=8]
-[ext_resource path="res://Assets/Sprites/Fast-Forward/fast-forward18.png" type="Texture" id=9]
-[ext_resource path="res://Assets/Sprites/Fast-Forward/fast-forward19.png" type="Texture" id=10]
-[ext_resource path="res://Assets/Sprites/Fast-Forward/fast-forward09.png" type="Texture" id=11]
-[ext_resource path="res://Assets/Sprites/Fast-Forward/fast-forward04.png" type="Texture" id=12]
-[ext_resource path="res://Assets/Sprites/Fast-Forward/fast-forward22.png" type="Texture" id=13]
-[ext_resource path="res://Assets/Sprites/Fast-Forward/fast-forward00.png" type="Texture" id=14]
-[ext_resource path="res://Assets/Sprites/Fast-Forward/fast-forward02.png" type="Texture" id=15]
-[ext_resource path="res://Assets/Sprites/Fast-Forward/fast-forward01.png" type="Texture" id=16]
-[ext_resource path="res://Assets/Sprites/Fast-Forward/fast-forward03.png" type="Texture" id=17]
-[ext_resource path="res://Assets/Sprites/Fast-Forward/fast-forward07.png" type="Texture" id=18]
-[ext_resource path="res://Assets/Sprites/Fast-Forward/fast-forward13.png" type="Texture" id=19]
-[ext_resource path="res://Assets/Sprites/Fast-Forward/fast-forward12.png" type="Texture" id=20]
-[ext_resource path="res://Assets/Sprites/Fast-Forward/fast-forward05.png" type="Texture" id=21]
-[ext_resource path="res://Assets/Sprites/Fast-Forward/fast-forward16.png" type="Texture" id=22]
-[ext_resource path="res://Assets/Sprites/Fast-Forward/fast-forward20.png" type="Texture" id=23]
-[ext_resource path="res://Assets/Sprites/Fast-Forward/fast-forward24.png" type="Texture" id=24]
-[ext_resource path="res://Assets/Sprites/Fast-Forward/fast-forward08.png" type="Texture" id=25]
-[ext_resource path="res://Assets/Sprites/Fast-Forward/fast-forward11.png" type="Texture" id=26]
-[ext_resource path="res://Assets/Sprites/Fast-Forward/fast-forward15.png" type="Texture" id=27]
-[ext_resource path="res://Assets/Sprites/Fast-Forward/fast-forward17.png" type="Texture" id=28]
-[ext_resource path="res://Assets/Sprites/Fast-Forward/fast-forward23.png" type="Texture" id=29]
-[ext_resource path="res://Assets/Sprites/Fast-Forward/fast-forward21.png" type="Texture" id=30]
-[ext_resource path="res://Assets/Sprites/Fast-Forward/fast-forward06.png" type="Texture" id=31]
+[ext_resource type="Texture2D" uid="uid://d36ns8purkrbs" path="res://Assets/Sprites/Fast-Forward/fast-forward14.png" id="1"]
+[ext_resource type="Texture2D" uid="uid://bl82q3brlkasc" path="res://Assets/Sprites/Scene 1 .png" id="2"]
+[ext_resource type="Texture2D" uid="uid://cc6ushtw48tvt" path="res://Assets/Sprites/Scene 2.png" id="3"]
+[ext_resource type="Texture2D" uid="uid://33ajfwbrvo75" path="res://Assets/Sprites/Scene 3.png" id="4"]
+[ext_resource type="Script" path="res://Levels/Cutscene.cs" id="5"]
+[ext_resource type="Texture2D" uid="uid://3aabkvp23b1i" path="res://Assets/Sprites/Fast-Forward/fast-forward10.png" id="8"]
+[ext_resource type="Texture2D" uid="uid://dufmxq56grmoj" path="res://Assets/Sprites/Fast-Forward/fast-forward18.png" id="9"]
+[ext_resource type="Texture2D" uid="uid://blvm44kr5sfn3" path="res://Assets/Sprites/Fast-Forward/fast-forward19.png" id="10"]
+[ext_resource type="Texture2D" uid="uid://c2ny1pvgdqgt6" path="res://Assets/Sprites/Fast-Forward/fast-forward09.png" id="11"]
+[ext_resource type="Texture2D" uid="uid://dhjiltdt8fi4" path="res://Assets/Sprites/Fast-Forward/fast-forward04.png" id="12"]
+[ext_resource type="Texture2D" uid="uid://dj06si0uxf6jr" path="res://Assets/Sprites/Fast-Forward/fast-forward22.png" id="13"]
+[ext_resource type="Texture2D" uid="uid://crlmeqwgvalc7" path="res://Assets/Sprites/Fast-Forward/fast-forward00.png" id="14"]
+[ext_resource type="Texture2D" uid="uid://cj5n5d2rrq1mv" path="res://Assets/Sprites/Fast-Forward/fast-forward02.png" id="15"]
+[ext_resource type="Texture2D" uid="uid://beq2ik6okh7fk" path="res://Assets/Sprites/Fast-Forward/fast-forward01.png" id="16"]
+[ext_resource type="Texture2D" uid="uid://b77cnjmc54n4u" path="res://Assets/Sprites/Fast-Forward/fast-forward03.png" id="17"]
+[ext_resource type="Texture2D" uid="uid://b0moupum3s146" path="res://Assets/Sprites/Fast-Forward/fast-forward07.png" id="18"]
+[ext_resource type="Texture2D" uid="uid://ewbxubol6tmr" path="res://Assets/Sprites/Fast-Forward/fast-forward13.png" id="19"]
+[ext_resource type="Texture2D" uid="uid://bbwr6om6lip8w" path="res://Assets/Sprites/Fast-Forward/fast-forward12.png" id="20"]
+[ext_resource type="Texture2D" uid="uid://dsjx441vvgvf6" path="res://Assets/Sprites/Fast-Forward/fast-forward05.png" id="21"]
+[ext_resource type="Texture2D" uid="uid://ksgauktl2elb" path="res://Assets/Sprites/Fast-Forward/fast-forward16.png" id="22"]
+[ext_resource type="Texture2D" uid="uid://djfsp5br5agyq" path="res://Assets/Sprites/Fast-Forward/fast-forward20.png" id="23"]
+[ext_resource type="Texture2D" uid="uid://c47brbcy05bad" path="res://Assets/Sprites/Fast-Forward/fast-forward24.png" id="24"]
+[ext_resource type="Texture2D" uid="uid://dr34r6dro7ak0" path="res://Assets/Sprites/Fast-Forward/fast-forward08.png" id="25"]
+[ext_resource type="Texture2D" uid="uid://dpqlbsg3c7j7c" path="res://Assets/Sprites/Fast-Forward/fast-forward11.png" id="26"]
+[ext_resource type="Texture2D" uid="uid://dxvx72wiy1exf" path="res://Assets/Sprites/Fast-Forward/fast-forward15.png" id="27"]
+[ext_resource type="Texture2D" uid="uid://ddv78f3g7d15h" path="res://Assets/Sprites/Fast-Forward/fast-forward17.png" id="28"]
+[ext_resource type="Texture2D" uid="uid://c74x5w6hbgo1" path="res://Assets/Sprites/Fast-Forward/fast-forward23.png" id="29"]
+[ext_resource type="Texture2D" uid="uid://cposnv3efxujr" path="res://Assets/Sprites/Fast-Forward/fast-forward21.png" id="30"]
+[ext_resource type="Texture2D" uid="uid://blq0w1ptvn5q1" path="res://Assets/Sprites/Fast-Forward/fast-forward06.png" id="31"]
 
-[sub_resource type="Animation" id=1]
+[sub_resource type="Animation" id="1"]
 resource_name = "FadeIn"
 length = 0.5
 step = 0.05
 tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
 tracks/0/path = NodePath("ColorRect:color")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.5 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [ Color( 0, 0, 0, 1 ), Color( 0, 0, 0, 0 ) ]
+"values": [Color(0, 0, 0, 1), Color(0, 0, 0, 0)]
 }
 
-[sub_resource type="Animation" id=2]
+[sub_resource type="Animation" id="2"]
 resource_name = "FadeOut"
 length = 0.5
 tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
 tracks/0/path = NodePath("ColorRect:color")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.5 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [ Color( 0, 0, 0, 0 ), Color( 0, 0, 0, 1 ) ]
+"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 1)]
 }
 
-[sub_resource type="DynamicFont" id=3]
-size = 8
-font_data = ExtResource( 7 )
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_s56ne"]
+_data = {
+"FadeIn": SubResource("1"),
+"FadeOut": SubResource("2")
+}
 
-[sub_resource type="DynamicFont" id=4]
-size = 8
-font_data = ExtResource( 7 )
-
-[sub_resource type="DynamicFont" id=5]
-size = 8
-font_data = ExtResource( 7 )
-
-[sub_resource type="SpriteFrames" id=6]
-animations = [ {
-"frames": [ ExtResource( 14 ), ExtResource( 16 ), ExtResource( 15 ), ExtResource( 17 ), ExtResource( 12 ), ExtResource( 21 ), ExtResource( 31 ), ExtResource( 18 ), ExtResource( 25 ), ExtResource( 11 ), ExtResource( 8 ), ExtResource( 26 ), ExtResource( 20 ), ExtResource( 19 ), ExtResource( 1 ), ExtResource( 27 ), ExtResource( 22 ), ExtResource( 28 ), ExtResource( 9 ), ExtResource( 10 ), ExtResource( 23 ), ExtResource( 30 ), ExtResource( 13 ), ExtResource( 29 ), ExtResource( 24 ) ],
+[sub_resource type="SpriteFrames" id="6"]
+animations = [{
+"frames": [ExtResource("14"), ExtResource("16"), ExtResource("15"), ExtResource("17"), ExtResource("12"), ExtResource("21"), ExtResource("31"), ExtResource("18"), ExtResource("25"), ExtResource("11"), ExtResource("8"), ExtResource("26"), ExtResource("20"), ExtResource("19"), ExtResource("1"), ExtResource("27"), ExtResource("22"), ExtResource("28"), ExtResource("9"), ExtResource("10"), ExtResource("23"), ExtResource("30"), ExtResource("13"), ExtResource("29"), ExtResource("24")],
 "loop": true,
-"name": "default",
+"name": &"default",
 "speed": 5.0
-} ]
-
-[sub_resource type="DynamicFont" id=7]
-size = 9
-font_data = ExtResource( 7 )
+}]
 
 [node name="Cutscene" type="Node2D"]
-script = ExtResource( 5 )
+script = ExtResource("5")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/FadeIn = SubResource( 1 )
-anims/FadeOut = SubResource( 2 )
+libraries = {
+"": SubResource("AnimationLibrary_s56ne")
+}
 
-[node name="Sprite1" type="Sprite" parent="."]
-position = Vector2( 160.151, 89.8672 )
-scale = Vector2( 3.31704, 3.30559 )
-texture = ExtResource( 2 )
+[node name="Sprite1" type="Sprite2D" parent="."]
+position = Vector2(160.151, 89.8672)
+scale = Vector2(3.31704, 3.30559)
+texture = ExtResource("2")
 
-[node name="Sprite2" type="Sprite" parent="."]
+[node name="Sprite2" type="Sprite2D" parent="."]
 visible = false
-position = Vector2( 160.69, 91.5702 )
-scale = Vector2( 3.31651, 3.33083 )
-texture = ExtResource( 3 )
+position = Vector2(160.69, 91.5702)
+scale = Vector2(3.31651, 3.33083)
+texture = ExtResource("3")
 
-[node name="Sprite3" type="Sprite" parent="."]
+[node name="Sprite3" type="Sprite2D" parent="."]
 visible = false
-position = Vector2( 161.032, 91.027 )
-scale = Vector2( 3.33874, 3.32804 )
-texture = ExtResource( 4 )
+position = Vector2(161.032, 91.027)
+scale = Vector2(3.33874, 3.32804)
+texture = ExtResource("4")
 
 [node name="Label1" type="Label" parent="."]
-margin_left = 39.8712
-margin_top = 12.9517
-margin_right = 336.872
-margin_bottom = 41.9517
-custom_fonts/font = SubResource( 3 )
+offset_left = 39.8712
+offset_top = 12.9517
+offset_right = 336.872
+offset_bottom = 41.9517
 text = "It's a normal saturday night, you decided to visit the arcade
 "
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Label2" type="Label" parent="."]
 visible = false
-margin_left = 11.2966
-margin_top = 13.4056
-margin_right = 327.297
-margin_bottom = 70.4056
-custom_fonts/font = SubResource( 4 )
+offset_left = 11.2966
+offset_top = 13.4056
+offset_right = 327.297
+offset_bottom = 70.4056
 text = "But one arcade machine catches your eye, placed in the corner of the room
 
 "
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Label3" type="Label" parent="."]
 visible = false
-margin_left = 37.2654
-margin_top = 13.265
-margin_right = 356.265
-margin_bottom = 40.2649
-custom_fonts/font = SubResource( 5 )
+offset_left = 37.2654
+offset_top = 13.265
+offset_right = 356.265
+offset_bottom = 40.2649
 text = "Trying to play the broken machine, you get sucked right into it!
 "
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Label4" type="Label" parent="."]
 visible = false
-margin_left = 2.58919
-margin_top = 77.7108
-margin_right = 321.589
-margin_bottom = 119.711
-custom_fonts/font = SubResource( 5 )
+offset_left = 2.58919
+offset_top = 77.7108
+offset_right = 321.589
+offset_bottom = 119.711
 text = "You are faced with the game's countless bugs,
  in order to get out...
 "
-align = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Label5" type="Label" parent="."]
 visible = false
-margin_left = 2.58919
-margin_top = 77.7108
-margin_right = 321.589
-margin_bottom = 104.711
-custom_fonts/font = SubResource( 5 )
+offset_left = 2.58919
+offset_top = 77.7108
+offset_right = 321.589
+offset_bottom = 104.711
 text = "you must become the..."
-align = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 3.0
 
 [node name="ColorRect" type="ColorRect" parent="."]
-margin_right = 324.0
-margin_bottom = 180.0
-color = Color( 0, 0, 0, 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+offset_right = 324.0
+offset_bottom = 180.0
+color = Color(0, 0, 0, 1)
 
-[node name="FastForwardSprite" type="AnimatedSprite" parent="."]
+[node name="FastForwardSprite" type="AnimatedSprite2D" parent="."]
 visible = false
-position = Vector2( 290.424, 167.711 )
-scale = Vector2( 0.123468, 0.123468 )
-frames = SubResource( 6 )
-frame = 14
+position = Vector2(290.424, 167.711)
+scale = Vector2(0.123468, 0.123468)
+frames = SubResource("6")
 speed_scale = 1.84
 playing = true
 
 [node name="FastForwadIndicator" type="Label" parent="."]
-margin_left = 3.65679
-margin_top = 167.264
-margin_right = 138.657
-margin_bottom = 181.264
-custom_fonts/font = SubResource( 7 )
+offset_left = 3.65679
+offset_top = 167.264
+offset_right = 138.657
+offset_bottom = 181.264
 text = "Hold [E] to fast forward"
-__meta__ = {
-"_edit_use_anchors_": false
-}
+
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_finished"]
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

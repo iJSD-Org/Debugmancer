@@ -7,15 +7,15 @@ using Godot;
 
 namespace Debugmancer.Objects.Enemies.Cultist
 {
-	public class Entity : KinematicBody2D
+	public partial class Entity : CharacterBody2D
 	{
 		[Signal]
-		public delegate void StateChanged();
+		public delegate void StateChangedEventHandler();
 		
 		public State CurrentState;
-		public readonly Dictionary<string, Node> StatesMap = new Dictionary<string, Node>();
+		public readonly Dictionary<string, Node> StatesMap = new();
 
-		private KinematicBody2D _player;
+		private CharacterBody2D _player;
 
 		public override void _Ready()
 		{
@@ -25,21 +25,21 @@ namespace Debugmancer.Objects.Enemies.Cultist
 
 			foreach (Node state in StatesMap.Values)
 			{
-				state.Connect(nameof(State.Finished), this, nameof(ChangeState));
+				state.Connect(nameof(State.Finished),new Callable(this,nameof(ChangeState)));
 			}
 
-			_player = GetParent().GetNode("Player") as KinematicBody2D;
+			_player = GetParent().GetNode("Player") as CharacterBody2D;
 			GetNode<Node2D>("BulletSpawn").Rotation = new Vector2(_player.Position.x - Position.x, _player.Position.y - Position.y).Angle();
 
-			GetNode("Health").Connect(nameof(Health.HealthChanged), this, nameof(OnHealthChanged));
+			GetNode("Health").Connect(nameof(Health.HealthChanged),new Callable(this,nameof(OnHealthChanged)));
 
 			CurrentState = (State)GetNode("States/Shoot");
 			ChangeState("Shoot");
 		}
 
-		public override void _PhysicsProcess(float delta)
+		public override void _PhysicsProcess(double delta)
 		{
-			CurrentState.Update(this, delta);
+			CurrentState.Update(this, (float)delta);
 		}
 
 		private void ChangeState(string stateName)
@@ -57,12 +57,12 @@ namespace Debugmancer.Objects.Enemies.Cultist
 
 			if (stateName == "Shoot")
 			{
-				((Shoot)CurrentState).Init(GetParent().GetNode<KinematicBody2D>("Player"), (PackedScene)ResourceLoader.Load("res://Objects/Bullets/EnemyBullet2.tscn"));
+				((Shoot)CurrentState).Init(GetParent().GetNode<CharacterBody2D>("Player"), (PackedScene)ResourceLoader.Load("res://Objects/Bullets/EnemyBullet2.tscn"));
 			}
 
 			if (stateName == "Teleport")
 			{
-				((Teleport)CurrentState).Init(GetParent().GetNode<KinematicBody2D>("Player"));
+				((Teleport)CurrentState).Init(GetParent().GetNode<CharacterBody2D>("Player"));
 			}
 
 			CurrentState.Enter(this);
@@ -72,18 +72,18 @@ namespace Debugmancer.Objects.Enemies.Cultist
 
 		public async void OnHealthChanged(int health)
 		{
-			Modulate = Color.ColorN("Red");
+			Modulate = new Color("Red");
 			await Task.Delay(100);
 			Modulate = new Color(1, 1, 1);
 			if (health == 0)
 			{
 				Globals.Score += (int)Math.Ceiling(200 * Globals.ScoreMultiplier);
-				GetParent().GetNode<KinematicBody2D>("Player").GetNode<Label>("HUD/Score").Text = $"Score: {Globals.Score}";
+				GetParent().GetNode<CharacterBody2D>("Player").GetNode<Label>("HUD/Score").Text = $"Score: {Globals.Score}";
 				QueueFree();
 			}
 		}
 
-		public void _on_Hitbox_body_entered(Area2D body)
+		public void _on_Hitbox_body_entered(Node2D body)
 		{
 			Health health = (Health)GetNode("Health");
 			if (body.IsInGroup("playerBullet")) 

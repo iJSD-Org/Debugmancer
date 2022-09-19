@@ -2,14 +2,14 @@ using Godot;
 
 namespace Debugmancer.Objects.Bullets
 {
-	public class EnemyBullet : Area2D
+	public partial class EnemyBullet : Area2D
 	{
 		public Vector2 Direction { get; set; }
 		public int Speed { get; set; }
 
-		public override void _Process(float delta)
+		public override void _Process(double delta)
 		{
-			Position += Direction * delta * Speed;
+			Position += Direction * (float)delta * Speed;
 		}
 
 		private void _on_VisibilityNotifier2D_screen_exited()
@@ -17,7 +17,7 @@ namespace Debugmancer.Objects.Bullets
 			QueueFree();
 		}
 		
-		public void _on_EnemyBullet_body_entered(Area2D body)
+		public void _on_EnemyBullet_body_entered(Node2D body)
 		{
 			if (!body.IsInGroup("enemy") && !body.IsInGroup("playerBullet")) QueueFree();
 		}

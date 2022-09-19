@@ -4,7 +4,7 @@ using System;
 
 namespace Debugmancer.Objects.Enemies.Void.States
 {
-	public class Wander : State
+	public partial class Wander : State
 	{
 		[Export] public int Speed = 40;
 		private Vector2 _dir;
@@ -17,7 +17,7 @@ namespace Debugmancer.Objects.Enemies.Void.States
 			_wanderTimer = GetNode<Timer>("WanderTimer");
 		}
 
-		public override void Enter(KinematicBody2D host)
+		public override void Enter(CharacterBody2D host)
 		{
 			host.GetNode<AnimationPlayer>("AnimationPlayer").Play("Chase");
 			_wanderTimer.Start();
@@ -25,19 +25,20 @@ namespace Debugmancer.Objects.Enemies.Void.States
 			_dir.y = _random.Next(-50, 50);
 		}
 
-		public override void Exit(KinematicBody2D host)
+		public override void Exit(CharacterBody2D host)
 		{
 			// Nothing to do here
 		}
 
-		public override void HandleInput(KinematicBody2D host, InputEvent @event)
+		public override void HandleInput(CharacterBody2D host, InputEvent @event)
 		{
 			// Nothing to do here
 		}
 
-		public override void Update(KinematicBody2D host, float delta)
+		public override void Update(CharacterBody2D host, float delta)
 		{
-			host.MoveAndSlide(_dir.Normalized() * Speed);
+			host.Velocity = _dir.Normalized() * Speed;
+			host.MoveAndSlide();
 		}
 
 		private void _on_WanderTimer_timeout()

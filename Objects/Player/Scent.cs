@@ -2,7 +2,7 @@ using Godot;
 
 namespace Debugmancer.Objects.Player
 {
-	public class Scent : Node2D
+	public partial class Scent : Node2D
 	{
 		private Entity _player;
 

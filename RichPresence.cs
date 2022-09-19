@@ -1,17 +1,20 @@
 using System;
-using Debugmancer.NamedPipeClient;
 using DiscordRPC;
 using Godot;
+using Button = DiscordRPC.Button;
 
 namespace Debugmancer
 {
-	class RichPresence : Node
+	public partial class RichPresence : Node
 	{
 		public DiscordRpcClient Client;
 
 		public override void _Ready()
 		{
-			Client = new DiscordRpcClient("752376874339926187", -1, null, true, new UnityNamedPipe()) { ShutdownOnly = true };
+			Client = new DiscordRpcClient("752376874339926187")
+			{
+				ShutdownOnly = true
+			};
 
 			Client.OnReady += (o, e) =>
 			{
@@ -22,8 +25,8 @@ namespace Debugmancer
 
 			DiscordRPC.RichPresence rp = new DiscordRPC.RichPresence
 			{
-				Details = "https://github.com/sitiom/Debugmancer",
-				Assets = new Assets()
+				Buttons = new []{ new Button { Label = "Source code", Url = "https://github.com/iJSD-Org/Debugmancer"} },
+				Assets = new Assets
 				{
 					SmallImageKey = "godot-3",
 					SmallImageText = "Made with Godot Engine",
